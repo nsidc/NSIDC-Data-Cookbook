@@ -1,0 +1,9 @@
+---
+title: How do I reproject data
+---
+
+# How do I reproject a data file from from the command line
+Use `gdal`
+
+# How do I reproject a NetCDF file using `rioxarray`
+See [`rioxarray` docs](https://corteva.github.io/rioxarray/html/getting_started/crs_management.html)
