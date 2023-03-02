@@ -1,0 +1,7 @@
+# Points, Pixels, Grids
+
+A placeholder for a deeper dive into grids and resampling.  I plan on
+basing this on Ken Knowles page of a similar name but modified for
+gdal, python and other new tools.
+
+https://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells
