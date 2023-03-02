@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  page-navigation: true
+  title: "NSIDC Data Cookbook"
+
+  sidebar:
+    title: "NSIDC Data Cookbook"
+    logo: images/nasa-openscapes.png
+    pinned: true
+    align: center
+    tools: 
+#      - icon: globe
+#        href: https://nasa-openscapes.github.io
+#        text: "NASA-Openscapes website"
+      - icon: github
+        href: https://github.com/nsidc/NSIDC-Data-Cookbook
+        text: "NSIDC Data Cookbook repo"
+
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - text: "Welcome"
+        href: index.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+    code-background: true
+    code-copy: true
+    css: styles.css
+    toc: true
+
+filters:
+  - include-files.lua
+  - quarto
+
