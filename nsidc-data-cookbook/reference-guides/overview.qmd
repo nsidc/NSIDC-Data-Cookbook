@@ -1,0 +1,19 @@
+---
+title: "Reference Guides"
+author: Andy P. Barrett
+---
+
+## Introduction
+
+This section of the cookbook contains **Reference Guides** to a
+variety of topics.  Reference Guides are intended to provide
+background information for the [**How-To
+Guides**](nsidc-data-cookbook/how-tos/overview.qmd) and [**Tutorials**](nsidc-data-cookbook/tutorials/index.qmd).
+
+Reference Guides are organized into the following sections:
+_Maybe add a short description of each section here_
+
+- What is an API?; 
+- Understanding NASA-speak for datasets;
+- Map projections and grids demystified.
+
