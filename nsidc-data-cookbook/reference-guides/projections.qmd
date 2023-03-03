@@ -1,0 +1,25 @@
+---
+title: "Projections and Coordinate Systems"
+author: Andy P. Barrett
+---
+
+## What is a map projection?
+
+
+## What is a datum?
+
+
+## What is a coordinate reference system?
+
+
+## NSIDC coordinate reference systems
+
+
+## How can I define a map projects of CRS in a data file?
+
+### NetCDF and CF-Conventions
+
+Include a link to NSIDC projection definitions
+
+
+### GeoTIFF
