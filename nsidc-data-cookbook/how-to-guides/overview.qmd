@@ -1,0 +1,28 @@
+---
+title: "How-To Guides"
+author: Andy P. Barrett
+---
+
+## Introduction
+
+This section of the cookbook contains **How To Guides** to help you
+solve a particular problem or task.  You can think of these How-To
+Guides as recipes.  For the most part they are short.  They are
+written with the assumption that you know what you want to do and have
+some understanding of programing.  You can think of each How-To as a
+building block that can be put together with other How-To to construct
+a workflow.
+
+If you are just learning either programming or working in the cloud,
+we recommend looking at our [**Tutorials**](nsidc-data-cookbook/tutorials/index.qmd).  
+If you are looking for inspiration or examples of workflows
+applied to particular problems look at the collection of [**Example
+Workflows**](../examples/index.qmd).
+
+How-To Guides are organized into the following sections:
+_Maybe add a short description of each section here_
+
+- Searching for data; 
+- Accessing data;
+- Reprojecting and resampling data;
+

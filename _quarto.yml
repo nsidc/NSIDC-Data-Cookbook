@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  page-navigation: true
+  title: "NSIDC Data Cookbook"
+
+  sidebar:
+    title: "NSIDC Data Cookbook"
+    logo: https://nsidc.org/themes/custom/nsidc/logo.svg
+    pinned: true
+    align: center
+    tools: 
+#      - icon: globe
+#        href: https://nasa-openscapes.github.io
+#        text: "NASA-Openscapes website"
+      - icon: github
+        href: https://github.com/nsidc/NSIDC-Data-Cookbook
+        text: "NSIDC Data Cookbook repo"
+
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - text: "Welcome"
+        href: nsidc-data-cookbook/introduction.qmd
+      - section: "How do I..."
+        href: nsidc-data-cookbook/how-to-guides/overview.qmd
+        contents:
+          - section: "reproject data" 
+      - section: "Tutorials"
+        contents:
+      - section: "Reference Guides"
+        href: nsidc-data-cookbook/reference-guides/overview.qmd
+        contents:
+          - text: "What is an API?"
+          - text: "NASA collections and granules"
+          - text: "Map projections and grids"
+            href: nsidc-data-cookbook/reference-guides/projections.qmd
+      - section: "Examples"
+        contents:
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+    code-background: true
+    code-copy: true
+    css: styles.css
+    toc: true
+
+filters:
+  - include-files.lua
+  - quarto
+

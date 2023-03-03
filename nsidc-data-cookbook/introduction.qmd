@@ -1,0 +1,8 @@
+---
+title: "NSIDC Data Cookbook"
+author: NSIDC
+---
+
+## Welcome
+
+Welcome to the NSIDC Data Cookbook!
