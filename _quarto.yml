@@ -8,7 +8,7 @@ website:
 
   sidebar:
     title: "NSIDC Data Cookbook"
-    logo: images/nasa-openscapes.png
+    logo: https://nsidc.org/themes/custom/nsidc/logo.svg
     pinned: true
     align: center
     tools: 
@@ -24,7 +24,8 @@ website:
     collapse-level: 1
     contents:
       - text: "Welcome"
-        href: index.qmd
+        href: nsidc-data-cookbook/introduction.qmd
+      - section: nsidc-data-cookbook/how-to-guides/overview.qmd
 
 format:
   html:
@@ -36,7 +37,7 @@ format:
     css: styles.css
     toc: true
 
-filters:
-  - include-files.lua
-  - quarto
+#filters:
+#  - include-files.lua
+#  - quarto
 
