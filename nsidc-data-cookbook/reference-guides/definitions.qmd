@@ -1,0 +1,15 @@
+---
+title: "Definitions"
+bibliography: ../references.bib
+---
+
+# Glossary
+
+**Geodetic Latitude**{#geodetic_latitude} of a point is the angle
+  formed between the vector perpendicular to the ellipsoidal surface
+  from the point, and the plane of the equator  @wikipedia_latitude_2023.  
+
+**Latitude**{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body.  See @geodetic_latitude, @geocentric_latitude
+
+**Geodetic Datum**
+

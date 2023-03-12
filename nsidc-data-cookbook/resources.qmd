@@ -1,0 +1,24 @@
+---
+title: Miscellaneous Resources
+---
+
+## Programatic Download
+[NSIDC How to](https://nsidc.org/data/user-resources/help-center/programmatic-data-access-guide)
+
+## Projections
+[NSIDC Polar Stereographic Projection](https://nsidc.org/data/user-resources/help-center/guide-nsidcs-polar-stereographic-projection)
+[NSIDC EASE Grid](https://nsidc.org/data/user-resources/help-center/guide-ease-grids#anchor-1)
+
+[CF Conventions Grid Mappings](https://cfconventions.org/cf-conventions/cf-conventions.html#appendix-grid-mappings)
+
+[Latitude](https://en.wikipedia.org/wiki/Latitude)
+[Geodetic Datums](https://www.e-education.psu.edu/geog862/book/export/html/1669)
+
+[Snyder](https://pubs.usgs.gov/pp/1395/report.pdf)
+
+[`rioxarray.raster_dataset`](https://corteva.github.io/rioxarray/html/_modules/rioxarray/raster_dataset.html#RasterDataset.reproject)
+
+[`rasterio.affine`](https://github.com/rasterio/affine)
+[GDAL Affine](https://gdal.org/user/raster_data_model.html#affine-geotransform)
+[`pyproj`](https://pyproj4.github.io/pyproj/stable/examples.html)
+[`cartopy.crs.CRS`](https://scitools.org.uk/cartopy/docs/v0.15/_modules/cartopy/crs.html#NorthPolarStereo)

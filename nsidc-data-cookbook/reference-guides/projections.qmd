@@ -3,6 +3,11 @@ title: "Projections and Coordinate Systems"
 author: Andy P. Barrett
 ---
 
+## Overview
+
+The purpose of this reference guide is to provide an introduction to
+and background for map projections.  For a full treatment, please
+consult @snyder_projections_ 
 ## What is a map projection?
 
 
@@ -23,3 +28,14 @@ Include a link to NSIDC projection definitions
 
 
 ### GeoTIFF
+
+
+## Geographic Coordinate Systems
+A _Geographic Coordinate System_ is a spherical or ellipsoidal coordinate system with coordinates latitude $\phi$, longitude $\lambda$, and height $z$.  Latitude and Longitude are defined relative to a reference ellipsoid.  There are many reference ellipsoids, so a full definition of geographic coordinates requires a full specification of the coordinate reference system.  _Check!_ Most global datasets, GPS and satellites use the WGS84 ellipsoid.
+
+Two levels of abstraction are required to define latitude and longitude.  First a model of the  surface of the Earth is required.  This model approximates mean sea level over the oceans and continues this surface under the continents.  The second step is to approximate the geoid with a mathematical definition of the surface of the geoid.  A simple solution is to use a sphere.  However, it is more accurate to use an Ellipsoid.
+
+The latitude of a point on the reference ellipsoid is the angle formed
+by the normal to the reference surface at the point of interest, and
+the plane of the Equator or Equatorial Plane.  The Equatorial plane is
+perpendicular to the Earths axis of rotation.
