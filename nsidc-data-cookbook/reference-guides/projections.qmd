@@ -8,10 +8,38 @@ author: Andy P. Barrett
 The purpose of this reference guide is to provide an introduction to
 and background for map projections.  For a full treatment, please
 consult @snyder_projections_ 
+
 ## What is a map projection?
 
 
 ## What is a datum?
+
+Ellipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton.
+Confirmed by measurements of length of arc.
+
+The geoid - the figure (shape) of the Earth if it were measured at mean sea level - involves gravity.  The geoid is an undulating surface that deviates from a well fitting ellipsoid by ~ 100 m.
+
+Reference ellipsoid
+defined by:
+1. semi-major and semi-minor axes;
+2. semi-major axis and flattening;
+3. semi-major axis and eccentricity;
+
+These are all related.
+
+Newton flattening 1/~300.  Add WGS84 for current estimate.
+
+A datum is a smooth mathematical surface that closely fits the mean sea-level surface - from @snyder
+
+Earth centered datums - e.g. WGS84 - no local reference point.  The center of the Earth is the reference point.
+
+$$
+b = a(1 - f); f = 1-b/a
+$$
+$$
+e^2 = 2f - f^2; \\
+f = 1 - (1 - e^2)^{1/2}
+$$
 
 
 ## What is a coordinate reference system?
