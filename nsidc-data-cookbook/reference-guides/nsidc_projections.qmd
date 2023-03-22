@@ -1,0 +1,96 @@
+---
+title: "Projections for NSIDC Datasets"
+author: "Andrew P. Barrett"
+date: last-modified
+bibliography: references.bib
+---
+
+Gridded data archived at and managed by programmes at NSIDC are stored
+in a small number of projections systems.  The main projections are listed
+below.
+
+- Polar Stereographic Projections  
+- Lambert Azimuthal Equal Area projections  
+- Sinusoidal projections
+
+Polar Stereographic and Lamber Azimuthal Equal Area projections are
+members of the _Azimuthal_ family of projections.  _Azimuthal_
+projections are characterized by the fact that directions, or
+azimuths, from the center of the projection are shown as straight
+lines [@snyder_map_1987].
+
+Azimuthal projections are formed on a plane that is tangent to the
+sphere or ellipsoid at one of the Poles, the Equator or some
+intermediate point.  Here, I refer to the geographic coordinates of
+this point as the _Latitude of Origin_ and _Longitude of Origin_.  For
+a Polar projection the Latitude of Origin is $\pm 90^{\circ}N$. 
+
+For Polar projections, meridians are straight lines that radiate from
+the pole.  Parallels are circles.
+
+With the exception of the Stereographic projection, azimuthal
+projections do not have standard parallels.  The Stereographic
+projection can have one standard parallel.  This helps minimise
+distortion in the Polar aspect.
+
+## Polar Stereographic Projection
+
+A Polar Stereographic projection is a special case of the
+Stereographic projection.  Stereographic projections is a true
+persepective projection (_what does this imply_), where the point of
+persepctive is the antipodal point to the point of tangent [see
+figure].  For a North Polar projection, this point of persepctive is
+the South Pole.  For a South Polar projection, the point of
+perspective is the North Pole.  If the plane is secant, the point of
+perspective is opposite the center of the projection.
+
+It is conformal for the sphere or ellipsoid but it is not perspective
+for the ellipsoid.  The ellipsoidal form is not perspective to
+preserve conformality.
+
+Stereographic projections are not isometric (distance preserving) or
+equiareal (area preserving).
+
+
+### Formulas For the Sphere (From @snyder_maps_1987)
+
+$$
+\rho = 2R \tan \frac{1}{2}c \\
+\theta = \pi - Az = 180^{\circ} - Az \\
+k = \sec^{2} \frac{1}{2}c
+$$
+
+where $c$ is the angular distance from the center, $Az$ is the azimuth
+east of north, and $\theta$ is the polar coordinate east of south.
+
+Given $R$, $k_{0}$, $\phi_{1}$, $\lambda_{0}$, $\phi$, and $\lambda$
+
+$$
+x = Rk \cos \phi \sin(\lambda - \lambda_{0} \\
+y = Rk [\cos \phi_{1} \sin \phi - \sin \phi \cos \phi \cos(\lambda -
+\lambda_{0})
+$$
+
+where
+
+$$
+k = 2 k_{0} / [1 + \sin \phi_{1} \sin \phi + \cos \phi_{1} \cos \phi
+\cos(\lambda - \lambda_{0})]
+$$
+
+$c$ is great circle distance as an arc of a circle  
+$k$ relative scale factor along a parallel of latitude
+$R$ radius of the sphere
+$x$ rectangular (map) coordinate
+$y$ recatanular (map) coordinate
+$\theta$ angle measured counter clockwise from the central meridian
+$\lambda$ longitude east of Greenwich meridian
+$\lambda_{0}$ logitude east of Greenwich of central meridian -
+latitude of origin  
+$\rho$ radius of latitude circle  
+$\phi$ north geodetic or geographic latitude
+$\phi_{1}$, $\phi_{2}$ standard paralells of latitude for projections
+with two standard parallels.  Only $\phi_{1}$ is give for projections
+with one standard parallel or for azimuthal central points.
+$\omega$ maximum angular deformation at a given point in a
+projection.  
