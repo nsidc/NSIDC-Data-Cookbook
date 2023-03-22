@@ -11,6 +11,12 @@ consult @snyder_projections_
 
 ## What is a map projection?
 
+Projection parameters - depend on projection type.  But at the very
+least require a datum or reference ellipsoid.  Geographic coordinates
+that relate the projected surface to this sphere or ellipsoid.  This
+defines the origin of the projected coordinates.  Definitions also
+include false northings and false easting if the origin of the
+projected coordinates is not at the center of the projection???.
 
 ## What is a datum?
 
@@ -42,6 +48,9 @@ f = 1 - (1 - e^2)^{1/2}
 $$
 
 
+## Geodetic versus Geographic latitude
+
+
 ## What is a coordinate reference system?
 
 
@@ -67,3 +76,25 @@ The latitude of a point on the reference ellipsoid is the angle formed
 by the normal to the reference surface at the point of interest, and
 the plane of the Equator or Equatorial Plane.  The Equatorial plane is
 perpendicular to the Earths axis of rotation.
+
+
+## Standard terms for projection parameters
+
+The OGC CRS WKT standard gives accepted names in Table F.3.  Several
+terms are acceptable to describe latitude_of_origin,
+longitude_of_origin.  There is no latitude_of_true_scale.  There is
+also no mention of latitude_of_true_origin
+
+https://docs.ogc.org/is/18-010r7/18-010r7.html#221
+
+PROJ gives common parameter names here https://proj.org/usage/projections.html
+
+Individual projections have specific parameters.
+
+The stereographic projection is here https://proj.org/operations/projections/stere.html
+The Lambert Azimuthal Equal Area, which is the basis for the EASE Grids, is here https://proj.org/operations/projections/laea.html
+
+The CF-Conventions describe the parameters required for the grid_mapping variable.
+Lambert Azimuthal Equal Area https://cfconventions.org/cf-conventions/cf-conventions.html#lambert-azimuthal-equal-area
+Polar Stereographic https://cfconventions.org/cf-conventions/cf-conventions.html#polar-stereographic
+
