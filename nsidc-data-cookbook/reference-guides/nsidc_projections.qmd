@@ -2,7 +2,7 @@
 title: "Projections for NSIDC Datasets"
 author: "Andrew P. Barrett"
 date: last-modified
-bibliography: references.bib
+bibliography: ../references.bib
 ---
 
 Gridded data archived at and managed by programmes at NSIDC are stored
