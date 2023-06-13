@@ -5,9 +5,66 @@ author: Andy P. Barrett
 
 ## Overview
 
-The purpose of this reference guide is to provide an introduction to
-and background for map projections.  For a full treatment, please
-consult @snyder_projections_ 
+This reference guide provides an introduction to coordinate reference
+systems for geospatial data.  For a full treatment, please consult
+@snyder_projections_
+
+## Geospatial Data
+
+Geospatial data and information is defined as data and information
+associated with a location relative to the Earth.  It is also referred
+to as geographic data and information, georeferenced data and
+information, or geodata and geoinformation.  Geospatial data may be
+vector data (points, line or polygons), raster or gridded data, or
+geographic databases.  Locations of data relative to the Earth are
+defined by a Coordinate Reference System (CRS).
+
+
+## Data Models
+
+Vector data, raster data and geographic databases are all way to
+represent geospatial data.  Examples vector datasets are the locations
+of capital cities defined by a latitude and longitude for each city.
+The network of US interstate highways can be represented as a set of
+line segments, where the end points of each line segment is a latitude
+longitude pair.  Country boundaries can be represented as polygons
+made up of line segments.  Points, line segments and polygons can all
+be assigned values.  For example, if points represent the locations of
+capital cities, value attributes of each point could be the name of
+the city.  Other values suh as the population could also be assigned.
+For the interstate highway data, line segments could have highway
+number as a value, but also speed limite or average traffic flow.
+Country polygons could have area, population, rainfall or any number
+of values assiciated with it.  Once values are assigned to vector
+data, the distingction between a geospatal database and vector data
+begins to be blurred.  
+
+Raster data is an rectangular array of points or areas that each have a location
+and a set values associated with them.  Raster data can represent
+values at grid intersections or as values for the area of grid cells.
+For remote sensing data grid cells are called pixels.  A grid of temperatures or an
+array of precipitation values or some remote sensing value.
+
+## Coordinate Reference Systems
+
+**C**oordinate **R**eference **S**ystems (CRS) define the position,
+  scale and orientation of a coordinate system with respect to an
+  object.  For geospatial data this object is the Earth.  A coordinate
+  system is defined by a dimension, the number of axes.  For a
+  geospatial coordinate system, the coordinates may be latitude and
+  longitude, or x, y, z, which have 2 and 3 dimensions respectively.
+  Each axis has name; the sequence of axes, the order in which axes
+  are stated; the direction of the axis; and the units of the axis.  A
+  coordinate syetem is related to the Earth by a datum, which defines
+  the origin of the coordinate system relative to a model of the
+  earth.
+
+  Coordinate Reference Systems for geospatial data are *Geodetic
+  Coordinate Reference Systems* and *Projected Coordinate Reference
+  Systems*.  *Image Coordinate Reference Systems* and *Engineering
+  Coordinate Reference Systems* relate raster or gridded data, and
+  survey data to Geodetic and Projected Coordinate Reference Systems.   
+
 
 ## What is a map projection?
 
@@ -20,11 +77,68 @@ projected coordinates is not at the center of the projection???.
 
 ## What is a datum?
 
+### Notes on Datums and Coordinates Reference Systems from Iliffe and Lott (2008)
+
+_Coordinate System_: A set of rules that define how coordinates are assigned to locations.  A coordinate system is defined by
+a dimension (the number of axes), each axes has a coordinate associated with it.  Each axis of a coordinates system has the following attributes:
+- the name or abbreviation of the axis (e.g. Latitude);
+- the sequence number of the axis so that coordinate order is define (e.g. (x,y,z) or (z,y,x));
+- the direction of the axis in which coordinates increment;
+- the units of the axis.
+
+_Datum_: A datum is the information that fixes a _coordinate system_ to an object (e.g. Earth).  A _Geodetic datum_ is a datum that defined the relationship of a coordinate system to an ellipsoidal model of Earth with the Geoid (I&L say real Earth).
+
+The size and shape of the best fitting ellipsoid to the Earth is GRS 1980.
+
+International Terrestrial Reference System (ITRS) describes a 3
+dimensional cartesian coordinate system in which the direction of the
+Earth's rotation axis and speed of rotation are defined.  These change
+and the International Earth Rotation and Reference Systems Service
+(IERS) monitors and predicts the Earth's rotation and the movement of
+it's poles.  This information is essential to determine the position
+of a satellite in a terrestrial (reference) system.
+
+For a global datum, the prime meridian is defined and allows for the
+movement of the poles (precession and nutation).  Note: the prime
+meridian does not agree with the old Greenwich Observatory and may be
+off by 102 m.  Greenwich prime meridian is defined by IERS.
+
+The origin of the ITRS is the center of the Earth.
+
+A _Coordinate Reference System_ is a coordinate system that has been
+referenced to a datum - where datum in this sense if the full datum
+realization (points of known coordinates has been marked as physical
+monuments - needs further explanation).
+
+The International Terrestrial Reference Frame (ITRF) is the
+realization of the ITRS.  ITRF is the coordinates of the network of
+[ground stations](https://itrf.ign.fr/en/network/map).  The ITRF
+changes because of the motion of Earth's tectonic plates.  Station
+coordinates are only valid for the epoch (January 1 of the year of
+realization) of the realization (e.g. ITRF2008).  The reference frame
+consists not only of station coordinates but also the velocity of the
+stations.  Station coordinates can then be calculated for different
+epochs.
+
+Define epoch
+
+WGS84 - the World Geodetic System of 1984 - is the reference for
+positions determined through GPS.  US GPS satellites (distinct from
+the Russia GLONASS, European Galilieo, and Chinese BeiDou satellite
+navigation systems.  GPS positions start with the satellite
+ephemerides (orbital positions) that are determined from a network of
+ground monitoring stations maintained by the US military.  The
+positions of these ground stations are changing.  WGS 84 is
+maintained to be within a few centimeters of the current ITRF.  A
+strict definition of WGS 84 has the form WGS 84 (GXXX) where XXX is
+the GPS week number.  
+
+
 Ellipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton.
 Confirmed by measurements of length of arc.
 
 The geoid - the figure (shape) of the Earth if it were measured at mean sea level - involves gravity.  The geoid is an undulating surface that deviates from a well fitting ellipsoid by ~ 100 m.
-
+) 
 Reference ellipsoid
 defined by:
 1. semi-major and semi-minor axes;
