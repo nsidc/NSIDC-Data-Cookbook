@@ -28,7 +28,13 @@ website:
       - section: "How do I..."
         href: nsidc-data-cookbook/how-to-guides/overview.qmd
         contents:
-          - section: "reproject data" 
+          - section: "How do I reproject a netCDF file from the command line?"
+          - section: "How do I reproject a netCDF file using `xarray`?"
+          - section: "How do I reproject a GeoTIFF from the command line?"
+          - section: "How do I reproject a GeoTIFF using rioxarray?"
+          - section: "How do I find the bounding box of a grid?"
+          - section: "How to I find the latitude and longitudes of grid cells?"
+          
       - section: "Tutorials"
         contents:
       - section: "Reference Guides"
