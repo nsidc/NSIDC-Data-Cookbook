@@ -1,0 +1,61 @@
+---
+title: "How do I get the bounding box of a NetCDF file in latitude and longitude?"
+author: Andrew P. Barrett
+date: last_modified
+---
+
+## Problem
+My data are in a NetCDF file but there are no latitude and longitude coordinates.  How do I find the bounding box in latitude and longitude?.
+
+## Solution
+### Using xarray and rioxarray
+```
+import rioxarray
+import xarray as xr
+
+
+# Load dataset using decode_coords='all'
+ds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',
+                     decode_coords='all')
+
+# Get the bounds of the data grid in WGS84 (EPSG code 4362)
+ds.rio.transform_bounds(4326)
+```
+```
+(-180.0, 30.98056405144958, 180.0, 90.0)
+```
+
+## Discussion
+
+As of [CF v1.8](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.10/cf-conventions.html#grid-mappings-and-projections), latitude and longitude coordinate variables are no longer required in CF-compliant NetCDF files, as long as projected horizontal spatial coordinates (e.g. `x` and `y`, or `easting` and `northing`) and a `grid_mapping` variable is provided.  The `grid_mapping` variable defines the coordinate reference system (CRS) of the projected horizontal coordinates.
+
+The easiest, and frankly best, way to read and work with NetCDF files is to use `xarray`.  `rioxarray` extends the `xarray` package to use CRS and make geospatial tasks, such as reprojecting and regridding, easier.  By setting the keyword `decode-coords='all'`, `rioxarray` searches the `xarray.DataArray` or `xarray.Dataset` for the CRS.  `rioxarray` also determines the `transform` or `geotransform`, which defines the image CRS that transforms cell coordiates (column and row) into projected coordinates (x, y).  The `transform` is calculated from the coordinates of the data.  See the `rioxarray` [documentaton](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#) for more details.
+
+Both these spatial coordinates can be accessed as follows:
+
+```
+ds.rio.crs
+```
+```
+CRS.from_wkt('PROJCS["NSIDC Sea Ice Polar Stereographic North",GEOGCS["Unspecified datum based upon the Hughes 1980 ellipsoid",DATUM["Not_specified_based_on_Hughes_1980_ellipsoid",SPHEROID["Hughes 1980",6378273,298.279411123061,AUTHORITY["EPSG","7058"]],AUTHORITY["EPSG","6054"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4054"]],PROJECTION["Polar_Stereographic"],PARAMETER["latitude_of_origin",70],PARAMETER["central_meridian",-45],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["X",EAST],AXIS["Y",NORTH],AUTHORITY["EPSG","3411"]]')
+```
+
+```
+ds.rio.transform()
+```
+```
+Affine(25000.0, 0.0, -3850000.0,
+       0.0, -25000.0, 5850000.0)
+```
+
+If this information is not found, all is not lost.  [`rio.write_crs`](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#Setting-the-CRS) and [`rio.write_transform`](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#Setting-the-transform-of-the-dataset) can be used to set the CRS and the transform of the dataset.
+
+Once these variables are set, the horizontal spatial bounds of the dataset can be queried as described above.  If all you want is the bounds in projected coordinates.  These can be accessed using `ds.rio.bounds()`.
+
+```
+ds.rio.bounds()
+```
+```
+(-3850000.0, -5350000.0, 3750000.0, 5850000.0)
+```
+
