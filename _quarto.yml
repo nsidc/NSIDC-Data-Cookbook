@@ -40,10 +40,22 @@ website:
       - section: "Reference Guides"
         href: nsidc-data-cookbook/reference-guides/overview.qmd
         contents:
-          - text: "What is an API?"
-          - text: "NASA collections and granules"
-          - text: "Map projections and grids"
-            href: nsidc-data-cookbook/reference-guides/projections.qmd
+          - section: "Coordinate Reference Systems"
+          - href: nsidc-data-cookbook/reference-guides/coordinate_reference_systems_overview.qmd
+            contents:
+            - text: "What is a Coordinate Reference System?"
+            - text: "Map projections and grids"
+              href: nsidc-data-cookbook/reference-guides/projections.qmd
+            - text: "Alls Affine!"
+            - text: "Making NetCDF files CF-Compliant"
+          - section: "Data Access"
+            contents:
+            - text: "NASA collections and granules"
+            - text: "Data Formats Explained"
+          - section: "Scientific Programming"
+            contents:
+            - text: "What is an API?"
+          
       - section: "Examples"
         contents:
 
