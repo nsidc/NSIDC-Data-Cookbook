@@ -1,3 +1,6 @@
 /.quarto/
 _site/
-nsidc-data-cookbook/how-to-guides/overview_files/
+nsidc-data-cookbook/how-to-guides/overview_files/*.nc
+*.tif
+*.float
+*.nc
