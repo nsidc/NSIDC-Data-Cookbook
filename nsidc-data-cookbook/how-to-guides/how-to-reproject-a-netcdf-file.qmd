@@ -1,0 +1,37 @@
+---
+title: "How-To Reproject a NetCDF File"
+author: Andy P. Barrett
+date: last-modified
+---
+
+## Problem
+You need to reproject data contained in a CF-compliant NetCDF file
+
+## Solution
+```
+import rioxarray
+import xarray as xr
+from affine import Affine
+
+# Define destination CRS and grid parameters
+dst_crs = "EPSG:6931"  # EASE v2.0 North
+dst_grid_shape = (361, 361)
+dst_pixel_width = 25067.525
+dst_pixel_height = -25067.525
+dst_upper_left_x = -4524688.2625
+dst_upper_left_y = 4524688.2625
+
+dst_transform = Affine(dst_pixel_width, 0.0, dst_upper_left_x,
+                       0.0, dst_pixel_height, dst_upper_left_y)
+
+# Open NetCDF file
+ds = xr.open_dataset(<path-to_netcdf>, decode_coords='all')
+
+# Reproject dataset
+dst_ds = ds.rio.reproject(dst_crs, shape=dst_grid_shape, transform=dst_transform)
+```
+
+## Discussion
+This solutions assume that the NetCDF file follows CF-Conventions.  The dataset `ds` is expected to have a CRS and transform.  This can be checked by testing `ds.rio.crs is not None`.  `rioxarray` will try to calculate a `transform` using coordinates.
+
+
