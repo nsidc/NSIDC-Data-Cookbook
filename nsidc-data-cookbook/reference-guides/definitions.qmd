@@ -5,11 +5,50 @@ bibliography: ../references.bib
 
 # Glossary
 
+**Affine Coordinate System**{#affine_coordinate_system}  A @coordinate_system in Euclidean Space with straight axes that are not necessarily mutually orthogonal (see @cartesian_coordinate_system).
+
+**Affine Matrix**{#affine_matrix}  A 3 x 3 matrix that defines an @affine_coordinate_system.
+
+**Cartesian Coordinate System**{#cartesian_coordinate_system}  A two or three dimensional @coordinate_system in Euclidean Space with mutually orthogonal axes.
+
+**Coordinate Reference System**{#coordinate_reference_system} is a @coordinate system that has it's position, scale and orientation defined with respect to an object through a datum.  For @geospatial_data, this object is uasually the Earth.  It is often abbreviated as CRS.
+
+
+**Coordinate System**{#coordinate_system} is a set of rules that define how coordinates are assigned to points.  A coordinate system is defined by a set of attributes:
+
+- the dimension of the coordinate system (the number of axes or coordinates needed to define a point; e.g. latitude and longitude, (x, y, z);  
+- the name and abbreviation of each axis;  
+- the sequence of these axes, for example (latitude, longitude), (longitude, latitude), (x,y,z), (z,x,y);  
+- the direction in which coordinates increment along axes;
+- the units of measurement for axes.
+
+Coordinate systems familiar to most people include latitude and longitude (and height) used to locate points on the surface of a sphere or ellipsoid; and cartesian coordinate systems that define a point using two or more othogonal axes (e.g. x, y and z).  
+
+
+**Datum**{#datum} defines the position of the origin, and the scale and orientation of the axis or axes of a @coordinate_reference_system with respect to an object.
+
+
 **Geodetic Latitude**{#geodetic_latitude} of a point is the angle
   formed between the vector perpendicular to the ellipsoidal surface
   from the point, and the plane of the equator  @wikipedia_latitude_2023.  
 
+
 **Latitude**{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body.  See @geodetic_latitude, @geocentric_latitude
 
-**Geodetic Datum**
 
+**Geodetic Coordinate Reference System**{#geodetic_coordinate_reference_system} A @coordinate_reference_system based on a @geodetic_datum.
+
+
+**Geodetic Datum**(#geodetic_datum} is a datum that defines the relationship of a two or three dimensional coordinate system to the Earth.
+
+
+**Geospatial Data**{#geospatial_data} is data that is @georeferenced to a location on Earth.
+
+
+**Image Coordinate Reference System**{#image_coordinate_reference_system} A @coordinate_reference_system based on an @image_datum that describes positions with respect to a two-dimensional plane.  This plane could be the plane of an imaging device, such as a camera, a digital representation on a screen.  In the context of @geospatial_data, this plane is a two-dimensional array of data stored as a @raster. An image @coordinate_system is usually a @cartesian_coordinate_system but could be an @affine_coordinate_system.  The units of an image coordinate system is usually cell-units, e.g. row and column.  It is important to note how the image array is associated with the data.  Data may be associated with the center of cells (Figure Xa), so that coordinates of cell centers are integer pairs, or with the corners of cells (Figure Xb), so that coordinates of cell corners are integer pairs.     
+
+
+**Image Datum**{#image_datum}  A @datum that defines the relationship between a coordinate system and an image or raster.
+
+
+**Raster**{#raster}  A two-dimensional array of 
