@@ -1,0 +1,47 @@
+---
+title: "How to get latitude and longitude for the grid cells of a NetCDF file"
+author: Andrew P. Barrett
+date: last_modified
+---
+
+## Problem
+My data are in a NetCDF file but there are no latitude and longitude coordinates.  How do I get the latitude and longitude for each grid cell center?
+
+## Solution
+```
+import numpy as np
+
+import rioxarray
+import xarray as xr
+from pyproj import CRS, Transform
+
+
+# Load dataset using decode_coords='all'
+ds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',
+                     decode_coords='all')
+
+# Instantiate source pyproj CRS from ds.rio.crs object
+source_crs = CRS(ds.rio.crs.to_wkt())
+# Instantiate destination pyproj CRS using EPSG code for WGS84 
+destination_crs = CRS(4326)
+
+# Instantiate pyproj transformer instance using source and destination CRS
+transform = Transformer.from_crs(source_crs, destination_crs)
+
+# Create 2D arrays of x and y coordinates
+x2d, y2d = np.meshgrid(ds.x, ds.y)
+
+# Calculate latitude and longitudes for each grid cell
+lat, lon = transformer.transform(x2d, y2d)
+```
+
+## Discussion
+The workflow above assumes that the NetCDF files is CF-compliant and has a `grid_mapping` variable and projected coordinates defined.  See the `rioxarray` [CRS management documentation](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#) if this is not the case.
+
+If the dataset `rio.crs` is not set, the `source_crs` could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.
+
+For all datasets on projected grids, latitude and longitudes for grid cells will be 2-dimensional arrays.  x- and y-coordinates for these datasets will be vectors.  So 2-dimensional arrays of x and y coordinates need to be created.  `np.meshgrid` is designed to do this.
+
+If you want the latitudes and longitudes of the corners of grid cells, x and y coordinates can be incremented by half the grid cells width and height, and the resoluting projected coordinates passed to `transform.transformer`.
+
+It is worth considering if you really need to have latitude and longitude arrays for your dataset.  One reason that CF-conventions were changed, was that 2D arrays of geographic coordinates can increase the file size, especially for high resolution datasets.  Projected coordinates as vectors take up much less space.  Plotting tools such as `cartopy` can make maps without latitude and longitude.  If you need to extract cell values for specific geographic coordinates, for example for a weather station or buoy, it is quicker and easier to transform these coordinates into the projected coordinate system of the dataset.  The `xarray.Dataset.sel` or `xarray.DataArray.sel` methods can then be used to select the data for that location. 
