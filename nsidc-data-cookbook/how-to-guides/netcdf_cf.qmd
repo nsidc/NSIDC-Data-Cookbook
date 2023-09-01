@@ -1,7 +1,7 @@
 ---
 title: "How do I get the bounding box of a NetCDF file in latitude and longitude?"
 author: Andrew P. Barrett
-date: last_modified
+date: last-modified
 ---
 
 ## Problem
