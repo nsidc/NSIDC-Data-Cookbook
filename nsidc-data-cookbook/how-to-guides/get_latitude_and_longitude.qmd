@@ -13,7 +13,7 @@ import numpy as np
 
 import rioxarray
 import xarray as xr
-from pyproj import CRS, Transform
+from pyproj import CRS, Transformer
 
 
 # Load dataset using decode_coords='all'
