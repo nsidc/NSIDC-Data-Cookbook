@@ -25,4 +25,6 @@ _Maybe add a short description of each section here_
 - Searching for data; 
 - Accessing data;
 - Reprojecting and resampling data;
+- Working with CF-compliant NetCDF files
+  - [How do I get the bounding box of a NetCDF file in latitude and longitude?](netcdf_cf.qmd)
 
