@@ -32,7 +32,7 @@ transform = Transformer.from_crs(source_crs, destination_crs)
 x2d, y2d = np.meshgrid(ds.x, ds.y)
 
 # Calculate latitude and longitudes for each grid cell
-lat, lon = transformer.transform(x2d, y2d)
+lat, lon = transform.transform(x2d, y2d)
 ```
 
 ## Discussion
