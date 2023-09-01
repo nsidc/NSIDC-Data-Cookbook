@@ -5,7 +5,7 @@ date: last-modified
 ---
 
 ## Problem
-My data are in a NetCDF file but there are no latitude and longitude coordinates.  How do I find the bounding box in latitude and longitude?.
+My data are in a NetCDF file but there are no latitude and longitude coordinates.  How do I find the bounding box in latitude and longitude?
 
 ## Solution
 ### Using xarray and rioxarray
