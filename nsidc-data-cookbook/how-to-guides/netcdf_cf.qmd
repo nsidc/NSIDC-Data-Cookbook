@@ -50,7 +50,7 @@ Affine(25000.0, 0.0, -3850000.0,
 
 If this information is not found, all is not lost.  [`rio.write_crs`](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#Setting-the-CRS) and [`rio.write_transform`](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#Setting-the-transform-of-the-dataset) can be used to set the CRS and the transform of the dataset.
 
-Once these variables are set, the horizontal spatial bounds of the dataset can be queried as described above.  If all you want is the bounds in projected coordinates.  These can be accessed using `ds.rio.bounds()`.
+Once these variables are set, the horizontal spatial bounds of the dataset can be queried as described above.  If all you want is the bounds in projected coordinates, these can be accessed using `ds.rio.bounds()`.
 
 ```
 ds.rio.bounds()
