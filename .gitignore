@@ -1,5 +1,5 @@
 /.quarto/
 _site/
-nsidc-data-cookbook/how-to-guides/overview_files/nsidc-data-cookbook/example_data/
+nsidc-data-cookbook/example_data/
 *.h5
 *.nc
