@@ -1,7 +1,7 @@
 ---
 title: "How to get latitude and longitude for the grid cells of a NetCDF file"
 author: Andrew P. Barrett
-date: last_modified
+date: last-modified
 ---
 
 ## Problem
@@ -13,7 +13,7 @@ import numpy as np
 
 import rioxarray
 import xarray as xr
-from pyproj import CRS, Transform
+from pyproj import CRS, Transformer
 
 
 # Load dataset using decode_coords='all'
@@ -32,11 +32,11 @@ transform = Transformer.from_crs(source_crs, destination_crs)
 x2d, y2d = np.meshgrid(ds.x, ds.y)
 
 # Calculate latitude and longitudes for each grid cell
-lat, lon = transformer.transform(x2d, y2d)
+lat, lon = transform.transform(x2d, y2d)
 ```
 
 ## Discussion
-The workflow above assumes that the NetCDF files is CF-compliant and has a `grid_mapping` variable and projected coordinates defined.  See the `rioxarray` [CRS management documentation](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#) if this is not the case.
+The workflow above assumes that the NetCDF file is CF-compliant and has a `grid_mapping` variable and projected coordinates defined.  See the `rioxarray` [CRS management documentation](https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#) if this is not the case.
 
 If the dataset `rio.crs` is not set, the `source_crs` could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.
 
