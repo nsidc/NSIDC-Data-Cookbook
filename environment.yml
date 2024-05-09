@@ -21,4 +21,6 @@ dependencies:
  - pytest
  - earthaccess
  - h5py
+ - geopandas
+ - tabulate
  
