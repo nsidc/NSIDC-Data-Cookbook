@@ -1,0 +1,259 @@
+---
+title: "Georeferenced Data Guidelines"
+format:
+  html:
+    toc: true
+    html-math-method: katex
+    code-fold: true
+    css: ../../styles.css
+    echo: false
+---
+
+```{python}
+from pyproj import CRS
+from IPython.display import display, Markdown
+
+from pprint import pprint
+
+sinusoidal_wkt = 'PROJCS["unnamed",GEOGCS["Unknown datum based upon the custom spheroid",DATUM["Not specified (based on custom spheroid)",SPHEROID["Custom spheroid",6371007.181,0]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]]],PROJECTION["Sinusoidal"],PARAMETER["longitude_of_center",0],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["Meter",1],AXIS["Easting",EAST],AXIS["Northing",NORTH]]'
+
+crs = CRS.from_wkt(sinusoidal_wkt)
+```
+
+## What is Georeferenced Data
+
+Georeferenced data are data that are tied to locations on Earth through a _coordinate reference system_.
+These locations are not only on the Earth surface but also above the surface and below it.
+
+## Types of Georeferenced Data
+
+Georeferenced data can be broadly divided into two types _Raster_ data
+and _Vector_ data.  **Raster data** are regular arrays of pixels
+or cells such as aerial photographs, satellite images and model
+grids.  **Vector data** are data represented as points, lines and
+polygons.  Point clouds from LIDAR may be considered vector data
+because each point has coordinates but the number and density of these
+points are much greater than most vector data sets.
+
+## Components of a Coordinate Reference System
+
+@fig-crs-diagram shows the conceptual framework and components of a
+cartesian coordinate system with coordinates $(x,y,z)$ and a geodetic
+coordinate system with coordinates $(\phi, \lambda, h)$, where $\phi$
+is latitude, $\lambda$ is longitude and $h$ is height above the
+ellipsoid.  The NSIDC EASE-Grid North (EPSG 3408) is used as an
+example of a 2D cartesian coordinate reference system.  The 3D WGS84
+(EPSG: 4979) is used as an example of a 3D Geographic Coordinate
+Reference System.  The coordinate tuple $(x,y,z)$ and the two CRS,
+along with a coordinate operation can be used to transform from one
+CRS to the other. 
+
+```{mermaid}
+%%| fig-width: 6.5
+%%| label: fig-crs-diagram
+%%| fig-cap: "Conceptual model for Coordinate Reference Systems (IOGP 2022)"
+flowchart LR
+  subgraph "2D Cartesian Coordinates"
+    direction TB
+      A("Coordinate Tuple
+         (x,y)")-- is referenced to ---B("Coordinate Reference System
+                                            (EPSG: 3408)")
+      B --- C(Datum) & D("Coordinate System
+                     (X,Y)")
+  end
+
+  subgraph "Geographic Coordinates"
+    direction TB
+      E("Coordinate Tuple
+         (φ,λ,h)")-- is referenced to ---F("Coordinate Reference System
+                                           (WGS84 EPSG: 4979)")
+      F --- H(Datum) & I("Coordinate System
+                     (X,Y,Z)")
+  end
+
+  J[Coordinate Operation]
+
+%%  A & B --- J --- E & F
+```
+
+A _Coordinates_ is an ordered _tuple_ of values that describe a
+location.  In a 2D coordinate system, only two values are required.
+In a 3D coordinate system, three values are required.^[1D coordinate
+systems, used for vertical cordinate systems, only require one value.]
+
+Coordinates are referenced to a _coordinate reference system_ (CRS),
+which comprises a _datum_ and a _coordinate system_.  A **coordinate
+system** is a set of axes with units of measurement and direction
+(think of the $x$-$y$ plane used to graph the function $y=x$.  The **datum** fixes the coordinate system to
+the Earth.  Without a datum, a coordinate system is an abstract
+concept.
+
+As an example, imageine you are given the coordinates to some buried
+treasure are ().  Without knowing the coordinate system, these are
+just two values.  You do not know if the values represent latitude and
+longitude, or eastings or northings, and you do not know which is
+which.  In some cases you might be able to guess.  (40.0124,
+-105.2529) look like they might be latitude and longitude.  Latitudes
+are in the range -90 to +90.  But you don't know for sure that the
+units are decimal degrees.  The coordinate pair (52.0347, 1.0857) is
+more challenging because it is not clear which is latitude and which
+is longitude, even if you knew the units where degrees.    @fig-cs_example shows a set coordinates
+
+## Coordinate Reference Systems
+
+### Types of Coordinate Reference Systems
+
+CRS can be divided into a number of sub-types based on how they
+represent the curvature of the Earth.  Some sub-types are further
+divided based on the number of axes in the coordinate system.
+
+a) **Geographic** A CRS based on a geodetic datum
+
+b) **Projected**
+
+
+### Datums (Reference Frame)
+
+
+## MODIS Integerized Sinusoidal Projection
+
+``` {python}
+#| echo: false
+print(crs.to_wkt(version="WKT2_2019", pretty=True))
+```
+
+Suggested table layout
+```{=html}
+<table style="width:100%">
+  <caption>Suggested table layout for MODIS Sinusoidal Grid.</caption>
+  <thead>
+    <tr>
+      <th>Projection Parameters</th>
+      <th>Parameter Values</th>
+    </tr>
+    <tbody>
+      <tr>
+        <td>CRS Name</td>
+        <td>
+        ``` {python}
+        #| echo: false
+        display(Markdown(crs.name))
+        ```
+        </td>
+      </tr>
+      <tr>
+        <td>Datum Name</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Ellipsoid Name</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Ellipsoid Parameters</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Semi-major axis</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Semi-minor axis or inverse flattening</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Prime Meridian Name</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Prime Meridian Longitude from Greenwich</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Map Projection Name</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Map Projection Method</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Map Projection Parameters</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Latitude of origin</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Longitude of origin</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Scaling factor</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">False Easting</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">False Northing</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Coordinate System</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Type</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Number of axes</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Axis 1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:80px;">Name</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:80px;">Order</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:80px;">Unit</td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-left:40px;">Axis 2</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:80px;">Name</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:80px;">Order<td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:80px;">Unit</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>SRID</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>WKT</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+```
