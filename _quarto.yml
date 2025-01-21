@@ -39,8 +39,6 @@ website:
               href: nsidc-data-cookbook/how-to-guides/netcdf_cf.qmd
             - text: "get the latitude and longitudes for grid cells"
               href: nsidc-data-cookbook/how-to-guides/get_latitude_and_longitude.qmd
-      - section: "Tutorials"
-        contents:
       - section: "Reference Guides"
         href: nsidc-data-cookbook/reference-guides/overview.qmd
         contents:
@@ -58,8 +56,6 @@ website:
             href: nsidc-data-cookbook/reference-guides/datasets.qmd
           - text: "What is an API?"
           - text: "NASA collections and granules"
-      - section: "Examples"
-        contents:
 
 format:
   html:
