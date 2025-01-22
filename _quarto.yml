@@ -46,8 +46,10 @@ website:
       - section: "How do I..."
         href: how-to-guides/overview.qmd
         contents:
-          - section: "reproject data?"
-          - section: "work with NetCDF files?"
+          - section: "Search for data"
+          - section: "Access data"
+          - section: "Reproject data"
+          - section: "Work with NetCDF files?"
             contents:
             - text: "get the bounding box of a netcdf file"
               href: how-to-guides/netcdf_cf.qmd
