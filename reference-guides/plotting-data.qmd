@@ -1,0 +1,9 @@
+---
+title: "Plotting Data"
+---
+
+Describes how to plotting NSIDC Datasets using standard tools like `cartopy`, `GeoViews`.
+
+- Cover tricky plotting problems \- e.g. ice motion vectors  
+- Defining EASE and NSIDC Polar projections in cartopy  
+    - Examples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions).  _A set of specific examples might not be necessary if coordinates are included_
