@@ -44,15 +44,15 @@ website:
       - text: "What is an API?"
       - text: "NASA collections and granules"
       - section: "How do I..."
-        href: nsidc-data-cookbook/how-to-guides/overview.qmd
+        href: how-to-guides/overview.qmd
         contents:
           - section: "reproject data?"
           - section: "work with NetCDF files?"
             contents:
             - text: "get the bounding box of a netcdf file"
-              href: nsidc-data-cookbook/how-to-guides/netcdf_cf.qmd
+              href: how-to-guides/netcdf_cf.qmd
             - text: "get the latitude and longitudes for grid cells"
-              href: nsidc-data-cookbook/how-to-guides/get_latitude_and_longitude.qmd
+              href: how-to-guides/get_latitude_and_longitude.qmd
 
 format:
   html:
