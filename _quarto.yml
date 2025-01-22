@@ -26,7 +26,7 @@ website:
       - text: "Welcome"
         href: index.qmd
       - text: "Our Cookbook"
-        href: nsidc-data-cookbook/our-cookbook.qmd
+        href: our-cookbook.qmd
       - text: "Tools we use"
         href: tools-we-use.qmd
       - text: "Data Structures - types of data"
@@ -36,11 +36,11 @@ website:
       - text: "Common NSIDC file formats"
         href: reference-guides/nsidc-file-formats.qmd
       - text: "NSIDC map projections and grids"
-        href: nsidc-data-cookbook/reference-guides/projections.qmd
+        href: reference-guides/projections.qmd
       - text: "Plotting NSIDC Data"
-        href: nsidc-data-cookbook/reference-guides/plotting-data.qmd
+        href: reference-guides/plotting-data.qmd
       - text: "Datasets"
-        href: nsidc-data-cookbook/reference-guides/datasets.qmd
+        href: reference-guides/datasets.qmd
       - text: "What is an API?"
       - text: "NASA collections and granules"
       - section: "How do I..."
