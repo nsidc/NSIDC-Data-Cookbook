@@ -1,0 +1,25 @@
+---
+title: "Tools we use"
+---
+
+## Python libraries
+
+- earthaccess
+- xarray
+- Geopandas
+- rioxarray
+- rasterio
+- SlideRule
+- icepyx
+- cartopy
+- satpy
+- dask
+
+## Other tools
+- Earthdata Search
+- Open Altimetry
+- HDFView
+- Panoply
+- NCView
+- QGIS
+- ArcGIS
