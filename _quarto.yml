@@ -24,7 +24,7 @@ website:
     collapse-level: 1
     contents:
       - text: "Welcome"
-        href: nsidc-data-cookbook/introduction.qmd
+        href: index.qmd
       - text: "Our Cookbook"
         href: nsidc-data-cookbook/our-cookbook.qmd
       - text: "Tools we use"
