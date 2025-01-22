@@ -1,0 +1,9 @@
+---
+title: "Dataset Search and Discovery"
+---
+
+- Getting an EDL  
+- A simple earthaccess search and download  
+- EDS  
+- curl
+- wget
