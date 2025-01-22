@@ -29,23 +29,20 @@ website:
         href: nsidc-data-cookbook/our-cookbook.qmd
       - text: "Tools we use"
         href: tools-we-use.qmd
-      - section: "Reference Guides"
-        href: nsidc-data-cookbook/reference-guides/overview.qmd
-        contents:
-          - text: "Dataset search and discovery"
-            href: reference-guides/dataset-search-and-discovery.qmd
-          - text: "Common NSIDC file formats"
-            href: reference-guides/nsidc-file-formats.qmd
-          - text: "Data Structures"
-            href: reference-guides/data-structures.qmd
-          - text: "NSIDC map projections and grids"
-            href: nsidc-data-cookbook/reference-guides/projections.qmd
-          - text: "Plotting NSIDC Data"
-            href: nsidc-data-cookbook/reference-guides/plotting-data.qmd
-          - text: "Datasets"
-            href: nsidc-data-cookbook/reference-guides/datasets.qmd
-          - text: "What is an API?"
-          - text: "NASA collections and granules"
+      - text: "Data Structures - types of data"
+        href: reference-guides/data-structures.qmd
+      - text: "Dataset search and discovery"
+        href: reference-guides/dataset-search-and-discovery.qmd
+      - text: "Common NSIDC file formats"
+        href: reference-guides/nsidc-file-formats.qmd
+      - text: "NSIDC map projections and grids"
+        href: nsidc-data-cookbook/reference-guides/projections.qmd
+      - text: "Plotting NSIDC Data"
+        href: nsidc-data-cookbook/reference-guides/plotting-data.qmd
+      - text: "Datasets"
+        href: nsidc-data-cookbook/reference-guides/datasets.qmd
+      - text: "What is an API?"
+      - text: "NASA collections and granules"
       - section: "How do I..."
         href: nsidc-data-cookbook/how-to-guides/overview.qmd
         contents:
