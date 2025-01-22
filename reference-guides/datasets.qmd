@@ -1,0 +1,21 @@
+---
+title: "Datasets"
+---
+
+- ICESat-2 \- a guide to accessing ICESat-2 data  
+  - How to navigate HDF5 groups  
+    - Finding key variables  
+      - How do I get surface height and surface types  
+      - Geophysical corrections  
+    - Working with ITRFs \- use Kevin’s tutorial  
+    - Gridding data  
+      - A naive approach  
+    - Finding intersections with other data  
+  - MODIS  
+  - SMAP  
+  - Sea ice index  
+    - Recreate time series plots using pandas  
+  - PM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)  
+  - CETB (NSIDC-0630)  
+  - HMA  
+  - *What others?*
