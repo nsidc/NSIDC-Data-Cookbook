@@ -1,0 +1,11 @@
+---
+title: "File formats"
+---
+
+How to read and navigate file formats commonly found at NSIDC.  This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.
+
+- NetCDF4 (and NetCDFx)
+- HDF5
+- HDF-EOS
+- Shapefiles
+- GeoTIFF  
