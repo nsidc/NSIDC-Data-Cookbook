@@ -1,0 +1,12 @@
+---
+title: "Data Structures"
+---
+
+Describes common remote sensing data structures.
+
+_We should add information for tabular data and Data Frames_
+
+- Swath  
+- Along-track  
+- Raster/Grids  
+- Resampling

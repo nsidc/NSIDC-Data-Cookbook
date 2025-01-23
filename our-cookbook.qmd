@@ -8,4 +8,3 @@ title: "Our Cookbook"
 ## Get Started
 
 
-## Tools we use
