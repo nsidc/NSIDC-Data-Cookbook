@@ -70,3 +70,5 @@ filters:
   - include-files.lua
   - quarto
 
+execute:
+  freeze: auto
