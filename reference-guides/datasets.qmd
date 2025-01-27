@@ -11,11 +11,11 @@ title: "Datasets"
     - Gridding data  
       - A naive approach  
     - Finding intersections with other data  
-  - MODIS  
-  - SMAP  
-  - Sea ice index  
-    - Recreate time series plots using pandas  
-  - PM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)  
-  - CETB (NSIDC-0630)  
-  - HMA  
-  - *What others?*
+- MODIS  
+- SMAP  
+- Sea ice index  
+  - Recreate time series plots using pandas  
+- PM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)  
+- CETB (NSIDC-0630)  
+- HMA  
+- *What others?*
