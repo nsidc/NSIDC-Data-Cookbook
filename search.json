@@ -233,7 +233,7 @@
     "href": "reference-guides/datasets.html",
     "title": "Datasets",
     "section": "",
-    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nWhat others?",
+    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nWhat others?",
     "crumbs": [
       "Datasets"
     ]
