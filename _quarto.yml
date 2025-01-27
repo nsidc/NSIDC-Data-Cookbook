@@ -29,7 +29,7 @@ website:
         href: our-cookbook.qmd
       - text: "Tools we use"
         href: tools-we-use.qmd
-      - text: "Data Structures - types of data"
+      - text: "Types of data at NSIDC"
         href: reference-guides/data-structures.qmd
       - text: "Dataset search and discovery"
         href: reference-guides/dataset-search-and-discovery.qmd
