@@ -389,7 +389,7 @@
     "section": "",
     "text": "Describes common remote sensing data structures.\nWe should add information for tabular data and Data Frames\n\nSwath\n\nAlong-track\n\nRaster/Grids\n\nResampling",
     "crumbs": [
-      "Data Structures - types of data"
+      "Types of data at NSIDC"
     ]
   },
   {
