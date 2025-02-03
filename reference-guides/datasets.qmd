@@ -18,4 +18,5 @@ title: "Datasets"
 - PM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)  
 - CETB (NSIDC-0630)  
 - HMA  
+- VIIRS subsetting “on your own” in lieu of service availability
 - *What others?*
