@@ -43,6 +43,7 @@ website:
         href: reference-guides/datasets.qmd
       - text: "What is an API?"
       - text: "NASA collections and granules"
+      - text: "Best Practices"
       - section: "How do I..."
         href: how-to-guides/overview.qmd
         contents:
