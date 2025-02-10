@@ -5,6 +5,13 @@
 
 The NSIDC Data Cookbook is a collection of how-to guides, tutorials and reference material to help NSIDC data users to search for, access and work with NSIDC data.
 
+<!-- prettier-ignore -->
+> [!WARNING]
+> This cookbook repository is under active development. Major changes to the structure of
+> this repository and its content are expected. We are striving to develop content and code
+> that is well-tested and peer-reviewed, but nothing contained here should be
+> expected to work correctly (or at all!) in this early phase.  Many sections contain only an outline of the content.
+> These sections will have content added at the project develops.
 
 ## Level of Support
 
