@@ -1,38 +1,51 @@
 [
   {
-    "objectID": "how-to-guides/get_column_and_row_indices.html",
-    "href": "how-to-guides/get_column_and_row_indices.html",
-    "title": "How to get grid column and row indices for latitude and longitude",
+    "objectID": "how-to-guides/netcdf_cf.html",
+    "href": "how-to-guides/netcdf_cf.html",
+    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
     "section": "",
-    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
+    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?",
+    "crumbs": [
+      "How do I...",
+      "Work with NetCDF files?",
+      "get the bounding box of a netcdf file"
+    ]
   },
   {
-    "objectID": "how-to-guides/get_column_and_row_indices.html#problem",
-    "href": "how-to-guides/get_column_and_row_indices.html#problem",
-    "title": "How to get grid column and row indices for latitude and longitude",
+    "objectID": "how-to-guides/netcdf_cf.html#problem",
+    "href": "how-to-guides/netcdf_cf.html#problem",
+    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
     "section": "",
-    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
+    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?",
+    "crumbs": [
+      "How do I...",
+      "Work with NetCDF files?",
+      "get the bounding box of a netcdf file"
+    ]
   },
   {
-    "objectID": "how-to-guides/get_column_and_row_indices.html#solution",
-    "href": "how-to-guides/get_column_and_row_indices.html#solution",
-    "title": "How to get grid column and row indices for latitude and longitude",
+    "objectID": "how-to-guides/netcdf_cf.html#solution",
+    "href": "how-to-guides/netcdf_cf.html#solution",
+    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
     "section": "Solution",
-    "text": "Solution\nIn Python you can use the pyproj package to transform latitude and longitude (geographic coordinates) to x and y (projected coordinates) in the EASE Grid CRS, and then use the affine package to get the column and row indices ((i,j) image coordinates).\n\nfrom pyproj import Transformer\nfrom affine import Affine\nimport numpy as np\n\n# Define the coordinate transform from WGS84 (lat, lon) \n# to CRS of your grid using EPSG codes.\n# WGS84 is EPSG:4326\n# NSIDC Northern Hemisphere EASE Grid is EPSG:3408\ntransformer = Transformer.from_crs(4326, 3408)\n\n# Define the affine transformation matrix\ngrid_cell_width = 50057.094722222224\ngrid_cell_height = -50057.094722222224\nupper_left_x = -9036842.76\nupper_left_y = 9036842.76\ngeotransform = Affine(grid_cell_width, 0.0, upper_left_x,\n                      0.0, grid_cell_height, upper_left_y)\n\nx, y = transformer.transform(-45., 84.)  # latitude and longitude\ni, j = ~geotransform * (x, y)  # ~geotransform is the inverse operation\n\nprint(i,j)\n\n414.4236938226952 205.11385157648664\n\n\ni and j are in image coordinates with the origin as the upper-left corner of the upper-left grid-cell. To get the column and row indices of the cell you can use floor.\n\ncol, row = np.floor(i).astype(int), np.floor(j).astype(int)\nprint(col, row)\n\n414 205"
+    "text": "Solution\n\nUsing xarray and rioxarray\nimport rioxarray\nimport xarray as xr\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Get the bounds of the data grid in WGS84 (EPSG code 4362)\nds.rio.transform_bounds(4326)\n(-180.0, 30.98056405144958, 180.0, 90.0)",
+    "crumbs": [
+      "How do I...",
+      "Work with NetCDF files?",
+      "get the bounding box of a netcdf file"
+    ]
   },
   {
-    "objectID": "how-to-guides/get_column_and_row_indices.html#discussion",
-    "href": "how-to-guides/get_column_and_row_indices.html#discussion",
-    "title": "How to get grid column and row indices for latitude and longitude",
+    "objectID": "how-to-guides/netcdf_cf.html#discussion",
+    "href": "how-to-guides/netcdf_cf.html#discussion",
+    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
     "section": "Discussion",
-    "text": "Discussion\nMany grids, whether they are images or gridded data are in projected coordinate systems so that they can be displayed on a 2D screen. Converting from geographic coordinates (latitude, longitude) to image coordinates (column, row) is usually a two step process. In the first step, the geographic coordinates are transformed from a Geographic Coordinate System with coordinates latitude and longitude to the projected coordinate system of the image or grid. This is a Cartesian coordinate system with coordinates x and y, usually in meters. In the second step, the projected coordinates are converted into image coordinates. This is another Cartesian coordinate system with coordinates column and row or i and j with units grid-cells. Image coordinate systems often have the origin in the upper-left corner of the upper-left grid cell.\nIn Python the first step is easily acheived using the pyproj package. If the Coordinate Reference System (CRS) of the grid is registered in the EPSG database, defining the transformation is easily done with the EPSG codes for the CRS for the latitude and longitude coordinates and the CRS of the destination grid. Usually, latitude and longitude are in the Ensemble WGS84 CRS, which is EPSG:4326. For NSIDC gridded data, the CRS is some flavour of EASE Grid or Polar Stereographic. See the help pages for EASE Grid and Polar Stereographic for more information.\n\nBoth EASE Grid and Polar Stereographic CRS come in two main flavours Original and WGS84. For EASE Grids, these two flavours are EASE-Grid and EASE-Grid v2.0.\n\nTODO: Describe projected to image coordinate conversion\nAdd image showing the relationship between the three coordinate systems"
-  },
-  {
-    "objectID": "how-to-guides/reprojection.html",
-    "href": "how-to-guides/reprojection.html",
-    "title": "How do I reproject data",
-    "section": "",
-    "text": "How do I reproject a data file from from the command line\nUse gdal\n\n\nHow do I reproject a NetCDF file using rioxarray\nSee rioxarray docs"
+    "text": "Discussion\nAs of CF v1.8, latitude and longitude coordinate variables are no longer required in CF-compliant NetCDF files, as long as projected horizontal spatial coordinates (e.g. x and y, or easting and northing) and a grid_mapping variable is provided. The grid_mapping variable defines the coordinate reference system (CRS) of the projected horizontal coordinates.\nThe easiest, and frankly best, way to read and work with NetCDF files is to use xarray. rioxarray extends the xarray package to use CRS and make geospatial tasks, such as reprojecting and regridding, easier. By setting the keyword decode-coords='all', rioxarray searches the xarray.DataArray or xarray.Dataset for the CRS. rioxarray also determines the transform or geotransform, which defines the image CRS that transforms cell coordinates (column and row) into projected coordinates (x, y). The transform is calculated from the coordinates of the data. See the rioxarray documentaton for more details.\nBoth these spatial coordinates can be accessed as follows:\nds.rio.crs\nCRS.from_wkt('PROJCS[\"NSIDC Sea Ice Polar Stereographic North\",GEOGCS[\"Unspecified datum based upon the Hughes 1980 ellipsoid\",DATUM[\"Not_specified_based_on_Hughes_1980_ellipsoid\",SPHEROID[\"Hughes 1980\",6378273,298.279411123061,AUTHORITY[\"EPSG\",\"7058\"]],AUTHORITY[\"EPSG\",\"6054\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4054\"]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",70],PARAMETER[\"central_meridian\",-45],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"X\",EAST],AXIS[\"Y\",NORTH],AUTHORITY[\"EPSG\",\"3411\"]]')\nds.rio.transform()\nAffine(25000.0, 0.0, -3850000.0,\n       0.0, -25000.0, 5850000.0)\nIf this information is not found, all is not lost. rio.write_crs and rio.write_transform can be used to set the CRS and the transform of the dataset.\nOnce these variables are set, the horizontal spatial bounds of the dataset can be queried as described above. If all you want is the bounds in projected coordinates, these can be accessed using ds.rio.bounds().\nds.rio.bounds()\n(-3850000.0, -5350000.0, 3750000.0, 5850000.0)",
+    "crumbs": [
+      "How do I...",
+      "Work with NetCDF files?",
+      "get the bounding box of a netcdf file"
+    ]
   },
   {
     "objectID": "how-to-guides/get_latitude_and_longitude.html",
@@ -83,60 +96,59 @@
     ]
   },
   {
-    "objectID": "how-to-publish.html",
-    "href": "how-to-publish.html",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "how-to-guides/reprojection.html",
+    "href": "how-to-guides/reprojection.html",
+    "title": "How do I reproject data",
     "section": "",
-    "text": "I am following these instructions provided by Quarto.\n\n\nI am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this.\n\n\n\nRun\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions\n\n\n\nCheck all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change.\n\n\n\nTo make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
+    "text": "How do I reproject a data file from from the command line\nUse gdal\n\n\nHow do I reproject a NetCDF file using rioxarray\nSee rioxarray docs"
   },
   {
-    "objectID": "how-to-publish.html#freeze-computations",
-    "href": "how-to-publish.html#freeze-computations",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Miscellaneous Resources",
     "section": "",
-    "text": "I am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this."
+    "text": "NSIDC How to"
   },
   {
-    "objectID": "how-to-publish.html#publish-action",
-    "href": "how-to-publish.html#publish-action",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "resources.html#programatic-download",
+    "href": "resources.html#programatic-download",
+    "title": "Miscellaneous Resources",
     "section": "",
-    "text": "Run\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions"
+    "text": "NSIDC How to"
   },
   {
-    "objectID": "how-to-publish.html#push-changes-to-gh",
-    "href": "how-to-publish.html#push-changes-to-gh",
-    "title": "How to Publish Cookbook on GH Pages",
-    "section": "",
-    "text": "Check all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change."
+    "objectID": "resources.html#projections",
+    "href": "resources.html#projections",
+    "title": "Miscellaneous Resources",
+    "section": "Projections",
+    "text": "Projections\nNSIDC Polar Stereographic Projection NSIDC EASE Grid\nCF Conventions Grid Mappings\nLatitude Geodetic Datums\nSnyder\nrioxarray.raster_dataset\nrasterio.affine GDAL Affine pyproj cartopy.crs.CRS"
   },
   {
-    "objectID": "how-to-publish.html#make-gh-pages-visible-on-repo",
-    "href": "how-to-publish.html#make-gh-pages-visible-on-repo",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "reference-guides/data-structures.html",
+    "href": "reference-guides/data-structures.html",
+    "title": "Data Structures",
     "section": "",
-    "text": "To make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
+    "text": "Describes common remote sensing data structures.\nWe should add information for tabular data and Data Frames\n\nSwath\n\nAlong-track\n\nRaster/Grids\n\nResampling",
+    "crumbs": [
+      "Types of data at NSIDC"
+    ]
   },
   {
-    "objectID": "tutorials/testing_coordinates_with_merge.html",
-    "href": "tutorials/testing_coordinates_with_merge.html",
-    "title": "Test coordinates with merge",
+    "objectID": "reference-guides/points-pixels-grids/points_pixels_grids.html",
+    "href": "reference-guides/points-pixels-grids/points_pixels_grids.html",
+    "title": "Points, Pixels, Grids",
     "section": "",
-    "text": "This notebook demonstrates why it is important to use the exact values for grid parameters when defining coordinates."
+    "text": "Points, Pixels, Grids\nA placeholder for a deeper dive into grids and resampling. I plan on basing this on Ken Knowles page of a similar name but modified for gdal, python and other new tools.\nhttps://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells"
   },
   {
-    "objectID": "tutorials/testing_coordinates_with_merge.html#problem",
-    "href": "tutorials/testing_coordinates_with_merge.html#problem",
-    "title": "Test coordinates with merge",
-    "section": "Problem:",
-    "text": "Problem:\nIn spite of conventions such as CF and COARDS requiring projected coordinates to be specified for multidimensional arrays, some datasets do not contain this information. Coordinate values have to be generated. Coordinate values also need to be generated if we are creating a dataset from scratch. Grid cell height and width, and the x and y projected coordinates for the upper-left corner of the upper-left grid cell are required. In many cases (but not all), this information is found in Dataset User Guides and in A Guide to EASE Grids and A Guide to Polar Stereographic Grids. The later page required more work to get the required parameters.\nThe projected coordinates of a grid cell can be found using the following formulas:\n\\[\nx = (grid\\_cell\\_width \\times row) + x\\_upper\\_left\\_corner\n\\] \\[\ny = (grid\\_cell\\_height \\times column) + y\\_upper\\_left\\_corner)\n\\]\nThis equations assumes that the origin of the image coordinates start at row=0. and column=0. in the upper-left corner of the upper-left grid cell. So the center of the upper-left grid cell is row=0.5 and column=0.5. Adding 0.5 to row and column indices solves this problem.\nThese equations can also be expressed using linear alegebra.\n\\[\n\\mathbf{Ar} = \\\\\n\\begin{pmatrix}\na & 0 & b \\\\\n0 & c & d \\\\\n0 & 0 & 1\n\\end{pmatrix}\n\\enspace\n\\begin{pmatrix}\nrow \\\\\ncol \\\\\n1\n\\end{pmatrix}\n=\n\\begin{pmatrix}\nx \\\\\ny \\\\\n1\n\\end{pmatrix}\n= \\mathbf{x}\n\\]\nwhere \\(a\\) is grid_cell_width, \\(b\\) is x_upper_left_corner, \\(c\\) is grid_cell_height, and \\(d\\) is grid_cell_height. \\(\\mathbf{A}\\) is the augmented Affine Matrix. We can use the Affine class from the affine package to define this matrix.\nGrid cell width and height for the original EASE Grid(s) and for global EASE Grid 2.0 are defined as a fraction of the Equator so that a whole number of grid cells span the Equator. This is not strictly necessary for polar azimuthal versions of grids but in the original EASE Grid grid definitions both global and polar grids follow this convention. For EASE Grid 2.0, polar azimuthal versions of grids use whole kilometers for cell size definitions. Only the global grid uses a fractional cell size. A definitive source of grid definitions is the mapxmaps repo and the gpd files therein.\nTables in User Guides and in the A Guide to EASE Grids truncate cell height and widths, and x and y projected coordinates for the upper-left corners of upper left pixels to two decimal places. Actual values caleculated from gpd files have up to 9 decimal places.\nWhile a fraction of a millimeter or even a micron may not matter for geolocation, especially for 25 km or even 1 km grids, it does matter for operations for that compare coordinates. Consider, merging two grids using the xarray package. One grid data1 has coordinates defined using the high-precision grid parameters. The other, data2 has the coordinates defined using grid parameters truncated to two decimal places. As the workflow below demonstrates, the two coordinates do not form a common set and are concatenated.\n\nimport xarray as xr\n\nfrom affine import Affine\nimport numpy as np\n\n\ngrid_cell_width = 36032.220840584\ngrid_cell_height = -36032.220840584\nx_upper_left_corner = -17367530.4451615\ny_upper_left_corner = 7314540.8306386\n\n\ntransform1 = Affine(grid_cell_width, 0.0, x_upper_left_corner, \n                   0.0, grid_cell_height, y_upper_left_corner)\ntransform1\n\nAffine(36032.220840584, 0.0, -17367530.4451615,\n       0.0, -36032.220840584, 7314540.8306386)\n\n\n\nnrow = 406\nncol = 964\nrow = np.arange(0.5, nrow)\ncolumn = np.arange(0.5, ncol)\n\nx1, _ = transform1 * (column, 0.5)\n_, y1 = transform1 * (0.5, row)\n\ndata = np.ones((ncol, nrow), 'f')\n\n\nds1 = xr.DataArray(data, coords=[x1, y1], dims=['x', 'y'], name='data1')\nds1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray 'data1' (x: 964, y: 406)&gt;\narray([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)\nCoordinates:\n  * x        (x) float64 -1.735e+07 -1.731e+07 ... 1.731e+07 1.735e+07\n  * y        (y) float64 7.297e+06 7.26e+06 7.224e+06 ... -7.26e+06 -7.297e+06xarray.DataArray'data1'x: 964y: 4061.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0array([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)Coordinates: (2)x(x)float64-1.735e+07 -1.731e+07 ... 1.735e+07array([-17349514.334741, -17313482.113901, -17277449.89306 , ...,\n        17277449.89306 ,  17313482.113901,  17349514.334741])y(y)float647.297e+06 7.26e+06 ... -7.297e+06array([ 7296524.720218,  7260492.499378,  7224460.278537, ..., -7224460.278537,\n       -7260492.499378, -7296524.720218])Indexes: (2)xPandasIndexPandasIndex(Index([ -17349514.33474121, -17313482.113900624,  -17277449.89306004,\n       -17241417.672219455,  -17205385.45137887, -17169353.230538286,\n         -17133321.0096977, -17097288.788857117, -17061256.568016537,\n       -17025224.347175952,\n       ...\n        17025224.347175926,  17061256.568016514,  17097288.788857095,\n        17133321.009697683,  17169353.230538264,  17205385.451378845,\n        17241417.672219433,  17277449.893060014,  17313482.113900602,\n        17349514.334741183],\n      dtype='float64', name='x', length=964))yPandasIndexPandasIndex(Index([ 7296524.720218307,  7260492.499377724,  7224460.278537139,\n        7188428.057696556,  7152395.836855971,  7116363.616015388,\n        7080331.395174803,   7044299.17433422,  7008266.953493635,\n        6972234.732653052,\n       ...\n       -6972234.732652956,  -7008266.95349354, -7044299.174334125,\n       -7080331.395174707, -7116363.616015292, -7152395.836855876,\n       -7188428.057696461, -7224460.278537043, -7260492.499377628,\n       -7296524.720218212],\n      dtype='float64', name='y', length=406))Attributes: (0)\n\n\n\nds1.plot()\n\n\n\n\n\n\n\n\n\ntransform2 = Affine(round(grid_cell_width, 2), 0.0, round(x_upper_left_corner, 2), \n                   0.0, round(grid_cell_height, 2), round(y_upper_left_corner, 2))\ntransform2\n\nAffine(36032.22, 0.0, -17367530.45,\n       0.0, -36032.22, 7314540.83)\n\n\n\nx2, _ = transform2 * (column, 0.5)\n_, y2 = transform2 * (0.5, row)\n\n\nds2 = xr.DataArray(data, coords=[x2, y2], dims=['x', 'y'], name='data2')\nds2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray 'data2' (x: 964, y: 406)&gt;\narray([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)\nCoordinates:\n  * x        (x) float64 -1.735e+07 -1.731e+07 ... 1.731e+07 1.735e+07\n  * y        (y) float64 7.297e+06 7.26e+06 7.224e+06 ... -7.26e+06 -7.297e+06xarray.DataArray'data2'x: 964y: 4061.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0array([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)Coordinates: (2)x(x)float64-1.735e+07 -1.731e+07 ... 1.735e+07array([-17349514.34, -17313482.12, -17277449.9 , ...,  17277449.08,\n        17313481.3 ,  17349513.52])y(y)float647.297e+06 7.26e+06 ... -7.297e+06array([ 7296524.72,  7260492.5 ,  7224460.28, ..., -7224459.94, -7260492.16,\n       -7296524.38])Indexes: (2)xPandasIndexPandasIndex(Index([      -17349514.34,       -17313482.12,        -17277449.9,\n             -17241417.68,       -17205385.46,       -17169353.24,\n             -17133321.02,        -17097288.8,       -17061256.58,\n             -17025224.36,\n       ...\n       17025223.540000003,        17061255.76,        17097287.98,\n               17133320.2, 17169352.420000006, 17205384.640000004,\n       17241416.860000003, 17277449.080000002,         17313481.3,\n              17349513.52],\n      dtype='float64', name='x', length=964))yPandasIndexPandasIndex(Index([         7296524.72,           7260492.5,          7224460.28,\n        7188428.0600000005,          7152395.84,          7116363.62,\n                 7080331.4,          7044299.18,          7008266.96,\n                6972234.74,\n       ...\n                -6972234.4,  -7008266.620000001,         -7044298.84,\n       -7080331.0600000005,  -7116363.280000001,          -7152395.5,\n        -7188427.720000001, -7224459.9399999995,         -7260492.16,\n        -7296524.380000001],\n      dtype='float64', name='y', length=406))Attributes: (0)\n\n\n\nds2.plot()\n\n\n\n\n\n\n\n\n\nds = xr.merge([ds1, ds2])\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt;\nDimensions:  (x: 1928, y: 812)\nCoordinates:\n  * x        (x) float64 -1.735e+07 -1.735e+07 ... 1.735e+07 1.735e+07\n  * y        (y) float64 -7.297e+06 -7.297e+06 -7.26e+06 ... 7.297e+06 7.297e+06\nData variables:\n    data1    (x, y) float32 nan nan nan nan nan nan ... 1.0 nan 1.0 nan nan 1.0\n    data2    (x, y) float32 nan 1.0 nan 1.0 nan 1.0 ... nan nan nan nan nan nanxarray.DatasetDimensions:x: 1928y: 812Coordinates: (2)x(x)float64-1.735e+07 -1.735e+07 ... 1.735e+07array([-17349514.34    , -17349514.334741, -17313482.12    , ...,\n        17313482.113901,  17349513.52    ,  17349514.334741])y(y)float64-7.297e+06 -7.297e+06 ... 7.297e+06array([-7296524.720218, -7296524.38    , -7260492.499378, ...,  7260492.5     ,\n        7296524.72    ,  7296524.720218])Data variables: (2)data1(x, y)float32nan nan nan nan ... 1.0 nan nan 1.0array([[nan, nan, nan, ..., nan, nan, nan],\n       [ 1., nan,  1., ..., nan, nan,  1.],\n       [nan, nan, nan, ..., nan, nan, nan],\n       ...,\n       [ 1., nan,  1., ..., nan, nan,  1.],\n       [nan, nan, nan, ..., nan, nan, nan],\n       [ 1., nan,  1., ..., nan, nan,  1.]], dtype=float32)data2(x, y)float32nan 1.0 nan 1.0 ... nan nan nan nanarray([[nan,  1., nan, ...,  1.,  1., nan],\n       [nan, nan, nan, ..., nan, nan, nan],\n       [nan,  1., nan, ...,  1.,  1., nan],\n       ...,\n       [nan, nan, nan, ..., nan, nan, nan],\n       [nan,  1., nan, ...,  1.,  1., nan],\n       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)Indexes: (2)xPandasIndexPandasIndex(Index([       -17349514.34,  -17349514.33474121,        -17313482.12,\n       -17313482.113900624,         -17277449.9,  -17277449.89306004,\n              -17241417.68, -17241417.672219455,        -17205385.46,\n        -17205385.45137887,\n       ...\n        17205384.640000004,  17205385.451378845,  17241416.860000003,\n        17241417.672219433,  17277449.080000002,  17277449.893060014,\n                17313481.3,  17313482.113900602,         17349513.52,\n        17349514.334741183],\n      dtype='float64', name='x', length=1928))yPandasIndexPandasIndex(Index([ -7296524.720218212,  -7296524.380000001,  -7260492.499377628,\n               -7260492.16,  -7224460.278537043, -7224459.9399999995,\n        -7188428.057696461,  -7188427.720000001,  -7152395.836855876,\n                -7152395.5,\n       ...\n         7152395.836855971,          7152395.84,   7188428.057696556,\n        7188428.0600000005,   7224460.278537139,          7224460.28,\n         7260492.499377724,           7260492.5,          7296524.72,\n         7296524.720218307],\n      dtype='float64', name='y', length=812))Attributes: (0)\n\n\n\nds.data1.plot()\n\n\n\n\n\n\n\n\n\nds.data2.plot()"
-  },
-  {
-    "objectID": "tutorials/hdf5_formatting.html",
-    "href": "tutorials/hdf5_formatting.html",
-    "title": "NSIDC Data Cookbook",
+    "objectID": "reference-guides/plotting-data.html",
+    "href": "reference-guides/plotting-data.html",
+    "title": "Plotting Data",
     "section": "",
-    "text": "import h5py\nimport xarray as xr\nimport numpy as np\n\n\nroot = h5py.File('test.h5', 'w')\n\nCreate some groups\n\ngrp1 = root.create_group(\"group_1\")\ngrp2 = root.create_group(\"group_2\")\n\nCreate some Datasets in those groups\n\nnx1 = 4\nny1 = 3\ngrp1[\"data1\"] = np.ones((nx1, ny1), 'f')\ngrp1[\"data2\"] = np.ones((nx1, ny1), 'f')\n\nnx2 = 5\nny2 = 3\ngrp2[\"data3\"] = np.ones((nx2, ny2), 'i')\n\nCreate some dimension variables. The dimension scales need to be in the group so that they can found by xarray.\n\ngrp1['x'] = np.arange(nx1)\ngrp1['x'].make_scale('x')\ngrp1['y'] = np.arange(ny1)\ngrp1['y'].make_scale('y')\n\nAttach scales to the group_1 data\n\ngrp1[\"data1\"].dims[0].attach_scale(grp1['x'])\ngrp1[\"data1\"].dims[1].attach_scale(grp1['y'])\n\ngrp1[\"data2\"].dims[0].attach_scale(grp1['x'])\ngrp1[\"data2\"].dims[1].attach_scale(grp1['y'])\n\n\nlist_of_objects = []\nroot.visit(list_of_objects.append)\nlist_of_objects\n\n['group_1',\n 'group_1/data1',\n 'group_1/data2',\n 'group_1/x',\n 'group_1/y',\n 'group_2',\n 'group_2/data3']\n\n\n\nroot.close()\n\nOpen group_1 with xarray\n\nds = xr.open_dataset(\"test.h5\", group=\"group_1\")\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt;\nDimensions:  (x: 4, y: 3)\nCoordinates:\n  * x        (x) int64 0 1 2 3\n  * y        (y) int64 0 1 2\nData variables:\n    data1    (x, y) float32 ...\n    data2    (x, y) float32 ...xarray.DatasetDimensions:x: 4y: 3Coordinates: (2)x(x)int640 1 2 3array([0, 1, 2, 3])y(y)int640 1 2array([0, 1, 2])Data variables: (2)data1(x, y)float32...[12 values with dtype=float32]data2(x, y)float32...[12 values with dtype=float32]Indexes: (2)xPandasIndexPandasIndex(Index([0, 1, 2, 3], dtype='int64', name='x'))yPandasIndexPandasIndex(Index([0, 1, 2], dtype='int64', name='y'))Attributes: (0)"
+    "text": "Describes how to plotting NSIDC Datasets using standard tools like cartopy, GeoViews.\n\nCover tricky plotting problems - e.g. ice motion vectors\n\nDefining EASE and NSIDC Polar projections in cartopy\n\nExamples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions). A set of specific examples might not be necessary if coordinates are included",
+    "crumbs": [
+      "Plotting NSIDC Data"
+    ]
   },
   {
     "objectID": "reference-guides/projections.html",
@@ -219,16 +231,6 @@
     ]
   },
   {
-    "objectID": "reference-guides/dataset-search-and-discovery.html",
-    "href": "reference-guides/dataset-search-and-discovery.html",
-    "title": "Dataset Search and Discovery",
-    "section": "",
-    "text": "Getting an EDL\n\nA simple earthaccess search and download\n\nEDS\n\ncurl\nwget",
-    "crumbs": [
-      "Dataset search and discovery"
-    ]
-  },
-  {
     "objectID": "reference-guides/datasets.html",
     "href": "reference-guides/datasets.html",
     "title": "Datasets",
@@ -239,20 +241,104 @@
     ]
   },
   {
-    "objectID": "reference-guides/definitions.html",
-    "href": "reference-guides/definitions.html",
-    "title": "Definitions",
+    "objectID": "how-to-publish.html",
+    "href": "how-to-publish.html",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
+    "text": "I am following these instructions provided by Quarto.\n\n\nI am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this.\n\n\n\nRun\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions\n\n\n\nCheck all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change.\n\n\n\nTo make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
   },
   {
-    "objectID": "reference-guides/plotting-data.html",
-    "href": "reference-guides/plotting-data.html",
-    "title": "Plotting Data",
+    "objectID": "how-to-publish.html#freeze-computations",
+    "href": "how-to-publish.html#freeze-computations",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "Describes how to plotting NSIDC Datasets using standard tools like cartopy, GeoViews.\n\nCover tricky plotting problems - e.g. ice motion vectors\n\nDefining EASE and NSIDC Polar projections in cartopy\n\nExamples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions). A set of specific examples might not be necessary if coordinates are included",
+    "text": "I am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this."
+  },
+  {
+    "objectID": "how-to-publish.html#publish-action",
+    "href": "how-to-publish.html#publish-action",
+    "title": "How to Publish Cookbook on GH Pages",
+    "section": "",
+    "text": "Run\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions"
+  },
+  {
+    "objectID": "how-to-publish.html#push-changes-to-gh",
+    "href": "how-to-publish.html#push-changes-to-gh",
+    "title": "How to Publish Cookbook on GH Pages",
+    "section": "",
+    "text": "Check all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change."
+  },
+  {
+    "objectID": "how-to-publish.html#make-gh-pages-visible-on-repo",
+    "href": "how-to-publish.html#make-gh-pages-visible-on-repo",
+    "title": "How to Publish Cookbook on GH Pages",
+    "section": "",
+    "text": "To make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
+  },
+  {
+    "objectID": "tutorials/hdf5_formatting.html",
+    "href": "tutorials/hdf5_formatting.html",
+    "title": "NSIDC Data Cookbook",
+    "section": "",
+    "text": "import h5py\nimport xarray as xr\nimport numpy as np\n\n\nroot = h5py.File('test.h5', 'w')\n\nCreate some groups\n\ngrp1 = root.create_group(\"group_1\")\ngrp2 = root.create_group(\"group_2\")\n\nCreate some Datasets in those groups\n\nnx1 = 4\nny1 = 3\ngrp1[\"data1\"] = np.ones((nx1, ny1), 'f')\ngrp1[\"data2\"] = np.ones((nx1, ny1), 'f')\n\nnx2 = 5\nny2 = 3\ngrp2[\"data3\"] = np.ones((nx2, ny2), 'i')\n\nCreate some dimension variables. The dimension scales need to be in the group so that they can found by xarray.\n\ngrp1['x'] = np.arange(nx1)\ngrp1['x'].make_scale('x')\ngrp1['y'] = np.arange(ny1)\ngrp1['y'].make_scale('y')\n\nAttach scales to the group_1 data\n\ngrp1[\"data1\"].dims[0].attach_scale(grp1['x'])\ngrp1[\"data1\"].dims[1].attach_scale(grp1['y'])\n\ngrp1[\"data2\"].dims[0].attach_scale(grp1['x'])\ngrp1[\"data2\"].dims[1].attach_scale(grp1['y'])\n\n\nlist_of_objects = []\nroot.visit(list_of_objects.append)\nlist_of_objects\n\n['group_1',\n 'group_1/data1',\n 'group_1/data2',\n 'group_1/x',\n 'group_1/y',\n 'group_2',\n 'group_2/data3']\n\n\n\nroot.close()\n\nOpen group_1 with xarray\n\nds = xr.open_dataset(\"test.h5\", group=\"group_1\")\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt;\nDimensions:  (x: 4, y: 3)\nCoordinates:\n  * x        (x) int64 0 1 2 3\n  * y        (y) int64 0 1 2\nData variables:\n    data1    (x, y) float32 ...\n    data2    (x, y) float32 ...xarray.DatasetDimensions:x: 4y: 3Coordinates: (2)x(x)int640 1 2 3array([0, 1, 2, 3])y(y)int640 1 2array([0, 1, 2])Data variables: (2)data1(x, y)float32...[12 values with dtype=float32]data2(x, y)float32...[12 values with dtype=float32]Indexes: (2)xPandasIndexPandasIndex(Index([0, 1, 2, 3], dtype='int64', name='x'))yPandasIndexPandasIndex(Index([0, 1, 2], dtype='int64', name='y'))Attributes: (0)"
+  },
+  {
+    "objectID": "tutorials/testing_coordinates_with_merge.html",
+    "href": "tutorials/testing_coordinates_with_merge.html",
+    "title": "Test coordinates with merge",
+    "section": "",
+    "text": "This notebook demonstrates why it is important to use the exact values for grid parameters when defining coordinates."
+  },
+  {
+    "objectID": "tutorials/testing_coordinates_with_merge.html#problem",
+    "href": "tutorials/testing_coordinates_with_merge.html#problem",
+    "title": "Test coordinates with merge",
+    "section": "Problem:",
+    "text": "Problem:\nIn spite of conventions such as CF and COARDS requiring projected coordinates to be specified for multidimensional arrays, some datasets do not contain this information. Coordinate values have to be generated. Coordinate values also need to be generated if we are creating a dataset from scratch. Grid cell height and width, and the x and y projected coordinates for the upper-left corner of the upper-left grid cell are required. In many cases (but not all), this information is found in Dataset User Guides and in A Guide to EASE Grids and A Guide to Polar Stereographic Grids. The later page required more work to get the required parameters.\nThe projected coordinates of a grid cell can be found using the following formulas:\n\\[\nx = (grid\\_cell\\_width \\times row) + x\\_upper\\_left\\_corner\n\\] \\[\ny = (grid\\_cell\\_height \\times column) + y\\_upper\\_left\\_corner)\n\\]\nThis equations assumes that the origin of the image coordinates start at row=0. and column=0. in the upper-left corner of the upper-left grid cell. So the center of the upper-left grid cell is row=0.5 and column=0.5. Adding 0.5 to row and column indices solves this problem.\nThese equations can also be expressed using linear alegebra.\n\\[\n\\mathbf{Ar} = \\\\\n\\begin{pmatrix}\na & 0 & b \\\\\n0 & c & d \\\\\n0 & 0 & 1\n\\end{pmatrix}\n\\enspace\n\\begin{pmatrix}\nrow \\\\\ncol \\\\\n1\n\\end{pmatrix}\n=\n\\begin{pmatrix}\nx \\\\\ny \\\\\n1\n\\end{pmatrix}\n= \\mathbf{x}\n\\]\nwhere \\(a\\) is grid_cell_width, \\(b\\) is x_upper_left_corner, \\(c\\) is grid_cell_height, and \\(d\\) is grid_cell_height. \\(\\mathbf{A}\\) is the augmented Affine Matrix. We can use the Affine class from the affine package to define this matrix.\nGrid cell width and height for the original EASE Grid(s) and for global EASE Grid 2.0 are defined as a fraction of the Equator so that a whole number of grid cells span the Equator. This is not strictly necessary for polar azimuthal versions of grids but in the original EASE Grid grid definitions both global and polar grids follow this convention. For EASE Grid 2.0, polar azimuthal versions of grids use whole kilometers for cell size definitions. Only the global grid uses a fractional cell size. A definitive source of grid definitions is the mapxmaps repo and the gpd files therein.\nTables in User Guides and in the A Guide to EASE Grids truncate cell height and widths, and x and y projected coordinates for the upper-left corners of upper left pixels to two decimal places. Actual values caleculated from gpd files have up to 9 decimal places.\nWhile a fraction of a millimeter or even a micron may not matter for geolocation, especially for 25 km or even 1 km grids, it does matter for operations for that compare coordinates. Consider, merging two grids using the xarray package. One grid data1 has coordinates defined using the high-precision grid parameters. The other, data2 has the coordinates defined using grid parameters truncated to two decimal places. As the workflow below demonstrates, the two coordinates do not form a common set and are concatenated.\n\nimport xarray as xr\n\nfrom affine import Affine\nimport numpy as np\n\n\ngrid_cell_width = 36032.220840584\ngrid_cell_height = -36032.220840584\nx_upper_left_corner = -17367530.4451615\ny_upper_left_corner = 7314540.8306386\n\n\ntransform1 = Affine(grid_cell_width, 0.0, x_upper_left_corner, \n                   0.0, grid_cell_height, y_upper_left_corner)\ntransform1\n\nAffine(36032.220840584, 0.0, -17367530.4451615,\n       0.0, -36032.220840584, 7314540.8306386)\n\n\n\nnrow = 406\nncol = 964\nrow = np.arange(0.5, nrow)\ncolumn = np.arange(0.5, ncol)\n\nx1, _ = transform1 * (column, 0.5)\n_, y1 = transform1 * (0.5, row)\n\ndata = np.ones((ncol, nrow), 'f')\n\n\nds1 = xr.DataArray(data, coords=[x1, y1], dims=['x', 'y'], name='data1')\nds1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray 'data1' (x: 964, y: 406)&gt;\narray([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)\nCoordinates:\n  * x        (x) float64 -1.735e+07 -1.731e+07 ... 1.731e+07 1.735e+07\n  * y        (y) float64 7.297e+06 7.26e+06 7.224e+06 ... -7.26e+06 -7.297e+06xarray.DataArray'data1'x: 964y: 4061.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0array([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)Coordinates: (2)x(x)float64-1.735e+07 -1.731e+07 ... 1.735e+07array([-17349514.334741, -17313482.113901, -17277449.89306 , ...,\n        17277449.89306 ,  17313482.113901,  17349514.334741])y(y)float647.297e+06 7.26e+06 ... -7.297e+06array([ 7296524.720218,  7260492.499378,  7224460.278537, ..., -7224460.278537,\n       -7260492.499378, -7296524.720218])Indexes: (2)xPandasIndexPandasIndex(Index([ -17349514.33474121, -17313482.113900624,  -17277449.89306004,\n       -17241417.672219455,  -17205385.45137887, -17169353.230538286,\n         -17133321.0096977, -17097288.788857117, -17061256.568016537,\n       -17025224.347175952,\n       ...\n        17025224.347175926,  17061256.568016514,  17097288.788857095,\n        17133321.009697683,  17169353.230538264,  17205385.451378845,\n        17241417.672219433,  17277449.893060014,  17313482.113900602,\n        17349514.334741183],\n      dtype='float64', name='x', length=964))yPandasIndexPandasIndex(Index([ 7296524.720218307,  7260492.499377724,  7224460.278537139,\n        7188428.057696556,  7152395.836855971,  7116363.616015388,\n        7080331.395174803,   7044299.17433422,  7008266.953493635,\n        6972234.732653052,\n       ...\n       -6972234.732652956,  -7008266.95349354, -7044299.174334125,\n       -7080331.395174707, -7116363.616015292, -7152395.836855876,\n       -7188428.057696461, -7224460.278537043, -7260492.499377628,\n       -7296524.720218212],\n      dtype='float64', name='y', length=406))Attributes: (0)\n\n\n\nds1.plot()\n\n\n\n\n\n\n\n\n\ntransform2 = Affine(round(grid_cell_width, 2), 0.0, round(x_upper_left_corner, 2), \n                   0.0, round(grid_cell_height, 2), round(y_upper_left_corner, 2))\ntransform2\n\nAffine(36032.22, 0.0, -17367530.45,\n       0.0, -36032.22, 7314540.83)\n\n\n\nx2, _ = transform2 * (column, 0.5)\n_, y2 = transform2 * (0.5, row)\n\n\nds2 = xr.DataArray(data, coords=[x2, y2], dims=['x', 'y'], name='data2')\nds2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray 'data2' (x: 964, y: 406)&gt;\narray([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)\nCoordinates:\n  * x        (x) float64 -1.735e+07 -1.731e+07 ... 1.731e+07 1.735e+07\n  * y        (y) float64 7.297e+06 7.26e+06 7.224e+06 ... -7.26e+06 -7.297e+06xarray.DataArray'data2'x: 964y: 4061.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0array([[1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       ...,\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.],\n       [1., 1., 1., ..., 1., 1., 1.]], dtype=float32)Coordinates: (2)x(x)float64-1.735e+07 -1.731e+07 ... 1.735e+07array([-17349514.34, -17313482.12, -17277449.9 , ...,  17277449.08,\n        17313481.3 ,  17349513.52])y(y)float647.297e+06 7.26e+06 ... -7.297e+06array([ 7296524.72,  7260492.5 ,  7224460.28, ..., -7224459.94, -7260492.16,\n       -7296524.38])Indexes: (2)xPandasIndexPandasIndex(Index([      -17349514.34,       -17313482.12,        -17277449.9,\n             -17241417.68,       -17205385.46,       -17169353.24,\n             -17133321.02,        -17097288.8,       -17061256.58,\n             -17025224.36,\n       ...\n       17025223.540000003,        17061255.76,        17097287.98,\n               17133320.2, 17169352.420000006, 17205384.640000004,\n       17241416.860000003, 17277449.080000002,         17313481.3,\n              17349513.52],\n      dtype='float64', name='x', length=964))yPandasIndexPandasIndex(Index([         7296524.72,           7260492.5,          7224460.28,\n        7188428.0600000005,          7152395.84,          7116363.62,\n                 7080331.4,          7044299.18,          7008266.96,\n                6972234.74,\n       ...\n                -6972234.4,  -7008266.620000001,         -7044298.84,\n       -7080331.0600000005,  -7116363.280000001,          -7152395.5,\n        -7188427.720000001, -7224459.9399999995,         -7260492.16,\n        -7296524.380000001],\n      dtype='float64', name='y', length=406))Attributes: (0)\n\n\n\nds2.plot()\n\n\n\n\n\n\n\n\n\nds = xr.merge([ds1, ds2])\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt;\nDimensions:  (x: 1928, y: 812)\nCoordinates:\n  * x        (x) float64 -1.735e+07 -1.735e+07 ... 1.735e+07 1.735e+07\n  * y        (y) float64 -7.297e+06 -7.297e+06 -7.26e+06 ... 7.297e+06 7.297e+06\nData variables:\n    data1    (x, y) float32 nan nan nan nan nan nan ... 1.0 nan 1.0 nan nan 1.0\n    data2    (x, y) float32 nan 1.0 nan 1.0 nan 1.0 ... nan nan nan nan nan nanxarray.DatasetDimensions:x: 1928y: 812Coordinates: (2)x(x)float64-1.735e+07 -1.735e+07 ... 1.735e+07array([-17349514.34    , -17349514.334741, -17313482.12    , ...,\n        17313482.113901,  17349513.52    ,  17349514.334741])y(y)float64-7.297e+06 -7.297e+06 ... 7.297e+06array([-7296524.720218, -7296524.38    , -7260492.499378, ...,  7260492.5     ,\n        7296524.72    ,  7296524.720218])Data variables: (2)data1(x, y)float32nan nan nan nan ... 1.0 nan nan 1.0array([[nan, nan, nan, ..., nan, nan, nan],\n       [ 1., nan,  1., ..., nan, nan,  1.],\n       [nan, nan, nan, ..., nan, nan, nan],\n       ...,\n       [ 1., nan,  1., ..., nan, nan,  1.],\n       [nan, nan, nan, ..., nan, nan, nan],\n       [ 1., nan,  1., ..., nan, nan,  1.]], dtype=float32)data2(x, y)float32nan 1.0 nan 1.0 ... nan nan nan nanarray([[nan,  1., nan, ...,  1.,  1., nan],\n       [nan, nan, nan, ..., nan, nan, nan],\n       [nan,  1., nan, ...,  1.,  1., nan],\n       ...,\n       [nan, nan, nan, ..., nan, nan, nan],\n       [nan,  1., nan, ...,  1.,  1., nan],\n       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)Indexes: (2)xPandasIndexPandasIndex(Index([       -17349514.34,  -17349514.33474121,        -17313482.12,\n       -17313482.113900624,         -17277449.9,  -17277449.89306004,\n              -17241417.68, -17241417.672219455,        -17205385.46,\n        -17205385.45137887,\n       ...\n        17205384.640000004,  17205385.451378845,  17241416.860000003,\n        17241417.672219433,  17277449.080000002,  17277449.893060014,\n                17313481.3,  17313482.113900602,         17349513.52,\n        17349514.334741183],\n      dtype='float64', name='x', length=1928))yPandasIndexPandasIndex(Index([ -7296524.720218212,  -7296524.380000001,  -7260492.499377628,\n               -7260492.16,  -7224460.278537043, -7224459.9399999995,\n        -7188428.057696461,  -7188427.720000001,  -7152395.836855876,\n                -7152395.5,\n       ...\n         7152395.836855971,          7152395.84,   7188428.057696556,\n        7188428.0600000005,   7224460.278537139,          7224460.28,\n         7260492.499377724,           7260492.5,          7296524.72,\n         7296524.720218307],\n      dtype='float64', name='y', length=812))Attributes: (0)\n\n\n\nds.data1.plot()\n\n\n\n\n\n\n\n\n\nds.data2.plot()"
+  },
+  {
+    "objectID": "tutorials/plots.html",
+    "href": "tutorials/plots.html",
+    "title": "Spatial Reference System",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt\nfig = plt.figure(figsize=(5,5))\nax = fig.add_subplot()\n\nax.set_xlim(0, 1)\nax.set_ylim(0, 1)\n\nx, y = 0.34, 0.44 \nax.scatter(x, y)\n#ax.annotate?\n#ax.set_axis_off()"
+  },
+  {
+    "objectID": "tutorials/plots.html#affine-matrix-to-convert-mapx-grid-to-raster-grid",
+    "href": "tutorials/plots.html#affine-matrix-to-convert-mapx-grid-to-raster-grid",
+    "title": "Spatial Reference System",
+    "section": "Affine Matrix to Convert mapx grid to raster grid",
+    "text": "Affine Matrix to Convert mapx grid to raster grid\n\nimport numpy as np\n\nfrom affine import Affine\n\n\nmapx_affn = Affine(1.0, 0.0, -0.5, 0.0, -1.0, -0.5)\n\n\nx = np.arange(9)\ny = np.arange(9)\n\n\nmapx_affn * (x, y)\n\n(array([-0.5,  0.5,  1.5,  2.5,  3.5,  4.5,  5.5,  6.5,  7.5]),\n array([-0.5, -1.5, -2.5, -3.5, -4.5, -5.5, -6.5, -7.5, -8.5]))\n\n\n\na = Affine.translation(-0.5, -0.5)\n\n\na * (x, y)\n\n(array([-0.5,  0.5,  1.5,  2.5,  3.5,  4.5,  5.5,  6.5,  7.5]),\n array([-0.5,  0.5,  1.5,  2.5,  3.5,  4.5,  5.5,  6.5,  7.5]))\n\n\n\na\n\nAffine(1.0, 0.0, -0.5,\n       0.0, 1.0, -0.5)\n\n\n\na * (180, 180)\n\n(179.5, 179.5)\n\n\n\na * (3, 3)\n\n(2.5, 2.5)\n\n\n\nb = Affine.scale(25000, -25000)\n\n\na * (3,3) * b\n\n/tmp/ipykernel_51944/1618209977.py:1: DeprecationWarning: Right multiplication will be prohibited in version 3.0\n  a * (3,3) * b\n\n\n(62500.0, -62500.0)"
+  },
+  {
+    "objectID": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#packages",
+    "href": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#packages",
+    "title": "How to select gridcells using vectorized indexing",
+    "section": "Packages",
+    "text": "Packages\nWe’ll use xarray and pandas in this how-to. We will also use numpy to create some testdata.\n\nimport xarray as xr\nimport pandas as pd\n\nimport numpy as np"
+  },
+  {
+    "objectID": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-test-data",
+    "href": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-test-data",
+    "title": "How to select gridcells using vectorized indexing",
+    "section": "Create some test data",
+    "text": "Create some test data\nWe’ll create a DataArray to demonstrate the selection method. The test DataArray is a global grid with a 2 degree spacing for two dates. The data are an integer array with the values from 0 to ntime*nlat*nlon.\n\ntime = pd.date_range('2023-08-01', '2023-08-10', freq='D')\nlatitude = np.linspace(-90., 90., 91)\nlongitude = np.linspace(-180., 179., 360)\n\nntime = len(time)\nnlat = len(latitude)\nnlon = len(longitude)\n\ndata = np.arange(0, ntime*nlat*nlon).reshape(ntime, nlat, nlon)  # \n\nda = xr.DataArray(data, coords=[time, latitude, longitude], dims=['time', 'latitude', 'longitude'])\nda\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray (time: 10, latitude: 91, longitude: 360)&gt;\narray([[[     0,      1,      2, ...,    357,    358,    359],\n        [   360,    361,    362, ...,    717,    718,    719],\n        [   720,    721,    722, ...,   1077,   1078,   1079],\n        ...,\n        [ 31680,  31681,  31682, ...,  32037,  32038,  32039],\n        [ 32040,  32041,  32042, ...,  32397,  32398,  32399],\n        [ 32400,  32401,  32402, ...,  32757,  32758,  32759]],\n\n       [[ 32760,  32761,  32762, ...,  33117,  33118,  33119],\n        [ 33120,  33121,  33122, ...,  33477,  33478,  33479],\n        [ 33480,  33481,  33482, ...,  33837,  33838,  33839],\n        ...,\n        [ 64440,  64441,  64442, ...,  64797,  64798,  64799],\n        [ 64800,  64801,  64802, ...,  65157,  65158,  65159],\n        [ 65160,  65161,  65162, ...,  65517,  65518,  65519]],\n\n       [[ 65520,  65521,  65522, ...,  65877,  65878,  65879],\n        [ 65880,  65881,  65882, ...,  66237,  66238,  66239],\n        [ 66240,  66241,  66242, ...,  66597,  66598,  66599],\n        ...,\n...\n        ...,\n        [261000, 261001, 261002, ..., 261357, 261358, 261359],\n        [261360, 261361, 261362, ..., 261717, 261718, 261719],\n        [261720, 261721, 261722, ..., 262077, 262078, 262079]],\n\n       [[262080, 262081, 262082, ..., 262437, 262438, 262439],\n        [262440, 262441, 262442, ..., 262797, 262798, 262799],\n        [262800, 262801, 262802, ..., 263157, 263158, 263159],\n        ...,\n        [293760, 293761, 293762, ..., 294117, 294118, 294119],\n        [294120, 294121, 294122, ..., 294477, 294478, 294479],\n        [294480, 294481, 294482, ..., 294837, 294838, 294839]],\n\n       [[294840, 294841, 294842, ..., 295197, 295198, 295199],\n        [295200, 295201, 295202, ..., 295557, 295558, 295559],\n        [295560, 295561, 295562, ..., 295917, 295918, 295919],\n        ...,\n        [326520, 326521, 326522, ..., 326877, 326878, 326879],\n        [326880, 326881, 326882, ..., 327237, 327238, 327239],\n        [327240, 327241, 327242, ..., 327597, 327598, 327599]]])\nCoordinates:\n  * time       (time) datetime64[ns] 2023-08-01 2023-08-02 ... 2023-08-10\n  * latitude   (latitude) float64 -90.0 -88.0 -86.0 -84.0 ... 86.0 88.0 90.0\n  * longitude  (longitude) float64 -180.0 -179.0 -178.0 ... 177.0 178.0 179.0xarray.DataArraytime: 10latitude: 91longitude: 3600 1 2 3 4 5 6 7 ... 327593 327594 327595 327596 327597 327598 327599array([[[     0,      1,      2, ...,    357,    358,    359],\n        [   360,    361,    362, ...,    717,    718,    719],\n        [   720,    721,    722, ...,   1077,   1078,   1079],\n        ...,\n        [ 31680,  31681,  31682, ...,  32037,  32038,  32039],\n        [ 32040,  32041,  32042, ...,  32397,  32398,  32399],\n        [ 32400,  32401,  32402, ...,  32757,  32758,  32759]],\n\n       [[ 32760,  32761,  32762, ...,  33117,  33118,  33119],\n        [ 33120,  33121,  33122, ...,  33477,  33478,  33479],\n        [ 33480,  33481,  33482, ...,  33837,  33838,  33839],\n        ...,\n        [ 64440,  64441,  64442, ...,  64797,  64798,  64799],\n        [ 64800,  64801,  64802, ...,  65157,  65158,  65159],\n        [ 65160,  65161,  65162, ...,  65517,  65518,  65519]],\n\n       [[ 65520,  65521,  65522, ...,  65877,  65878,  65879],\n        [ 65880,  65881,  65882, ...,  66237,  66238,  66239],\n        [ 66240,  66241,  66242, ...,  66597,  66598,  66599],\n        ...,\n...\n        ...,\n        [261000, 261001, 261002, ..., 261357, 261358, 261359],\n        [261360, 261361, 261362, ..., 261717, 261718, 261719],\n        [261720, 261721, 261722, ..., 262077, 262078, 262079]],\n\n       [[262080, 262081, 262082, ..., 262437, 262438, 262439],\n        [262440, 262441, 262442, ..., 262797, 262798, 262799],\n        [262800, 262801, 262802, ..., 263157, 263158, 263159],\n        ...,\n        [293760, 293761, 293762, ..., 294117, 294118, 294119],\n        [294120, 294121, 294122, ..., 294477, 294478, 294479],\n        [294480, 294481, 294482, ..., 294837, 294838, 294839]],\n\n       [[294840, 294841, 294842, ..., 295197, 295198, 295199],\n        [295200, 295201, 295202, ..., 295557, 295558, 295559],\n        [295560, 295561, 295562, ..., 295917, 295918, 295919],\n        ...,\n        [326520, 326521, 326522, ..., 326877, 326878, 326879],\n        [326880, 326881, 326882, ..., 327237, 327238, 327239],\n        [327240, 327241, 327242, ..., 327597, 327598, 327599]]])Coordinates: (3)time(time)datetime64[ns]2023-08-01 ... 2023-08-10array(['2023-08-01T00:00:00.000000000', '2023-08-02T00:00:00.000000000',\n       '2023-08-03T00:00:00.000000000', '2023-08-04T00:00:00.000000000',\n       '2023-08-05T00:00:00.000000000', '2023-08-06T00:00:00.000000000',\n       '2023-08-07T00:00:00.000000000', '2023-08-08T00:00:00.000000000',\n       '2023-08-09T00:00:00.000000000', '2023-08-10T00:00:00.000000000'],\n      dtype='datetime64[ns]')latitude(latitude)float64-90.0 -88.0 -86.0 ... 88.0 90.0array([-90., -88., -86., -84., -82., -80., -78., -76., -74., -72., -70., -68.,\n       -66., -64., -62., -60., -58., -56., -54., -52., -50., -48., -46., -44.,\n       -42., -40., -38., -36., -34., -32., -30., -28., -26., -24., -22., -20.,\n       -18., -16., -14., -12., -10.,  -8.,  -6.,  -4.,  -2.,   0.,   2.,   4.,\n         6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,  22.,  24.,  26.,  28.,\n        30.,  32.,  34.,  36.,  38.,  40.,  42.,  44.,  46.,  48.,  50.,  52.,\n        54.,  56.,  58.,  60.,  62.,  64.,  66.,  68.,  70.,  72.,  74.,  76.,\n        78.,  80.,  82.,  84.,  86.,  88.,  90.])longitude(longitude)float64-180.0 -179.0 ... 178.0 179.0array([-180., -179., -178., ...,  177.,  178.,  179.])Indexes: (3)timePandasIndexPandasIndex(DatetimeIndex(['2023-08-01', '2023-08-02', '2023-08-03', '2023-08-04',\n               '2023-08-05', '2023-08-06', '2023-08-07', '2023-08-08',\n               '2023-08-09', '2023-08-10'],\n              dtype='datetime64[ns]', name='time', freq='D'))latitudePandasIndexPandasIndex(Index([-90.0, -88.0, -86.0, -84.0, -82.0, -80.0, -78.0, -76.0, -74.0, -72.0,\n       -70.0, -68.0, -66.0, -64.0, -62.0, -60.0, -58.0, -56.0, -54.0, -52.0,\n       -50.0, -48.0, -46.0, -44.0, -42.0, -40.0, -38.0, -36.0, -34.0, -32.0,\n       -30.0, -28.0, -26.0, -24.0, -22.0, -20.0, -18.0, -16.0, -14.0, -12.0,\n       -10.0,  -8.0,  -6.0,  -4.0,  -2.0,   0.0,   2.0,   4.0,   6.0,   8.0,\n        10.0,  12.0,  14.0,  16.0,  18.0,  20.0,  22.0,  24.0,  26.0,  28.0,\n        30.0,  32.0,  34.0,  36.0,  38.0,  40.0,  42.0,  44.0,  46.0,  48.0,\n        50.0,  52.0,  54.0,  56.0,  58.0,  60.0,  62.0,  64.0,  66.0,  68.0,\n        70.0,  72.0,  74.0,  76.0,  78.0,  80.0,  82.0,  84.0,  86.0,  88.0,\n        90.0],\n      dtype='float64', name='latitude'))longitudePandasIndexPandasIndex(Index([-180.0, -179.0, -178.0, -177.0, -176.0, -175.0, -174.0, -173.0, -172.0,\n       -171.0,\n       ...\n        170.0,  171.0,  172.0,  173.0,  174.0,  175.0,  176.0,  177.0,  178.0,\n        179.0],\n      dtype='float64', name='longitude', length=360))Attributes: (0)"
+  },
+  {
+    "objectID": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-points-to-select",
+    "href": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-points-to-select",
+    "title": "How to select gridcells using vectorized indexing",
+    "section": "Create some points to select",
+    "text": "Create some points to select\nHere, I’m using coordinates of London, Paris, New York and Tokyo.\nFirst, we’ll use these coordinates just in xarray to introduce the method. However, in most real-world situations, the points will be in a file. Something like a csv. So we will also convert a pandas.DataFrame to an xarray object to demonstrate this workflow.\n\nUsing xarray only\nWe use the .sel() indexing method. .sel() allows us to specify a selection method as a keyword. The methods are pad which fills forward, backfill which fills backward, and nearest which does a nearest-neighbour search. If no method is selected, only exact matches are returned. For geospatial queries, this will almost always return an empty set of results.To use vectorized subsetting, the points to select have to be xarray.DataArrays. If\n\n# Create some points to select.  These have to be DataArray objects to do vectorized subsetting\nptime = xr.DataArray(['2023-08-09'], dims=['time'])\nplat = xr.DataArray([51.5072, 48.8566, 40.7128, 35.6762], dims=['point'])  # Points to select need common dimensions\nplon = xr.DataArray([0.1276, 2.3522, 74.0060, 139.6503], dims=['point'])\n\nda.sel(time=ptime, latitude=plat, longitude=plon, method='nearest').squeeze().to_pandas()  # Squeeze to drop single time export as pandas series\n\npoint\n0    287820\n1    287102\n2    285734\n3    285080\ndtype: int64\n\n\n\n\nUsing points from a pandas.DataFrame\n\ndf = pd.DataFrame({\n    'latitude': [51.5072, 48.8566, 40.7128, 35.6762],\n    'longitude': [0.1276, 2.3522, 74.0060, 139.6503],\n},\n    index = [1, 2, 3, 4],\n                 )\ndf.index.name = 'points'\ndf\n\n\n\n\n\n\n\n\nlatitude\nlongitude\n\n\npoints\n\n\n\n\n\n\n1\n51.5072\n0.1276\n\n\n2\n48.8566\n2.3522\n\n\n3\n40.7128\n74.0060\n\n\n4\n35.6762\n139.6503\n\n\n\n\n\n\n\n\nds_pts = df.to_xarray()\nds_pts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt;\nDimensions:    (points: 4)\nCoordinates:\n  * points     (points) int64 1 2 3 4\nData variables:\n    latitude   (points) float64 51.51 48.86 40.71 35.68\n    longitude  (points) float64 0.1276 2.352 74.01 139.7xarray.DatasetDimensions:points: 4Coordinates: (1)points(points)int641 2 3 4array([1, 2, 3, 4])Data variables: (2)latitude(points)float6451.51 48.86 40.71 35.68array([51.5072, 48.8566, 40.7128, 35.6762])longitude(points)float640.1276 2.352 74.01 139.7array([1.276000e-01, 2.352200e+00, 7.400600e+01, 1.396503e+02])Indexes: (1)pointsPandasIndexPandasIndex(Index([1, 2, 3, 4], dtype='int64', name='points'))Attributes: (0)\n\n\n\nda.sel(time=ptime, latitude=ds_pts.latitude, longitude=ds_pts.longitude, method='nearest')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray (time: 1, points: 4)&gt;\narray([[287820, 287102, 285734, 285080]])\nCoordinates:\n  * time       (time) datetime64[ns] 2023-08-09\n    latitude   (points) float64 52.0 48.0 40.0 36.0\n    longitude  (points) float64 0.0 2.0 74.0 140.0\n  * points     (points) int64 1 2 3 4xarray.DataArraytime: 1points: 4287820 287102 285734 285080array([[287820, 287102, 285734, 285080]])Coordinates: (4)time(time)datetime64[ns]2023-08-09array(['2023-08-09T00:00:00.000000000'], dtype='datetime64[ns]')latitude(points)float6452.0 48.0 40.0 36.0array([52., 48., 40., 36.])longitude(points)float640.0 2.0 74.0 140.0array([  0.,   2.,  74., 140.])points(points)int641 2 3 4array([1, 2, 3, 4])Indexes: (2)timePandasIndexPandasIndex(DatetimeIndex(['2023-08-09'], dtype='datetime64[ns]', name='time', freq=None))pointsPandasIndexPandasIndex(Index([1, 2, 3, 4], dtype='int64', name='points'))Attributes: (0)"
+  },
+  {
+    "objectID": "our-cookbook.html#get-started",
+    "href": "our-cookbook.html#get-started",
+    "title": "Our Cookbook",
+    "section": "Get Started",
+    "text": "Get Started",
     "crumbs": [
-      "Plotting NSIDC Data"
+      "Our Cookbook"
     ]
   },
   {
@@ -283,6 +369,67 @@
     "text": "Other tools\n\nEarthdata Search\nOpen Altimetry\nHDFView\nPanoply\nNCView\nQGIS\nArcGIS",
     "crumbs": [
       "Tools we use"
+    ]
+  },
+  {
+    "objectID": "reference-guides/definitions.html",
+    "href": "reference-guides/definitions.html",
+    "title": "Definitions",
+    "section": "",
+    "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
+  },
+  {
+    "objectID": "reference-guides/dataset-search-and-discovery.html",
+    "href": "reference-guides/dataset-search-and-discovery.html",
+    "title": "Dataset Search and Discovery",
+    "section": "",
+    "text": "Getting an EDL\n\nA simple earthaccess search and download\n\nEDS\n\ncurl\nwget",
+    "crumbs": [
+      "Dataset search and discovery"
+    ]
+  },
+  {
+    "objectID": "reference-guides/overview.html",
+    "href": "reference-guides/overview.html",
+    "title": "Reference Guides",
+    "section": "",
+    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
+  },
+  {
+    "objectID": "reference-guides/overview.html#introduction",
+    "href": "reference-guides/overview.html#introduction",
+    "title": "Reference Guides",
+    "section": "",
+    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
+  },
+  {
+    "objectID": "reference-guides/nsidc-file-formats.html",
+    "href": "reference-guides/nsidc-file-formats.html",
+    "title": "File formats",
+    "section": "",
+    "text": "How to read and navigate file formats commonly found at NSIDC. This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.\n\nNetCDF4 (and NetCDFx)\nHDF5\nHDF-EOS\nShapefiles\nGeoTIFF",
+    "crumbs": [
+      "Common NSIDC file formats"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NSIDC Data Cookbook",
+    "section": "",
+    "text": "Welcome to the NSIDC Data Cookbook!\n\n\n[!WARNING] This cookbook is under active development. Major changes to the structure of the book and its content are expected. We are striving to develop content that is well-tested and peer-reviewed, but nothing contained here should be expected to work correctly (or at all!) in this early phase. Many sections contain only an outline of the content. These sections will have content added at the project develops.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "NSIDC Data Cookbook",
+    "section": "",
+    "text": "Welcome to the NSIDC Data Cookbook!\n\n\n[!WARNING] This cookbook is under active development. Major changes to the structure of the book and its content are expected. We are striving to develop content that is well-tested and peer-reviewed, but nothing contained here should be expected to work correctly (or at all!) in this early phase. Many sections contain only an outline of the content. These sections will have content added at the project develops.",
+    "crumbs": [
+      "Welcome"
     ]
   },
   {
@@ -335,179 +482,32 @@
     "text": "This Code of Conduct is adapted from the Contributor Covenant, version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html\nFor answers to common questions about this code of conduct, see https://www.contributor-covenant.org/faq"
   },
   {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Miscellaneous Resources",
+    "objectID": "how-to-guides/get_column_and_row_indices.html",
+    "href": "how-to-guides/get_column_and_row_indices.html",
+    "title": "How to get grid column and row indices for latitude and longitude",
     "section": "",
-    "text": "NSIDC How to"
+    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
   },
   {
-    "objectID": "resources.html#programatic-download",
-    "href": "resources.html#programatic-download",
-    "title": "Miscellaneous Resources",
+    "objectID": "how-to-guides/get_column_and_row_indices.html#problem",
+    "href": "how-to-guides/get_column_and_row_indices.html#problem",
+    "title": "How to get grid column and row indices for latitude and longitude",
     "section": "",
-    "text": "NSIDC How to"
+    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
   },
   {
-    "objectID": "resources.html#projections",
-    "href": "resources.html#projections",
-    "title": "Miscellaneous Resources",
-    "section": "Projections",
-    "text": "Projections\nNSIDC Polar Stereographic Projection NSIDC EASE Grid\nCF Conventions Grid Mappings\nLatitude Geodetic Datums\nSnyder\nrioxarray.raster_dataset\nrasterio.affine GDAL Affine pyproj cartopy.crs.CRS"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "NSIDC Data Cookbook",
-    "section": "",
-    "text": "Welcome to the NSIDC Data Cookbook!",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "NSIDC Data Cookbook",
-    "section": "",
-    "text": "Welcome to the NSIDC Data Cookbook!",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "reference-guides/points-pixels-grids/points_pixels_grids.html",
-    "href": "reference-guides/points-pixels-grids/points_pixels_grids.html",
-    "title": "Points, Pixels, Grids",
-    "section": "",
-    "text": "Points, Pixels, Grids\nA placeholder for a deeper dive into grids and resampling. I plan on basing this on Ken Knowles page of a similar name but modified for gdal, python and other new tools.\nhttps://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells"
-  },
-  {
-    "objectID": "reference-guides/data-structures.html",
-    "href": "reference-guides/data-structures.html",
-    "title": "Data Structures",
-    "section": "",
-    "text": "Describes common remote sensing data structures.\nWe should add information for tabular data and Data Frames\n\nSwath\n\nAlong-track\n\nRaster/Grids\n\nResampling",
-    "crumbs": [
-      "Types of data at NSIDC"
-    ]
-  },
-  {
-    "objectID": "reference-guides/nsidc-file-formats.html",
-    "href": "reference-guides/nsidc-file-formats.html",
-    "title": "File formats",
-    "section": "",
-    "text": "How to read and navigate file formats commonly found at NSIDC. This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.\n\nNetCDF4 (and NetCDFx)\nHDF5\nHDF-EOS\nShapefiles\nGeoTIFF",
-    "crumbs": [
-      "Common NSIDC file formats"
-    ]
-  },
-  {
-    "objectID": "reference-guides/overview.html",
-    "href": "reference-guides/overview.html",
-    "title": "Reference Guides",
-    "section": "",
-    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
-  },
-  {
-    "objectID": "reference-guides/overview.html#introduction",
-    "href": "reference-guides/overview.html#introduction",
-    "title": "Reference Guides",
-    "section": "",
-    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
-  },
-  {
-    "objectID": "tutorials/plots.html",
-    "href": "tutorials/plots.html",
-    "title": "Spatial Reference System",
-    "section": "",
-    "text": "import matplotlib.pyplot as plt\nfig = plt.figure(figsize=(5,5))\nax = fig.add_subplot()\n\nax.set_xlim(0, 1)\nax.set_ylim(0, 1)\n\nx, y = 0.34, 0.44 \nax.scatter(x, y)\n#ax.annotate?\n#ax.set_axis_off()"
-  },
-  {
-    "objectID": "tutorials/plots.html#affine-matrix-to-convert-mapx-grid-to-raster-grid",
-    "href": "tutorials/plots.html#affine-matrix-to-convert-mapx-grid-to-raster-grid",
-    "title": "Spatial Reference System",
-    "section": "Affine Matrix to Convert mapx grid to raster grid",
-    "text": "Affine Matrix to Convert mapx grid to raster grid\n\nimport numpy as np\n\nfrom affine import Affine\n\n\nmapx_affn = Affine(1.0, 0.0, -0.5, 0.0, -1.0, -0.5)\n\n\nx = np.arange(9)\ny = np.arange(9)\n\n\nmapx_affn * (x, y)\n\n(array([-0.5,  0.5,  1.5,  2.5,  3.5,  4.5,  5.5,  6.5,  7.5]),\n array([-0.5, -1.5, -2.5, -3.5, -4.5, -5.5, -6.5, -7.5, -8.5]))\n\n\n\na = Affine.translation(-0.5, -0.5)\n\n\na * (x, y)\n\n(array([-0.5,  0.5,  1.5,  2.5,  3.5,  4.5,  5.5,  6.5,  7.5]),\n array([-0.5,  0.5,  1.5,  2.5,  3.5,  4.5,  5.5,  6.5,  7.5]))\n\n\n\na\n\nAffine(1.0, 0.0, -0.5,\n       0.0, 1.0, -0.5)\n\n\n\na * (180, 180)\n\n(179.5, 179.5)\n\n\n\na * (3, 3)\n\n(2.5, 2.5)\n\n\n\nb = Affine.scale(25000, -25000)\n\n\na * (3,3) * b\n\n/tmp/ipykernel_51944/1618209977.py:1: DeprecationWarning: Right multiplication will be prohibited in version 3.0\n  a * (3,3) * b\n\n\n(62500.0, -62500.0)"
-  },
-  {
-    "objectID": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#packages",
-    "href": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#packages",
-    "title": "How to select gridcells using vectorized indexing",
-    "section": "Packages",
-    "text": "Packages\nWe’ll use xarray and pandas in this how-to. We will also use numpy to create some testdata.\n\nimport xarray as xr\nimport pandas as pd\n\nimport numpy as np"
-  },
-  {
-    "objectID": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-test-data",
-    "href": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-test-data",
-    "title": "How to select gridcells using vectorized indexing",
-    "section": "Create some test data",
-    "text": "Create some test data\nWe’ll create a DataArray to demonstrate the selection method. The test DataArray is a global grid with a 2 degree spacing for two dates. The data are an integer array with the values from 0 to ntime*nlat*nlon.\n\ntime = pd.date_range('2023-08-01', '2023-08-10', freq='D')\nlatitude = np.linspace(-90., 90., 91)\nlongitude = np.linspace(-180., 179., 360)\n\nntime = len(time)\nnlat = len(latitude)\nnlon = len(longitude)\n\ndata = np.arange(0, ntime*nlat*nlon).reshape(ntime, nlat, nlon)  # \n\nda = xr.DataArray(data, coords=[time, latitude, longitude], dims=['time', 'latitude', 'longitude'])\nda\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray (time: 10, latitude: 91, longitude: 360)&gt;\narray([[[     0,      1,      2, ...,    357,    358,    359],\n        [   360,    361,    362, ...,    717,    718,    719],\n        [   720,    721,    722, ...,   1077,   1078,   1079],\n        ...,\n        [ 31680,  31681,  31682, ...,  32037,  32038,  32039],\n        [ 32040,  32041,  32042, ...,  32397,  32398,  32399],\n        [ 32400,  32401,  32402, ...,  32757,  32758,  32759]],\n\n       [[ 32760,  32761,  32762, ...,  33117,  33118,  33119],\n        [ 33120,  33121,  33122, ...,  33477,  33478,  33479],\n        [ 33480,  33481,  33482, ...,  33837,  33838,  33839],\n        ...,\n        [ 64440,  64441,  64442, ...,  64797,  64798,  64799],\n        [ 64800,  64801,  64802, ...,  65157,  65158,  65159],\n        [ 65160,  65161,  65162, ...,  65517,  65518,  65519]],\n\n       [[ 65520,  65521,  65522, ...,  65877,  65878,  65879],\n        [ 65880,  65881,  65882, ...,  66237,  66238,  66239],\n        [ 66240,  66241,  66242, ...,  66597,  66598,  66599],\n        ...,\n...\n        ...,\n        [261000, 261001, 261002, ..., 261357, 261358, 261359],\n        [261360, 261361, 261362, ..., 261717, 261718, 261719],\n        [261720, 261721, 261722, ..., 262077, 262078, 262079]],\n\n       [[262080, 262081, 262082, ..., 262437, 262438, 262439],\n        [262440, 262441, 262442, ..., 262797, 262798, 262799],\n        [262800, 262801, 262802, ..., 263157, 263158, 263159],\n        ...,\n        [293760, 293761, 293762, ..., 294117, 294118, 294119],\n        [294120, 294121, 294122, ..., 294477, 294478, 294479],\n        [294480, 294481, 294482, ..., 294837, 294838, 294839]],\n\n       [[294840, 294841, 294842, ..., 295197, 295198, 295199],\n        [295200, 295201, 295202, ..., 295557, 295558, 295559],\n        [295560, 295561, 295562, ..., 295917, 295918, 295919],\n        ...,\n        [326520, 326521, 326522, ..., 326877, 326878, 326879],\n        [326880, 326881, 326882, ..., 327237, 327238, 327239],\n        [327240, 327241, 327242, ..., 327597, 327598, 327599]]])\nCoordinates:\n  * time       (time) datetime64[ns] 2023-08-01 2023-08-02 ... 2023-08-10\n  * latitude   (latitude) float64 -90.0 -88.0 -86.0 -84.0 ... 86.0 88.0 90.0\n  * longitude  (longitude) float64 -180.0 -179.0 -178.0 ... 177.0 178.0 179.0xarray.DataArraytime: 10latitude: 91longitude: 3600 1 2 3 4 5 6 7 ... 327593 327594 327595 327596 327597 327598 327599array([[[     0,      1,      2, ...,    357,    358,    359],\n        [   360,    361,    362, ...,    717,    718,    719],\n        [   720,    721,    722, ...,   1077,   1078,   1079],\n        ...,\n        [ 31680,  31681,  31682, ...,  32037,  32038,  32039],\n        [ 32040,  32041,  32042, ...,  32397,  32398,  32399],\n        [ 32400,  32401,  32402, ...,  32757,  32758,  32759]],\n\n       [[ 32760,  32761,  32762, ...,  33117,  33118,  33119],\n        [ 33120,  33121,  33122, ...,  33477,  33478,  33479],\n        [ 33480,  33481,  33482, ...,  33837,  33838,  33839],\n        ...,\n        [ 64440,  64441,  64442, ...,  64797,  64798,  64799],\n        [ 64800,  64801,  64802, ...,  65157,  65158,  65159],\n        [ 65160,  65161,  65162, ...,  65517,  65518,  65519]],\n\n       [[ 65520,  65521,  65522, ...,  65877,  65878,  65879],\n        [ 65880,  65881,  65882, ...,  66237,  66238,  66239],\n        [ 66240,  66241,  66242, ...,  66597,  66598,  66599],\n        ...,\n...\n        ...,\n        [261000, 261001, 261002, ..., 261357, 261358, 261359],\n        [261360, 261361, 261362, ..., 261717, 261718, 261719],\n        [261720, 261721, 261722, ..., 262077, 262078, 262079]],\n\n       [[262080, 262081, 262082, ..., 262437, 262438, 262439],\n        [262440, 262441, 262442, ..., 262797, 262798, 262799],\n        [262800, 262801, 262802, ..., 263157, 263158, 263159],\n        ...,\n        [293760, 293761, 293762, ..., 294117, 294118, 294119],\n        [294120, 294121, 294122, ..., 294477, 294478, 294479],\n        [294480, 294481, 294482, ..., 294837, 294838, 294839]],\n\n       [[294840, 294841, 294842, ..., 295197, 295198, 295199],\n        [295200, 295201, 295202, ..., 295557, 295558, 295559],\n        [295560, 295561, 295562, ..., 295917, 295918, 295919],\n        ...,\n        [326520, 326521, 326522, ..., 326877, 326878, 326879],\n        [326880, 326881, 326882, ..., 327237, 327238, 327239],\n        [327240, 327241, 327242, ..., 327597, 327598, 327599]]])Coordinates: (3)time(time)datetime64[ns]2023-08-01 ... 2023-08-10array(['2023-08-01T00:00:00.000000000', '2023-08-02T00:00:00.000000000',\n       '2023-08-03T00:00:00.000000000', '2023-08-04T00:00:00.000000000',\n       '2023-08-05T00:00:00.000000000', '2023-08-06T00:00:00.000000000',\n       '2023-08-07T00:00:00.000000000', '2023-08-08T00:00:00.000000000',\n       '2023-08-09T00:00:00.000000000', '2023-08-10T00:00:00.000000000'],\n      dtype='datetime64[ns]')latitude(latitude)float64-90.0 -88.0 -86.0 ... 88.0 90.0array([-90., -88., -86., -84., -82., -80., -78., -76., -74., -72., -70., -68.,\n       -66., -64., -62., -60., -58., -56., -54., -52., -50., -48., -46., -44.,\n       -42., -40., -38., -36., -34., -32., -30., -28., -26., -24., -22., -20.,\n       -18., -16., -14., -12., -10.,  -8.,  -6.,  -4.,  -2.,   0.,   2.,   4.,\n         6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,  22.,  24.,  26.,  28.,\n        30.,  32.,  34.,  36.,  38.,  40.,  42.,  44.,  46.,  48.,  50.,  52.,\n        54.,  56.,  58.,  60.,  62.,  64.,  66.,  68.,  70.,  72.,  74.,  76.,\n        78.,  80.,  82.,  84.,  86.,  88.,  90.])longitude(longitude)float64-180.0 -179.0 ... 178.0 179.0array([-180., -179., -178., ...,  177.,  178.,  179.])Indexes: (3)timePandasIndexPandasIndex(DatetimeIndex(['2023-08-01', '2023-08-02', '2023-08-03', '2023-08-04',\n               '2023-08-05', '2023-08-06', '2023-08-07', '2023-08-08',\n               '2023-08-09', '2023-08-10'],\n              dtype='datetime64[ns]', name='time', freq='D'))latitudePandasIndexPandasIndex(Index([-90.0, -88.0, -86.0, -84.0, -82.0, -80.0, -78.0, -76.0, -74.0, -72.0,\n       -70.0, -68.0, -66.0, -64.0, -62.0, -60.0, -58.0, -56.0, -54.0, -52.0,\n       -50.0, -48.0, -46.0, -44.0, -42.0, -40.0, -38.0, -36.0, -34.0, -32.0,\n       -30.0, -28.0, -26.0, -24.0, -22.0, -20.0, -18.0, -16.0, -14.0, -12.0,\n       -10.0,  -8.0,  -6.0,  -4.0,  -2.0,   0.0,   2.0,   4.0,   6.0,   8.0,\n        10.0,  12.0,  14.0,  16.0,  18.0,  20.0,  22.0,  24.0,  26.0,  28.0,\n        30.0,  32.0,  34.0,  36.0,  38.0,  40.0,  42.0,  44.0,  46.0,  48.0,\n        50.0,  52.0,  54.0,  56.0,  58.0,  60.0,  62.0,  64.0,  66.0,  68.0,\n        70.0,  72.0,  74.0,  76.0,  78.0,  80.0,  82.0,  84.0,  86.0,  88.0,\n        90.0],\n      dtype='float64', name='latitude'))longitudePandasIndexPandasIndex(Index([-180.0, -179.0, -178.0, -177.0, -176.0, -175.0, -174.0, -173.0, -172.0,\n       -171.0,\n       ...\n        170.0,  171.0,  172.0,  173.0,  174.0,  175.0,  176.0,  177.0,  178.0,\n        179.0],\n      dtype='float64', name='longitude', length=360))Attributes: (0)"
-  },
-  {
-    "objectID": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-points-to-select",
-    "href": "tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html#create-some-points-to-select",
-    "title": "How to select gridcells using vectorized indexing",
-    "section": "Create some points to select",
-    "text": "Create some points to select\nHere, I’m using coordinates of London, Paris, New York and Tokyo.\nFirst, we’ll use these coordinates just in xarray to introduce the method. However, in most real-world situations, the points will be in a file. Something like a csv. So we will also convert a pandas.DataFrame to an xarray object to demonstrate this workflow.\n\nUsing xarray only\nWe use the .sel() indexing method. .sel() allows us to specify a selection method as a keyword. The methods are pad which fills forward, backfill which fills backward, and nearest which does a nearest-neighbour search. If no method is selected, only exact matches are returned. For geospatial queries, this will almost always return an empty set of results.To use vectorized subsetting, the points to select have to be xarray.DataArrays. If\n\n# Create some points to select.  These have to be DataArray objects to do vectorized subsetting\nptime = xr.DataArray(['2023-08-09'], dims=['time'])\nplat = xr.DataArray([51.5072, 48.8566, 40.7128, 35.6762], dims=['point'])  # Points to select need common dimensions\nplon = xr.DataArray([0.1276, 2.3522, 74.0060, 139.6503], dims=['point'])\n\nda.sel(time=ptime, latitude=plat, longitude=plon, method='nearest').squeeze().to_pandas()  # Squeeze to drop single time export as pandas series\n\npoint\n0    287820\n1    287102\n2    285734\n3    285080\ndtype: int64\n\n\n\n\nUsing points from a pandas.DataFrame\n\ndf = pd.DataFrame({\n    'latitude': [51.5072, 48.8566, 40.7128, 35.6762],\n    'longitude': [0.1276, 2.3522, 74.0060, 139.6503],\n},\n    index = [1, 2, 3, 4],\n                 )\ndf.index.name = 'points'\ndf\n\n\n\n\n\n\n\n\nlatitude\nlongitude\n\n\npoints\n\n\n\n\n\n\n1\n51.5072\n0.1276\n\n\n2\n48.8566\n2.3522\n\n\n3\n40.7128\n74.0060\n\n\n4\n35.6762\n139.6503\n\n\n\n\n\n\n\n\nds_pts = df.to_xarray()\nds_pts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt;\nDimensions:    (points: 4)\nCoordinates:\n  * points     (points) int64 1 2 3 4\nData variables:\n    latitude   (points) float64 51.51 48.86 40.71 35.68\n    longitude  (points) float64 0.1276 2.352 74.01 139.7xarray.DatasetDimensions:points: 4Coordinates: (1)points(points)int641 2 3 4array([1, 2, 3, 4])Data variables: (2)latitude(points)float6451.51 48.86 40.71 35.68array([51.5072, 48.8566, 40.7128, 35.6762])longitude(points)float640.1276 2.352 74.01 139.7array([1.276000e-01, 2.352200e+00, 7.400600e+01, 1.396503e+02])Indexes: (1)pointsPandasIndexPandasIndex(Index([1, 2, 3, 4], dtype='int64', name='points'))Attributes: (0)\n\n\n\nda.sel(time=ptime, latitude=ds_pts.latitude, longitude=ds_pts.longitude, method='nearest')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray (time: 1, points: 4)&gt;\narray([[287820, 287102, 285734, 285080]])\nCoordinates:\n  * time       (time) datetime64[ns] 2023-08-09\n    latitude   (points) float64 52.0 48.0 40.0 36.0\n    longitude  (points) float64 0.0 2.0 74.0 140.0\n  * points     (points) int64 1 2 3 4xarray.DataArraytime: 1points: 4287820 287102 285734 285080array([[287820, 287102, 285734, 285080]])Coordinates: (4)time(time)datetime64[ns]2023-08-09array(['2023-08-09T00:00:00.000000000'], dtype='datetime64[ns]')latitude(points)float6452.0 48.0 40.0 36.0array([52., 48., 40., 36.])longitude(points)float640.0 2.0 74.0 140.0array([  0.,   2.,  74., 140.])points(points)int641 2 3 4array([1, 2, 3, 4])Indexes: (2)timePandasIndexPandasIndex(DatetimeIndex(['2023-08-09'], dtype='datetime64[ns]', name='time', freq=None))pointsPandasIndexPandasIndex(Index([1, 2, 3, 4], dtype='int64', name='points'))Attributes: (0)"
-  },
-  {
-    "objectID": "our-cookbook.html#get-started",
-    "href": "our-cookbook.html#get-started",
-    "title": "Our Cookbook",
-    "section": "Get Started",
-    "text": "Get Started",
-    "crumbs": [
-      "Our Cookbook"
-    ]
-  },
-  {
-    "objectID": "how-to-guides/netcdf_cf.html",
-    "href": "how-to-guides/netcdf_cf.html",
-    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
-    "section": "",
-    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?",
-    "crumbs": [
-      "How do I...",
-      "Work with NetCDF files?",
-      "get the bounding box of a netcdf file"
-    ]
-  },
-  {
-    "objectID": "how-to-guides/netcdf_cf.html#problem",
-    "href": "how-to-guides/netcdf_cf.html#problem",
-    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
-    "section": "",
-    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?",
-    "crumbs": [
-      "How do I...",
-      "Work with NetCDF files?",
-      "get the bounding box of a netcdf file"
-    ]
-  },
-  {
-    "objectID": "how-to-guides/netcdf_cf.html#solution",
-    "href": "how-to-guides/netcdf_cf.html#solution",
-    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
+    "objectID": "how-to-guides/get_column_and_row_indices.html#solution",
+    "href": "how-to-guides/get_column_and_row_indices.html#solution",
+    "title": "How to get grid column and row indices for latitude and longitude",
     "section": "Solution",
-    "text": "Solution\n\nUsing xarray and rioxarray\nimport rioxarray\nimport xarray as xr\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Get the bounds of the data grid in WGS84 (EPSG code 4362)\nds.rio.transform_bounds(4326)\n(-180.0, 30.98056405144958, 180.0, 90.0)",
-    "crumbs": [
-      "How do I...",
-      "Work with NetCDF files?",
-      "get the bounding box of a netcdf file"
-    ]
+    "text": "Solution\nIn Python you can use the pyproj package to transform latitude and longitude (geographic coordinates) to x and y (projected coordinates) in the EASE Grid CRS, and then use the affine package to get the column and row indices ((i,j) image coordinates).\n\nfrom pyproj import Transformer\nfrom affine import Affine\nimport numpy as np\n\n# Define the coordinate transform from WGS84 (lat, lon) \n# to CRS of your grid using EPSG codes.\n# WGS84 is EPSG:4326\n# NSIDC Northern Hemisphere EASE Grid is EPSG:3408\ntransformer = Transformer.from_crs(4326, 3408)\n\n# Define the affine transformation matrix\ngrid_cell_width = 50057.094722222224\ngrid_cell_height = -50057.094722222224\nupper_left_x = -9036842.76\nupper_left_y = 9036842.76\ngeotransform = Affine(grid_cell_width, 0.0, upper_left_x,\n                      0.0, grid_cell_height, upper_left_y)\n\nx, y = transformer.transform(-45., 84.)  # latitude and longitude\ni, j = ~geotransform * (x, y)  # ~geotransform is the inverse operation\n\nprint(i,j)\n\n414.4236938226952 205.11385157648664\n\n\ni and j are in image coordinates with the origin as the upper-left corner of the upper-left grid-cell. To get the column and row indices of the cell you can use floor.\n\ncol, row = np.floor(i).astype(int), np.floor(j).astype(int)\nprint(col, row)\n\n414 205"
   },
   {
-    "objectID": "how-to-guides/netcdf_cf.html#discussion",
-    "href": "how-to-guides/netcdf_cf.html#discussion",
-    "title": "How do I get the bounding box of a NetCDF file in latitude and longitude?",
+    "objectID": "how-to-guides/get_column_and_row_indices.html#discussion",
+    "href": "how-to-guides/get_column_and_row_indices.html#discussion",
+    "title": "How to get grid column and row indices for latitude and longitude",
     "section": "Discussion",
-    "text": "Discussion\nAs of CF v1.8, latitude and longitude coordinate variables are no longer required in CF-compliant NetCDF files, as long as projected horizontal spatial coordinates (e.g. x and y, or easting and northing) and a grid_mapping variable is provided. The grid_mapping variable defines the coordinate reference system (CRS) of the projected horizontal coordinates.\nThe easiest, and frankly best, way to read and work with NetCDF files is to use xarray. rioxarray extends the xarray package to use CRS and make geospatial tasks, such as reprojecting and regridding, easier. By setting the keyword decode-coords='all', rioxarray searches the xarray.DataArray or xarray.Dataset for the CRS. rioxarray also determines the transform or geotransform, which defines the image CRS that transforms cell coordinates (column and row) into projected coordinates (x, y). The transform is calculated from the coordinates of the data. See the rioxarray documentaton for more details.\nBoth these spatial coordinates can be accessed as follows:\nds.rio.crs\nCRS.from_wkt('PROJCS[\"NSIDC Sea Ice Polar Stereographic North\",GEOGCS[\"Unspecified datum based upon the Hughes 1980 ellipsoid\",DATUM[\"Not_specified_based_on_Hughes_1980_ellipsoid\",SPHEROID[\"Hughes 1980\",6378273,298.279411123061,AUTHORITY[\"EPSG\",\"7058\"]],AUTHORITY[\"EPSG\",\"6054\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4054\"]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",70],PARAMETER[\"central_meridian\",-45],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"X\",EAST],AXIS[\"Y\",NORTH],AUTHORITY[\"EPSG\",\"3411\"]]')\nds.rio.transform()\nAffine(25000.0, 0.0, -3850000.0,\n       0.0, -25000.0, 5850000.0)\nIf this information is not found, all is not lost. rio.write_crs and rio.write_transform can be used to set the CRS and the transform of the dataset.\nOnce these variables are set, the horizontal spatial bounds of the dataset can be queried as described above. If all you want is the bounds in projected coordinates, these can be accessed using ds.rio.bounds().\nds.rio.bounds()\n(-3850000.0, -5350000.0, 3750000.0, 5850000.0)",
-    "crumbs": [
-      "How do I...",
-      "Work with NetCDF files?",
-      "get the bounding box of a netcdf file"
-    ]
+    "text": "Discussion\nMany grids, whether they are images or gridded data are in projected coordinate systems so that they can be displayed on a 2D screen. Converting from geographic coordinates (latitude, longitude) to image coordinates (column, row) is usually a two step process. In the first step, the geographic coordinates are transformed from a Geographic Coordinate System with coordinates latitude and longitude to the projected coordinate system of the image or grid. This is a Cartesian coordinate system with coordinates x and y, usually in meters. In the second step, the projected coordinates are converted into image coordinates. This is another Cartesian coordinate system with coordinates column and row or i and j with units grid-cells. Image coordinate systems often have the origin in the upper-left corner of the upper-left grid cell.\nIn Python the first step is easily acheived using the pyproj package. If the Coordinate Reference System (CRS) of the grid is registered in the EPSG database, defining the transformation is easily done with the EPSG codes for the CRS for the latitude and longitude coordinates and the CRS of the destination grid. Usually, latitude and longitude are in the Ensemble WGS84 CRS, which is EPSG:4326. For NSIDC gridded data, the CRS is some flavour of EASE Grid or Polar Stereographic. See the help pages for EASE Grid and Polar Stereographic for more information.\n\nBoth EASE Grid and Polar Stereographic CRS come in two main flavours Original and WGS84. For EASE Grids, these two flavours are EASE-Grid and EASE-Grid v2.0.\n\nTODO: Describe projected to image coordinate conversion\nAdd image showing the relationship between the three coordinate systems"
   },
   {
     "objectID": "how-to-guides/overview.html",
