@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/netcdf_cf.html</loc>
-    <lastmod>2025-02-24T21:57:22.979Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/get_column_and_row_indices.html</loc>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
   <url>
     <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/get_latitude_and_longitude.html</loc>
-    <lastmod>2025-02-24T21:57:22.979Z</lastmod>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/reprojection.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/resources.html</loc>
-    <lastmod>2025-02-24T21:57:22.981Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/data-structures.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/points-pixels-grids/points_pixels_grids.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/plotting-data.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/projections.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/datasets.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-publish.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/hdf5_formatting.html</loc>
-    <lastmod>2025-02-24T21:57:22.981Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/testing_coordinates_with_merge.html</loc>
-    <lastmod>2025-02-24T21:57:22.982Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/netcdf_cf.html</loc>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
   <url>
     <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/plots.html</loc>
-    <lastmod>2025-02-24T21:57:22.981Z</lastmod>
+    <lastmod>2025-04-08T17:35:20.488Z</lastmod>
   </url>
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html</loc>
-    <lastmod>2025-02-24T21:57:22.981Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/testing_coordinates_with_merge.html</loc>
+    <lastmod>2025-04-08T17:35:20.489Z</lastmod>
   </url>
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/our-cookbook.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/hdf5_formatting.html</loc>
+    <lastmod>2025-04-08T17:35:20.488Z</lastmod>
   </url>
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tools-we-use.html</loc>
-    <lastmod>2025-02-24T21:57:22.981Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/resources.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
   </url>
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/definitions.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/dataset-search-and-discovery.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/overview.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/datasets.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
   </url>
   <url>
     <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/nsidc-file-formats.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/plotting-data.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/points-pixels-grids/points_pixels_grids.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/dataset-search-and-discovery.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/our-cookbook.html</loc>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
   <url>
     <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/index.html</loc>
-    <lastmod>2025-02-24T21:57:22.980Z</lastmod>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/data-structures.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/projections.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/definitions.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/reference-guides/overview.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
   </url>
   <url>
     <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/CODE_OF_CONDUCT.html</loc>
-    <lastmod>2025-02-24T21:57:22.979Z</lastmod>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
   <url>
-    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/get_column_and_row_indices.html</loc>
-    <lastmod>2025-02-24T21:57:22.979Z</lastmod>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tools-we-use.html</loc>
+    <lastmod>2025-04-08T17:35:20.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/tutorials/how_to_select_xarray_gridcells_using_vectorized_indexing.html</loc>
+    <lastmod>2025-04-08T17:35:20.488Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-publish.html</loc>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/reprojection.html</loc>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
   <url>
     <loc>https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/overview.html</loc>
-    <lastmod>2025-02-24T21:57:22.979Z</lastmod>
+    <lastmod>2025-04-08T17:35:20.486Z</lastmod>
   </url>
 </urlset>
