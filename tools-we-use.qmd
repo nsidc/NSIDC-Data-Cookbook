@@ -1,12 +1,13 @@
 ---
 title: "Tools we use"
+#number-sections: true
 ---
 
 Currently, this cookbook features Python Packages (@sec-pythonpkg) for working with data supported by NSIDC DAAC.  It also features some applications (@sec-applications) that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.
 
 The focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities.  However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab.  We hope that we will be able to include these langauges as the Cookbook develops.
 
-Using web or locally-installed applications is a good way to start to discover and learn about data.  We often use these applications to explore datasetsm, find what data is available, and quicly visualize data.  However, many investigations require large numbers of files to be accessed and processed.  It is often more efficient to write scripts in Python or some other language to do this.  In the cloud, scripts are often the only way to search for and access data.  Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.
+Using web or locally-installed applications is a good way to start to discover and learn about data.  We often use these applications to explore datasets, find what data is available, and quickly visualize data.  However, many investigations require large numbers of files to be accessed and processed.  It is often more efficient to write scripts in Python or some other language to do this.  In the cloud, scripts are often the only way to search for and access data.  Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.
 
 ## Python Packages {#sec-pythonpkg}
 
