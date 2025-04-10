@@ -54,6 +54,11 @@ website:
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Data access"
           - section: "Wrangling Data"
+            contents:
+              - text: "Subsetting"
+              - text: "Reformatting"
+              - text: "Reprojecting"
+              - text: "Resampling"
           - section: "Visualizing Data"
             contents:
               - text: "Plotting NSIDC Data"
