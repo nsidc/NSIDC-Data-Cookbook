@@ -25,19 +25,23 @@ website:
     contents:
       - text: "Welcome to our Cookbook"
         href: index.qmd
-      - text: "Getting Started"
-        href: our-cookbook.qmd
+      - section: "Getting Started"
+        contents:
+          - text: "Our Cookbook"
+            href: our-cookbook.qmd
+          - text: "Tools we use"
+            href: tools-we-use.qmd
       - text: "Quick Start Guide"
         # href: quickstart.qmd
-      - section: "Data Orientaion"
+      - section: "NSIDC Data"
         # href: reference-guides/data-orient-overview.qmd
         contents:
-           - text: "Types of data at NSIDC"
+           - text: "Types of data"
              href: reference-guides/data-structures.qmd
-           - text: "Common NSIDC file formats"
+           - text: "Common file formats"
              href: reference-guides/nsidc-file-formats.qmd
            - text: "NASA collections and granules"
-           - text: "Datasets"
+           - text: "Quirky Datasets"
              href: reference-guides/datasets.qmd
       - section: "Working with Data"
         # href: reference-guides/working-with-data-overview.qmd
@@ -55,8 +59,6 @@ website:
                 href: reference-guides/plotting-data.qmd
               - text: "NSIDC map projections and grids"
                 href: reference-guides/projections.qmd
-          - text: "Tools we use"
-            href: tools-we-use.qmd
       - text: "Best Practices"
       - section: "How do I..."
         href: how-to-guides/overview.qmd
