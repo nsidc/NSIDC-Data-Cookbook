@@ -27,7 +27,7 @@ website:
         href: index.qmd
       - section: "Getting Started"
         contents:
-          - text: "Our Cookbook"
+          - text: "How to use this cookbook"
             href: our-cookbook.qmd
           - text: "Tools we use"
             href: tools-we-use.qmd
