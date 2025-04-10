@@ -52,7 +52,7 @@ website:
                 href: reference-guides/get-edl.qmd
               - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
-              - text: "Data retrieval"
+              - text: "Data access"
           - section: "Wrangling Data"
           - section: "Visualizing Data"
             contents:
