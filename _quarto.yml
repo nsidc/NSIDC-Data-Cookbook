@@ -31,8 +31,8 @@ website:
             href: our-cookbook.qmd
           - text: "Tools we use"
             href: tools-we-use.qmd
-      - text: "Quick Start Guide"
-        # href: quickstart.qmd
+#      - text: "Quick Start Guide"
+#        # href: quickstart.qmd
       - section: "NSIDC Data"
         # href: reference-guides/data-orient-overview.qmd
         contents:
