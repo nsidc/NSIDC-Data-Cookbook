@@ -25,18 +25,25 @@ There are many Python packages available for working with Earth science data.  T
 [`rasterio`](https://rasterio.readthedocs.io/en/stable/intro.html) is a Python geospatial library for working with raster data.
 
 #### Pandas
+[`pandas`](https://pandas.pydata.org/docs/index.html) is a package to work with tabular data (e.g. the kind of data stored in spreadsheets or databases).
 
 #### Geopandas
+[`geopandas`](https://geopandas.org/en/stable/) is an extension to `pandas` to work with geospatial data.
 
 #### cartopy
+TBD
 
 #### SlideRule
+TBD
 
 #### icepyx
+TBD
 
 #### satpy
+TBD
 
 #### dask
+TBD
 
 ## Installing Python Packages
 
