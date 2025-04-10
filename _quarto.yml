@@ -48,6 +48,8 @@ website:
         contents:
           - section: "Finding and Accessing Data"
             contents:
+              - text: "Getting an Earthdata Login"
+                href: reference-guides/get-edl.qmd
               - text: "Dataset search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Dataset retrieval"
