@@ -53,7 +53,6 @@ website:
               - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Data retrieval"
-              - text: "What is an API?"
           - section: "Wrangling Data"
           - section: "Visualizing Data"
             contents:
@@ -74,6 +73,9 @@ website:
               href: how-to-guides/netcdf_cf.qmd
             - text: "get the latitude and longitudes for grid cells"
               href: how-to-guides/get_latitude_and_longitude.qmd
+      - section: "Appendices"
+        contents:
+          - text: "What is an API?"
 
 format:
   html:
