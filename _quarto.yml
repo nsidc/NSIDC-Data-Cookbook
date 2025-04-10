@@ -50,9 +50,9 @@ website:
             contents:
               - text: "Getting an Earthdata Login"
                 href: reference-guides/get-edl.qmd
-              - text: "Dataset search and discovery"
+              - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
-              - text: "Dataset retrieval"
+              - text: "Data retrieval"
               - text: "What is an API?"
           - section: "Wrangling Data"
           - section: "Visualizing Data"
