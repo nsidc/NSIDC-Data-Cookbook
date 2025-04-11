@@ -1,10 +1,15 @@
 ---
-title: "Our Cookbook"
+title: "How to use this cookbook"
 ---
 
-## How to use this cookbook
+This Cookbook for NSIDC Data is more Julia Child's "Mastering the Art of French Cooking" than just a collection of recipes.  The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data.  It is not an in-depth guide to the many datasets housed by NSIDC but an introduction to the common types of data, file formats and data structures.  The hope is that the cookbook will provide a guide and foundataion to help you _master the art of working with cryospheric data_.
 
+The cookbook is divided into three sections: NSIDC DATA, Working with Data, and a recipes section, "How do I...".  We also include some appendices that include a best practices guide for Python scripting and some background details on computing.
 
-## Get Started
+The **NSIDC Data** section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data.  There is also an introduction to some "quirky" datasets that do not fit more common simple data structures or are just a little more difficult to work with.
+
+The **Working with Data** section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data.  Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.
+
+The **How do I...** section is a list of recipes to acheive common tasks.  It is intended a list of solutions to common scientific programming tasks.
 
 
