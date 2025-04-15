@@ -1,0 +1,12 @@
+jupyterlab
+matplotlib
+cartopy
+dask
+netCDF4
+bottleneck
+xarray
+rioxarray
+pandas
+pytest
+earthaccess
+h5py
