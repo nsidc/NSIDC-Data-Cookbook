@@ -2,6 +2,8 @@
 title: "How to get latitude and longitude for the grid cells of a NetCDF file"
 author: Andrew P. Barrett
 date: last-modified
+execute:
+  freeze: auto
 ---
 
 ## Problem
