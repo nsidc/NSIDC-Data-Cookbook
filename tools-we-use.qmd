@@ -1,25 +1,66 @@
 ---
 title: "Tools we use"
+#number-sections: true
 ---
 
-## Python libraries
+Currently, this cookbook features Python Packages (@sec-pythonpkg) for working with data supported by NSIDC DAAC.  It also features some applications (@sec-applications) that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.
 
-- earthaccess
-- xarray
-- Geopandas
-- rioxarray
-- rasterio
-- SlideRule
-- icepyx
-- cartopy
-- satpy
-- dask
+The focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities.  However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab.  We hope that we will be able to include these langauges as the Cookbook develops.
 
-## Other tools
-- Earthdata Search
-- Open Altimetry
-- HDFView
-- Panoply
-- NCView
-- QGIS
-- ArcGIS
+Using web or locally-installed applications is a good way to start to discover and learn about data.  We often use these applications to explore datasets, find what data is available, and quickly visualize data.  However, many investigations require large numbers of files to be accessed and processed.  It is often more efficient to write scripts in Python or some other language to do this.  In the cloud, scripts are often the only way to search for and access data.  Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.
+
+## Python Packages {#sec-pythonpkg}
+
+There are many Python packages available for working with Earth science data.  The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use.  We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC.  Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science.  This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.
+
+#### earthaccess
+[`earthaccess`](https://earthaccess.readthedocs.io/en/latest/) is a package to search for and access NASA Earth science data.
+
+#### xarray
+[`xarray`](https://xarray.dev/) is a package to work with N-dimensional data (e.g `(time,x,y,z)`).
+
+#### rioxarray
+[`rioxarray`](https://corteva.github.io/rioxarray/stable/index.html) is an extentsion to `xarray` that makes data "geospatially-aware".
+
+#### rasterio
+[`rasterio`](https://rasterio.readthedocs.io/en/stable/intro.html) is a Python geospatial library for working with raster data.
+
+#### Pandas
+[`pandas`](https://pandas.pydata.org/docs/index.html) is a package to work with tabular data (e.g. the kind of data stored in spreadsheets or databases).
+
+#### Geopandas
+[`geopandas`](https://geopandas.org/en/stable/) is an extension to `pandas` to work with geospatial data.
+
+#### cartopy
+TBD
+
+#### SlideRule
+TBD
+
+#### icepyx
+TBD
+
+#### satpy
+TBD
+
+#### dask
+TBD
+
+## Installing Python Packages
+
+
+## Applications {#sec-applications}
+
+#### Earthdata Search
+
+#### Open Altimetry
+
+#### HDFView
+
+#### Panoply
+
+#### NCView
+
+#### QGIS
+
+#### ArcGIS

@@ -25,38 +25,47 @@ website:
     contents:
       - text: "Welcome to our Cookbook"
         href: index.qmd
-      - text: "Getting Started"
-        href: our-cookbook.qmd
-      - text: "Quick Start Guide"
-        # href: quickstart.qmd
-      - section: "Data Orientaion"
+      - section: "Getting Started"
+        contents:
+          - text: "How to use this cookbook"
+            href: our-cookbook.qmd
+          - text: "Tools we use"
+            href: tools-we-use.qmd
+#      - text: "Quick Start Guide"
+#        # href: quickstart.qmd
+      - section: "NSIDC Data"
         # href: reference-guides/data-orient-overview.qmd
         contents:
-           - text: "Types of data at NSIDC"
+           - text: "Types of data"
              href: reference-guides/data-structures.qmd
-           - text: "Common NSIDC file formats"
+           - text: "Common file formats"
              href: reference-guides/nsidc-file-formats.qmd
            - text: "NASA collections and granules"
-           - text: "Datasets"
+           - text: "NSIDC map projections and grids"
+             href: reference-guides/projections.qmd
+           - text: "Quirky Datasets"
              href: reference-guides/datasets.qmd
       - section: "Working with Data"
         # href: reference-guides/working-with-data-overview.qmd
         contents:
           - section: "Finding and Accessing Data"
             contents:
-              - text: "Dataset search and discovery"
+              - text: "Getting an Earthdata Login"
+              #  href: reference-guides/get-edl.qmd
+              - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
-              - text: "Dataset retrieval"
-              - text: "What is an API?"
+              - text: "Data access"
           - section: "Wrangling Data"
+            contents:
+              - text: "Subsetting"
+              - text: "Reformatting"
+              - text: "Reprojecting"
+              - text: "Resampling"
           - section: "Visualizing Data"
             contents:
-              - text: "Plotting NSIDC Data"
+              - text: "Plotting data - time series, scatter plots"
+              - text: "Plotting data on a map"
                 href: reference-guides/plotting-data.qmd
-              - text: "NSIDC map projections and grids"
-                href: reference-guides/projections.qmd
-          - text: "Tools we use"
-            href: tools-we-use.qmd
       - text: "Best Practices"
       - section: "How do I..."
         href: how-to-guides/overview.qmd
@@ -70,6 +79,9 @@ website:
               href: how-to-guides/netcdf_cf.qmd
             - text: "get the latitude and longitudes for grid cells"
               href: how-to-guides/get_latitude_and_longitude.qmd
+      - section: "Appendices"
+        contents:
+          - text: "What is an API?"
 
 format:
   html:

@@ -8,7 +8,7 @@ date: last-modified
 My data are in a NetCDF file but there are no latitude and longitude coordinates.  How do I get the latitude and longitude for each grid cell center?
 
 ## Solution
-```
+```{python}
 import numpy as np
 
 import rioxarray
@@ -17,7 +17,7 @@ from pyproj import CRS, Transformer
 
 
 # Load dataset using decode_coords='all'
-ds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',
+ds = xr.open_dataset('../example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',
                      decode_coords='all')
 
 # Instantiate source pyproj CRS from ds.rio.crs object
