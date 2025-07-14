@@ -1,0 +1,140 @@
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, closed]
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      pull-requests: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup micromamba
+        if: github.event.action != 'closed'
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: environment.yml
+          init-shell: bash
+          cache-environment: true
+      
+      - name: Setup Quarto
+        if: github.event.action != 'closed'
+        uses: quarto-dev/quarto-actions/setup@v2
+      
+      - name: Get commit info
+        id: commit
+        run: |
+          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "full_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "commit_message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_OUTPUT
+      
+      - name: Render Quarto Project
+        if: github.event.action != 'closed'
+        shell: micromamba-shell {0}
+        run: quarto render
+      
+      - name: Deploy to GitHub Pages
+        if: github.event.action != 'closed'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          destination_dir: commit-${{ steps.commit.outputs.short_sha }}
+          keep_files: true
+      
+      - name: Find existing preview comment
+        if: github.event.action != 'closed'
+        uses: actions/github-script@v6
+        id: find-comment
+        with:
+          script: |
+            const comments = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            const previewComment = comments.data.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('<!-- quarto-preview-comment -->')
+            );
+            
+            return previewComment ? previewComment.id : null;
+      
+      - name: Create or update preview comment
+        if: github.event.action != 'closed'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const shortSha = '${{ steps.commit.outputs.short_sha }}';
+            const fullSha = '${{ steps.commit.outputs.full_sha }}';
+            const commitMessage = '${{ steps.commit.outputs.commit_message }}';
+            const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/commit-${shortSha}/`;
+            const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${fullSha}`;
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            
+            const body = `<!-- quarto-preview-comment -->
+            ## 📖 Quarto Preview
+            
+            | | |
+            |---|---|
+            | **Latest commit** | [\`${shortSha}\`](${commitUrl}) |
+            | **Commit message** | ${commitMessage} |
+            | **Preview URL** | ${previewUrl} |
+            | **Build log** | [View workflow run](${runUrl}) |
+            
+            > The preview will be updated automatically when you push new commits to this PR.`;
+            
+            const commentId = ${{ steps.find-comment.outputs.result }};
+            
+            if (commentId) {
+              await github.rest.issues.updateComment({
+                comment_id: commentId,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+      
+      - name: Clean up preview comment on PR close
+        if: github.event.action == 'closed'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const comments = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            const previewComment = comments.data.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('<!-- quarto-preview-comment -->')
+            );
+            
+            if (previewComment) {
+              await github.rest.issues.updateComment({
+                comment_id: previewComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `<!-- quarto-preview-comment -->
+                ## 📖 Quarto Preview
+                
+                ~~Preview was removed when PR was closed.~~`
+              });
+            }
