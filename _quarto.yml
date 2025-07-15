@@ -98,4 +98,4 @@ filters:
   - quarto
 
 execute:
-  freeze: true
+  freeze: auto
