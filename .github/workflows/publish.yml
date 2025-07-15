@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   push:
-    branches: main
+    branches: [main]
 
 name: Quarto Publish
 
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -17,17 +18,25 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install Python and Dependencies
-        uses: actions/setup-python@v5
+      - name: Setup micromamba
+        if: github.event.action != 'closed'
+        uses: mamba-org/setup-micromamba@v2
         with:
-          python-version: '3.10'
-          cache: 'pip'
-      - run: pip install jupyter
-      - run: pip install -r requirements.txt
+          environment-file: conda-lock.yml
+          environment-name: ci
+          init-shell: bash
+          cache-environment: true
       
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render Quarto Project using mamba environment
+        if: github.event.action != 'closed'
+        shell: micromamba-shell {0}
+        run: quarto render
+      
+      - name: Deploy to GitHub Pages
+        if: github.event.action != 'closed'
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          keep_files: true
+ 

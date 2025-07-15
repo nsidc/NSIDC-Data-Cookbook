@@ -21,7 +21,8 @@ jobs:
         if: github.event.action != 'closed'
         uses: mamba-org/setup-micromamba@v2
         with:
-          environment-file: environment.yml
+          environment-file: conda-lock.yml
+          environment-name: ci
           init-shell: bash
           cache-environment: true
       
