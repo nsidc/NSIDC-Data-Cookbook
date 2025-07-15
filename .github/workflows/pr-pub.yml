@@ -43,7 +43,7 @@ jobs:
         run: quarto render
       
       - name: Deploy to GitHub Pages
-        if: github.event.action != 'closed'
+        if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
