@@ -1,15 +1,12 @@
 name: nsidc_data_cookbook
 channels:
  - conda-forge
- - default
 dependencies:
- - python ~=3.10
-
+ - python ~=3.13
  ###################################################
  # Imported dependencies and extensions            #
  ###################################################
-
- - jupyterlab
+ - jupyterlab<=4.2
  - matplotlib
  - cartopy
  - dask
@@ -18,7 +15,13 @@ dependencies:
  - xarray
  - rioxarray
  - pandas
+ - geopandas
  - pytest
  - earthaccess
  - h5py
- 
+ - h5netcdf
+ - hvplot
+ - geoviews
+ - ipyleaflet
+ - virtualizarr
+ - fsspec
