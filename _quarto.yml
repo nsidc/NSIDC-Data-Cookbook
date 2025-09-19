@@ -51,10 +51,11 @@ website:
           - section: "Finding and Accessing Data"
             contents:
               - text: "Getting an Earthdata Login"
-              #  href: reference-guides/get-edl.qmd
+                href: reference-guides/get-edl.qmd
               - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Data access"
+                href: reference-guides/data-access.qmd
           - section: "Wrangling Data"
             contents:
               - text: "Subsetting"
@@ -66,7 +67,6 @@ website:
               - text: "Plotting data - time series, scatter plots"
               - text: "Plotting data on a map"
                 href: reference-guides/plotting-data.qmd
-      - text: "Best Practices"
       - section: "How do I..."
         href: how-to-guides/overview.qmd
         contents:
@@ -81,6 +81,7 @@ website:
               href: how-to-guides/get_latitude_and_longitude.qmd
       - section: "Appendices"
         contents:
+          - text: "Best Practices"
           - text: "What is an API?"
 
 format:

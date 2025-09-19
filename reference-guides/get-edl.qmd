@@ -2,8 +2,8 @@
 title: "NASA Earthdata Login"
 ---
 
-NASA Earthdata are freely accessible to all users, but a NASA Earthdata Login is required for access.  Users can register for an Earthdata Login at https://urs.earthdata.nasa.gov/.
+NASA Earthdata are freely accessible to all users, but a NASA Earthdata Login is required for access.  Users can register for an Earthdata Login at [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/).
 
 
 Some programmatic data access methods are simplified by setting up your Earthdata Login credentials in a netrc file for easy authentication.
-Instructions for creating a netrc file can be found [here](https://nsidc.org/data/user-resources/help-center/creating-netrc-file-earthdata-login)
+Instructions for creating a netrc file can be found [here](https://nsidc.org/data/user-resources/help-center/creating-netrc-file-earthdata-login).
