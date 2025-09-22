@@ -18,7 +18,7 @@ There are a variety of search and discovery methods allowing users to find NASA 
 
 ##### **NASA Earthdata Search** 
 
-All of NASA Earthdata are available through [NASA Earthdata Search](https://search.earthdata.nasa.gov), not just data archived through the NSIDC DAAC.    
+All of NASA Earthdata are available through [NASA Earthdata Search](https://search.earthdata.nasa.gov), not just data archived through the NSIDC DAAC.  [Help article](https://nsidc.org/data/user-resources/help-center/search-order-and-customize-nsidc-daac-data-nasa-earthdata-search) for using Earthdata Search.  
 
 ##### **NSIDC Data Access Tool**
 
@@ -36,7 +36,7 @@ The majority of the shorter form "How Do I's" and longer form "Tutorials" will p
 >
 >Luis López, an NSIDC software developer and earthaccess creator
 
-earthaccess documentation can be found [here](https://earthaccess.readthedocs.io/en/stable/).
+Instructions for searching for data using earthaccess [here](https://earthaccess.readthedocs.io/en/stable/user_guide/search/).
 
 
 
