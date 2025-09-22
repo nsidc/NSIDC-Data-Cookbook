@@ -79,6 +79,13 @@ website:
               href: how-to-guides/netcdf_cf.qmd
             - text: "get the latitude and longitudes for grid cells"
               href: how-to-guides/get_latitude_and_longitude.qmd
+      - section: "Tutorials"
+        href: tutorials/tutorials_overview.qmd
+        contents:
+          - text: "Direct cloud access of ICESat-2 data"
+            href: tutorials/ATL06-direct-access.ipynb
+          - text: "Download ICESat-2 Sea Ice data"
+            href: tutorials/working_with_icesat2_sea_ice_data.ipynb
       - section: "Appendices"
         contents:
           - text: "Best Practices"

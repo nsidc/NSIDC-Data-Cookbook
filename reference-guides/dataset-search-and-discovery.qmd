@@ -15,14 +15,28 @@ There are a variety of search and discovery methods allowing users to find NASA 
 
 #### **Graphical User Interfaces**
 
-##### **NASA Earthdata Search**
+
+##### **NASA Earthdata Search** 
+
+All of NASA Earthdata are available through [NASA Earthdata Search](https://search.earthdata.nasa.gov), not just data archived through the NSIDC DAAC.    
 
 ##### **NSIDC Data Access Tool**
 
+The NSIDC Data Access Tool is accessible from landing pages on the NSIDC website, and is an easy way to filter for files of interest without leaving nsidc.org. [Help article](https://nsidc.org/data/data-access-tool) for the NSIDC Data Access Tool.
+
 #### **Programmatic**
+
+The majority of the shorter form "How Do I's" and longer form "Tutorials" will present programmatic data access methods using Python.  We hope to expand to other languages, such as R, in the future.  
 
 **earthaccess Python library**
 
+`earthaccess` is a Python library to **search for** and **download** or **stream** NASA Earth science data with just a few lines of code.
+
+>*"earthaccess revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems."*
+>
+>Luis López, an NSIDC software developer and earthaccess creator
+
+earthaccess documentation can be found [here](https://earthaccess.readthedocs.io/en/stable/).
 
 
 
