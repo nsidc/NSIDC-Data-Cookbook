@@ -1,0 +1,18 @@
+#### **Option 2: Python (earthaccess Library)**
+
+The earthaccess Python library provides a streamlined way to search, authenticate, and download NASA Earthdata. It works both locally and in the cloud (e.g., on EC2 or JupyterHub environments).
+
+earthaccess [documentation](https://earthaccess.readthedocs.io/en/stable/)
+
+*Have reference/link to one of our "how do I's" here?*
+
+#### **Option 3: Command Line Tools (```wget```, ```curl```, PODAAC subscriber)**
+
+If you're comfortable using the terminal, command-line tools allow flexible and efficient downloading. 
+
+```wget``` or ```curl``` – Download known files or batch download from an HTTPS URL list.
+Learn to create .txt files of download links here: [Creating Text Files of HTTPS and S3 URLs for Earthdata Cloud Data Access](https://nsidc.org/data/user-resources/help-center/creating-text-files-https-and-s3-urls-earthdata-cloud-data-access) 
+
+[PODAAC Data Subscriber](https://github.com/podaac/data-subscriber/blob/main/README.md) – A Python-based command-line tool that supports spatial and temporal filtering. Though designed for PODAAC, it can be adapted for NSIDC and other DAACs.
+
+All of these command line options are detailed in this help article: [Downloading Data from Earthdata Cloud to Your Local Computer Using the Command Line](https://nsidc.org/data/user-resources/help-center/downloading-data-earthdata-cloud-your-local-computer-using-command-line)

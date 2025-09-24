@@ -45,28 +45,36 @@ website:
              href: reference-guides/projections.qmd
            - text: "Quirky Datasets"
              href: reference-guides/datasets.qmd
-      - section: "Working with Data"
-        # href: reference-guides/working-with-data-overview.qmd
+      - section: "Finding and Accessing Data"
+        # href: reference-guides/working-with-data.qmd
         contents:
-          - section: "Finding and Accessing Data"
-            contents:
-              - text: "Getting an Earthdata Login"
-                href: reference-guides/get-edl.qmd
-              - text: "Data search and discovery"
-                href: reference-guides/dataset-search-and-discovery.qmd
-              - text: "Data access"
-                href: reference-guides/data-access.qmd
-          - section: "Wrangling Data"
-            contents:
-              - text: "Subsetting"
-              - text: "Reformatting"
-              - text: "Reprojecting"
-              - text: "Resampling"
-          - section: "Visualizing Data"
-            contents:
-              - text: "Plotting data - time series, scatter plots"
-              - text: "Plotting data on a map"
-                href: reference-guides/plotting-data.qmd
+           - text: "Getting an Earthdata Login"
+             href: reference-guides/get-edl.qmd  
+           - section: "Data search and discovery"
+             href: reference-guides/dataset-search-and-discovery.qmd
+             contents: 
+                - text: "Graphical User Interfaces"
+                  href: reference-guides/dataset-search-and-discovery-GUI.qmd
+                - text: "Programmatic methods"
+                  href: reference-guides/dataset-search-and-discovery-programmatic.qmd
+           - section: "Data access"
+             href: reference-guides/data-access.qmd
+             contents:
+                - text: "Graphical User Interfaces"
+                  href: reference-guides/data-access-GUI.qmd
+                - text: "Programmatic methods"
+                  href: reference-guides/data-access-programmatic.qmd
+      - section: "Working with Data"
+        contents:
+           - text: "Subsetting"
+           - text: "Reformatting"
+           - text: "Reprojecting"
+           - text: "Resampling"
+      - section: "Visualizing Data"
+        contents:
+           - text: "Plotting data - time series, scatter plots"
+           - text: "Plotting data on a map"
+             href: reference-guides/plotting-data.qmd
       - section: "How do I..."
         href: how-to-guides/overview.qmd
         contents:

@@ -1,0 +1,13 @@
+### **Search and Discovery Methods**
+
+
+#### **Graphical User Interfaces**
+
+
+##### **NASA Earthdata Search** 
+
+All of NASA Earthdata are available through [NASA Earthdata Search](https://search.earthdata.nasa.gov), not just data archived through the NSIDC DAAC.  [Help article](https://nsidc.org/data/user-resources/help-center/search-order-and-customize-nsidc-daac-data-nasa-earthdata-search) for using Earthdata Search.  
+
+##### **NSIDC Data Access Tool**
+
+The NSIDC Data Access Tool is accessible from landing pages on the NSIDC website, and is an easy way to filter for files of interest without leaving nsidc.org. [Help article](https://nsidc.org/data/data-access-tool) for the NSIDC Data Access Tool.

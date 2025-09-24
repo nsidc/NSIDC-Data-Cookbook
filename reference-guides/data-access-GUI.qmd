@@ -1,0 +1,12 @@
+#### **Option 1: Browser-Based Download (No Coding Required)**
+
+If you prefer a graphical interface, use one of these web-based tools: 
+
+[NASA Earthdata Search](https://search.earthdata.nasa.gov) - Explore, filter and customize data before downloading files. Instructions for using Earthdata Search to find and access data can be found in our Earthdata Search [guide](https://nsidc.org/data/user-resources/help-center/search-order-and-customize-nsidc-daac-data-nasa-earthdata-search). 
+
+image
+
+Data Access Tool - The NSIDC Data Access Tool can be accessed from a data set's landing page. 
+Example: [ATLAS/ICESat-2 L2A Global Geolocated Photon Data. (ATL03, Version 7) Landing Page](https://nsidc.org/data/atl03/versions/7). In the right-hand menu on a data set landing page, click "Data Access & Tools".  You will be directed to the top of a list of tool and service "cards" with links to various data access methods.  Click on the card title "Data Access Tool" to be directed to the Data Access Tool interface for that particular data set.  The Data Access Tool allows users to filter files within a data set using spatial bounds, temporal ranges, and filename wildcards.
+
+Help article on using the Data Access Tool: [https://nsidc.org/data/user-resources/help-center/filter-and-order-data-set-web-page-using-data-access-tool](https://nsidc.org/data/user-resources/help-center/filter-and-order-data-set-web-page-using-data-access-tool)

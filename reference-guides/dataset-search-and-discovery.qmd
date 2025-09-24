@@ -10,33 +10,9 @@ There are a variety of search and discovery methods allowing users to find NASA 
 
 *CMR is the keystone that makes NASA's Earth observation data discoverable. As a metadata repository, CMR contains Unified Metadata Model (UMM) schema records that describe individual Earth data files (UMM-Granules), collections of files (UMM-Collections), scientific details about the data files (UMM-Variables), related tools and services that act on the data files (UMM-Tools and -Services), and pertinent relationships between these concepts. Using the UMM allows CMR to host its metadata records in several supported native formats, with translation services available between formats.* 
 
-### **Search and Discovery Methods**
 
 
-#### **Graphical User Interfaces**
 
-
-##### **NASA Earthdata Search** 
-
-All of NASA Earthdata are available through [NASA Earthdata Search](https://search.earthdata.nasa.gov), not just data archived through the NSIDC DAAC.  [Help article](https://nsidc.org/data/user-resources/help-center/search-order-and-customize-nsidc-daac-data-nasa-earthdata-search) for using Earthdata Search.  
-
-##### **NSIDC Data Access Tool**
-
-The NSIDC Data Access Tool is accessible from landing pages on the NSIDC website, and is an easy way to filter for files of interest without leaving nsidc.org. [Help article](https://nsidc.org/data/data-access-tool) for the NSIDC Data Access Tool.
-
-#### **Programmatic**
-
-The majority of the shorter form "How Do I's" and longer form "Tutorials" will present programmatic data access methods using Python.  We hope to expand to other languages, such as R, in the future.  
-
-**earthaccess Python library**
-
-`earthaccess` is a Python library to **search for** and **download** or **stream** NASA Earth science data with just a few lines of code.
-
->*"earthaccess revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems."*
->
->Luis López, an NSIDC software developer and earthaccess creator
-
-Instructions for searching for data using earthaccess [here](https://earthaccess.readthedocs.io/en/stable/user_guide/search/).
 
 
 
