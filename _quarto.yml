@@ -29,6 +29,8 @@ website:
         contents:
           - text: "How to use this cookbook"
             href: our-cookbook.qmd
+          - text: "Getting an Earthdata Login"
+            href: reference-guides/get-edl.qmd            
           - text: "Tools we use"
             href: tools-we-use.qmd
 #      - text: "Quick Start Guide"
@@ -50,8 +52,6 @@ website:
         contents:
           - section: "Finding and Accessing Data"
             contents:
-              - text: "Getting an Earthdata Login"
-                href: reference-guides/get-edl.qmd
               - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Data access"
