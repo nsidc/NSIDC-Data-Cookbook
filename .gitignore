@@ -4,3 +4,4 @@ example_data/
 *.h5
 *.nc
 _freeze
+.venv/
