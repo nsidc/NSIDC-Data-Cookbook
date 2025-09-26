@@ -5,22 +5,18 @@ author: Andy P. Barrett
 
 ## Introduction
 
-This section of the cookbook contains **How To Guides** to help you
+This section of the cookbook contains **How-To Guides** to help you
 solve a particular problem or task.  You can think of these How-To
-Guides as recipes.  For the most part they are short.  They are
+Guides as programmatic recipes.  For the most part they are short.  They are
 written with the assumption that you know what you want to do and have
-some understanding of programing.  You can think of each How-To as a
+some understanding of programming.  You can think of each How-To as a
 building block that can be put together with other How-Tos to construct
 a workflow.
 
-If you are just learning either programming or working in the cloud,
-we recommend looking at the other chapters in this cookbook.
-
 How-To Guides are organized into the following sections:
-_Maybe add a short description of each section here_
 
-- How do I search for data; 
-- How do I accessing data;
+- How do I search for data (via `earthaccess`); 
+- How do I accessing data (via `earthaccess`);
 - How do I reproject and resample data;
 - How do I work with CF-compliant NetCDF files
   - [How do I get the bounding box of a NetCDF file in latitude and longitude?](netcdf_cf.qmd)

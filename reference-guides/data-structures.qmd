@@ -1,12 +1,23 @@
 ---
-title: "Data Structures"
+title: "Data types and formats"
 ---
 
-Describes common remote sensing data structures.
+There are many common data types/ structures and terminology to go along with them. Some examples:
 
-_We should add information for tabular data and Data Frames_
+- **Tabular** – rows and columns, often stored in CSV or TSV files. Each row is an observation, and each column is a variable (e.g., time, latitude, longitude, temperature).  
+- **Data Frames** – tabular data structures used in programming languages like R or Python (pandas). Data frames allow for more complex indexing, metadata, and transformations than simple tabular files.  
+- **Swath** – along-track measurements collected as the satellite passes over an area, usually irregular in shape and resolution.  
+- **Raster / Grids** – data organized into regular grid cells, each cell representing a spatial unit (e.g., 25 km × 25 km grid of snow cover).  
+- **Resampling** – methods for transforming data between swath, raster, or other structures (e.g., nearest neighbor, bilinear interpolation).  
 
-- Swath  
-- Along-track  
-- Raster/Grids  
-- Resampling
+
+How to work with file formats commonly found at NSIDC: In most cases, it’s best to avoid low-level libraries such as `netCDF4` or `h5py`. Higher-level libraries provide more intuitive access, automatically handle metadata, and streamline analysis. Some format descriptions and reccomendations  are in the table below.
+
+| File Format           | Description                                                                                 | Recommended Tools                                        |
+| --------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **NetCDF4 / NetCDFx** | Multidimensional climate/remote sensing data (time, lat, lon, variables).                   | `xarray` (`xr.open_dataset`) in Python; `terra` or `ncdf4` in R.    |
+| **HDF5**              | Hierarchical format for storing arrays, tables, and metadata; used widely in NASA products. | `xarray`, `pandas`; avoid `h5py` unless necessary.       |
+| **HDF-EOS**           | Earth Observing System variant of HDF, often with swath, grid, or point structures.         | `xarray`, `h5netcdf`, NASA `harmony-py`.                 |
+| **Shapefile**         | Vector geospatial data (points, lines, polygons) with CRS support.                          | `geopandas` (Python); `sf` (R).                          |
+| **GeoTIFF**           | Georeferenced raster imagery and gridded data.                                              | `rasterio`, `rioxarray` (Python); `terra`, `raster` (R). |
+| **CSV/TSV**           | Tabular text-based files, rows = observations, columns = variables.                         | `pandas` (Python); `readr`/`data.table`/`tibble` (R).    |

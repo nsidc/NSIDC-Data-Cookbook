@@ -3,7 +3,7 @@ title: "Tools we use"
 #number-sections: true
 ---
 
-Currently, this cookbook features Python Packages (@sec-pythonpkg) for working with data supported by NSIDC DAAC.  It also features some applications (@sec-applications) that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.
+Currently, this cookbook features [Python Packages](#sec-pythonpkg) for working with data supported by NSIDC DAAC.  It also features some [applications](#sec-applications) that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.
 
 The focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities.  However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab.  We hope that we will be able to include these langauges as the Cookbook develops.
 
@@ -14,53 +14,86 @@ Using web or locally-installed applications is a good way to start to discover a
 There are many Python packages available for working with Earth science data.  The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use.  We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC.  Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science.  This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.
 
 #### earthaccess
-[`earthaccess`](https://earthaccess.readthedocs.io/en/latest/) is a package to search for and access NASA Earth science data.
+
+[`earthaccess`](https://earthaccess.readthedocs.io/en/latest/) — search for and access NASA Earth science data.
 
 #### xarray
-[`xarray`](https://xarray.dev/) is a package to work with N-dimensional data (e.g `(time,x,y,z)`).
+
+[`xarray`](https://xarray.dev/) — work with N-dimensional labeled data (e.g. `(time, x, y, z)`).
 
 #### rioxarray
-[`rioxarray`](https://corteva.github.io/rioxarray/stable/index.html) is an extentsion to `xarray` that makes data "geospatially-aware".
+
+[`rioxarray`](https://corteva.github.io/rioxarray/stable/index.html) — add geospatial awareness to `xarray`.
 
 #### rasterio
-[`rasterio`](https://rasterio.readthedocs.io/en/stable/intro.html) is a Python geospatial library for working with raster data.
 
-#### Pandas
-[`pandas`](https://pandas.pydata.org/docs/index.html) is a package to work with tabular data (e.g. the kind of data stored in spreadsheets or databases).
+[`rasterio`](https://rasterio.readthedocs.io/en/stable/intro.html) — read, write, and process raster datasets.
 
-#### Geopandas
-[`geopandas`](https://geopandas.org/en/stable/) is an extension to `pandas` to work with geospatial data.
+#### pandas
+
+[`pandas`](https://pandas.pydata.org/docs/index.html) — handle tabular data (spreadsheets, databases, CSV).
+
+#### geopandas
+
+[`geopandas`](https://geopandas.org/en/stable/) — extend `pandas` to work with geospatial vector data.
 
 #### cartopy
-TBD
+
+[`cartopy`](https://scitools.org.uk/cartopy/docs/latest/) — map projections, transformations, and plotting for geospatial data.
 
 #### SlideRule
-TBD
+
+[`SlideRule`](https://github.com/ICESat2-SlideRule/sliderule-python) — on-demand processing and access to ICESat-2 data.
 
 #### icepyx
-TBD
+
+[`icepyx`](https://icepyx.readthedocs.io/en/latest/) — search, subset, and download ICESat-2 data with built-in metadata handling.
 
 #### satpy
-TBD
+
+[`satpy`](https://satpy.readthedocs.io/en/stable/) — read, composite, and visualize meteorological satellite data.
 
 #### dask
-TBD
 
-## Installing Python Packages
+[`dask`](https://www.dask.org/) — scale computations from laptops to clusters with parallel, out-of-core workflows.
 
+### Installing Python Packages
+
+Most Python packages can be installed from the [Python Package Index (PyPI)](https://pypi.org/) using [pip](https://pip.pypa.io/en/stable/). Some scientific and geospatial packages are easier to install with [conda](https://docs.conda.io/), particularly through the [conda-forge community channel](https://conda-forge.org/).
+
+For more details, see the [official Python documentation on installing packages](https://docs.python.org/3/installing/index.html), the [pip documentation](https://pip.pypa.io/en/stable/getting-started/), and the [conda user guide](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html).
 
 ## Applications {#sec-applications}
 
+Applications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, and learning about data structures before moving on to scripted workflows.
+
 #### Earthdata Search
+
+[`Earthdata Search`](https://search.earthdata.nasa.gov/) — NASA’s primary web application for searching, filtering, and downloading Earth science data.
 
 #### Open Altimetry
 
+[`Open Altimetry`](https://openaltimetry.org/) — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.
+
 #### HDFView
+
+[`HDFView`](https://portal.hdfgroup.org/display/support/HDFView) — a desktop application for viewing and editing HDF4 and HDF5 files.
 
 #### Panoply
 
+[`Panoply`](https://www.giss.nasa.gov/tools/panoply/) — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.
+
 #### NCView
+
+[`NCView`](http://meteora.ucsd.edu/~pierce/ncview_home_page.html) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.
 
 #### QGIS
 
+[`QGIS`](https://qgis.org/) — an open-source geographic information system for analyzing and visualizing spatial data.
+
 #### ArcGIS
+
+[`ArcGIS`](https://www.esri.com/en-us/arcgis/about-arcgis/overview) — a commercial GIS platform for advanced mapping, spatial analysis, and data management.
+
+
+
