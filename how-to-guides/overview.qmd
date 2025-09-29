@@ -1,6 +1,5 @@
 ---
 title: "How-To Guides"
-author: Andy P. Barrett
 ---
 
 ## Introduction
@@ -15,9 +14,10 @@ a workflow.
 
 How-To Guides are organized into the following sections:
 
-- How do I search for data (via `earthaccess`); 
-- How do I accessing data (via `earthaccess`);
-- How do I reproject and resample data;
-- How do I work with CF-compliant NetCDF files
-  - [How do I get the bounding box of a NetCDF file in latitude and longitude?](netcdf_cf.qmd)
+- How to search for data (via `earthaccess`); 
+- How to access data (via `earthaccess`);
+- How to reproject and resample data;
+- How to work with CF-compliant NetCDF files:
+  - [How to get the bounding box of a NetCDF file in latitude and longitude](netcdf_cf.qmd)
+  - [How to get latitude and longitude for the grid cells of a NetCDF file](get_latitude_and_longitude.qmd)
 

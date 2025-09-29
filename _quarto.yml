@@ -46,19 +46,19 @@ website:
       - section: "Working with Data"
         # href: reference-guides/working-with-data-overview.qmd
         contents:
-          - section: "Finding and accessing Data"
+          - section: "Finding / accessing data"
             contents:
               - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Data access"
                 href: reference-guides/data-access.qmd
-          - section: "Wrangling Data"
+          - section: "Wrangling data"
             contents:
               - text: "Subsetting"
               - text: "Reformatting"
               - text: "Reprojecting"
               - text: "Resampling"
-          - section: "Visualizing Data"
+          - section: "Visualizing data"
             contents:
               - text: "Plotting data - time series, scatter plots"
               - text: "Plotting data on a map"
@@ -69,11 +69,11 @@ website:
           - section: "Search for data"
           - section: "Access data"
           - section: "Reproject data"
-          - section: "Work with NetCDF files?"
+          - section: "Work with NetCDF files"
             contents:
-            - text: "get the bounding box of a netcdf file"
+            - text: "Get the bounding box of a NetCDF file"
               href: how-to-guides/netcdf_cf.qmd
-            - text: "get the latitude and longitudes for grid cells"
+            - text: "Get the latitude and longitudes for grid cells"
               href: how-to-guides/get_latitude_and_longitude.qmd
       - section: "Tutorials / Workshops"
         href: tutorials/tutorials_overview.qmd
@@ -84,6 +84,7 @@ website:
             href: tutorials/working_with_icesat2_sea_ice_data.ipynb
       - section: "Appendices"
         contents:
+          - text: "Contributing"
           - text: "Best Practices"
           - text: "What is an API?"
 
