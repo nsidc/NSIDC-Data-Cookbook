@@ -26,7 +26,7 @@ The NSIDC Data Access Tool is accessible from landing pages on the NSIDC website
 
 #### **Programmatic**
 
-The majority of the shorter form "How Do I's" and longer form "Tutorials" will present programmatic data access methods using Python.  We hope to expand to other languages, such as R, in the future.  
+The majority of the shorter form "How-To Guides" and longer form "Tutorials / Workshops" will present programmatic data access methods using Python.  We hope to expand to other languages, such as R, in the future.  
 
 **earthaccess Python library**
 
