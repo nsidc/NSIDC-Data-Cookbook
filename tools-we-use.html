@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,21 +30,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./reference-guides/data-structures.html" rel="next">
-<link href="./our-cookbook.html" rel="prev">
+<link href="./reference-guides/get-edl.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e115cbf9baa19c6aecfc6ed07864f9a5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a7c76def6ef034b5408047019f207c6d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e115cbf9baa19c6aecfc6ed07864f9a5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-81a38b27a6e3690479417104be10e0bd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a3892aeb8cf76cfda4741b896aea36de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-81a38b27a6e3690479417104be10e0bd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -248,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./our-cookbook.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./tools-we-use.html">Tools we use</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reference-guides/get-edl.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./tools-we-use.html">Tools we use</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -263,7 +264,8 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NSIDC Data Cookbook</a> 
@@ -297,8 +299,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./our-cookbook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to use this cookbook</span></a>
+  <a href="./reference-guides/get-edl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting an Earthdata Login</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,13 +323,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reference-guides/data-structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Types of data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./reference-guides/nsidc-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common file formats</span></a>
+ <span class="menu-text">Data types and formats</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -342,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reference-guides/datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quirky Datasets</span></a>
+ <span class="menu-text">Quirky datasets</span></a>
   </div>
 </li>
       </ul>
@@ -359,15 +355,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Finding and Accessing Data</span></a>
+ <span class="menu-text">Finding / accessing data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
- <span class="menu-text">Getting an Earthdata Login</span>
-  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reference-guides/dataset-search-and-discovery.html" class="sidebar-item-text sidebar-link">
@@ -375,14 +368,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Data access</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./reference-guides/data-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data access</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Wrangling Data</span></a>
+ <span class="menu-text">Wrangling data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -405,7 +401,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Visualizing Data</span></a>
+ <span class="menu-text">Visualizing data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -424,13 +420,10 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
- <span class="menu-text">Best Practices</span>
-  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./how-to-guides/overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How do I...</span></a>
+ <span class="menu-text">How-To Guides</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -451,7 +444,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Work with NetCDF files?</span></a>
+ <span class="menu-text">Work with NetCDF files</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -460,13 +453,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./how-to-guides/netcdf_cf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">get the bounding box of a netcdf file</span></a>
+ <span class="menu-text">Get the bounding box of a NetCDF file</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./how-to-guides/get_latitude_and_longitude.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">get the latitude and longitudes for grid cells</span></a>
+ <span class="menu-text">Get the latitude and longitudes for grid cells</span></a>
   </div>
 </li>
       </ul>
@@ -475,13 +468,42 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
+            <a href="./tutorials/tutorials_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials / Workshops</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/ATL06-direct-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Direct cloud access of ICESat-2 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/working_with_icesat2_sea_ice_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Download ICESat-2 Sea Ice data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">Contributing</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Best Practices</span>
+  </li>
           <li class="sidebar-item">
  <span class="menu-text">What is an API?</span>
   </li>
@@ -497,8 +519,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-pythonpkg" id="toc-sec-pythonpkg" class="nav-link active" data-scroll-target="#sec-pythonpkg">Python Packages</a></li>
+  <li><a href="#sec-pythonpkg" id="toc-sec-pythonpkg" class="nav-link active" data-scroll-target="#sec-pythonpkg">Python Packages</a>
+  <ul class="collapse">
   <li><a href="#installing-python-packages" id="toc-installing-python-packages" class="nav-link" data-scroll-target="#installing-python-packages">Installing Python Packages</a></li>
+  </ul></li>
   <li><a href="#sec-applications" id="toc-sec-applications" class="nav-link" data-scroll-target="#sec-applications">Applications</a></li>
   </ul>
 </nav>
@@ -507,7 +531,7 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./our-cookbook.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./tools-we-use.html">Tools we use</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reference-guides/get-edl.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./tools-we-use.html">Tools we use</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Tools we use</h1>
 </div>
@@ -526,7 +550,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Currently, this cookbook features Python Packages (<a href="#sec-pythonpkg" class="quarto-xref">Section&nbsp;1</a>) for working with data supported by NSIDC DAAC. It also features some applications (<a href="#sec-applications" class="quarto-xref">Section&nbsp;3</a>) that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.</p>
+<p>Currently, this cookbook features <a href="#sec-pythonpkg">Python Packages</a> for working with data supported by NSIDC DAAC. It also features some <a href="#sec-applications">applications</a> that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.</p>
 <p>The focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities. However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab. We hope that we will be able to include these langauges as the Cookbook develops.</p>
 <p>Using web or locally-installed applications is a good way to start to discover and learn about data. We often use these applications to explore datasets, find what data is available, and quickly visualize data. However, many investigations require large numbers of files to be accessed and processed. It is often more efficient to write scripts in Python or some other language to do this. In the cloud, scripts are often the only way to search for and access data. Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.</p>
 <section id="sec-pythonpkg" class="level2">
@@ -534,74 +558,84 @@ ul.task-list li input[type="checkbox"] {
 <p>There are many Python packages available for working with Earth science data. The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use. We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC. Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science. This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.</p>
 <section id="earthaccess" class="level4">
 <h4 class="anchored" data-anchor-id="earthaccess">earthaccess</h4>
-<p><a href="https://earthaccess.readthedocs.io/en/latest/"><code>earthaccess</code></a> is a package to search for and access NASA Earth science data.</p>
+<p><a href="https://earthaccess.readthedocs.io/en/latest/"><code>earthaccess</code></a> — search for and access NASA Earth science data.</p>
 </section>
 <section id="xarray" class="level4">
 <h4 class="anchored" data-anchor-id="xarray">xarray</h4>
-<p><a href="https://xarray.dev/"><code>xarray</code></a> is a package to work with N-dimensional data (e.g <code>(time,x,y,z)</code>).</p>
+<p><a href="https://xarray.dev/"><code>xarray</code></a> — work with N-dimensional labeled data (e.g.&nbsp;<code>(time, x, y, z)</code>).</p>
 </section>
 <section id="rioxarray" class="level4">
 <h4 class="anchored" data-anchor-id="rioxarray">rioxarray</h4>
-<p><a href="https://corteva.github.io/rioxarray/stable/index.html"><code>rioxarray</code></a> is an extentsion to <code>xarray</code> that makes data “geospatially-aware”.</p>
+<p><a href="https://corteva.github.io/rioxarray/stable/index.html"><code>rioxarray</code></a> — add geospatial awareness to <code>xarray</code>.</p>
 </section>
 <section id="rasterio" class="level4">
 <h4 class="anchored" data-anchor-id="rasterio">rasterio</h4>
-<p><a href="https://rasterio.readthedocs.io/en/stable/intro.html"><code>rasterio</code></a> is a Python geospatial library for working with raster data.</p>
+<p><a href="https://rasterio.readthedocs.io/en/stable/intro.html"><code>rasterio</code></a> — read, write, and process raster datasets.</p>
 </section>
 <section id="pandas" class="level4">
-<h4 class="anchored" data-anchor-id="pandas">Pandas</h4>
-<p><a href="https://pandas.pydata.org/docs/index.html"><code>pandas</code></a> is a package to work with tabular data (e.g.&nbsp;the kind of data stored in spreadsheets or databases).</p>
+<h4 class="anchored" data-anchor-id="pandas">pandas</h4>
+<p><a href="https://pandas.pydata.org/docs/index.html"><code>pandas</code></a> — handle tabular data (spreadsheets, databases, CSV).</p>
 </section>
 <section id="geopandas" class="level4">
-<h4 class="anchored" data-anchor-id="geopandas">Geopandas</h4>
-<p><a href="https://geopandas.org/en/stable/"><code>geopandas</code></a> is an extension to <code>pandas</code> to work with geospatial data.</p>
+<h4 class="anchored" data-anchor-id="geopandas">geopandas</h4>
+<p><a href="https://geopandas.org/en/stable/"><code>geopandas</code></a> — extend <code>pandas</code> to work with geospatial vector data.</p>
 </section>
 <section id="cartopy" class="level4">
 <h4 class="anchored" data-anchor-id="cartopy">cartopy</h4>
-<p>TBD</p>
+<p><a href="https://scitools.org.uk/cartopy/docs/latest/"><code>cartopy</code></a> — map projections, transformations, and plotting for geospatial data.</p>
 </section>
 <section id="sliderule" class="level4">
 <h4 class="anchored" data-anchor-id="sliderule">SlideRule</h4>
-<p>TBD</p>
+<p><a href="https://github.com/ICESat2-SlideRule/sliderule-python"><code>SlideRule</code></a> — on-demand processing and access to ICESat-2 data.</p>
 </section>
 <section id="icepyx" class="level4">
 <h4 class="anchored" data-anchor-id="icepyx">icepyx</h4>
-<p>TBD</p>
+<p><a href="https://icepyx.readthedocs.io/en/latest/"><code>icepyx</code></a> — search, subset, and download ICESat-2 data with built-in metadata handling.</p>
 </section>
 <section id="satpy" class="level4">
 <h4 class="anchored" data-anchor-id="satpy">satpy</h4>
-<p>TBD</p>
+<p><a href="https://satpy.readthedocs.io/en/stable/"><code>satpy</code></a> — read, composite, and visualize meteorological satellite data.</p>
 </section>
 <section id="dask" class="level4">
 <h4 class="anchored" data-anchor-id="dask">dask</h4>
-<p>TBD</p>
+<p><a href="https://www.dask.org/"><code>dask</code></a> — scale computations from laptops to clusters with parallel, out-of-core workflows.</p>
 </section>
+<section id="installing-python-packages" class="level3">
+<h3 class="anchored" data-anchor-id="installing-python-packages">Installing Python Packages</h3>
+<p>Most Python packages can be installed from the <a href="https://pypi.org/">Python Package Index (PyPI)</a> using <a href="https://pip.pypa.io/en/stable/">pip</a>. Some scientific and geospatial packages are easier to install with <a href="https://docs.conda.io/">conda</a>, particularly through the <a href="https://conda-forge.org/">conda-forge community channel</a>.</p>
+<p>For more details, see the <a href="https://docs.python.org/3/installing/index.html">official Python documentation on installing packages</a>, the <a href="https://pip.pypa.io/en/stable/getting-started/">pip documentation</a>, and the <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/index.html">conda user guide</a>.</p>
 </section>
-<section id="installing-python-packages" class="level2">
-<h2 class="anchored" data-anchor-id="installing-python-packages">Installing Python Packages</h2>
 </section>
 <section id="sec-applications" class="level2">
 <h2 class="anchored" data-anchor-id="sec-applications">Applications</h2>
+<p>Applications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, and learning about data structures before moving on to scripted workflows.</p>
 <section id="earthdata-search" class="level4">
 <h4 class="anchored" data-anchor-id="earthdata-search">Earthdata Search</h4>
+<p><a href="https://search.earthdata.nasa.gov/"><code>Earthdata Search</code></a> — NASA’s primary web application for searching, filtering, and downloading Earth science data.</p>
 </section>
 <section id="open-altimetry" class="level4">
 <h4 class="anchored" data-anchor-id="open-altimetry">Open Altimetry</h4>
+<p><a href="https://openaltimetry.org/"><code>Open Altimetry</code></a> — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.</p>
 </section>
 <section id="hdfview" class="level4">
 <h4 class="anchored" data-anchor-id="hdfview">HDFView</h4>
+<p><a href="https://portal.hdfgroup.org/display/support/HDFView"><code>HDFView</code></a> — a desktop application for viewing and editing HDF4 and HDF5 files.</p>
 </section>
 <section id="panoply" class="level4">
 <h4 class="anchored" data-anchor-id="panoply">Panoply</h4>
+<p><a href="https://www.giss.nasa.gov/tools/panoply/"><code>Panoply</code></a> — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.</p>
 </section>
 <section id="ncview" class="level4">
 <h4 class="anchored" data-anchor-id="ncview">NCView</h4>
+<p><a href="http://meteora.ucsd.edu/~pierce/ncview_home_page.html"><code>NCView</code></a> — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.</p>
 </section>
 <section id="qgis" class="level4">
 <h4 class="anchored" data-anchor-id="qgis">QGIS</h4>
+<p><a href="https://qgis.org/"><code>QGIS</code></a> — an open-source geographic information system for analyzing and visualizing spatial data.</p>
 </section>
 <section id="arcgis" class="level4">
 <h4 class="anchored" data-anchor-id="arcgis">ArcGIS</h4>
+<p><a href="https://www.esri.com/en-us/arcgis/about-arcgis/overview"><code>ArcGIS</code></a> — a commercial GIS platform for advanced mapping, spatial analysis, and data management.</p>
 
 
 </section>
@@ -672,13 +706,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1022,13 +1057,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./our-cookbook.html" class="pagination-link" aria-label="How to use this cookbook">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to use this cookbook</span>
+      <a href="./reference-guides/get-edl.html" class="pagination-link" aria-label="Getting an Earthdata Login">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Getting an Earthdata Login</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./reference-guides/data-structures.html" class="pagination-link" aria-label="Types of data">
-        <span class="nav-page-text">Types of data</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./reference-guides/data-structures.html" class="pagination-link" aria-label="Data types and formats">
+        <span class="nav-page-text">Data types and formats</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
