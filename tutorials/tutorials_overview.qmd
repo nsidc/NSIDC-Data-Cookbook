@@ -1,0 +1,16 @@
+---
+title: "Tutorials / Workshops"
+---
+
+This section of the cookbook contains longer form tutorials providing examples of data search and access within a workflow. NSIDC is frequently involved in hackweeks and workshops as well. Content from past events can be found in the [NSIDC Data Tutorials Repository](https://github.com/nsidc/NSIDC-Data-Tutorials).
+
+**Current cookbook tutorials:**
+
+- [Direct cloud access of ICESat-2 (*ATL06 Land Ice Height*) data](/tutorials/ATL06-direct-access.ipynb): a notebook that demonstrates searching for cloud-hosted ICESat-2 data and directly accessing Land Ice Height (ATL06) granules from an Amazon Compute Cloud (EC2) instance using the `earthaccess` package. 
+- [Download of ICESat-2 (*ATL07 Sea Ice*) data](/tutorials/working_with_icesat2_sea_ice_data.ipynb): a notebook that demonstrates searching for and accessing ICESat-2 data using the Python `earthaccess` package, reading and visualizing the data using `xarray` and `pandas`, and that uses `matplotlib` and `cartopy` to produce a map of search results.
+
+**Tutorials coming soon:**
+
+- Ideas?
+- *Let us know what you'd like to see!* 
+

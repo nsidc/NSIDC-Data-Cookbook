@@ -27,8 +27,8 @@ website:
         href: index.qmd
       - section: "Getting Started"
         contents:
-          - text: "How to use this cookbook"
-            href: our-cookbook.qmd
+          - text: "Getting an Earthdata Login"
+            href: reference-guides/get-edl.qmd            
           - text: "Tools we use"
             href: tools-we-use.qmd
 #      - text: "Quick Start Guide"
@@ -36,51 +36,56 @@ website:
       - section: "NSIDC Data"
         # href: reference-guides/data-orient-overview.qmd
         contents:
-           - text: "Types of data"
+           - text: "Data types and formats"
              href: reference-guides/data-structures.qmd
-           - text: "Common file formats"
-             href: reference-guides/nsidc-file-formats.qmd
            - text: "NASA collections and granules"
            - text: "NSIDC map projections and grids"
              href: reference-guides/projections.qmd
-           - text: "Quirky Datasets"
+           - text: "Quirky datasets"
              href: reference-guides/datasets.qmd
       - section: "Working with Data"
         # href: reference-guides/working-with-data-overview.qmd
         contents:
-          - section: "Finding and Accessing Data"
+          - section: "Finding / accessing data"
             contents:
-              - text: "Getting an Earthdata Login"
-              #  href: reference-guides/get-edl.qmd
               - text: "Data search and discovery"
                 href: reference-guides/dataset-search-and-discovery.qmd
               - text: "Data access"
-          - section: "Wrangling Data"
+                href: reference-guides/data-access.qmd
+          - section: "Wrangling data"
             contents:
               - text: "Subsetting"
               - text: "Reformatting"
               - text: "Reprojecting"
               - text: "Resampling"
-          - section: "Visualizing Data"
+          - section: "Visualizing data"
             contents:
               - text: "Plotting data - time series, scatter plots"
               - text: "Plotting data on a map"
                 href: reference-guides/plotting-data.qmd
-      - text: "Best Practices"
-      - section: "How do I..."
+      - section: "How-To Guides"
         href: how-to-guides/overview.qmd
         contents:
           - section: "Search for data"
           - section: "Access data"
           - section: "Reproject data"
-          - section: "Work with NetCDF files?"
+          - section: "Work with NetCDF files"
             contents:
-            - text: "get the bounding box of a netcdf file"
+            - text: "Get the bounding box of a NetCDF file"
               href: how-to-guides/netcdf_cf.qmd
-            - text: "get the latitude and longitudes for grid cells"
+            - text: "Get the latitude and longitudes for grid cells"
               href: how-to-guides/get_latitude_and_longitude.qmd
+      - section: "Tutorials / Workshops"
+        href: tutorials/tutorials_overview.qmd
+        contents:
+          - text: "Direct cloud access of ICESat-2 data"
+            href: tutorials/ATL06-direct-access.ipynb
+          - text: "Download ICESat-2 Sea Ice data"
+            href: tutorials/working_with_icesat2_sea_ice_data.ipynb
       - section: "Appendices"
         contents:
+          - text: "Contributing"
+          - text: "Best Practices"
           - text: "What is an API?"
 
 format:
