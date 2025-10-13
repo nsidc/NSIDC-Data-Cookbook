@@ -85,6 +85,7 @@ website:
       - section: "Appendices"
         contents:
           - text: "Contributing"
+            href: appendices/contributing.qmd
           - text: "Best Practices"
           - text: "What is an API?"
 
