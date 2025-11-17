@@ -54,7 +54,7 @@
     "href": "reference-guides/projections.html",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -65,7 +65,7 @@
     "href": "reference-guides/projections.html#overview",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -331,200 +331,59 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "NSIDC Data Cookbook",
+    "objectID": "how-to-publish.html",
+    "href": "how-to-publish.html",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "[!WARNING] This cookbook is under active development. Major changes to the structure of the book and its content are expected. We are striving to develop content that is well-tested and peer-reviewed, but nothing contained here should be expected to work correctly (or at all!) in this early phase. Many sections contain only an outline of the content. These sections will have content added as the project develops.",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
+    "text": "I am following these instructions provided by Quarto.\n\n\nI am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this.\n\n\n\nRun\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions\n\n\n\nCheck all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change.\n\n\n\nTo make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
   },
   {
-    "objectID": "index.html#welcome-to-the-nsidc-data-cookbook",
-    "href": "index.html#welcome-to-the-nsidc-data-cookbook",
-    "title": "NSIDC Data Cookbook",
-    "section": "Welcome to the NSIDC Data Cookbook!",
-    "text": "Welcome to the NSIDC Data Cookbook!\nThis Cookbook for National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes (or data tutorials). The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but instead is an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you master the art of working with cryospheric data.",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
-  },
-  {
-    "objectID": "index.html#how-to-use-this-cookbook",
-    "href": "index.html#how-to-use-this-cookbook",
-    "title": "NSIDC Data Cookbook",
-    "section": "How to use this cookbook",
-    "text": "How to use this cookbook\nIf you are new to NASA or NSIDC data, begin with the Getting Started section. Beyond that, the cookbook is divided into four major sections: NSIDC Data, Working with Data, How-To Guides, and Tutorials / Workshops. We also include some Appendices that include a best practices guide for Python scripting, some background details on computing, and how to contribute to the cookbook (if you are so inclined!).\nThe NSIDC Data section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.\nThe Working with Data section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.\nThe How-To Guides section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks.\nLastly, the Tutorials / Workshops section serves to highlight content that was developed for past events or specific use cases.",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
-  },
-  {
-    "objectID": "index.html#about-the-nsidc-daac",
-    "href": "index.html#about-the-nsidc-daac",
-    "title": "NSIDC Data Cookbook",
-    "section": "About the NSIDC DAAC",
-    "text": "About the NSIDC DAAC\nNSIDC has managed the NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) since 1993, archiving and distributing cryospheric and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns and field observations. The NSIDC DAAC provides hundreds of free and open-access NASA Earth science data sets, detailed data documentation, data tools, resources and tutorials, as well as robust data user support services. These data can be used to study topics relating to snow cover, sea ice, ice sheets, ice shelves, glaciers, frozen ground, soil moisture, climate interactions, and more!",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
-  },
-  {
-    "objectID": "how-to-guides/get_column_and_row_indices.html",
-    "href": "how-to-guides/get_column_and_row_indices.html",
-    "title": "How to get grid column and row indices for latitude and longitude",
+    "objectID": "how-to-publish.html#freeze-computations",
+    "href": "how-to-publish.html#freeze-computations",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
+    "text": "I am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this."
   },
   {
-    "objectID": "how-to-guides/get_column_and_row_indices.html#problem",
-    "href": "how-to-guides/get_column_and_row_indices.html#problem",
-    "title": "How to get grid column and row indices for latitude and longitude",
+    "objectID": "how-to-publish.html#publish-action",
+    "href": "how-to-publish.html#publish-action",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
+    "text": "Run\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions"
   },
   {
-    "objectID": "how-to-guides/get_column_and_row_indices.html#solution",
-    "href": "how-to-guides/get_column_and_row_indices.html#solution",
-    "title": "How to get grid column and row indices for latitude and longitude",
-    "section": "Solution",
-    "text": "Solution\nIn Python you can use the pyproj package to transform latitude and longitude (geographic coordinates) to x and y (projected coordinates) in the EASE Grid CRS, and then use the affine package to get the column and row indices ((i,j) image coordinates).\n\nfrom pyproj import Transformer\nfrom affine import Affine\nimport numpy as np\n\n# Define the coordinate transform from WGS84 (lat, lon) \n# to CRS of your grid using EPSG codes.\n# WGS84 is EPSG:4326\n# NSIDC Northern Hemisphere EASE Grid is EPSG:3408\ntransformer = Transformer.from_crs(4326, 3408)\n\n# Define the affine transformation matrix\ngrid_cell_width = 50057.094722222224\ngrid_cell_height = -50057.094722222224\nupper_left_x = -9036842.76\nupper_left_y = 9036842.76\ngeotransform = Affine(grid_cell_width, 0.0, upper_left_x,\n                      0.0, grid_cell_height, upper_left_y)\n\nx, y = transformer.transform(-45., 84.)  # latitude and longitude\ni, j = ~geotransform * (x, y)  # ~geotransform is the inverse operation\n\nprint(i,j)\n\n414.4236938226952 205.11385157648664\n\n\ni and j are in image coordinates with the origin as the upper-left corner of the upper-left grid-cell. To get the column and row indices of the cell you can use floor.\n\ncol, row = np.floor(i).astype(int), np.floor(j).astype(int)\nprint(col, row)\n\n414 205"
-  },
-  {
-    "objectID": "how-to-guides/get_column_and_row_indices.html#discussion",
-    "href": "how-to-guides/get_column_and_row_indices.html#discussion",
-    "title": "How to get grid column and row indices for latitude and longitude",
-    "section": "Discussion",
-    "text": "Discussion\nMany grids, whether they are images or gridded data are in projected coordinate systems so that they can be displayed on a 2D screen. Converting from geographic coordinates (latitude, longitude) to image coordinates (column, row) is usually a two step process. In the first step, the geographic coordinates are transformed from a Geographic Coordinate System with coordinates latitude and longitude to the projected coordinate system of the image or grid. This is a Cartesian coordinate system with coordinates x and y, usually in meters. In the second step, the projected coordinates are converted into image coordinates. This is another Cartesian coordinate system with coordinates column and row or i and j with units grid-cells. Image coordinate systems often have the origin in the upper-left corner of the upper-left grid cell.\nIn Python the first step is easily acheived using the pyproj package. If the Coordinate Reference System (CRS) of the grid is registered in the EPSG database, defining the transformation is easily done with the EPSG codes for the CRS for the latitude and longitude coordinates and the CRS of the destination grid. Usually, latitude and longitude are in the Ensemble WGS84 CRS, which is EPSG:4326. For NSIDC gridded data, the CRS is some flavour of EASE Grid or Polar Stereographic. See the help pages for EASE Grid and Polar Stereographic for more information.\n\nBoth EASE Grid and Polar Stereographic CRS come in two main flavours Original and WGS84. For EASE Grids, these two flavours are EASE-Grid and EASE-Grid v2.0.\n\nTODO: Describe projected to image coordinate conversion\nAdd image showing the relationship between the three coordinate systems"
-  },
-  {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html",
-    "href": "how-to-guides/get_latitude_and_longitude.html",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "objectID": "how-to-publish.html#push-changes-to-gh",
+    "href": "how-to-publish.html#push-changes-to-gh",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
-    "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
-    ]
+    "text": "Check all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change."
   },
   {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html#problem",
-    "href": "how-to-guides/get_latitude_and_longitude.html#problem",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "objectID": "how-to-publish.html#make-gh-pages-visible-on-repo",
+    "href": "how-to-publish.html#make-gh-pages-visible-on-repo",
+    "title": "How to Publish Cookbook on GH Pages",
     "section": "",
-    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
-    "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
-    ]
+    "text": "To make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
   },
   {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html#solution",
-    "href": "how-to-guides/get_latitude_and_longitude.html#solution",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
-    "section": "Solution",
-    "text": "Solution\n\nimport numpy as np\n\nimport rioxarray\nimport xarray as xr\nfrom pyproj import CRS, Transformer\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('../example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Instantiate source pyproj CRS from ds.rio.crs object\nsource_crs = CRS(ds.rio.crs.to_wkt())\n# Instantiate destination pyproj CRS using EPSG code for WGS84 \ndestination_crs = CRS(4326)\n\n# Instantiate pyproj transformer instance using source and destination CRS\ntransform = Transformer.from_crs(source_crs, destination_crs)\n\n# Create 2D arrays of x and y coordinates\nx2d, y2d = np.meshgrid(ds.x, ds.y)\n\n# Calculate latitude and longitudes for each grid cell\nlat, lon = transform.transform(x2d, y2d)",
-    "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
-    ]
-  },
-  {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html#discussion",
-    "href": "how-to-guides/get_latitude_and_longitude.html#discussion",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
-    "section": "Discussion",
-    "text": "Discussion\nThe workflow above assumes that the NetCDF file is CF-compliant and has a grid_mapping variable and projected coordinates defined. See the rioxarray CRS management documentation if this is not the case.\nIf the dataset rio.crs is not set, the source_crs could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.\nFor all datasets on projected grids, latitude and longitudes for grid cells will be 2-dimensional arrays. x- and y-coordinates for these datasets will be vectors. So 2-dimensional arrays of x and y coordinates need to be created. np.meshgrid is designed to do this.\nIf you want the latitudes and longitudes of the corners of grid cells, x and y coordinates can be incremented by half the grid cells width and height, and the resoluting projected coordinates passed to transform.transformer.\nIt is worth considering if you really need to have latitude and longitude arrays for your dataset. One reason that CF-conventions were changed, was that 2D arrays of geographic coordinates can increase the file size, especially for high resolution datasets. Projected coordinates as vectors take up much less space. Plotting tools such as cartopy can make maps without latitude and longitude. If you need to extract cell values for specific geographic coordinates, for example for a weather station or buoy, it is quicker and easier to transform these coordinates into the projected coordinate system of the dataset. The xarray.Dataset.sel or xarray.DataArray.sel methods can then be used to select the data for that location.",
-    "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
-    ]
-  },
-  {
-    "objectID": "tools-we-use.html",
-    "href": "tools-we-use.html",
-    "title": "Tools we use",
+    "objectID": "how-to-guides/overview.html",
+    "href": "how-to-guides/overview.html",
+    "title": "How-To Guides",
     "section": "",
-    "text": "Currently, this cookbook features Python Packages for working with data supported by NSIDC DAAC. It also features some applications that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.\nThe focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities. However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab. We hope that we will be able to include these langauges as the Cookbook develops.\nUsing web or locally-installed applications is a good way to start to discover and learn about data. We often use these applications to explore datasets, find what data is available, and quickly visualize data. However, many investigations require large numbers of files to be accessed and processed. It is often more efficient to write scripts in Python or some other language to do this. In the cloud, scripts are often the only way to search for and access data. Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.",
+    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file",
     "crumbs": [
-      "Getting Started",
-      "Tools we use"
+      "How-To Guides"
     ]
   },
   {
-    "objectID": "tools-we-use.html#sec-pythonpkg",
-    "href": "tools-we-use.html#sec-pythonpkg",
-    "title": "Tools we use",
-    "section": "Python Packages",
-    "text": "Python Packages\nThere are many Python packages available for working with Earth science data. The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use. We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC. Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science. This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.\n\nearthaccess\nearthaccess — search for and access NASA Earth science data.\n\n\nxarray\nxarray — work with N-dimensional labeled data (e.g. (time, x, y, z)).\n\n\nrioxarray\nrioxarray — add geospatial awareness to xarray.\n\n\nrasterio\nrasterio — read, write, and process raster datasets.\n\n\npandas\npandas — handle tabular data (spreadsheets, databases, CSV).\n\n\ngeopandas\ngeopandas — extend pandas to work with geospatial vector data.\n\n\ncartopy\ncartopy — map projections, transformations, and plotting for geospatial data.\n\n\nSlideRule\nSlideRule — on-demand processing and access to ICESat-2 data.\n\n\nicepyx\nicepyx — search, subset, and download ICESat-2 data with built-in metadata handling.\n\n\nsatpy\nsatpy — read, composite, and visualize meteorological satellite data.\n\n\ndask\ndask — scale computations from laptops to clusters with parallel, out-of-core workflows.\n\n\nInstalling Python Packages\nMost Python packages can be installed from the Python Package Index (PyPI) using pip. Some scientific and geospatial packages are easier to install with conda, particularly through the conda-forge community channel.\nFor more details, see the official Python documentation on installing packages, the pip documentation, and the conda user guide.",
-    "crumbs": [
-      "Getting Started",
-      "Tools we use"
-    ]
-  },
-  {
-    "objectID": "tools-we-use.html#sec-applications",
-    "href": "tools-we-use.html#sec-applications",
-    "title": "Tools we use",
-    "section": "Applications",
-    "text": "Applications\nApplications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, and learning about data structures before moving on to scripted workflows.\n\nEarthdata Search\nEarthdata Search — NASA’s primary web application for searching, filtering, and downloading Earth science data.\n\n\nOpen Altimetry\nOpen Altimetry — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.\n\n\nHDFView\nHDFView — a desktop application for viewing and editing HDF4 and HDF5 files.\n\n\nPanoply\nPanoply — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.\n\n\nNCView\nNCView — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.\n\n\nQGIS\nQGIS — an open-source geographic information system for analyzing and visualizing spatial data.\n\n\nArcGIS\nArcGIS — a commercial GIS platform for advanced mapping, spatial analysis, and data management.",
-    "crumbs": [
-      "Getting Started",
-      "Tools we use"
-    ]
-  },
-  {
-    "objectID": "our-cookbook.html",
-    "href": "our-cookbook.html",
-    "title": "How to use this cookbook",
+    "objectID": "how-to-guides/overview.html#introduction",
+    "href": "how-to-guides/overview.html#introduction",
+    "title": "How-To Guides",
     "section": "",
-    "text": "This Cookbook for NSIDC Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes. The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you master the art of working with cryospheric data.\nThe cookbook is divided into three sections: NSIDC DATA, Working with Data, and a recipes section, “How do I…”. We also include some appendices that include a best practices guide for Python scripting and some background details on computing.\nThe NSIDC Data section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.\nThe Working with Data section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.\nThe How do I… section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks."
-  },
-  {
-    "objectID": "appendices/contributing.html",
-    "href": "appendices/contributing.html",
-    "title": "Contributing",
-    "section": "",
-    "text": "We welcome contributions of all kinds! Your help makes the Cookbook stronger and more useful for the community. There are several ways to get involved, you can:\n\n🪲 Identify a bug or error\n\n💡 Suggest a change or improvement\n\n📘 Propose a new tutorial or example\n\n🗣️ Join a discussion or share an idea\n🚀 Do some work and make a Pull Request (PR)\n\n\n\n\nYou can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”\n\n\n\n\n\n\nOnce you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
+    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file",
     "crumbs": [
-      "Appendices",
-      "Contributing"
+      "How-To Guides"
     ]
-  },
-  {
-    "objectID": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
-    "href": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
-    "title": "Contributing",
-    "section": "",
-    "text": "You can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”",
-    "crumbs": [
-      "Appendices",
-      "Contributing"
-    ]
-  },
-  {
-    "objectID": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
-    "href": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
-    "title": "Contributing",
-    "section": "",
-    "text": "Once you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
-    "crumbs": [
-      "Appendices",
-      "Contributing"
-    ]
-  },
-  {
-    "objectID": "how-to-guides/reprojection.html",
-    "href": "how-to-guides/reprojection.html",
-    "title": "How do I reproject data",
-    "section": "",
-    "text": "How do I reproject a data file from from the command line\nUse gdal\n\n\nHow do I reproject a NetCDF file using rioxarray\nSee rioxarray docs"
   },
   {
     "objectID": "how-to-guides/netcdf_cf.html",
@@ -575,59 +434,207 @@
     ]
   },
   {
-    "objectID": "how-to-guides/overview.html",
-    "href": "how-to-guides/overview.html",
-    "title": "How-To Guides",
+    "objectID": "how-to-guides/reprojection.html",
+    "href": "how-to-guides/reprojection.html",
+    "title": "How do I reproject data",
     "section": "",
-    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file",
+    "text": "How do I reproject a data file from from the command line\nUse gdal\n\n\nHow do I reproject a NetCDF file using rioxarray\nSee rioxarray docs"
+  },
+  {
+    "objectID": "appendices/contributing.html",
+    "href": "appendices/contributing.html",
+    "title": "Contributing",
+    "section": "",
+    "text": "We welcome contributions of all kinds! Your help makes the Cookbook stronger and more useful for the community. There are several ways to get involved, you can:\n\n🪲 Identify a bug or error\n\n💡 Suggest a change or improvement\n\n📘 Propose a new tutorial or example\n\n🗣️ Join a discussion or share an idea\n🚀 Do some work and make a Pull Request (PR)\n\n\n\n\nYou can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”\n\n\n\n\n\n\nOnce you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
     "crumbs": [
-      "How-To Guides"
+      "Appendices",
+      "Contributing"
     ]
   },
   {
-    "objectID": "how-to-guides/overview.html#introduction",
-    "href": "how-to-guides/overview.html#introduction",
-    "title": "How-To Guides",
+    "objectID": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
+    "href": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
+    "title": "Contributing",
     "section": "",
-    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file",
+    "text": "You can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”",
     "crumbs": [
-      "How-To Guides"
+      "Appendices",
+      "Contributing"
     ]
   },
   {
-    "objectID": "how-to-publish.html",
-    "href": "how-to-publish.html",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
+    "href": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
+    "title": "Contributing",
     "section": "",
-    "text": "I am following these instructions provided by Quarto.\n\n\nI am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this.\n\n\n\nRun\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions\n\n\n\nCheck all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change.\n\n\n\nTo make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
+    "text": "Once you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
+    "crumbs": [
+      "Appendices",
+      "Contributing"
+    ]
   },
   {
-    "objectID": "how-to-publish.html#freeze-computations",
-    "href": "how-to-publish.html#freeze-computations",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "our-cookbook.html",
+    "href": "our-cookbook.html",
+    "title": "How to use this cookbook",
     "section": "",
-    "text": "I am only allowing code to be executed locally.\nIn _quarto.yml, I have added the following\nexecute:\n  freeze: auto\nNow render the site\nquarto render\nIf a _freeze directory is created, add and commit this."
+    "text": "This Cookbook for NSIDC Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes. The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you master the art of working with cryospheric data.\nThe cookbook is divided into three sections: NSIDC DATA, Working with Data, and a recipes section, “How do I…”. We also include some appendices that include a best practices guide for Python scripting and some background details on computing.\nThe NSIDC Data section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.\nThe Working with Data section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.\nThe How do I… section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks."
   },
   {
-    "objectID": "how-to-publish.html#publish-action",
-    "href": "how-to-publish.html#publish-action",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "tools-we-use.html",
+    "href": "tools-we-use.html",
+    "title": "Tools we use",
     "section": "",
-    "text": "Run\nquarto publish gh-pages\nAdd .github/workflows/publish.yml and add text from quarto instructions"
+    "text": "Currently, this cookbook features Python Packages for working with data supported by NSIDC DAAC. It also features some applications that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.\nThe focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities. However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab. We hope that we will be able to include these langauges as the Cookbook develops.\nUsing web or locally-installed applications is a good way to start to discover and learn about data. We often use these applications to explore datasets, find what data is available, and quickly visualize data. However, many investigations require large numbers of files to be accessed and processed. It is often more efficient to write scripts in Python or some other language to do this. In the cloud, scripts are often the only way to search for and access data. Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.",
+    "crumbs": [
+      "Getting Started",
+      "Tools we use"
+    ]
   },
   {
-    "objectID": "how-to-publish.html#push-changes-to-gh",
-    "href": "how-to-publish.html#push-changes-to-gh",
-    "title": "How to Publish Cookbook on GH Pages",
-    "section": "",
-    "text": "Check all of the newly created files (including the _freeze directory) into your repository and then push to GitHub. A GitHub Pages site will be created for your repository, and every time you push a new change to the repository it will be automatically rebuilt to reflect the change."
+    "objectID": "tools-we-use.html#sec-pythonpkg",
+    "href": "tools-we-use.html#sec-pythonpkg",
+    "title": "Tools we use",
+    "section": "Python Packages",
+    "text": "Python Packages\nThere are many Python packages available for working with Earth science data. The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use. We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC. Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science. This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.\n\nearthaccess\nearthaccess — search for and access NASA Earth science data.\n\n\nxarray\nxarray — work with N-dimensional labeled data (e.g. (time, x, y, z)).\n\n\nrioxarray\nrioxarray — add geospatial awareness to xarray.\n\n\nrasterio\nrasterio — read, write, and process raster datasets.\n\n\npandas\npandas — handle tabular data (spreadsheets, databases, CSV).\n\n\ngeopandas\ngeopandas — extend pandas to work with geospatial vector data.\n\n\ncartopy\ncartopy — map projections, transformations, and plotting for geospatial data.\n\n\nSlideRule\nSlideRule — on-demand processing and access to ICESat-2 data.\n\n\nicepyx\nicepyx — search, subset, and download ICESat-2 data with built-in metadata handling.\n\n\nsatpy\nsatpy — read, composite, and visualize meteorological satellite data.\n\n\ndask\ndask — scale computations from laptops to clusters with parallel, out-of-core workflows.\n\n\nInstalling Python Packages\nMost Python packages can be installed from the Python Package Index (PyPI) using pip. Some scientific and geospatial packages are easier to install with conda, particularly through the conda-forge community channel.\nFor more details, see the official Python documentation on installing packages, the pip documentation, and the conda user guide.",
+    "crumbs": [
+      "Getting Started",
+      "Tools we use"
+    ]
   },
   {
-    "objectID": "how-to-publish.html#make-gh-pages-visible-on-repo",
-    "href": "how-to-publish.html#make-gh-pages-visible-on-repo",
-    "title": "How to Publish Cookbook on GH Pages",
+    "objectID": "tools-we-use.html#sec-applications",
+    "href": "tools-we-use.html#sec-applications",
+    "title": "Tools we use",
+    "section": "Applications",
+    "text": "Applications\nApplications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, and learning about data structures before moving on to scripted workflows.\n\nEarthdata Search\nEarthdata Search — NASA’s primary web application for searching, filtering, and downloading Earth science data.\n\n\nOpen Altimetry\nOpen Altimetry — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.\n\n\nHDFView\nHDFView — a desktop application for viewing and editing HDF4 and HDF5 files.\n\n\nPanoply\nPanoply — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.\n\n\nNCView\nNCView — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.\n\n\nQGIS\nQGIS — an open-source geographic information system for analyzing and visualizing spatial data.\n\n\nArcGIS\nArcGIS — a commercial GIS platform for advanced mapping, spatial analysis, and data management.",
+    "crumbs": [
+      "Getting Started",
+      "Tools we use"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html",
+    "href": "how-to-guides/get_latitude_and_longitude.html",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
     "section": "",
-    "text": "To make the GH pages visible from the site click settings gearwheel next to About and check Use Github Pages."
+    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html#problem",
+    "href": "how-to-guides/get_latitude_and_longitude.html#problem",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "",
+    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html#solution",
+    "href": "how-to-guides/get_latitude_and_longitude.html#solution",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "Solution",
+    "text": "Solution\n\nimport numpy as np\n\nimport rioxarray\nimport xarray as xr\nfrom pyproj import CRS, Transformer\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('../example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Instantiate source pyproj CRS from ds.rio.crs object\nsource_crs = CRS(ds.rio.crs.to_wkt())\n# Instantiate destination pyproj CRS using EPSG code for WGS84 \ndestination_crs = CRS(4326)\n\n# Instantiate pyproj transformer instance using source and destination CRS\ntransform = Transformer.from_crs(source_crs, destination_crs)\n\n# Create 2D arrays of x and y coordinates\nx2d, y2d = np.meshgrid(ds.x, ds.y)\n\n# Calculate latitude and longitudes for each grid cell\nlat, lon = transform.transform(x2d, y2d)",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html#discussion",
+    "href": "how-to-guides/get_latitude_and_longitude.html#discussion",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "Discussion",
+    "text": "Discussion\nThe workflow above assumes that the NetCDF file is CF-compliant and has a grid_mapping variable and projected coordinates defined. See the rioxarray CRS management documentation if this is not the case.\nIf the dataset rio.crs is not set, the source_crs could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.\nFor all datasets on projected grids, latitude and longitudes for grid cells will be 2-dimensional arrays. x- and y-coordinates for these datasets will be vectors. So 2-dimensional arrays of x and y coordinates need to be created. np.meshgrid is designed to do this.\nIf you want the latitudes and longitudes of the corners of grid cells, x and y coordinates can be incremented by half the grid cells width and height, and the resoluting projected coordinates passed to transform.transformer.\nIt is worth considering if you really need to have latitude and longitude arrays for your dataset. One reason that CF-conventions were changed, was that 2D arrays of geographic coordinates can increase the file size, especially for high resolution datasets. Projected coordinates as vectors take up much less space. Plotting tools such as cartopy can make maps without latitude and longitude. If you need to extract cell values for specific geographic coordinates, for example for a weather station or buoy, it is quicker and easier to transform these coordinates into the projected coordinate system of the dataset. The xarray.Dataset.sel or xarray.DataArray.sel methods can then be used to select the data for that location.",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_column_and_row_indices.html",
+    "href": "how-to-guides/get_column_and_row_indices.html",
+    "title": "How to get grid column and row indices for latitude and longitude",
+    "section": "",
+    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
+  },
+  {
+    "objectID": "how-to-guides/get_column_and_row_indices.html#problem",
+    "href": "how-to-guides/get_column_and_row_indices.html#problem",
+    "title": "How to get grid column and row indices for latitude and longitude",
+    "section": "",
+    "text": "I want to get the column and row indices of a grid that corresponds to latitude and longitude."
+  },
+  {
+    "objectID": "how-to-guides/get_column_and_row_indices.html#solution",
+    "href": "how-to-guides/get_column_and_row_indices.html#solution",
+    "title": "How to get grid column and row indices for latitude and longitude",
+    "section": "Solution",
+    "text": "Solution\nIn Python you can use the pyproj package to transform latitude and longitude (geographic coordinates) to x and y (projected coordinates) in the EASE Grid CRS, and then use the affine package to get the column and row indices ((i,j) image coordinates).\n\nfrom pyproj import Transformer\nfrom affine import Affine\nimport numpy as np\n\n# Define the coordinate transform from WGS84 (lat, lon) \n# to CRS of your grid using EPSG codes.\n# WGS84 is EPSG:4326\n# NSIDC Northern Hemisphere EASE Grid is EPSG:3408\ntransformer = Transformer.from_crs(4326, 3408)\n\n# Define the affine transformation matrix\ngrid_cell_width = 50057.094722222224\ngrid_cell_height = -50057.094722222224\nupper_left_x = -9036842.76\nupper_left_y = 9036842.76\ngeotransform = Affine(grid_cell_width, 0.0, upper_left_x,\n                      0.0, grid_cell_height, upper_left_y)\n\nx, y = transformer.transform(-45., 84.)  # latitude and longitude\ni, j = ~geotransform * (x, y)  # ~geotransform is the inverse operation\n\nprint(i,j)\n\n414.4236938226952 205.11385157648664\n\n\ni and j are in image coordinates with the origin as the upper-left corner of the upper-left grid-cell. To get the column and row indices of the cell you can use floor.\n\ncol, row = np.floor(i).astype(int), np.floor(j).astype(int)\nprint(col, row)\n\n414 205"
+  },
+  {
+    "objectID": "how-to-guides/get_column_and_row_indices.html#discussion",
+    "href": "how-to-guides/get_column_and_row_indices.html#discussion",
+    "title": "How to get grid column and row indices for latitude and longitude",
+    "section": "Discussion",
+    "text": "Discussion\nMany grids, whether they are images or gridded data are in projected coordinate systems so that they can be displayed on a 2D screen. Converting from geographic coordinates (latitude, longitude) to image coordinates (column, row) is usually a two step process. In the first step, the geographic coordinates are transformed from a Geographic Coordinate System with coordinates latitude and longitude to the projected coordinate system of the image or grid. This is a Cartesian coordinate system with coordinates x and y, usually in meters. In the second step, the projected coordinates are converted into image coordinates. This is another Cartesian coordinate system with coordinates column and row or i and j with units grid-cells. Image coordinate systems often have the origin in the upper-left corner of the upper-left grid cell.\nIn Python the first step is easily acheived using the pyproj package. If the Coordinate Reference System (CRS) of the grid is registered in the EPSG database, defining the transformation is easily done with the EPSG codes for the CRS for the latitude and longitude coordinates and the CRS of the destination grid. Usually, latitude and longitude are in the Ensemble WGS84 CRS, which is EPSG:4326. For NSIDC gridded data, the CRS is some flavour of EASE Grid or Polar Stereographic. See the help pages for EASE Grid and Polar Stereographic for more information.\n\nBoth EASE Grid and Polar Stereographic CRS come in two main flavours Original and WGS84. For EASE Grids, these two flavours are EASE-Grid and EASE-Grid v2.0.\n\nTODO: Describe projected to image coordinate conversion\nAdd image showing the relationship between the three coordinate systems"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NSIDC Data Cookbook",
+    "section": "",
+    "text": "[!WARNING] This cookbook is under active development. Major changes to the structure of the book and its content are expected. We are striving to develop content that is well-tested and peer-reviewed, but nothing contained here should be expected to work correctly (or at all!) in this early phase. Many sections contain only an outline of the content. These sections will have content added as the project develops.",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "index.html#welcome-to-the-nsidc-data-cookbook",
+    "href": "index.html#welcome-to-the-nsidc-data-cookbook",
+    "title": "NSIDC Data Cookbook",
+    "section": "Welcome to the NSIDC Data Cookbook!",
+    "text": "Welcome to the NSIDC Data Cookbook!\nThis Cookbook for National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes (or data tutorials). The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but instead is an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you master the art of working with cryospheric data.",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-cookbook",
+    "href": "index.html#how-to-use-this-cookbook",
+    "title": "NSIDC Data Cookbook",
+    "section": "How to use this cookbook",
+    "text": "How to use this cookbook\nIf you are new to NASA or NSIDC data, begin with the Getting Started section. Beyond that, the cookbook is divided into four major sections: NSIDC Data, Working with Data, How-To Guides, and Tutorials / Workshops. We also include some Appendices that include a best practices guide for Python scripting, some background details on computing, and how to contribute to the cookbook (if you are so inclined!).\nThe NSIDC Data section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.\nThe Working with Data section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.\nThe How-To Guides section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks.\nLastly, the Tutorials / Workshops section serves to highlight content that was developed for past events or specific use cases.",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-nsidc-daac",
+    "href": "index.html#about-the-nsidc-daac",
+    "title": "NSIDC Data Cookbook",
+    "section": "About the NSIDC DAAC",
+    "text": "About the NSIDC DAAC\nNSIDC has managed the NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) since 1993, archiving and distributing cryospheric and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns and field observations. The NSIDC DAAC provides hundreds of free and open-access NASA Earth science data sets, detailed data documentation, data tools, resources and tutorials, as well as robust data user support services. These data can be used to study topics relating to snow cover, sea ice, ice sheets, ice shelves, glaciers, frozen ground, soil moisture, climate interactions, and more!",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "glossary/glossary.html",
+    "href": "glossary/glossary.html",
+    "title": "Glossary",
+    "section": "",
+    "text": "Glossary"
   },
   {
     "objectID": "tutorials/working_with_icesat2_sea_ice_data.html",

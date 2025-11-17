@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew P. Barrett">
-<meta name="dcterms.date" content="2025-11-17">
 
-<title>How to get grid column and row indices for latitude and longitude – NSIDC Data Cookbook</title>
+<title>glossary – NSIDC Data Cookbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -287,99 +250,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link active" data-scroll-target="#glossary">Glossary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">How to get grid column and row indices for latitude and longitude</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrew P. Barrett </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 17, 2025</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<section id="problem" class="level2">
-<h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>I want to get the column and row indices of a grid that corresponds to latitude and longitude.</p>
-</section>
-<section id="solution" class="level2">
-<h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<p>In Python you can use the <code>pyproj</code> package to transform latitude and longitude (geographic coordinates) to x and y (projected coordinates) in the EASE Grid CRS, and then use the <code>affine</code> package to get the column and row indices (<code>(i,j)</code> image coordinates).</p>
-<div id="99e45ce1-3e02-4525-8722-7056888d4839" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> affine <span class="im">import</span> Affine</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the coordinate transform from WGS84 (lat, lon) </span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># to CRS of your grid using EPSG codes.</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># WGS84 is EPSG:4326</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># NSIDC Northern Hemisphere EASE Grid is EPSG:3408</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(<span class="dv">4326</span>, <span class="dv">3408</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the affine transformation matrix</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>grid_cell_width <span class="op">=</span> <span class="fl">50057.094722222224</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>grid_cell_height <span class="op">=</span> <span class="op">-</span><span class="fl">50057.094722222224</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>upper_left_x <span class="op">=</span> <span class="op">-</span><span class="fl">9036842.76</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>upper_left_y <span class="op">=</span> <span class="fl">9036842.76</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>geotransform <span class="op">=</span> Affine(grid_cell_width, <span class="fl">0.0</span>, upper_left_x,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                      <span class="fl">0.0</span>, grid_cell_height, upper_left_y)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> transformer.transform(<span class="op">-</span><span class="fl">45.</span>, <span class="fl">84.</span>)  <span class="co"># latitude and longitude</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>i, j <span class="op">=</span> <span class="op">~</span>geotransform <span class="op">*</span> (x, y)  <span class="co"># ~geotransform is the inverse operation</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i,j)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>414.4236938226952 205.11385157648664</code></pre>
-</div>
-</div>
-<p><code>i</code> and <code>j</code> are in image coordinates with the origin as the upper-left corner of the upper-left grid-cell. To get the column and row indices of the cell you can use <code>floor</code>.</p>
-<div id="b3fa03fc-c38e-48e5-bff3-2d30b9f8e5d2" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>col, row <span class="op">=</span> np.floor(i).astype(<span class="bu">int</span>), np.floor(j).astype(<span class="bu">int</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(col, row)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>414 205</code></pre>
-</div>
-</div>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Many grids, whether they are images or gridded data are in <em>projected coordinate systems</em> so that they can be displayed on a 2D screen. Converting from geographic coordinates (<em>latitude</em>, <em>longitude</em>) to image coordinates (<em>column</em>, <em>row</em>) is usually a two step process. In the first step, the geographic coordinates are transformed from a Geographic Coordinate System with coordinates <em>latitude</em> and <em>longitude</em> to the <em>projected coordinate system</em> of the image or grid. This is a <em>Cartesian</em> coordinate system with coordinates <em>x</em> and <em>y</em>, usually in meters. In the second step, the <em>projected coordinates</em> are converted into <em>image coordinates</em>. This is another <em>Cartesian</em> coordinate system with coordinates <em>column</em> and <em>row</em> or <em>i</em> and <em>j</em> with units grid-cells. Image coordinate systems often have the origin in the upper-left corner of the upper-left grid cell.</p>
-<p>In Python the first step is easily acheived using the <code>pyproj</code> package. If the Coordinate Reference System (CRS) of the grid is registered in the EPSG database, defining the transformation is easily done with the EPSG codes for the CRS for the <em>latitude</em> and <em>longitude</em> coordinates and the CRS of the destination grid. Usually, <em>latitude</em> and <em>longitude</em> are in the Ensemble WGS84 CRS, which is EPSG:4326. For NSIDC gridded data, the CRS is some flavour of EASE Grid or Polar Stereographic. See the help pages for <a href="https://nsidc.org/data/user-resources/help-center/guide-ease-grids">EASE Grid</a> and <a href="https://nsidc.org/data/user-resources/help-center/guide-nsidcs-polar-stereographic-projection">Polar Stereographic</a> for more information.</p>
-<div class="{note}">
-<p>Both EASE Grid and Polar Stereographic CRS come in two main flavours <em>Original</em> and WGS84. For EASE Grids, these two flavours are EASE-Grid and EASE-Grid v2.0.</p>
-</div>
-<p>TODO: Describe projected to image coordinate conversion</p>
-<p>Add image showing the relationship between the three coordinate systems</p>
+<section id="glossary" class="level1">
+<h1>Glossary</h1>
 
 
 </section>
