@@ -6,7 +6,7 @@ author: Andy P. Barrett
 ## Overview
 
 The purpose of this reference guide is to provide an introduction to
-and background for {{< glossary "map projection" display="map projections">}}.  For a full treatment, please
+and background for {{< glossary "Map projection" display="map projections">}}.  For a full treatment, please
 consult @snyder_projections_ 
 
 ## What is a map projection?
