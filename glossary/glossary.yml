@@ -1,6 +1,9 @@
-Coordinate Reference System
+Coordinate Reference System: |
+  A coordinate system that has it's position, scale and orientation defined with respect to an object.
+  This is accomplished through a datum.  For geospatial data this is usually the Earth.
 
-Coordinate System
+Coordinate System: |
+  
 
 Geodetic Coordinate System
 
