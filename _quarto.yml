@@ -103,5 +103,10 @@ filters:
   - include-files.lua
   - quarto
 
+glossary:
+  path: glossary/glossary.yml
+  popup: click
+  show: true
+
 execute:
   freeze: auto
