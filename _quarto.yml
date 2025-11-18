@@ -39,6 +39,7 @@ website:
            - text: "Data types and formats"
              href: reference-guides/data-structures.qmd
            - text: "NASA collections and granules"
+             href: reference-guides/collections-granules.qmd
            - text: "NSIDC map projections and grids"
              href: reference-guides/projections.qmd
            - text: "Quirky datasets"
@@ -86,8 +87,8 @@ website:
         contents:
           - text: "Contributing"
             href: appendices/contributing.qmd
-          - text: "Best Practices"
-          - text: "What is an API?"
+          - text: "Glossary"
+            href: glossary/glossary.qmd
 
 format:
   html:

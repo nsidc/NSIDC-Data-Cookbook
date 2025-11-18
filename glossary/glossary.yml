@@ -11,12 +11,12 @@ Coordinate System: |
 Geodetic Coordinate System: |
   A coordinate reference system based on a geodetic datum.
 
+Map Projection: |
+  A coordinate conversion from an ellipsoidal coordinate system to a plane.
+
 Projected Coordinate Reference System: |
   A Coordinate Reference System derived from a two dimensional
   geodetic coordinate reference system by applying a map projection.
-
-Map Projection: |
-  A coordinate conversion from an ellipsoidal coordinate system to a plane.
 
 Projection Parameters: |
   Parameters defining a map projection.

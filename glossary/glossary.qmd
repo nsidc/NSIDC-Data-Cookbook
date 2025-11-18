@@ -1,2 +1,59 @@
-# Glossary
+---
+title: "Glossary"
+format:
+  html:
+    toc: true
+---
+#### Filter your search by using the handy bar below!
 
+<!-- Search bar -->
+<input id="glossary-search" type="text" placeholder="Search terms or definitions..." style="width: 100%; padding: 0.5em; margin-bottom: 1em; font-size: 1em;">
+<!-- Glossary entries -->
+<details>
+  <summary>Coordinate Reference System</summary>
+  A coordinate system that has its position, scale, and orientation defined with respect to an object. This is accomplished through a datum. For geospatial data this is usually the Earth.
+</details>
+
+<details>
+  <summary>Coordinate System</summary>
+  A set of rules that define how coordinates are assigned to points. Coordinates describing locations on Earth or another object are referenced to a Coordinate Reference System.
+</details>
+
+<details>
+  <summary>Geodetic Coordinate System</summary>
+  A coordinate reference system based on a geodetic datum.
+</details>
+
+<details>
+  <summary>Map Projection</summary>
+  A coordinate conversion from an ellipsoidal coordinate system to a plane.
+</details>
+
+<details>
+  <summary>Projected Coordinate Reference System</summary>
+  A Coordinate Reference System derived from a two dimensional geodetic coordinate reference system by applying a map projection.
+</details>
+
+<details>
+  <summary>Projection Parameters</summary>
+  Parameters defining a map projection.
+</details>
+
+<script>
+const searchInput = document.getElementById("glossary-search");
+const entries = document.querySelectorAll("details");
+
+searchInput.addEventListener("input", () => {
+  const filter = searchInput.value.toLowerCase();
+  entries.forEach(entry => {
+    const term = entry.querySelector("summary").textContent.toLowerCase();
+    const definition = entry.textContent.toLowerCase();
+    // Show if term or definition matches
+    if (term.includes(filter) || definition.includes(filter)) {
+      entry.style.display = "";
+    } else {
+      entry.style.display = "none";
+    }
+  });
+});
+</script>
