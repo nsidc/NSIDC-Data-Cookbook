@@ -8,7 +8,7 @@ execute:
   enabled: false
 ---
 
-NASA Earth science data can feel overwhelming when you're new to it... there are thousands of datasets, millions of files, and many tools for accessing them.  A first step in combatting the overhwhelm is better understanding how NASA organizes, and talks about, their data. 
+NASA Earth science data can feel overwhelming when you're new to it... there are thousands of datasets, millions of files, and many tools for accessing them.  A first step in combatting the overhwhelm is better understanding how NASA organizes, and talks about, their data.   Below we define two terms; _collection_ and _granule_.  These are, for the most part, synonymous with a dataset and a file respectively.
 
 ---
 
