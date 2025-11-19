@@ -89,6 +89,8 @@ website:
             href: appendices/contributing.qmd
           - text: "Glossary"
             href: glossary/glossary.qmd
+          #- text: "Best Practices"
+          #- text: "What is an API?"
 
 format:
   html:
