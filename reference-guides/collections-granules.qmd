@@ -1,0 +1,157 @@
+---
+title: "Collections & Granules"
+format:
+  html:
+    toc: true
+    code-fold: false
+execute:
+  enabled: false
+---
+
+NASA Earth science data can feel overwhelming when you're new to it... there are thousands of datasets, millions of files, and many tools for accessing them.  A first step in combatting the overhwhelm is better understanding how NASA organizes, and talks about, their data.   Below we define two terms; _collection_ and _granule_.  These are, for the most part, synonymous with a dataset and a file respectively.
+
+---
+
+# What Are Collections and Granules?  
+
+## 📘 Collections  
+
+A **collection** is NASA’s version of a “dataset family.”  
+Every collection groups together many related files that share common features, such as:
+
+- The same satellite or instrument  
+- The same science product type  
+- The same processing level  
+- A consistent file structure   
+
+A collection is the *group* that defines **what** the dataset is.
+
+**Examples:**
+
+- *SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008*  
+- *ATLAS/ICESat-2 L3A Land and Vegetation Height V007*  
+
+Collection metadata includes at least the following:
+
+- Product description  
+- Spatial & temporal coverage  
+- Data provider
+- Variables  
+- Version 
+
+## 📄 Granules  
+
+A **granule** is the smallest discrete data unit in a collection. Depending on the data format, a granule may be a single file or a set of files that together represent one logical item (for example, a shapefile’s `.shp`, `.shx`, `.dbf` components).
+
+What each granule represents can vary from one science mission (and data product) to the next. For example, one granule could represent:
+
+- One SMAP L2 soil moisture half-orbit pass,  
+- One AMSR2 daily polar gridded brightness temperature file, or
+- One MEaSUREs Greenland monthly ice sheet velocity magnitude mosaic
+
+Granules also have their own metadata, such as:
+
+- Timestamps  
+- A spatial bounding box  
+- File size  
+- Variables included, etc.
+
+Granules are what you actually **download and analyze**. It is common to need MANY granules for a specific research objective! 
+
+---
+
+# NASA’s Metadata Backbone: CMR  
+
+NASA stores all metadata (for collections *and* granules, among other things) in a system called the **Common Metadata Repository (CMR)**. CMR serves as NASA's metadata database and search index, and provides an API that clients can use to access and interact with this metadata. 
+
+CMR powers:
+
+- Earthdata Search  
+- DAAC search portals  
+- APIs for programmatic discovery  
+- Cloud-native data access workflows  
+
+CMR metadata is stored using the **Unified Metadata Model (UMM)**:
+
+- **UMM-C** → Collection metadata  
+- **UMM-G** → Granule metadata  
+- **UMM-Var** → Variables  
+- **UMM-Svc** → Services  
+- **UMM-T** → Tools  
+
+Using the UMM allows CMR to host its metadata records in several supported native formats, with translation services available between formats. 
+
+Simply, CMR is a high-performance, continuously evolving metadata system that catalogs all metadata for NASA’s Earth Science Data and Information System Project (ESDIS) program. You can learn more about it [here](https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr).
+
+# Collection & Granule Names  
+
+NASA uses structured naming so files can be indexed, searched, and recognized by automated workflows.
+
+### 📘 Collection Names  
+
+Each collection has a unique CMR identifying **Concept-ID** (for example, the SMAP record below's Concept-ID is *C3480440870-NSIDC_CPRD*) that makes it possible to reference a collection efficiently across tools. In addition, a collection will also have a:
+
+##### 1. Long Name (Human-Readable)
+Example:  
+*SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008*
+
+##### 2. Short Name (Machine-Friendly) 
+Example:  
+*SPL4SMGP*
+
+##### 3. Version
+Example:  
+*008*
+
+Where the combination of **short name + version** uniquely identifies a dataset within CMR.
+
+### 📄 Granule Names
+
+Granule names can get pretty lengthy and will include some important information about the data collection they are contained within, as well as specifics about that granule in particular. For example, most products will have a naming "formula" that includes the following:
+
+- Product short name  
+- Date and optional time  
+- Version  
+- Spatial identifier (if applicable)
+- File type  
+
+::: {.callout-note}
+Not all naming structures are the same across data products! The *User Guide* (linked on the data set landing page, see [NSIDC-0803](https://nsidc.org/data/nsidc-0803/versions/2) for example) provides the exact naming convention for each data product.  
+:::
+
+Some granules cover a global or regional extent, in which case no explicit spatial identifier appears in the filename (many gridded polar products are examples of this; see Example 1 below).
+
+Other products divide their data into smaller spatial segments, and the granule name will include an identifier to indicate which portion of the Earth the file represents (see Example 2). 
+
+#### Example 1: AMSR2 Daily Polar Gridded Sea Ice Concentrations, Version 2
+##### Where one granule is:  
+`NSIDC0803_SEAICE_AMSR2_S_20240105_v2.0.nc`
+
+*This product does **not** include a spatial identifier because each granule covers a full polar region.*
+
+##### Naming Breakdown
+
+| Component | Example | Meaning |
+|----------|---------|---------|
+| Short name | `NSIDC0803` | AMSR2 Daily Polar Gridded Sea Ice Concentrations Product | 
+| Information | `SEAICE_AMSR2_S` | Variable, satellite, and hemisphere |
+| Date/time | `20240105` | YYYYMMDD format |
+| Version | `v2.0` | Collection version |
+| File type | `.nc` | NetCDF format |
+
+#### Example 2: MODIS/Terra Snow Cover Daily L3 Global 500m SIN Grid, Version 61
+##### Where one granule is:  
+`MOD10A1.A2003001.h13v03.061.2019130062218.hdf`
+
+*This product **does** include a spatial identifier because each granule covers only a portion of the global grid.*
+
+##### Naming Breakdown
+
+| Component | Example | Meaning |
+|----------|---------|---------|
+| Short name | `MOD10A1` | MODIS/Terra Snow Cover Daily L3 Global 500m SIN Grid Product | 
+| Date/time acquired (A) | `A2003001` | AYYYYDDDD format |
+| Spatial identifier | `h13v03` | Horizontal and vertical tile number |
+| Version | `061` | Collection version |
+| Production date | `2019130062218` | yyyydddhhmmss format in GMT |
+| File type | `.hdf` | HDF-eos format |
