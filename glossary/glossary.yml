@@ -4,7 +4,7 @@ Coordinate Reference System: |
   a datum.  For geospatial data this is usually the Earth.
 
 Coordinate System: |
-  A set of rules that define how coordnates are assigned to points.
+  A set of rules that define how coordinates are assigned to points.
   Coordinates describing locations on Earth or another object are
   refenced to a Coordinate Reference System. 
   
