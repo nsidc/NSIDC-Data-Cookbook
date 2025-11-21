@@ -43,7 +43,7 @@ Collection metadata includes at least the following:
 
 A **granule** is the smallest discrete data unit in a collection. Depending on the data format, a granule may be a single file or a set of files that together represent one logical item (for example, a shapefile’s `.shp`, `.shx`, `.dbf` components).
 
-Each granule *usually* represents a **single point in space and/or time**, though what that means can vary from one science mission (and data product) to the next. For example, one granule could represent:
+What each granule represents can vary from one science mission (and data product) to the next. For example, one granule could represent:
 
 - One SMAP L2 soil moisture half-orbit pass,  
 - One AMSR2 daily polar gridded brightness temperature file, or
