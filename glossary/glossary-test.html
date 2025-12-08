@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data access – NSIDC Data Cookbook</title>
+<title>Glossary Test – NSIDC Data Cookbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../reference-guides/plotting-data.html" rel="next">
-<link href="../reference-guides/dataset-search-and-discovery.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -78,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -243,282 +241,9 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Working with Data</li><li class="breadcrumb-item"><a href="../reference-guides/dataset-search-and-discovery.html">Finding / accessing data</a></li><li class="breadcrumb-item"><a href="../reference-guides/data-access.html">Data access</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">NSIDC Data Cookbook</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/nsidc/NSIDC-Data-Cookbook" title="NSIDC Data Cookbook repo" class="quarto-navigation-tool px-1" aria-label="NSIDC Data Cookbook repo"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome to our Cookbook</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Getting Started</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/get-edl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Getting an Earthdata Login</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tools-we-use.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools we use</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">NSIDC Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/data-structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data types and formats</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/collections-granules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NASA collections and granules</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/projections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NSIDC map projections and grids</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quirky datasets</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Working with Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Finding / accessing data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/dataset-search-and-discovery.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data search and discovery</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/data-access.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Data access</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Wrangling data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
- <span class="menu-text">Subsetting</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">Reformatting</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">Reprojecting</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">Resampling</span>
-  </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Visualizing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
- <span class="menu-text">Plotting data - time series, scatter plots</span>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference-guides/plotting-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plotting data on a map</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../how-to-guides/overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How-To Guides</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Search for data</span></span>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Access data</span></span>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Reproject data</span></span>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Work with NetCDF files</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/netcdf_cf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Get the bounding box of a NetCDF file</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/get_latitude_and_longitude.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Get the latitude and longitudes for grid cells</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../tutorials/tutorials_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorials / Workshops</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/ATL06-direct-access.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Direct cloud access of ICESat-2 data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/working_with_icesat2_sea_ice_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Download ICESat-2 Sea Ice data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendices/contributing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Contributing</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../glossary/glossary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossary</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -527,9 +252,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Working with Data</li><li class="breadcrumb-item"><a href="../reference-guides/dataset-search-and-discovery.html">Finding / accessing data</a></li><li class="breadcrumb-item"><a href="../reference-guides/data-access.html">Data access</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data access</h1>
+<h1 class="title">Glossary Test</h1>
 </div>
 
 
@@ -546,38 +271,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prerequisite-reminder" class="level4">
-<h4 class="anchored" data-anchor-id="prerequisite-reminder"><strong>Prerequisite reminder</strong></h4>
-<p>A <a href="https://urs.earthdata.nasa.gov/">NASA Earthdata Login</a> is required for all data access methods, including download and direct cloud access.</p>
-</section>
-<section id="nasa-earthdata-cloud" class="level4">
-<h4 class="anchored" data-anchor-id="nasa-earthdata-cloud"><strong>NASA Earthdata Cloud</strong></h4>
-<p>The NASA Earthdata Cloud is NASA’s cloud-based archive of Earth observation data. It is hosted by Amazon Web Services (AWS) in region us-west-2. Downloading data from the Earthdata Cloud to your local computer or storage system is and will continue to be free for users. You don’t need an AWS account to download data. Alternatively, you can work directly with NSIDC DAAC holdings stored in Amazon S3 (the object storage service used by NASA Earthdata Cloud). This direct access method allows you stream data into memory and analyze it “in place”, avoiding large transfers to your local computer.</p>
-<p>Options for accessing NASA Earthdata are outlined below:</p>
-</section>
-<section id="option-1-browser-based-download-no-coding-required" class="level4">
-<h4 class="anchored" data-anchor-id="option-1-browser-based-download-no-coding-required"><strong>Option 1: Browser-Based Download (No Coding Required)</strong></h4>
-<p>If you prefer a graphical interface, use one of these web-based tools:</p>
-<p><a href="https://search.earthdata.nasa.gov">NASA Earthdata Search</a> - Explore, filter and customize data before downloading files. Instructions for using Earthdata Search to find and access data can be found in our Earthdata Search <a href="https://nsidc.org/data/user-resources/help-center/search-order-and-customize-nsidc-daac-data-nasa-earthdata-search">guide</a>.</p>
-<p>image</p>
-<p>Data Access Tool - The NSIDC Data Access Tool can be accessed from a data set’s landing page. Example: <a href="https://nsidc.org/data/atl03/versions/7">ATLAS/ICESat-2 L2A Global Geolocated Photon Data. (ATL03, Version 7) Landing Page</a>. In the right-hand menu on a data set landing page, click “Data Access &amp; Tools”. You will be directed to the top of a list of tool and service “cards” with links to various data access methods. Click on the card title “Data Access Tool” to be directed to the Data Access Tool interface for that particular data set. The Data Access Tool allows users to filter files within a data set using spatial bounds, temporal ranges, and filename wildcards.</p>
-<p>Help article on using the Data Access Tool: <a href="https://nsidc.org/data/user-resources/help-center/filter-and-order-data-set-web-page-using-data-access-tool">https://nsidc.org/data/user-resources/help-center/filter-and-order-data-set-web-page-using-data-access-tool</a></p>
-</section>
-<section id="option-2-python-earthaccess-library" class="level4">
-<h4 class="anchored" data-anchor-id="option-2-python-earthaccess-library"><strong>Option 2: Python (earthaccess Library)</strong></h4>
-<p>The earthaccess Python library provides a streamlined way to search, authenticate, and download NASA Earthdata. It works both locally and in the cloud (e.g., on EC2 or JupyterHub environments).</p>
-<p>earthaccess <a href="https://earthaccess.readthedocs.io/en/stable/">documentation</a></p>
-<p><em>Have reference/link to one of our “how do I’s” here?</em></p>
-</section>
-<section id="option-3-command-line-tools-wget-curl-podaac-subscriber" class="level4">
-<h4 class="anchored" data-anchor-id="option-3-command-line-tools-wget-curl-podaac-subscriber"><strong>Option 3: Command Line Tools (<code>wget</code>, <code>curl</code>, PODAAC subscriber)</strong></h4>
-<p>If you’re comfortable using the terminal, command-line tools allow flexible and efficient downloading.</p>
-<p><code>wget</code> or <code>curl</code> – Download known files or batch download from an HTTPS URL list. Learn to create .txt files of download links here: <a href="https://nsidc.org/data/user-resources/help-center/creating-text-files-https-and-s3-urls-earthdata-cloud-data-access">Creating Text Files of HTTPS and S3 URLs for Earthdata Cloud Data Access</a></p>
-<p><a href="https://github.com/podaac/data-subscriber/blob/main/README.md">PODAAC Data Subscriber</a> – A Python-based command-line tool that supports spatial and temporal filtering. Though designed for PODAAC, it can be adapted for NSIDC and other DAACs.</p>
-<p>All of these command line options are detailed in this help article: <a href="https://nsidc.org/data/user-resources/help-center/downloading-data-earthdata-cloud-your-local-computer-using-command-line">Downloading Data from Earthdata Cloud to Your Local Computer Using the Command Line</a></p>
+<p>This page is currently a place holder for eventually scripting our user-facing glossary. The text that renders pulls from glossary.yml.</p>
+<div id="a2464885" class="cell" data-results="asis" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>Coordinate Reference System
+
+A coordinate system that has it's position, scale and orientation
+defined with respect to an object.  This is accomplished through
+a datum.  For geospatial data this is usually the Earth.
 
 
-</section>
+Coordinate System
+
+A set of rules that define how coordinates are assigned to points.
+Coordinates describing locations on Earth or another object are
+refenced to a Coordinate Reference System. 
+
+
+Geodetic Coordinate System
+
+A coordinate reference system based on a geodetic datum.
+
+
+Map Projection
+
+A coordinate conversion from an ellipsoidal coordinate system to a plane.
+
+
+Projected Coordinate Reference System
+
+A Coordinate Reference System derived from a two dimensional
+geodetic coordinate reference system by applying a map projection.
+
+
+Projection Parameters
+
+Parameters defining a map projection.
+
+</code></pre>
+</div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -993,18 +728,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../reference-guides/dataset-search-and-discovery.html" class="pagination-link" aria-label="Data search and discovery">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data search and discovery</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../reference-guides/plotting-data.html" class="pagination-link" aria-label="Plotting data on a map">
-        <span class="nav-page-text">Plotting data on a map</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

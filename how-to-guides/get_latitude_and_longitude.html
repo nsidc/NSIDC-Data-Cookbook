@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andrew P. Barrett">
-<meta name="dcterms.date" content="2025-11-17">
+<meta name="dcterms.date" content="2025-12-08">
 
 <title>How to get latitude and longitude for the grid cells of a NetCDF file – NSIDC Data Cookbook</title>
 <style>
@@ -364,8 +364,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">NASA collections and granules</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/collections-granules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NASA collections and granules</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference-guides/projections.html" class="sidebar-item-text sidebar-link">
@@ -542,11 +545,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Best Practices</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">What is an API?</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../glossary/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -588,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 17, 2025</p>
+      <p class="date">December 8, 2025</p>
     </div>
   </div>
   
@@ -606,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<div id="87c77902" class="cell" data-execution_count="1">
+<div id="7e4389b4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray</span>
