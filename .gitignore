@@ -5,3 +5,5 @@ example_data/
 *.nc
 _freeze
 .venv/
+
+**/*.quarto_ipynb
