@@ -1,18 +1,215 @@
 ---
 title: "Projections and Coordinate Systems"
 author: Andy P. Barrett
+format:
+  html:
+    code-fold: true
+jupyter: python3
 ---
 
 ## Overview
 
-The purpose of this reference guide is to provide an introduction to
-and background for {{< glossary "Map projection" display="map projections">}}.  For a full treatment, please
-consult @snyder_projections_ 
+Almost all of the data archived by NSIDC is _geospatial data_.  That
+is data that is tied to a location on Earth.  @fig-sea-ice-on-globe
+shows sea ice concentration data for September 2025 from NSIDC's Sea
+Ice index.  The colored image draped over a satellite perspective
+view, represents the amount of sea ice in 25 km by 25 km grid cells,
+expressed as a percentage, for thousands of grid cells.  Each of these
+grid cells is related to a location on Earth through a pair of
+coordinates and set of rules that transform these coordinate pairs
+into locations on the Earth.  This set of rules is called a _Coordinate
+Reference System_ or _CRS_.  This section of the NSIDC Data Cookbook
+provide an introduction to Coordinate Reference Systems in general and
+to the Coordinate Reference Systems used for NSIDC data.
 
-## What is a map projection?
+::: {.callout-tip}
+If you want to skip the background and just learn about the main
+Coordinate Reference Systems used at NSIDC go to @sec-nsidc-crs.
+:::
+
+```{python}
+#| label: fig-sea-ice-on-globe
+#| fig-cap: "Sea Ice Concentration for September 2025 on a globe. Data source: [NSIDC Sea Ice Index, Version 3](https://nsidc.org/data/g02135/versions/3)."
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import xarray as xr
+import rioxarray
+
+# Set display projection as satellite perspective
+projection = ccrs.NearsidePerspective(
+    central_latitude=65.,
+    central_longitude=-45.,
+    satellite_height=10000000.0
+    )
+
+# Open example data
+ds = xr.open_dataset("../example_data/N_202509_concentration_v4.0.tif", engine="rasterio").squeeze()
+# remove data flags and scale to 0 to 100
+ds['band_data'] = ds.band_data.where(
+    (ds.band_data > 0) & (ds.band_data <= 1000)
+    ) / 10
+
+# Define CRS of sea ice data using EPSG for NSIDC Polar Stereographic North
+src_crs = ccrs.epsg(3411)
+
+# Create plot
+fig = plt.figure(figsize=(5, 5))
+ax = fig.add_subplot(1, 1, 1, projection=projection)
+ax.set_global()
+
+ds.band_data.plot(
+    ax=ax,
+    transform=src_crs,
+    cbar_kwargs=dict(shrink=0.7, label='%'),
+    cmap='Blues',
+    )
+
+ax.coastlines(resolution='110m')
+ax.gridlines()
+ax.set_title('');
+```
+
+You are probably familiar with at least two ways to represent
+geospatial data.  To a first approximation, the Earth can be thought
+of as a sphere[^1].  We could display geospatial data on a **globe**,
+which is a scaled representation of that sphere, using latitude and
+longitude as coordinates[^2].  @fig-globe-image shows an
+example of this approach from 1782 that was used to show the voyages of Captain James Cook.  A modern example is [NOAA's Science on a Sphere](https://sos.noaa.gov/), which
+can be seen at [over 175
+locations](https://sos.noaa.gov/sos/locations/) around the World.  However, even a desktop
+globe, let alone a room-size digital globe, is cumbersome.  Doing
+calculations on a sphere is also difficult.  A more common approach is to represent the Earth and geospatial data on a two-dimensional plane, either a flat sheet of paper or a screen that we call a **map**.  The Mercator map shown in @fig-map-image is an early example of a two-dimensional representation of Earth for navigation.
+
+These two ways of representing geospatial data are examples of **coodinate systems**.  The globe is a spherical coordinate system that uses latitude and longitude as coordinates.   The Mercator map is a two-dimensional cartesian coordinate system.  A coordinate system is one component of a Coordinate Reference System.  Coordinate Systems are described in more detail in @sec-coordinate-systems.  The Mercator map is also an example of another component of a Coordinate Reference System, the **map projection**.  A map projection is a set of rules to transform coordinates from a spherical coordinate system into a two-dimensional cartesian coordinate system.  Map projections are desribed in more detail in @sec-map-projections.
 
 
-## What is a datum?
+::: {#fig-globe-and-map layout-ncol=2}
+
+![John Newton and William Palmer globe, 1782](https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/John_Newton_and_William_Palmer_SLNSW_globe_1782.jpg/500px-John_Newton_and_William_Palmer_SLNSW_globe_1782.jpg?20170115055139){#fig-globe-image height=400}
+
+![The Mercator world map of 1569](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Mercator_1569.png/960px-Mercator_1569.png){#fig-map-image height=400}
+
+Ways of representing geospatial data
+:::
+
+
+Relating coordinates expressed as latitude and longitude to a
+two-dimensional plane requires us to define a _Coordinate Reference
+System_, which is often shortened to CRS.  This not only tells us how
+coordinates in latitude and longitude relate to coordinates in a
+two-dimensional plane but also tells us locations with different
+coordinate reference systems relate to each other.  As you will see
+below, a point in one dataset with coordinates (40 $^\circ$N, -110
+$^\circ$E) is not same as a point with the same coordinates in another
+dataset, if that dataset has a different coordinate reference system.
+
+
+
+## Geospatial Data{#sec-geospatial-data}
+
+Geospatial data and information are data and information
+associated with a location or set of locations on the Earth.  It is also referred
+to as geographic data and information, georeferenced data and
+information, or geodata and geoinformation.
+
+There are two broad categories of geospatial data:
+
+- vector data,
+- raster or gridded data.
+
+Vector data are points, lines and polygons.  Examples vector datasets
+are the locations of capital cities defined by a latitude and
+longitude for each city.  The network of US interstate highways can be
+represented as a set of line segments, where the end points of each
+line segment is a latitude longitude pair.  Country boundaries can be
+represented as polygons made up of line segments.  Points, line
+segments and polygons can all be assigned values.  For example, if
+points represent the locations of capital cities, value attributes of
+each point could be the name of the city.  Other values suh as the
+population could also be assigned.  For the interstate highway data,
+line segments could have highway number as a value, but also speed
+limite or average traffic flow.  Country polygons could have area,
+population, rainfall or any number of values assiciated with it.  Once
+values are assigned to vector data, the distingction between a
+geospatal database and vector data begins to be blurred.
+
+Raster data is an rectangular array of points or areas that each have a location
+and a set values associated with them.  Raster data can represent
+values at grid intersections or as values for the area of grid cells.
+For remote sensing data grid cells are called pixels.  A grid of temperatures or an
+array of precipitation values are also raster data.
+
+@fig-vector shows the outline of Findelngletscher, a glacier in the Swiss Alps, as polygon.  The glacier outline was downloaded from the [GLIMS Glacier Database](https://nsidc.org/data/nsidc-0272/versions/1).  @fig-raster shows the same glacier as a raster.
+
+::: {#fig-data-types layout-ncol=2}
+
+
+![Vector](findeln_vector.png){#fig-vector}
+![Raster](findeln_raster.png){#fig-raster}
+
+Findelngletscher, Kanton Wallis, Switzerland, downloaded from the GLIMS Glacier Database, shown as a vector polygon and as a raster.
+:::
+
+Both vector data and raster data require a CRS.
+
+
+## How are Geospatial Data{#sec-geospatial-data-models}
+
+_Describe raster and vector data models_
+
+## NSIDC Coordinate Reference Systems{#sec-nsidc-crs}
+
+NSIDC Polar Sterographic, EASE Grid
+
+
+## Coordinate Reference Systems{#sec-crs}
+
+### What is a CRS?
+
+**C**oordinate **R**eference **S**ystems (CRS) define the position, scale and orientation of a coordinate system with respect to an object.  For geospatial data this object is the Earth.
+
+Coordinate Reference Systems for geospatial data are *Geodetic Coordinate Reference Systems* and *Projected Coordinate Reference Systems*.  *Image Coordinate Reference Systems* and *Engineering Coordinate Reference Systems* relate raster or gridded data, and survey data to Geodetic and Projected Coordinate Reference Systems.   
+
+### Components of a Coordinate Reference System{#sec-crs-components}
+
+A _Coordinate Reference System_ is a coordinate system that has been
+referenced to a datum - where datum in this sense if the full datum
+realization (points of known coordinates has been marked as physical
+monuments - needs further explanation).
+
+
+### Coordinate Systems{#sec-coordinate-systems}
+
+A coordinate system is defined by a dimension, the number of axes.  For a geospatial coordinate system, the coordinates may be latitude and longitude, or x, y, z, which have 2 and 3 dimensions respectively.  Each axis has name; the sequence of axes, the order in which axes are stated; the direction of the axis; and the units of the axis.  A coordinate syetem is related to the Earth by a datum, which defines the origin of the coordinate system relative to a model of the earth.
+
+_From Iliffe and Lott (2008)_
+
+_Coordinate System_: A set of rules that define how coordinates are assigned to locations.  A coordinate system is defined by
+a dimension (the number of axes), each axes has a coordinate associated with it.  Each axis of a coordinates system has the following attributes:
+- the name or abbreviation of the axis (e.g. Latitude);
+- the sequence number of the axis so that coordinate order is define (e.g. (x,y,z) or (z,y,x));
+- the direction of the axis in which coordinates increment;
+- the units of the axis.
+
+### Ellipsoid and Datums{#sec-ellipsoids-and-datums}
+
+_Datum_: A datum is the information that fixes a _coordinate system_ to an object (e.g. Earth).  A _Geodetic datum_ is a datum that defined the relationship of a coordinate system to an ellipsoidal model of Earth with the Geoid (I&L say real Earth).
+
+The size and shape of the best fitting ellipsoid to the Earth is GRS 1980.
+
+International Terrestrial Reference System (ITRS) describes a 3
+dimensional cartesian coordinate system in which the direction of the
+Earth's rotation axis and speed of rotation are defined.  These change
+and the International Earth Rotation and Reference Systems Service
+(IERS) monitors and predicts the Earth's rotation and the movement of
+it's poles.  This information is essential to determine the position
+of a satellite in a terrestrial (reference) system.
+
+For a global datum, the prime meridian is defined and allows for the
+movement of the poles (precession and nutation).  Note: the prime
+meridian does not agree with the old Greenwich Observatory and may be
+off by 102 m.  Greenwich prime meridian is defined by IERS.
 
 Ellipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton.
 Confirmed by measurements of length of arc.
@@ -42,10 +239,20 @@ f = 1 - (1 - e^2)^{1/2}
 $$
 
 
-## What is a coordinate reference system?
+### Map Projections {#sec-map-projections}
+
+for {{< glossary "Map projection" display="map projections">}}.  For a full treatment, please
+consult @snyder_projections_ 
+
+Projection parameters - depend on projection type.  But at the very
+least require a datum or reference ellipsoid.  Geographic coordinates
+that relate the projected surface to this sphere or ellipsoid.  This
+defines the origin of the projected coordinates.  Definitions also
+include false northings and false easting if the origin of the
+projected coordinates is not at the center of the projection???.
 
 
-## NSIDC coordinate reference systems
+### Terrestrial Reference Frames
 
 
 ## How can I define a map projects of CRS in a data file?
@@ -67,3 +274,14 @@ The latitude of a point on the reference ellipsoid is the angle formed
 by the normal to the reference surface at the point of interest, and
 the plane of the Equator or Equatorial Plane.  The Equatorial plane is
 perpendicular to the Earths axis of rotation.
+
+[^1]: To a better approximation, the Earth can be represented as an ellipsoid, or oblate spheroid,
+with the polar axis about 22 km shorter than the equatorial axis.  See @ellipsoids-and-datums for
+more information.
+
+[^2]: These are spherical or geographic coordinates.
+
+## Parking lot for links
+
+https://github.com/ICESat-2/icesat2-cookbook
+https://icesat-2.github.io/icesat2-cookbook/notebooks/geospatial-transforms/#geographic-coordinate-systems
