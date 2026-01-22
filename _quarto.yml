@@ -47,11 +47,12 @@ website:
         # href: reference-guides/working-with-data-overview.qmd
         contents:
           - section: "Finding / accessing data"
+            href: reference-guides/find-access.qmd
             contents:
               - text: "Data search and discovery"
-                href: reference-guides/dataset-search-and-discovery.qmd
+                href: 
               - text: "Data access"
-                href: reference-guides/data-access.qmd
+                href: 
           - section: "Wrangling data"
             contents:
               - text: "Subsetting"
