@@ -371,8 +371,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Accessing data</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/access-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing data</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -552,10 +555,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prerequisite-reminder" class="level4">
-<h4 class="anchored" data-anchor-id="prerequisite-reminder"><strong>Prerequisite reminder</strong></h4>
+<blockquote class="blockquote">
+<p><strong>Prerequisite reminder</strong></p>
 <p>A <a href="https://urs.earthdata.nasa.gov/">NASA Earthdata Login</a> is required for all data access methods, including download and direct cloud access.</p>
-</section>
+</blockquote>
 <section id="where-the-data-are-stored---nasa-earthdata-cloud" class="level3">
 <h3 class="anchored" data-anchor-id="where-the-data-are-stored---nasa-earthdata-cloud"><strong>Where the data are stored - NASA Earthdata Cloud</strong></h3>
 <p>The NASA Earthdata Cloud is NASA’s cloud-based archive of Earth observation data. It is hosted by Amazon Web Services (AWS) in region us-west-2. Downloading data from the Earthdata Cloud to your local computer or storage system is and will continue to be free for users. You don’t need an AWS account to download data. Alternatively, you can work directly with NSIDC DAAC holdings stored in Amazon S3 (the object storage service used by NASA Earthdata Cloud). This direct access method allows you stream data into memory and analyze it “in place”, avoiding large transfers to your local computer.</p>

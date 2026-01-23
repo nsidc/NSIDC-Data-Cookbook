@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Glossary – NSIDC Data Cookbook</title>
+<title>Accessing data – NSIDC Data Cookbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendices/contributing.html" rel="prev">
+<link href="../reference-guides/plotting-data.html" rel="next">
+<link href="../reference-guides/collection-granule-search.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -248,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/contributing.html">Appendices</a></li><li class="breadcrumb-item"><a href="../glossary/glossary.html">Glossary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Finding and accessing data</a></li><li class="breadcrumb-item"><a href="../reference-guides/access-data.html">Accessing data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -347,22 +383,22 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Working with Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../reference-guides/find-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding and accessing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference-guides/collection-granule-search.html" class="sidebar-item-text sidebar-link">
@@ -371,7 +407,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference-guides/access-data.html" class="sidebar-item-text sidebar-link">
+  <a href="../reference-guides/access-data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Accessing data</span></a>
   </div>
 </li>
@@ -493,13 +529,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendices/contributing.html" class="sidebar-item-text sidebar-link">
@@ -508,7 +544,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../glossary/glossary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../glossary/glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary</span></a>
   </div>
 </li>
@@ -519,16 +555,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-access-overview" id="toc-data-access-overview" class="nav-link active" data-scroll-target="#data-access-overview"><strong>Data Access Overview</strong></a></li>
+  <li><a href="#authentication" id="toc-authentication" class="nav-link" data-scroll-target="#authentication"><strong>Authentication</strong></a>
+  <ul class="collapse">
+  <li><a href="#authenticate-with-your-earthdata-login-profile" id="toc-authenticate-with-your-earthdata-login-profile" class="nav-link" data-scroll-target="#authenticate-with-your-earthdata-login-profile">Authenticate with your Earthdata Login profile</a></li>
+  </ul></li>
+  <li><a href="#identifiying-data-of-interest" id="toc-identifiying-data-of-interest" class="nav-link" data-scroll-target="#identifiying-data-of-interest"><strong>Identifiying data of interest</strong></a></li>
+  <li><a href="#downloading-data" id="toc-downloading-data" class="nav-link" data-scroll-target="#downloading-data"><strong>Downloading data</strong></a></li>
+  <li><a href="#direct-s3-access-of-data" id="toc-direct-s3-access-of-data" class="nav-link" data-scroll-target="#direct-s3-access-of-data"><strong>Direct S3 access of data</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/contributing.html">Appendices</a></li><li class="breadcrumb-item"><a href="../glossary/glossary.html">Glossary</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Finding and accessing data</a></li><li class="breadcrumb-item"><a href="../reference-guides/access-data.html">Accessing data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Glossary</h1>
+<h1 class="title">Accessing data</h1>
 </div>
 
 
@@ -545,65 +594,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="filter-your-search-with-the-handy-bar-below" class="level4">
-<h4 class="anchored" data-anchor-id="filter-your-search-with-the-handy-bar-below">Filter your search with the handy bar below!</h4>
-<!-- Search bar -->
-<p><input id="glossary-search" type="text" placeholder="Search terms or definitions..." style="width: 100%; padding: 0.5em; margin-bottom: 1em; font-size: 1em;"></p>
-<!-- Glossary entries manually entered for now -->
-<details>
-<summary>
-Coordinate Reference System
-</summary>
-A coordinate system that has its position, scale, and orientation defined with respect to an object. This is accomplished through a datum. For geospatial data this is usually the Earth.
-</details>
-<details>
-<summary>
-Coordinate System
-</summary>
-A set of rules that define how coordinates are assigned to points. Coordinates describing locations on Earth or another object are referenced to a Coordinate Reference System.
-</details>
-<details>
-<summary>
-Geodetic Coordinate System
-</summary>
-A coordinate reference system based on a geodetic datum.
-</details>
-<details>
-<summary>
-Map Projection
-</summary>
-A coordinate conversion from an ellipsoidal coordinate system to a plane.
-</details>
-<details>
-<summary>
-Projected Coordinate Reference System
-</summary>
-A Coordinate Reference System derived from a two dimensional geodetic coordinate reference system by applying a map projection.
-</details>
-<details>
-<summary>
-Projection Parameters
-</summary>
-Parameters defining a map projection.
-</details>
-<script>
-    const searchInput = document.getElementById("glossary-search");
-    const entries = document.querySelectorAll("details");
-
-searchInput.addEventListener("input", () => {
-  const filter = searchInput.value.toLowerCase();
-  entries.forEach(entry => {
-    const term = entry.querySelector("summary").textContent.toLowerCase();
-    const definition = entry.textContent.toLowerCase();
-    // Show if term or definition matches
-    if (term.includes(filter) || definition.includes(filter)) {
-      entry.style.display = "";
-    } else {
-      entry.style.display = "none";
-    }
-  });
-});
-</script>
+<section id="data-access-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-access-overview"><strong>Data Access Overview</strong></h2>
+<p>The are two access methods available in earthaccess. The first method is <code>download</code>, which downloads a file or files to a local computer or workstation. The second method is <code>open</code>, which streams data directly into memory (analogous to streaming a TV show or film). This approach is best used while working in the cloud next to the data (<strong>AWS region us-west-2</strong>).</p>
+</section>
+<section id="authentication" class="level2">
+<h2 class="anchored" data-anchor-id="authentication"><strong>Authentication</strong></h2>
+<blockquote class="blockquote">
+<p><strong>Prerequisite reminder</strong></p>
+<p>A <a href="https://urs.earthdata.nasa.gov/">NASA Earthdata Login</a> is required for all data access methods, including download and direct cloud access.</p>
+</blockquote>
+<section id="authenticate-with-your-earthdata-login-profile" class="level3">
+<h3 class="anchored" data-anchor-id="authenticate-with-your-earthdata-login-profile">Authenticate with your Earthdata Login profile</h3>
+<p>The following steps assume you have imported the <code>earthaccess</code> library.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>By default, <code>earthaccess.login()</code> will look for a <code>.netrc</code> or environment variables first. If neither of these are found, it will prompt you to enter your username and password. The three methods are described in the <code>earthaccess</code> documentation <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/authenticate/">here</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Enter your Earthdata Login username: your_username</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Enter your Earthdata password:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="identifiying-data-of-interest" class="level2">
+<h2 class="anchored" data-anchor-id="identifiying-data-of-interest"><strong>Identifiying data of interest</strong></h2>
+<p>Once you have identified the files you are interested in using <code>earthaccess.search_data</code>,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    short_name <span class="op">=</span> <span class="st">'ATL06'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    version <span class="op">=</span> <span class="st">'006'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    bounding_box <span class="op">=</span> (<span class="op">-</span><span class="fl">134.7</span>,<span class="fl">58.9</span>,<span class="op">-</span><span class="fl">133.9</span>,<span class="fl">59.2</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> (<span class="st">'2020-03-01'</span>,<span class="st">'2020-04-30'</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>you can access those files.</p>
+</section>
+<section id="downloading-data" class="level2">
+<h2 class="anchored" data-anchor-id="downloading-data"><strong>Downloading data</strong></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>download <span class="op">=</span> earthaccess.download(files)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>QUEUEING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 1706.04it/s]
+PROCESSING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:13&lt;00:00,  6.89s/it]
+COLLECTING RESULTS | : 100%|████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 26379.27it/s]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>download</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[PosixPath(/current/working/directory/data/2026-01-23-50429a/ATL06_20200310121504_11420606_006_01.h5'),
+ PosixPath('/current/working/directory/data/2026-01-23-50429a/ATL06_20200312233336_11800602_006_01.h5'),
+ PosixPath('/current/working/directory/data/2026-01-23-50429a/ATL06_20200410220936_02350702_006_02.h5'),
+ PosixPath('/current/working/directory/data/2026-01-23-50429a/ATL06_20200412104246_02580706_006_02.h5')]</code></pre>
+<p>By default files are downloaded to a sub-directory of the current working directory with a name similar to <code>./data/YYYY-MM-DD_UUID</code>, where <code>YYYY-MM-DD</code> is the year, month and day of the current date, and <code>UUID</code> is a unique identifier. You can override this behaviour by setting the <code>local_path</code> keyword to a local directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>download <span class="op">=</span> earthaccess.download(files, local_path<span class="op">=</span><span class="st">'/path/to/local/data/directory/'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="direct-s3-access-of-data" class="level2">
+<h2 class="anchored" data-anchor-id="direct-s3-access-of-data"><strong>Direct S3 access of data</strong></h2>
+<p>Streaming is an efficient way to access data, without downloading and saving it to disk. This is especially useful if you are working in a shared cloud-hosted computing environment such as a Jupyter Hub or Google CoLab. For best performance, stream data to a cloud compute environment in the same region as where the data are stored to take advantage of the high bandwidth between the computing and storage environments. For NASA Earthdata, this is AWS region us-west-2.</p>
+<p>Streaming data with the <code>open</code> method is very similar to <code>download</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fileobjects <span class="op">=</span> earthaccess.<span class="bu">open</span>(files)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>QUEUEING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 1706.04it/s]
+PROCESSING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:13&lt;00:00,  6.89s/it]
+COLLECTING RESULTS | : 100%|████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 26379.27it/s]</code></pre>
+<p><code>earthaccess.open</code> returns a list of <em>file-like objects</em>. These can be used in the same way as a filepath with third-party applications such as <code>xarray</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xarray.open_mfdataset(fileobjects)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xarray.open_dataset(fileobjects[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -1024,11 +1071,14 @@ searchInput.addEventListener("input", () => {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../appendices/contributing.html" class="pagination-link" aria-label="Contributing">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Contributing</span>
+      <a href="../reference-guides/collection-granule-search.html" class="pagination-link" aria-label="Searching for collections and granules">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Searching for collections and granules</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../reference-guides/plotting-data.html" class="pagination-link" aria-label="Plotting data on a map">
+        <span class="nav-page-text">Plotting data on a map</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
