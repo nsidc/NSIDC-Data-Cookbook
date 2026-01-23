@@ -1,0 +1,98 @@
+---
+title: "Accessing data"
+---
+
+## **Data Access Overview**
+
+The are two access methods available in earthaccess. The first method is `download`, which downloads a file or files to a local computer or workstation. The second method is `open`, which streams data directly into memory (analogous to streaming a TV show or film). This approach is best used while working in the cloud next to the data (**AWS region us-west-2**).
+
+## **Authentication**
+
+> **Prerequisite reminder** 
+>
+>A [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) is required for all data access methods, including download and direct cloud access.
+
+### Authenticate with your Earthdata Login profile
+
+The following steps assume you have imported the `earthaccess` library.
+
+```python
+import earthaccess
+```
+
+By default, `earthaccess.login()` will look for a `.netrc` or environment variables first.  If neither of these are found, it will prompt you to enter your username and password.  The three methods are described in the `earthaccess` documentation [here](https://earthaccess.readthedocs.io/en/stable/user_guide/authenticate/).
+
+```python
+auth = earthaccess.login()
+Enter your Earthdata Login username: your_username
+Enter your Earthdata password:
+```
+
+## **Identifiying data of interest**
+
+Once you have identified the files you are interested in using `earthaccess.search_data`,
+
+```python
+files = earthaccess.search_data(
+    short_name = 'ATL06',
+    version = '006',
+    bounding_box = (-134.7,58.9,-133.9,59.2),
+    temporal = ('2020-03-01','2020-04-30'),
+)
+```
+you can access those files.
+
+## **Downloading data**
+
+```python
+download = earthaccess.download(files)
+```
+```
+QUEUEING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 1706.04it/s]
+PROCESSING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:13<00:00,  6.89s/it]
+COLLECTING RESULTS | : 100%|████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 26379.27it/s]
+```
+```python
+download
+```
+```
+[PosixPath(/current/working/directory/data/2026-01-23-50429a/ATL06_20200310121504_11420606_006_01.h5'),
+ PosixPath('/current/working/directory/data/2026-01-23-50429a/ATL06_20200312233336_11800602_006_01.h5'),
+ PosixPath('/current/working/directory/data/2026-01-23-50429a/ATL06_20200410220936_02350702_006_02.h5'),
+ PosixPath('/current/working/directory/data/2026-01-23-50429a/ATL06_20200412104246_02580706_006_02.h5')]
+```
+By default files are downloaded to a sub-directory of the current working directory with a name similar to `./data/YYYY-MM-DD_UUID`, where `YYYY-MM-DD` is the year, month and day of the current date, and `UUID` is a unique identifier.  You can override this behaviour by setting the `local_path` keyword to a local directory.
+
+```python
+download = earthaccess.download(files, local_path='/path/to/local/data/directory/')
+```
+
+## **Direct S3 access of data**
+
+Streaming is an efficient way to access data, without downloading and saving it to disk. This is especially useful if you are working in a shared cloud-hosted computing environment such as a Jupyter Hub or Google CoLab.  For best performance, stream data to a cloud compute environment in the same region as where the data are stored to take advantage of the high bandwidth between the computing and storage environments. For NASA Earthdata, this is AWS region us-west-2.
+
+Streaming data with the `open` method is very similar to `download`.
+
+```python
+fileobjects = earthaccess.open(results)
+```
+```
+QUEUEING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 1706.04it/s]
+PROCESSING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:13<00:00,  6.89s/it]
+COLLECTING RESULTS | : 100%|████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 26379.27it/s]
+```
+
+`earthaccess.open` returns a list of _file-like objects_.  These can be used in the same way as a filepath with third-party applications such as `xarray`.
+
+```python
+ds = xarray.open_mfdataset(fileobjects)
+```
+
+or
+
+```python
+ds = xarray.open_dataset(fileobjects[0])
+```
+
+
+

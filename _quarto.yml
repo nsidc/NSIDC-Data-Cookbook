@@ -52,7 +52,7 @@ website:
               - text: "Searching for collections and granules"
                 href: reference-guides/collection-granule-search.qmd
               - text: "Accessing data"
-                href: 
+                href: reference-guides/access-data.qmd
           - section: "Wrangling data"
             contents:
               - text: "Subsetting"
