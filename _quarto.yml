@@ -46,12 +46,12 @@ website:
       - section: "Working with Data"
         # href: reference-guides/working-with-data-overview.qmd
         contents:
-          - section: "Finding / accessing data"
+          - section: "Finding and accessing data"
             href: reference-guides/find-access.qmd
             contents:
-              - text: "Data search and discovery"
-                href: 
-              - text: "Data access"
+              - text: "Searching for collections and granules"
+                href: reference-guides/collection-granule-search.qmd
+              - text: "Accessing data"
                 href: 
           - section: "Wrangling data"
             contents:
