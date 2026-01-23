@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data types and formats – NSIDC Data Cookbook</title>
+<title>Searching for collections and granules – NSIDC Data Cookbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../reference-guides/collections-granules.html" rel="next">
-<link href="../tools-we-use.html" rel="prev">
+<link href="../reference-guides/plotting-data.html" rel="next">
+<link href="../reference-guides/find-access.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -249,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/data-structures.html">NSIDC Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/data-structures.html">Data types and formats</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Finding and accessing data</a></li><li class="breadcrumb-item"><a href="../reference-guides/collection-granule-search.html">Searching for collections and granules</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -313,16 +348,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">NSIDC Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference-guides/data-structures.html" class="sidebar-item-text sidebar-link active">
+  <a href="../reference-guides/data-structures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data types and formats</span></a>
   </div>
 </li>
@@ -348,25 +383,25 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Working with Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../reference-guides/find-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding and accessing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference-guides/collection-granule-search.html" class="sidebar-item-text sidebar-link">
+  <a href="../reference-guides/collection-granule-search.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Searching for collections and granules</span></a>
   </div>
 </li>
@@ -517,16 +552,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quickstart-guide-with-instructions-for-installing-earthaccess." id="toc-quickstart-guide-with-instructions-for-installing-earthaccess." class="nav-link active" data-scroll-target="#quickstart-guide-with-instructions-for-installing-earthaccess.">Quickstart Guide with instructions for installing <code>earthaccess</code>.</a></li>
+  <li><a href="#search-for-collections-i.e.-data-sets" id="toc-search-for-collections-i.e.-data-sets" class="nav-link" data-scroll-target="#search-for-collections-i.e.-data-sets"><strong>Search for collections (i.e.&nbsp;data sets)</strong></a></li>
+  <li><a href="#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters" id="toc-search-for-granules-e.g.-files-within-a-collection-using-filter-parameters" class="nav-link" data-scroll-target="#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters"><strong>Search for granules (e.g.&nbsp;files) within a collection using filter parameters</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/data-structures.html">NSIDC Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/data-structures.html">Data types and formats</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/find-access.html">Finding and accessing data</a></li><li class="breadcrumb-item"><a href="../reference-guides/collection-granule-search.html">Searching for collections and granules</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data types and formats</h1>
+<h1 class="title">Searching for collections and granules</h1>
 </div>
 
 
@@ -543,67 +586,126 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>There are many common data types/ structures and terminology to go along with them. Some examples:</p>
-<ul>
-<li><strong>Tabular</strong> – rows and columns, often stored in CSV or TSV files. Each row is an observation, and each column is a variable (e.g., time, latitude, longitude, temperature).<br>
-</li>
-<li><strong>Data Frames</strong> – tabular data structures used in programming languages like R or Python (pandas). Data frames allow for more complex indexing, metadata, and transformations than simple tabular files.<br>
-</li>
-<li><strong>Swath</strong> – along-track measurements collected as the satellite passes over an area, usually irregular in shape and resolution.<br>
-</li>
-<li><strong>Raster / Grids</strong> – data organized into regular grid cells, each cell representing a spatial unit (e.g., 25 km × 25 km grid of snow cover).<br>
-</li>
-<li><strong>Resampling</strong> – methods for transforming data between swath, raster, or other structures (e.g., nearest neighbor, bilinear interpolation).</li>
-</ul>
-<p>How to work with file formats commonly found at NSIDC: In most cases, it’s best to avoid low-level libraries such as <code>netCDF4</code> or <code>h5py</code>. Higher-level libraries provide more intuitive access, automatically handle metadata, and streamline analysis. Some format descriptions and reccomendations are in the table below.</p>
+<p><strong><code>earthaccess</code> Python library</strong></p>
+<p><code>earthaccess</code> is a Python library to <strong>search for</strong> and <strong>download</strong> or <strong>stream</strong> NASA Earth science data with just a few lines of code.</p>
+<blockquote class="blockquote">
+<p><em>“earthaccess&nbsp;revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems.”</em></p>
+<p>Luis López, an NSIDC software developer and&nbsp;earthaccess&nbsp;creator</p>
+</blockquote>
+<p>More complete documentation for using <code>earthaccess</code> to search for data can be found <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/search/">here</a>.</p>
+<section id="quickstart-guide-with-instructions-for-installing-earthaccess." class="level3">
+<h3 class="anchored" data-anchor-id="quickstart-guide-with-instructions-for-installing-earthaccess."><a href="https://earthaccess.readthedocs.io/en/stable/quick-start/">Quickstart Guide</a> with instructions for installing <code>earthaccess</code>.</h3>
+</section>
+<section id="search-for-collections-i.e.-data-sets" class="level2">
+<h2 class="anchored" data-anchor-id="search-for-collections-i.e.-data-sets"><strong>Search for collections (i.e.&nbsp;data sets)</strong></h2>
+<section id="a-basic-search-with-earthaccess.search_datasets" class="level4">
+<h4 class="anchored" data-anchor-id="a-basic-search-with-earthaccess.search_datasets">A basic search with <code>earthaccess.search_datasets</code></h4>
+<p><code>earthaccess.search_datasets</code> allows you to search for NASA collections using keywords. As a simple example, we’ll search for data sets with the keyword “icesat-2” associated with them.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> earthaccess.search_datasets(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    keyword<span class="op">=</span><span class="st">"icesat-2"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>search_datasets</code> queries NASA’s Common Metadata Repository (CMR) and returns a list of collection objects associated with that keyword. We can find the number of collections or CMR “hits” using <code>len()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(datasets))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>77</code></pre>
+<p>Other parameters accepted by <code>earthaccess.search_datasets</code> can be found <a href="https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_datasets">here</a>.</p>
+<p>Collection objects have a <code>summary</code> method associated with them that we can use to explore certain metadata for the collection. We can use the built-in Python <code>pprint</code> module to view the summary metadata.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(datasets[<span class="dv">0</span>].summary()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>{'cloud-info': {'Region': 'us-west-2',
+                'S3BucketAndObjectPrefixNames': ['nsidc-cumulus-prod-protected/ATLAS/ATL08/007',
+                                                 'nsidc-cumulus-prod-public/ATLAS/ATL08/007'],
+                'S3CredentialsAPIDocumentationURL': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentialsREADME',
+                'S3CredentialsAPIEndpoint': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentials'},
+ 'concept-id': 'C3565574177-NSIDC_CPRD',
+ 'file-type': "[{'FormatType': 'Native', 'Format': 'HDF5', "
+              "'FormatDescription': 'HTTPS'}]",
+ 'get-data': ['https://search.earthdata.nasa.gov/search/granules?p=C3565574177-NSIDC_CPRD',
+              'https://openaltimetry.earthdatacloud.nasa.gov/data/',
+              'https://nsidc.org/data/data-access-tool/ATL08/versions/7/',
+              'https://cmr.earthdata.nasa.gov/virtual-directory/collections/C3565574177-NSIDC_CPRD',
+              'https://earthaccess.readthedocs.io/en/stable/'],
+ 'short-name': 'ATL08',
+ 'version': '007'}</code></pre>
+<p>For each collection, <code>summary</code> returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM): - <code>concept-id</code> is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center). - <code>short_name</code> is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after ‘DATA SET ID’. See the table below for a list of the shortnames for ICESat-2 collections. - <code>version</code> is the version of each collection. - <code>file-type</code> gives information about the file format of the collection granules. - <code>get-data</code> is a collection of URLs that can be used to access the data, collection landing pages and data tools. - <code>cloud-info</code> this is for cloud-hosted data and provides additional information about the location of the S3 bucket that holds the data and where to get temporary AWS S3 credentials to access the S3 buckets. <code>earthaccess</code> handles these credentials and the links to the S3 buckets, so in general you won’t need to worry about this information.</p>
+<p>For the ICESat-2 search results, within the concept-id, there is a provider-id <code>NSIDC_CPRD</code>. <code>NSIDC_CPRD</code> is for the <em>cloud-hosted</em> collections.</p>
+<p>For ICESat-2, <code>ShortNames</code> are generally how different products are referred to.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 54%">
-<col style="width: 33%">
+<col style="width: 37%">
+<col style="width: 62%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>File Format</th>
-<th>Description</th>
-<th>Recommended Tools</th>
+<th style="text-align: center;">ShortName</th>
+<th style="text-align: left;">Product Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>NetCDF4 / NetCDFx</strong></td>
-<td>Multidimensional climate/remote sensing data (time, lat, lon, variables).</td>
-<td><code>xarray</code> (<code>xr.open_dataset</code>) in Python; <code>terra</code> or <code>ncdf4</code> in R.</td>
+<td style="text-align: center;">ATL03</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L2A Global Geolocated Photon Data</td>
 </tr>
 <tr class="even">
-<td><strong>HDF5</strong></td>
-<td>Hierarchical format for storing arrays, tables, and metadata; used widely in NASA products.</td>
-<td><code>xarray</code>, <code>pandas</code>; avoid <code>h5py</code> unless necessary.</td>
+<td style="text-align: center;">ATL06</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Land Ice Height</td>
 </tr>
 <tr class="odd">
-<td><strong>HDF-EOS</strong></td>
-<td>Earth Observing System variant of HDF, often with swath, grid, or point structures.</td>
-<td><code>xarray</code>, <code>h5netcdf</code>, NASA <code>harmony-py</code>.</td>
+<td style="text-align: center;">ATL07</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Sea Ice Height</td>
 </tr>
 <tr class="even">
-<td><strong>Shapefile</strong></td>
-<td>Vector geospatial data (points, lines, polygons) with CRS support.</td>
-<td><code>geopandas</code> (Python); <code>sf</code> (R).</td>
+<td style="text-align: center;">ATL08</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Land and Vegetation Height</td>
 </tr>
 <tr class="odd">
-<td><strong>GeoTIFF</strong></td>
-<td>Georeferenced raster imagery and gridded data.</td>
-<td><code>rasterio</code>, <code>rioxarray</code> (Python); <code>terra</code>, <code>raster</code> (R).</td>
+<td style="text-align: center;">ATL09</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Calibrated Backscatter Profiles and Atmospheric Layer Characteristics</td>
 </tr>
 <tr class="even">
-<td><strong>CSV/TSV</strong></td>
-<td>Tabular text-based files, rows = observations, columns = variables.</td>
-<td><code>pandas</code> (Python); <code>readr</code>/<code>data.table</code>/<code>tibble</code> (R).</td>
+<td style="text-align: center;">ATL10</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Sea Ice Freeboard</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ATL11</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3B Slope-Corrected Land Ice Height Time Series</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ATL12</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Ocean Surface Height</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ATL13</td>
+<td style="text-align: left;">ATLAS/ICESat-2 L3A Along Track Inland Surface Water Data</td>
 </tr>
 </tbody>
 </table>
+</section>
+</section>
+<section id="search-for-granules-e.g.-files-within-a-collection-using-filter-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="search-for-granules-e.g.-files-within-a-collection-using-filter-parameters"><strong>Search for granules (e.g.&nbsp;files) within a collection using filter parameters</strong></h2>
+<section id="a-simple-example-with-earthaccess.search_data" class="level4">
+<h4 class="anchored" data-anchor-id="a-simple-example-with-earthaccess.search_data">A simple example with <code>earthaccess.search_data</code></h4>
+<p><code>earthaccess.search_data</code> allows you to search for specific granules (i.e.&nbsp;files or bundles of files) within a specified collection using filters.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    short_name <span class="op">=</span> <span class="st">'ATL06'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    version <span class="op">=</span> <span class="st">'006'</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    bounding_box <span class="op">=</span> (<span class="op">-</span><span class="fl">134.7</span>,<span class="fl">58.9</span>,<span class="op">-</span><span class="fl">133.9</span>,<span class="fl">59.2</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> (<span class="st">'2020-03-01'</span>,<span class="st">'2020-04-30'</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>search_data</code> queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects from the data set we specified using <code>short_name</code> and <code>version</code> that fall within the spatial and temporal bounds we provided. We can find the number of granules or CMR “hits” returned for those filter paramaters using <code>len()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(files))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>4</code></pre>
+<p>Other parameters accepted by <code>earthaccess.search_datasets</code> can be found <a href="https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_data">here</a> and additional usage examples can be found <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/search/#search-for-data-granules-using-search_data">here</a>.</p>
+<p>We can get some basic information about the files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(files[<span class="dv">0</span>].size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>&lt;bound method DataGranule.size of Collection: {'EntryTitle': 'ATLAS/ICESat-2 L3A Land Ice Height V006'}
+Spatial coverage: {'HorizontalSpatialDomain': {'Geometry': {'GPolygons': [{'Boundary': {'Points': [{'Longitude': -134.3399, 'Latitude': 59.03152}, {'Longitude': -134.44371, 'Latitude': 59.03709}, {'Longitude': -134.75456, 'Latitude': 57.4161}, {'Longitude': -134.6551, 'Latitude': 57.41076}, {'Longitude': -134.3399, 'Latitude': 59.03152}]}}]}}}
+Temporal coverage: {'RangeDateTime': {'BeginningDateTime': '2020-03-10T12:15:10.646Z', 'EndingDateTime': '2020-03-10T12:15:58.724Z'}}
+Size(MB): 3.034775733947754
+Data: ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/006/2020/03/10/ATL06_20200310121504_11420606_006_01.h5']&gt;</code></pre>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1021,13 +1123,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tools-we-use.html" class="pagination-link" aria-label="Tools we use">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tools we use</span>
+      <a href="../reference-guides/find-access.html" class="pagination-link" aria-label="Finding and accessing data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Finding and accessing data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../reference-guides/collections-granules.html" class="pagination-link" aria-label="NASA collections and granules">
-        <span class="nav-page-text">NASA collections and granules</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../reference-guides/plotting-data.html" class="pagination-link" aria-label="Plotting data on a map">
+        <span class="nav-page-text">Plotting data on a map</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

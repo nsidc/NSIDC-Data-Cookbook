@@ -21,40 +21,68 @@
     "text": "Projections\nNSIDC Polar Stereographic Projection NSIDC EASE Grid\nCF Conventions Grid Mappings\nLatitude Geodetic Datums\nSnyder\nrioxarray.raster_dataset\nrasterio.affine GDAL Affine pyproj cartopy.crs.CRS"
   },
   {
-    "objectID": "reference-guides/get-edl.html",
-    "href": "reference-guides/get-edl.html",
-    "title": "NASA Earthdata Login",
+    "objectID": "reference-guides/overview.html",
+    "href": "reference-guides/overview.html",
+    "title": "Reference Guides",
     "section": "",
-    "text": "NASA Earthdata are freely accessible to all users, but a NASA Earthdata Login is required for access. Users can register for an Earthdata Login at https://urs.earthdata.nasa.gov/.\nSome programmatic data access methods are simplified by setting up your Earthdata Login credentials in a netrc file for easy authentication. Instructions for creating a netrc file can be found here.",
+    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
+  },
+  {
+    "objectID": "reference-guides/overview.html#introduction",
+    "href": "reference-guides/overview.html#introduction",
+    "title": "Reference Guides",
+    "section": "",
+    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
+  },
+  {
+    "objectID": "reference-guides/points-pixels-grids/points_pixels_grids.html",
+    "href": "reference-guides/points-pixels-grids/points_pixels_grids.html",
+    "title": "Points, Pixels, Grids",
+    "section": "",
+    "text": "Points, Pixels, Grids\nA placeholder for a deeper dive into grids and resampling. I plan on basing this on Ken Knowles page of a similar name but modified for gdal, python and other new tools.\nhttps://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells"
+  },
+  {
+    "objectID": "reference-guides/collection-granule-search.html",
+    "href": "reference-guides/collection-granule-search.html",
+    "title": "Searching for collections and granules",
+    "section": "",
+    "text": "earthaccess Python library\nearthaccess is a Python library to search for and download or stream NASA Earth science data with just a few lines of code.\nMore complete documentation for using earthaccess to search for data can be found here.",
     "crumbs": [
-      "Getting Started",
-      "Getting an Earthdata Login"
+      "Working with Data",
+      "Finding and accessing data",
+      "Searching for collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/datasets.html",
-    "href": "reference-guides/datasets.html",
-    "title": "Datasets",
-    "section": "",
-    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nVIIRS subsetting “on your own” in lieu of service availability\nWhat others?",
+    "objectID": "reference-guides/collection-granule-search.html#search-for-collections-i.e.-data-sets",
+    "href": "reference-guides/collection-granule-search.html#search-for-collections-i.e.-data-sets",
+    "title": "Searching for collections and granules",
+    "section": "Search for collections (i.e. data sets)",
+    "text": "Search for collections (i.e. data sets)\n\nA basic search with earthaccess.search_datasets\nearthaccess.search_datasets allows you to search for NASA collections using keywords. As a simple example, we’ll search for data sets with the keyword “icesat-2” associated with them.\ndatasets = earthaccess.search_datasets(\n    keyword=\"icesat-2\"\n    )\nsearch_datasets queries NASA’s Common Metadata Repository (CMR) and returns a list of collection objects associated with that keyword. We can find the number of collections or CMR “hits” using len().\nprint(len(datasets))\n77\nOther parameters accepted by earthaccess.search_datasets can be found here.\nCollection objects have a summary method associated with them that we can use to explore certain metadata for the collection. We can use the built-in Python pprint module to view the summary metadata.\npprint.pprint(datasets[0].summary()))\n{'cloud-info': {'Region': 'us-west-2',\n                'S3BucketAndObjectPrefixNames': ['nsidc-cumulus-prod-protected/ATLAS/ATL08/007',\n                                                 'nsidc-cumulus-prod-public/ATLAS/ATL08/007'],\n                'S3CredentialsAPIDocumentationURL': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentialsREADME',\n                'S3CredentialsAPIEndpoint': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentials'},\n 'concept-id': 'C3565574177-NSIDC_CPRD',\n 'file-type': \"[{'FormatType': 'Native', 'Format': 'HDF5', \"\n              \"'FormatDescription': 'HTTPS'}]\",\n 'get-data': ['https://search.earthdata.nasa.gov/search/granules?p=C3565574177-NSIDC_CPRD',\n              'https://openaltimetry.earthdatacloud.nasa.gov/data/',\n              'https://nsidc.org/data/data-access-tool/ATL08/versions/7/',\n              'https://cmr.earthdata.nasa.gov/virtual-directory/collections/C3565574177-NSIDC_CPRD',\n              'https://earthaccess.readthedocs.io/en/stable/'],\n 'short-name': 'ATL08',\n 'version': '007'}\nFor each collection, summary returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM): - concept-id is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center). - short_name is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after ‘DATA SET ID’. See the table below for a list of the shortnames for ICESat-2 collections. - version is the version of each collection. - file-type gives information about the file format of the collection granules. - get-data is a collection of URLs that can be used to access the data, collection landing pages and data tools. - cloud-info this is for cloud-hosted data and provides additional information about the location of the S3 bucket that holds the data and where to get temporary AWS S3 credentials to access the S3 buckets. earthaccess handles these credentials and the links to the S3 buckets, so in general you won’t need to worry about this information.\nFor the ICESat-2 search results, within the concept-id, there is a provider-id NSIDC_CPRD. NSIDC_CPRD is for the cloud-hosted collections.\nFor ICESat-2, ShortNames are generally how different products are referred to.\n\n\n\n\n\n\n\nShortName\nProduct Description\n\n\n\n\nATL03\nATLAS/ICESat-2 L2A Global Geolocated Photon Data\n\n\nATL06\nATLAS/ICESat-2 L3A Land Ice Height\n\n\nATL07\nATLAS/ICESat-2 L3A Sea Ice Height\n\n\nATL08\nATLAS/ICESat-2 L3A Land and Vegetation Height\n\n\nATL09\nATLAS/ICESat-2 L3A Calibrated Backscatter Profiles and Atmospheric Layer Characteristics\n\n\nATL10\nATLAS/ICESat-2 L3A Sea Ice Freeboard\n\n\nATL11\nATLAS/ICESat-2 L3B Slope-Corrected Land Ice Height Time Series\n\n\nATL12\nATLAS/ICESat-2 L3A Ocean Surface Height\n\n\nATL13\nATLAS/ICESat-2 L3A Along Track Inland Surface Water Data",
     "crumbs": [
-      "NSIDC Data",
-      "Quirky datasets"
+      "Working with Data",
+      "Finding and accessing data",
+      "Searching for collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/definitions.html",
-    "href": "reference-guides/definitions.html",
-    "title": "Definitions",
-    "section": "",
-    "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
+    "objectID": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
+    "href": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
+    "title": "Searching for collections and granules",
+    "section": "Search for granules (e.g. files) within a collection using filter parameters",
+    "text": "Search for granules (e.g. files) within a collection using filter parameters\n\nA simple example with earthaccess.search_data\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '006',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects from the data set we specified using short_name and version that fall within the spatial and temporal bounds we provided. We can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_datasets can be found here and additional usage examples can be found here.\nWe can get some basic information about the files:\npprint.pprint(files[0].size)\n&lt;bound method DataGranule.size of Collection: {'EntryTitle': 'ATLAS/ICESat-2 L3A Land Ice Height V006'}\nSpatial coverage: {'HorizontalSpatialDomain': {'Geometry': {'GPolygons': [{'Boundary': {'Points': [{'Longitude': -134.3399, 'Latitude': 59.03152}, {'Longitude': -134.44371, 'Latitude': 59.03709}, {'Longitude': -134.75456, 'Latitude': 57.4161}, {'Longitude': -134.6551, 'Latitude': 57.41076}, {'Longitude': -134.3399, 'Latitude': 59.03152}]}}]}}}\nTemporal coverage: {'RangeDateTime': {'BeginningDateTime': '2020-03-10T12:15:10.646Z', 'EndingDateTime': '2020-03-10T12:15:58.724Z'}}\nSize(MB): 3.034775733947754\nData: ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/006/2020/03/10/ATL06_20200310121504_11420606_006_01.h5']&gt;",
+    "crumbs": [
+      "Working with Data",
+      "Finding and accessing data",
+      "Searching for collections and granules"
+    ]
   },
   {
     "objectID": "reference-guides/projections.html",
     "href": "reference-guides/projections.html",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -65,7 +93,7 @@
     "href": "reference-guides/projections.html#overview",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -853,48 +881,65 @@
     ]
   },
   {
-    "objectID": "reference-guides/dataset-search-and-discovery.html",
-    "href": "reference-guides/dataset-search-and-discovery.html",
-    "title": "Dataset Search and Discovery",
+    "objectID": "reference-guides/definitions.html",
+    "href": "reference-guides/definitions.html",
+    "title": "Definitions",
     "section": "",
-    "text": "NASA Common Metadata Repository\nThere are a variety of search and discovery methods allowing users to find NASA Earthdata from a graphical user interface (GUI) or using programmatic access methods, depending on preference. Any search and discovery method leverages the NASA Common Metadata Repository to find data of interest.\nNASA’s Common Metadata Repository (CMR) is a high-performance, high-quality, continuously evolving metadata system that catalogs all data and service metadata records for NASA’s Earth Observing System Data and Information System (EOSDIS) and will be the authoritative management system for all EOSDIS metadata. These metadata records are registered, modified, discovered, and accessed through programmatic interfaces leveraging standard protocols and APIs.\nCMR is the keystone that makes NASA’s Earth observation data discoverable. As a metadata repository, CMR contains Unified Metadata Model (UMM) schema records that describe individual Earth data files (UMM-Granules), collections of files (UMM-Collections), scientific details about the data files (UMM-Variables), related tools and services that act on the data files (UMM-Tools and -Services), and pertinent relationships between these concepts. Using the UMM allows CMR to host its metadata records in several supported native formats, with translation services available between formats.\n\n\nSearch and Discovery Methods\n\nGraphical User Interfaces\n\nNASA Earthdata Search\nAll of NASA Earthdata are available through NASA Earthdata Search, not just data archived through the NSIDC DAAC. Help article for using Earthdata Search.\n\n\nNSIDC Data Access Tool\nThe NSIDC Data Access Tool is accessible from landing pages on the NSIDC website, and is an easy way to filter for files of interest without leaving nsidc.org. Help article for the NSIDC Data Access Tool.\n\n\n\nProgrammatic\nThe majority of the shorter form “How-To Guides” and longer form “Tutorials / Workshops” will present programmatic data access methods using Python. We hope to expand to other languages, such as R, in the future.\nearthaccess Python library\nearthaccess is a Python library to search for and download or stream NASA Earth science data with just a few lines of code.\n\n“earthaccess revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems.”\nLuis López, an NSIDC software developer and earthaccess creator\n\nInstructions for searching for data using earthaccess here.",
+    "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
+  },
+  {
+    "objectID": "reference-guides/find-access.html",
+    "href": "reference-guides/find-access.html",
+    "title": "Finding and accessing data",
+    "section": "",
+    "text": "A NASA Earthdata Login is required for all data access methods, including download and direct cloud access.",
     "crumbs": [
       "Working with Data",
-      "Finding / accessing data",
-      "Data search and discovery"
+      "Finding and accessing data"
     ]
   },
   {
-    "objectID": "reference-guides/points-pixels-grids/points_pixels_grids.html",
-    "href": "reference-guides/points-pixels-grids/points_pixels_grids.html",
-    "title": "Points, Pixels, Grids",
-    "section": "",
-    "text": "Points, Pixels, Grids\nA placeholder for a deeper dive into grids and resampling. I plan on basing this on Ken Knowles page of a similar name but modified for gdal, python and other new tools.\nhttps://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells"
-  },
-  {
-    "objectID": "reference-guides/overview.html",
-    "href": "reference-guides/overview.html",
-    "title": "Reference Guides",
-    "section": "",
-    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
-  },
-  {
-    "objectID": "reference-guides/overview.html#introduction",
-    "href": "reference-guides/overview.html#introduction",
-    "title": "Reference Guides",
-    "section": "",
-    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
-  },
-  {
-    "objectID": "reference-guides/data-access.html",
-    "href": "reference-guides/data-access.html",
-    "title": "Data access",
-    "section": "",
-    "text": "Prerequisite reminder\nA NASA Earthdata Login is required for all data access methods, including download and direct cloud access.\n\n\nNASA Earthdata Cloud\nThe NASA Earthdata Cloud is NASA’s cloud-based archive of Earth observation data. It is hosted by Amazon Web Services (AWS) in region us-west-2. Downloading data from the Earthdata Cloud to your local computer or storage system is and will continue to be free for users. You don’t need an AWS account to download data. Alternatively, you can work directly with NSIDC DAAC holdings stored in Amazon S3 (the object storage service used by NASA Earthdata Cloud). This direct access method allows you stream data into memory and analyze it “in place”, avoiding large transfers to your local computer.\nOptions for accessing NASA Earthdata are outlined below:\n\n\nOption 1: Browser-Based Download (No Coding Required)\nIf you prefer a graphical interface, use one of these web-based tools:\nNASA Earthdata Search - Explore, filter and customize data before downloading files. Instructions for using Earthdata Search to find and access data can be found in our Earthdata Search guide.\nimage\nData Access Tool - The NSIDC Data Access Tool can be accessed from a data set’s landing page. Example: ATLAS/ICESat-2 L2A Global Geolocated Photon Data. (ATL03, Version 7) Landing Page. In the right-hand menu on a data set landing page, click “Data Access & Tools”. You will be directed to the top of a list of tool and service “cards” with links to various data access methods. Click on the card title “Data Access Tool” to be directed to the Data Access Tool interface for that particular data set. The Data Access Tool allows users to filter files within a data set using spatial bounds, temporal ranges, and filename wildcards.\nHelp article on using the Data Access Tool: https://nsidc.org/data/user-resources/help-center/filter-and-order-data-set-web-page-using-data-access-tool\n\n\nOption 2: Python (earthaccess Library)\nThe earthaccess Python library provides a streamlined way to search, authenticate, and download NASA Earthdata. It works both locally and in the cloud (e.g., on EC2 or JupyterHub environments).\nearthaccess documentation\nHave reference/link to one of our “how do I’s” here?\n\n\nOption 3: Command Line Tools (wget, curl, PODAAC subscriber)\nIf you’re comfortable using the terminal, command-line tools allow flexible and efficient downloading.\nwget or curl – Download known files or batch download from an HTTPS URL list. Learn to create .txt files of download links here: Creating Text Files of HTTPS and S3 URLs for Earthdata Cloud Data Access\nPODAAC Data Subscriber – A Python-based command-line tool that supports spatial and temporal filtering. Though designed for PODAAC, it can be adapted for NSIDC and other DAACs.\nAll of these command line options are detailed in this help article: Downloading Data from Earthdata Cloud to Your Local Computer Using the Command Line",
+    "objectID": "reference-guides/find-access.html#programmatic-data-access-options",
+    "href": "reference-guides/find-access.html#programmatic-data-access-options",
+    "title": "Finding and accessing data",
+    "section": "Programmatic data access options",
+    "text": "Programmatic data access options\n\n\n\nProgrammatic method\nStrengths\nResource\n\n\n\n\nearthaccess Python library\nRecommended method - Search for and download or stream NASA Earth science data with just a few lines of code.\nDocumentation\n\n\ncommand line tools, e.g. curl\nQuick access if you already know what you need and you are not a Python user\nDownloading Data from Earthdata Cloud to Your Local Computer Using the Command Line",
     "crumbs": [
       "Working with Data",
-      "Finding / accessing data",
-      "Data access"
+      "Finding and accessing data"
+    ]
+  },
+  {
+    "objectID": "reference-guides/find-access.html#graphical-user-interfaces-enabling-data-access",
+    "href": "reference-guides/find-access.html#graphical-user-interfaces-enabling-data-access",
+    "title": "Finding and accessing data",
+    "section": "Graphical User Interfaces enabling data access",
+    "text": "Graphical User Interfaces enabling data access\n\n\n\nGraphical User Interface\nStrengths\nResource\n\n\n\n\nNASA Earthdata Search\nDiscover, visualize, and access petabytes of Earth observing data from all NASA DAACs. Filter data by mission, keyword, spatial and temporal range, filename, etc. Subset, reformat, reproject select data sets.\nSearch, order, and customize NSIDC DAAC data with NASA Earthdata Search\n\n\nNSIDC Data Access Tool\nIntuitive and simple way to quickly filter and access data from the NSIDC website. Access from a data set landing page. Provides multiple ways to place your order - 1) Python script, 2) Earthdata Download tool, 3) pre-configured Earthdata Search order\nFilter and order from a data set web page using the Data Access Tool\n\n\nAppEARS\nAccess data from a variety of federal data archives. Subset data spatially, temporally, and by variable. Transform data from its original format into an analysis ready format (e.g. GeoTIFF).\nGetting started with AppEARS\n\n\nNASA Worldview\nExplore imagery and visualize NASA Earth science data\nAbout Worldview",
+    "crumbs": [
+      "Working with Data",
+      "Finding and accessing data"
+    ]
+  },
+  {
+    "objectID": "reference-guides/datasets.html",
+    "href": "reference-guides/datasets.html",
+    "title": "Datasets",
+    "section": "",
+    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nVIIRS subsetting “on your own” in lieu of service availability\nWhat others?",
+    "crumbs": [
+      "NSIDC Data",
+      "Quirky datasets"
+    ]
+  },
+  {
+    "objectID": "reference-guides/get-edl.html",
+    "href": "reference-guides/get-edl.html",
+    "title": "NASA Earthdata Login",
+    "section": "",
+    "text": "NASA Earthdata are freely accessible to all users, but a NASA Earthdata Login is required for access. Users can register for an Earthdata Login at https://urs.earthdata.nasa.gov/.\nSome programmatic data access methods are simplified by setting up your Earthdata Login credentials in a netrc file for easy authentication. Instructions for creating a netrc file can be found here.",
+    "crumbs": [
+      "Getting Started",
+      "Getting an Earthdata Login"
     ]
   }
 ]
