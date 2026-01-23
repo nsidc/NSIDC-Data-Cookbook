@@ -74,7 +74,7 @@ Streaming is an efficient way to access data, without downloading and saving it 
 Streaming data with the `open` method is very similar to `download`.
 
 ```python
-fileobjects = earthaccess.open(results)
+fileobjects = earthaccess.open(files)
 ```
 ```
 QUEUEING TASKS | : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 1706.04it/s]
