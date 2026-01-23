@@ -9,7 +9,7 @@ title: "Searching for collections  and granules"
 
 >*"earthaccess revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems."*
 >
->Luis López, an NSIDC software developer and earthaccess creator
+>Luis López, NSIDC softare developer and earthaccess creator
 
 More complete documentation for using `earthaccess` to search for data can be found [here](https://earthaccess.readthedocs.io/en/stable/user_guide/search/).
 
@@ -20,6 +20,13 @@ More complete documentation for using `earthaccess` to search for data can be fo
 #### A basic search with `earthaccess.search_datasets`
 
 `earthaccess.search_datasets` allows you to search for NASA collections using keywords.  As a simple example, we'll search for data sets with the keyword "icesat-2" associated with them.
+
+If you haven't already, import the library.  We also use the pprint library in this example, so import it as well.
+
+```python
+import earthaccess
+import pprint
+```
 
 ```python
 datasets = earthaccess.search_datasets(

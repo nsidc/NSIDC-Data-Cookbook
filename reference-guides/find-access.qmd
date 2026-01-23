@@ -2,9 +2,9 @@
 title: "Finding and accessing data"
 ---
 
-#### **Prerequisite reminder** 
-
-A [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) is required for all data access methods, including download and direct cloud access.
+> **Prerequisite reminder** 
+>
+>A [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) is required for all data access methods, including download and direct cloud access.
 
 ### **Where the data are stored - NASA Earthdata Cloud**
 
