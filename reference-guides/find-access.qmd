@@ -1,0 +1,38 @@
+---
+title: "Finding and accessing data"
+---
+
+#### **Prerequisite reminder** 
+
+A [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) is required for all data access methods, including download and direct cloud access.
+
+### **Where the data are stored - NASA Earthdata Cloud**
+
+The NASA Earthdata Cloud is NASA’s cloud-based archive of Earth observation data. It is hosted by Amazon Web Services (AWS) in region us-west-2. Downloading data from the Earthdata Cloud to your local computer or storage system is and will continue to be free for users. You don't need an AWS account to download data.  Alternatively, you can work directly with NSIDC DAAC holdings stored in Amazon S3 (the object storage service used by NASA Earthdata Cloud). This direct access method allows you stream data into memory and analyze it "in place", avoiding large transfers to your local computer.
+
+### **The catalog that enables discovery - NASA Common Metadata Repository**
+
+There are a variety of search and discovery methods allowing users to find NASA Earthdata from a graphical user interface (GUI) or using programmatic access methods, depending on preference.  Any search and discovery method leverages the [NASA Common Metadata Repository](https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr) to find data of interest.
+
+*NASA's Common Metadata Repository (CMR) is a high-performance, high-quality, continuously evolving metadata system that catalogs all data and service metadata records for NASA's Earth Observing System Data and Information System (EOSDIS) and will be the authoritative management system for all EOSDIS metadata. These metadata records are registered, modified, discovered, and accessed through programmatic interfaces leveraging standard protocols and APIs.*
+
+*CMR is the keystone that makes NASA's Earth observation data discoverable. As a metadata repository, CMR contains Unified Metadata Model (UMM) schema records that describe individual Earth data files (UMM-Granules), collections of files (UMM-Collections), scientific details about the data files (UMM-Variables), related tools and services that act on the data files (UMM-Tools and -Services), and pertinent relationships between these concepts.*
+
+## **Programmatic data access options**
+
+| Programmatic method                         | Strengths                                                  |Resource                                                                              |
+| ------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+|`earthaccess` Python library|**Recommended method** - Search for and download or stream NASA Earth science data with just a few lines of code.|[Documentation](https://earthaccess.readthedocs.io/en/stable/)|
+|command line tools, e.g. `curl`|Quick access if you already know what you need and you are not a Python user|[Downloading Data from Earthdata Cloud to Your Local Computer Using the Command Line](https://nsidc.org/data/user-resources/help-center/downloading-data-earthdata-cloud-your-local-computer-using-command-line)|
+
+
+
+## **Graphical User Interfaces enabling data access**
+
+| Graphical User Interface                    | Strengths                                                  |Resource                                                                              |
+| ------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **[NASA Earthdata Search](https://search.earthdata.nasa.gov)** | Discover, visualize, and access petabytes of Earth observing data from all NASA DAACs. Filter data by mission, keyword, spatial and temporal range, filename, etc. Subset, reformat, reproject select data sets.|[Search, order, and customize NSIDC DAAC data with NASA Earthdata Search](https://nsidc.org/data/user-resources/help-center/search-order-and-customize-nsidc-daac-data-nasa-earthdata-search)|
+| **NSIDC Data Access Tool**       | Intuitive and simple way to quickly filter and access data from the NSIDC website. Access from a [data set landing page](https://nsidc.org/data/atl03/versions/7#anchor-data-access-tools). Provides multiple ways to place your order - 1) Python script, 2) Earthdata Download tool, 3) pre-configured Earthdata Search order|[Filter and order from a data set web page using the Data Access Tool](https://nsidc.org/data/user-resources/help-center/filter-and-order-data-set-web-page-using-data-access-tool)|
+| **[AppEARS](https://appeears.earthdatacloud.nasa.gov)**                      | Access data from a variety of federal data archives. Subset data spatially, temporally, and by variable. Transform data from its original format into an analysis ready format (e.g. GeoTIFF).|[Getting started with AppEARS](https://appeears.earthdatacloud.nasa.gov/help)|
+| **[NASA Worldview](https://worldview.earthdata.nasa.gov)**                   | Explore imagery and visualize NASA Earth science data|[About Worldview](https://www.earthdata.nasa.gov/news/blog/explore-our-magnificant-earth-worldview)|
+
