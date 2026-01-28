@@ -1,6 +1,6 @@
 ---
 title: "How to use earthaccess to retrieve concept-ids for data sets"
-author: Mikala Beig
+author: Mikala Beig and Andy Barrett
 date: last-modified
 execute:
   freeze: auto
