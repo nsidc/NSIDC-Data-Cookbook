@@ -119,19 +119,25 @@ print(len(files))
 
 Other parameters accepted by `earthaccess.search_datasets` can be found [here](https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_data) and additional usage examples can be found [here](https://earthaccess.readthedocs.io/en/stable/user_guide/search/#search-for-data-granules-using-search_data).
 
-We can get some basic information about the files:  
+We can look at file names by retrieving the access links for the files:  
 
 ```python
-pprint.pprint(files[0].size)
+[granule.data_links(access="direct") for granule in files]
 ```
 ```
-<bound method DataGranule.size of Collection: {'EntryTitle': 'ATLAS/ICESat-2 L3A Land Ice Height V006'}
-Spatial coverage: {'HorizontalSpatialDomain': {'Geometry': {'GPolygons': [{'Boundary': {'Points': [{'Longitude': -134.3399, 'Latitude': 59.03152}, {'Longitude': -134.44371, 'Latitude': 59.03709}, {'Longitude': -134.75456, 'Latitude': 57.4161}, {'Longitude': -134.6551, 'Latitude': 57.41076}, {'Longitude': -134.3399, 'Latitude': 59.03152}]}}]}}}
-Temporal coverage: {'RangeDateTime': {'BeginningDateTime': '2020-03-10T12:15:10.646Z', 'EndingDateTime': '2020-03-10T12:15:58.724Z'}}
-Size(MB): 3.034775733947754
-Data: ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/006/2020/03/10/ATL06_20200310121504_11420606_006_01.h5']>
+[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]
 ```
+We can get an estimate of file sizes:
 
+```python
+[granule.size() for granule in files]
+```
+```
+[16.0, 40.0, 40.0, 32.0]
+```
 
 
 
