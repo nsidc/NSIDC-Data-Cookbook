@@ -1,0 +1,70 @@
+---
+title: "How to use earthaccess to get the data access links for granules returned from a query"
+author: Mikala Beig
+date: last-modified
+execute:
+  freeze: auto
+---
+
+## Problem
+How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?
+
+## Solution
+For an example query like this using a spatial filter over the Juneau ice field in Alaska for a specific time period:
+
+```python
+import earthaccess
+```
+
+```python
+files = earthaccess.search_data(
+    short_name = 'ATL06',
+    version = '006',
+    bounding_box = (-134.7,58.9,-133.9,59.2),
+    temporal = ('2020-03-01','2020-04-30'),
+)
+```
+
+```python
+[granule.data_links(access="direct") for granule in files]
+```
+```
+[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]
+```
+
+```python
+[granule.data_links(access="https") for granule in files]
+```
+```
+[['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]
+```
+
+Note that a list of lists is returned.  To get the urls just as strings in a single list, add a first index to the method call.
+
+```python
+[granule.data_links(access="direct")[0] for granule in files]
+```
+```
+['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',
+ 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',
+ 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',
+ 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']
+```
+
+```python
+[granule.data_links(access="https")[0] for granule in files]
+```
+```
+['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',
+ 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',
+ 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',
+ 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']
+```
+
+"https" links enable data download with no egress charges to the data user.  "S3" object urls are used for direct S3 access.
