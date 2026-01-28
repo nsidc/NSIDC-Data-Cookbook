@@ -68,6 +68,9 @@ website:
         href: how-to-guides/overview.qmd
         contents:
           - section: "Search for data"
+            contents:
+              - text: "How to get data set concept-ids using earthaccess"
+                href: how-to-guides/get_concept-ids.qmd
           - section: "Access data"
             contents:
               - text: "How to get data access links using earthaccess"

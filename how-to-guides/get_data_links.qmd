@@ -10,7 +10,7 @@ execute:
 How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?
 
 ## Solution
-For an example query like this using a spatial filter over the Juneau ice field in Alaska for a specific time period:
+For an example query like the one below, applying a spatial filter over the Juneau ice field in Alaska for a specific time period:
 
 ```python
 import earthaccess
@@ -45,7 +45,7 @@ files = earthaccess.search_data(
  ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]
 ```
 
-Note that a list of lists is returned.  To get the urls just as strings in a single list, add a first index to the method call.
+Note that a list of lists is returned.  To get the urls as strings in a single list, add a first index to the method call.
 
 ```python
 [granule.data_links(access="direct")[0] for granule in files]
@@ -67,4 +67,6 @@ Note that a list of lists is returned.  To get the urls just as strings in a sin
  'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']
 ```
 
-"https" links enable data download with no egress charges to the data user.  "S3" object urls are used for direct S3 access.
+## Discussion
+The "https" links enable data download with no egress charges to the data user. "S3" object urls can be used for direct S3 access within AWS region us-west-2.
+Parsing the urls is also a way to get at the filenames for your granule query results.
