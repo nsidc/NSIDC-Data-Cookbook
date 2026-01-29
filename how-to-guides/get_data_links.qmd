@@ -10,7 +10,7 @@ execute:
 How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?
 
 ## Solution
-For an example query like the one below, applying a spatial filter over the Juneau ice field in Alaska for a specific time period:
+Below is an example query that applies a spatial filter over the Juneau ice field in Alaska for a specific time period:
 
 ```python
 import earthaccess

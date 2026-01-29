@@ -3,21 +3,16 @@ title: "Searching for collections  and granules"
 ---
   
 
-**`earthaccess` Python library**
-
 `earthaccess` is a Python library to **search for** and **download** or **stream** NASA Earth science data with just a few lines of code.
 
 >*"earthaccess revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems."*
 >
 >Luis López, NSIDC softare developer and earthaccess creator
 
-More complete documentation for using `earthaccess` to search for data can be found [here](https://earthaccess.readthedocs.io/en/stable/user_guide/search/).
+Earthaccess has a [Quickstart Guide](https://earthaccess.readthedocs.io/en/stable/quick-start/) with instructions for installation as well as more [detailed documentation](https://earthaccess.readthedocs.io/en/stable/user_guide/search/) on searching for data.
 
-### [Quickstart Guide](https://earthaccess.readthedocs.io/en/stable/quick-start/) with instructions for installing `earthaccess`.
 
 ## **Search for collections (i.e. data sets)**
-
-#### A basic search with `earthaccess.search_datasets`
 
 `earthaccess.search_datasets` allows you to search for NASA collections using keywords.  As a simple example, we'll search for data sets with the keyword "icesat-2" associated with them.
 
@@ -68,6 +63,7 @@ pprint.pprint(datasets[0].summary()))
 ```
 
 For each collection, `summary` returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM):
+
 - `concept-id` is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center). 
 - `short_name` is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after 'DATA SET ID'. See the table below for a list of the shortnames for ICESat-2 collections.
 - `version` is the version of each collection.
@@ -94,8 +90,6 @@ For ICESat-2, `ShortNames` are generally how different products are referred to.
 
 
 ## **Search for granules (e.g. files) within a collection using filter parameters**
-
-#### A simple example with `earthaccess.search_data`
 
 `earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.
 
