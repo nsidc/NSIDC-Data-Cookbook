@@ -115,7 +115,7 @@ with open("list_of_concept_ids.csv", "w") as f:
 ```
 
 ## Discussion
-Concept-ids are unique identifiers for collections and granules (data sets and files) within NASA's Common Metadata Repository (CMR).  Collection concept-ids begin with the letter "C", as seen in the list above.  Granule concept-ids begin with "G". Collection concept-ids are unique to a particular data set version.  Concept-ids also contain useful information about which data provider stewards the data set.  
+Concept-ids are unique identifiers for collections (data sets) and granules (files) in NASA's Common Metadata Repository (CMR).  Collection concept-ids begin with the letter "C", as seen in the list above.  Granule concept-ids begin with the letter "G".  Concept-ids also indicate the data provider that stewards the data set.  
 
 - NSIDC_CPRD = National Snow and Ice Data Center DAAC
 - LARC_CLOUD = Atmospheric Science Data Center DAAC
