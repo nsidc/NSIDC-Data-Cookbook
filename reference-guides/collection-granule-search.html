@@ -586,8 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quickstart-guide-with-instructions-for-installing-earthaccess." id="toc-quickstart-guide-with-instructions-for-installing-earthaccess." class="nav-link active" data-scroll-target="#quickstart-guide-with-instructions-for-installing-earthaccess.">Quickstart Guide with instructions for installing <code>earthaccess</code>.</a></li>
-  <li><a href="#search-for-collections-i.e.-data-sets" id="toc-search-for-collections-i.e.-data-sets" class="nav-link" data-scroll-target="#search-for-collections-i.e.-data-sets"><strong>Search for collections (i.e.&nbsp;data sets)</strong></a></li>
+  <li><a href="#search-for-collections-i.e.-data-sets" id="toc-search-for-collections-i.e.-data-sets" class="nav-link active" data-scroll-target="#search-for-collections-i.e.-data-sets"><strong>Search for collections (i.e.&nbsp;data sets)</strong></a></li>
   <li><a href="#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters" id="toc-search-for-granules-e.g.-files-within-a-collection-using-filter-parameters" class="nav-link" data-scroll-target="#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters"><strong>Search for granules (e.g.&nbsp;files) within a collection using filter parameters</strong></a></li>
   </ul>
 </nav>
@@ -615,20 +614,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong><code>earthaccess</code> Python library</strong></p>
 <p><code>earthaccess</code> is a Python library to <strong>search for</strong> and <strong>download</strong> or <strong>stream</strong> NASA Earth science data with just a few lines of code.</p>
 <blockquote class="blockquote">
 <p><em>“earthaccess&nbsp;revolutionizes NASA data access by drastically reducing the complexity and code required. Since open science is a collaborative effort involving people from different technical backgrounds, our team took the approach that data analysis can and should be made more inclusive and accessible by reducing the complexities of underlying systems.”</em></p>
 <p>Luis López, NSIDC softare developer and earthaccess&nbsp;creator</p>
 </blockquote>
-<p>More complete documentation for using <code>earthaccess</code> to search for data can be found <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/search/">here</a>.</p>
-<section id="quickstart-guide-with-instructions-for-installing-earthaccess." class="level3">
-<h3 class="anchored" data-anchor-id="quickstart-guide-with-instructions-for-installing-earthaccess."><a href="https://earthaccess.readthedocs.io/en/stable/quick-start/">Quickstart Guide</a> with instructions for installing <code>earthaccess</code>.</h3>
-</section>
+<p>Earthaccess has a <a href="https://earthaccess.readthedocs.io/en/stable/quick-start/">Quickstart Guide</a> with instructions for installation as well as more <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/search/">detailed documentation</a> on searching for data.</p>
 <section id="search-for-collections-i.e.-data-sets" class="level2">
 <h2 class="anchored" data-anchor-id="search-for-collections-i.e.-data-sets"><strong>Search for collections (i.e.&nbsp;data sets)</strong></h2>
-<section id="a-basic-search-with-earthaccess.search_datasets" class="level4">
-<h4 class="anchored" data-anchor-id="a-basic-search-with-earthaccess.search_datasets">A basic search with <code>earthaccess.search_datasets</code></h4>
 <p><code>earthaccess.search_datasets</code> allows you to search for NASA collections using keywords. As a simple example, we’ll search for data sets with the keyword “icesat-2” associated with them.</p>
 <p>If you haven’t already, import the library. We also use the pprint library in this example, so import it as well.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
@@ -657,7 +650,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
               'https://earthaccess.readthedocs.io/en/stable/'],
  'short-name': 'ATL08',
  'version': '007'}</code></pre>
-<p>For each collection, <code>summary</code> returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM): - <code>concept-id</code> is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center). - <code>short_name</code> is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after ‘DATA SET ID’. See the table below for a list of the shortnames for ICESat-2 collections. - <code>version</code> is the version of each collection. - <code>file-type</code> gives information about the file format of the collection granules. - <code>get-data</code> is a collection of URLs that can be used to access the data, collection landing pages and data tools. - <code>cloud-info</code> this is for cloud-hosted data and provides additional information about the location of the S3 bucket that holds the data and where to get temporary AWS S3 credentials to access the S3 buckets. <code>earthaccess</code> handles these credentials and the links to the S3 buckets, so in general you won’t need to worry about this information.</p>
+<p>For each collection, <code>summary</code> returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM):</p>
+<ul>
+<li><code>concept-id</code> is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center).</li>
+<li><code>short_name</code> is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after ‘DATA SET ID’. See the table below for a list of the shortnames for ICESat-2 collections.</li>
+<li><code>version</code> is the version of each collection.</li>
+<li><code>file-type</code> gives information about the file format of the collection granules.</li>
+<li><code>get-data</code> is a collection of URLs that can be used to access the data, collection landing pages and data tools.</li>
+<li><code>cloud-info</code> this is for cloud-hosted data and provides additional information about the location of the S3 bucket that holds the data and where to get temporary AWS S3 credentials to access the S3 buckets. <code>earthaccess</code> handles these credentials and the links to the S3 buckets, so in general you won’t need to worry about this information.</li>
+</ul>
 <p>For the ICESat-2 search results, within the concept-id, there is a provider-id <code>NSIDC_CPRD</code>. <code>NSIDC_CPRD</code> is for the <em>cloud-hosted</em> collections.</p>
 <p>For ICESat-2, <code>ShortNames</code> are generally how different products are referred to.</p>
 <table class="caption-top table">
@@ -711,11 +712,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-</section>
 <section id="search-for-granules-e.g.-files-within-a-collection-using-filter-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="search-for-granules-e.g.-files-within-a-collection-using-filter-parameters"><strong>Search for granules (e.g.&nbsp;files) within a collection using filter parameters</strong></h2>
-<section id="a-simple-example-with-earthaccess.search_data" class="level4">
-<h4 class="anchored" data-anchor-id="a-simple-example-with-earthaccess.search_data">A simple example with <code>earthaccess.search_data</code></h4>
 <p><code>earthaccess.search_data</code> allows you to search for specific granules (i.e.&nbsp;files or bundles of files) within a specified collection using filters.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.search_data(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    short_name <span class="op">=</span> <span class="st">'ATL06'</span>,</span>
@@ -738,7 +736,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[16.0, 40.0, 40.0, 32.0]</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
