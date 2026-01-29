@@ -69,14 +69,20 @@ website:
         href: how-to-guides/overview.qmd
         contents:
           - section: "Search for data"
+            contents:
+              - text: "How to get data set concept-ids using earthaccess"
+                href: how-to-guides/get_concept-ids.qmd
           - section: "Access data"
+            contents:
+              - text: "How to get data access links using earthaccess"
+                href: how-to-guides/get_data_links.qmd
           - section: "Reproject data"
           - section: "Work with NetCDF files"
             contents:
-            - text: "Get the bounding box of a NetCDF file"
-              href: how-to-guides/netcdf_cf.qmd
-            - text: "Get the latitude and longitudes for grid cells"
-              href: how-to-guides/get_latitude_and_longitude.qmd
+              - text: "Get the bounding box of a NetCDF file"
+                href: how-to-guides/netcdf_cf.qmd
+              - text: "Get the latitude and longitudes for grid cells"
+                href: how-to-guides/get_latitude_and_longitude.qmd
       - section: "Tutorials / Workshops"
         href: tutorials/tutorials_overview.qmd
         contents:
