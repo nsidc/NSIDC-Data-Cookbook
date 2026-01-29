@@ -468,12 +468,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Search for data</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Search for data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_concept-ids.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to get data set concept-ids using earthaccess</span></a>
+  </div>
+</li>
+      </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Access data</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Access data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_data_links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to get data access links using earthaccess</span></a>
+  </div>
+</li>
+      </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -701,13 +727,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(files))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>4</code></pre>
 <p>Other parameters accepted by <code>earthaccess.search_datasets</code> can be found <a href="https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_data">here</a> and additional usage examples can be found <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/search/#search-for-data-granules-using-search_data">here</a>.</p>
-<p>We can get some basic information about the files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(files[<span class="dv">0</span>].size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>&lt;bound method DataGranule.size of Collection: {'EntryTitle': 'ATLAS/ICESat-2 L3A Land Ice Height V006'}
-Spatial coverage: {'HorizontalSpatialDomain': {'Geometry': {'GPolygons': [{'Boundary': {'Points': [{'Longitude': -134.3399, 'Latitude': 59.03152}, {'Longitude': -134.44371, 'Latitude': 59.03709}, {'Longitude': -134.75456, 'Latitude': 57.4161}, {'Longitude': -134.6551, 'Latitude': 57.41076}, {'Longitude': -134.3399, 'Latitude': 59.03152}]}}]}}}
-Temporal coverage: {'RangeDateTime': {'BeginningDateTime': '2020-03-10T12:15:10.646Z', 'EndingDateTime': '2020-03-10T12:15:58.724Z'}}
-Size(MB): 3.034775733947754
-Data: ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/006/2020/03/10/ATL06_20200310121504_11420606_006_01.h5']&gt;</code></pre>
+<p>We can look at file names by retrieving the access links for the files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[granule.data_links(access<span class="op">=</span><span class="st">"direct"</span>) <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]</code></pre>
+<p>We can get an estimate of file sizes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[granule.size() <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[16.0, 40.0, 40.0, 32.0]</code></pre>
 
 
 </section>

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikala Beig">
+<meta name="dcterms.date" content="2026-01-29">
 
-<title>Collections &amp; Granules – NSIDC Data Cookbook</title>
+<title>How to use earthaccess to get the data access links for granules returned from a query – NSIDC Data Cookbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../reference-guides/projections.html" rel="next">
-<link href="../reference-guides/data-structures.html" rel="prev">
+<link href="../how-to-guides/netcdf_cf.html" rel="next">
+<link href="../how-to-guides/get_concept-ids.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -249,7 +286,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/data-structures.html">NSIDC Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/collections-granules.html">NASA collections and granules</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_data_links.html">Access data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_data_links.html">How to get data access links using earthaccess</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -313,13 +350,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">NSIDC Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference-guides/data-structures.html" class="sidebar-item-text sidebar-link">
@@ -328,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference-guides/collections-granules.html" class="sidebar-item-text sidebar-link active">
+  <a href="../reference-guides/collections-granules.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NASA collections and granules</span></a>
   </div>
 </li>
@@ -427,11 +464,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../how-to-guides/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How-To Guides</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
@@ -451,16 +488,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Access data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/get_data_links.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-guides/get_data_links.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">How to get data access links using earthaccess</span></a>
   </div>
 </li>
@@ -551,17 +588,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-are-collections-and-granules" id="toc-what-are-collections-and-granules" class="nav-link active" data-scroll-target="#what-are-collections-and-granules">What Are Collections and Granules?</a>
-  <ul class="collapse">
-  <li><a href="#collections" id="toc-collections" class="nav-link" data-scroll-target="#collections">📘 Collections</a></li>
-  <li><a href="#granules" id="toc-granules" class="nav-link" data-scroll-target="#granules">📄 Granules</a></li>
-  </ul></li>
-  <li><a href="#nasas-metadata-backbone-cmr" id="toc-nasas-metadata-backbone-cmr" class="nav-link" data-scroll-target="#nasas-metadata-backbone-cmr">NASA’s Metadata Backbone: CMR</a></li>
-  <li><a href="#collection-granule-names" id="toc-collection-granule-names" class="nav-link" data-scroll-target="#collection-granule-names">Collection &amp; Granule Names</a>
-  <ul class="collapse">
-  <li><a href="#collection-names" id="toc-collection-names" class="nav-link" data-scroll-target="#collection-names">📘 Collection Names</a></li>
-  <li><a href="#granule-names" id="toc-granule-names" class="nav-link" data-scroll-target="#granule-names">📄 Granule Names</a></li>
-  </ul></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
     </div>
@@ -569,16 +598,28 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference-guides/data-structures.html">NSIDC Data</a></li><li class="breadcrumb-item"><a href="../reference-guides/collections-granules.html">NASA collections and granules</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_data_links.html">Access data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_data_links.html">How to get data access links using earthaccess</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Collections &amp; Granules</h1>
+<h1 class="title">How to use earthaccess to get the data access links for granules returned from a query</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikala Beig </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 29, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -588,257 +629,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>NASA Earth science data can feel overwhelming when you’re new to it… there are thousands of datasets, millions of files, and many tools for accessing them. A first step in combatting the overhwhelm is better understanding how NASA organizes, and talks about, their data. Below we define two terms; <em>collection</em> and <em>granule</em>. These are, for the most part, synonymous with a dataset and a file respectively.</p>
-<hr>
-<section id="what-are-collections-and-granules" class="level1">
-<h1>What Are Collections and Granules?</h1>
-<section id="collections" class="level2">
-<h2 class="anchored" data-anchor-id="collections">📘 Collections</h2>
-<p>A <strong>collection</strong> is NASA’s version of a “dataset family.”<br>
-Every collection groups together many related files that share common features, such as:</p>
-<ul>
-<li>The same satellite or instrument<br>
-</li>
-<li>The same science product type<br>
-</li>
-<li>The same processing level<br>
-</li>
-<li>A consistent file structure</li>
-</ul>
-<p>A collection is the <em>group</em> that defines <strong>what</strong> the dataset is.</p>
-<p><strong>Examples:</strong></p>
-<ul>
-<li><em>SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008</em><br>
-</li>
-<li><em>ATLAS/ICESat-2 L3A Land and Vegetation Height V007</em></li>
-</ul>
-<p>Collection metadata includes at least the following:</p>
-<ul>
-<li>Product description<br>
-</li>
-<li>Spatial &amp; temporal coverage<br>
-</li>
-<li>Data provider</li>
-<li>Variables<br>
-</li>
-<li>Version</li>
-</ul>
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem">Problem</h2>
+<p>How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?</p>
 </section>
-<section id="granules" class="level2">
-<h2 class="anchored" data-anchor-id="granules">📄 Granules</h2>
-<p>A <strong>granule</strong> is the smallest discrete data unit in a collection. Depending on the data format, a granule may be a single file or a set of files that together represent one logical item (for example, a shapefile’s <code>.shp</code>, <code>.shx</code>, <code>.dbf</code> components).</p>
-<p>What each granule represents can vary from one science mission (and data product) to the next. For example, one granule could represent:</p>
-<ul>
-<li>One SMAP L2 soil moisture half-orbit pass,<br>
-</li>
-<li>One AMSR2 daily polar gridded brightness temperature file, or</li>
-<li>One MEaSUREs Greenland monthly ice sheet velocity magnitude mosaic</li>
-</ul>
-<p>Granules also have their own metadata, such as:</p>
-<ul>
-<li>Timestamps<br>
-</li>
-<li>A spatial bounding box<br>
-</li>
-<li>File size<br>
-</li>
-<li>Variables included, etc.</li>
-</ul>
-<p>Granules are what you actually <strong>download and analyze</strong>. It is common to need MANY granules for a specific research objective!</p>
-<hr>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<p>For an example query like the one below, applying a spatial filter over the Juneau ice field in Alaska for a specific time period:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    short_name <span class="op">=</span> <span class="st">'ATL06'</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    version <span class="op">=</span> <span class="st">'006'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    bounding_box <span class="op">=</span> (<span class="op">-</span><span class="fl">134.7</span>,<span class="fl">58.9</span>,<span class="op">-</span><span class="fl">133.9</span>,<span class="fl">59.2</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> (<span class="st">'2020-03-01'</span>,<span class="st">'2020-04-30'</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>[granule.data_links(access<span class="op">=</span><span class="st">"direct"</span>) <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>[granule.data_links(access<span class="op">=</span><span class="st">"https"</span>) <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]</code></pre>
+<p>Note that a list of lists is returned. To get the urls as strings in a single list, add a first index to the method call.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>[granule.data_links(access<span class="op">=</span><span class="st">"direct"</span>)[<span class="dv">0</span>] <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',
+ 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',
+ 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',
+ 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[granule.data_links(access<span class="op">=</span><span class="st">"https"</span>)[<span class="dv">0</span>] <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',
+ 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',
+ 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',
+ 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']</code></pre>
 </section>
-</section>
-<section id="nasas-metadata-backbone-cmr" class="level1">
-<h1>NASA’s Metadata Backbone: CMR</h1>
-<p>NASA stores all metadata (for collections <em>and</em> granules, among other things) in a system called the <strong>Common Metadata Repository (CMR)</strong>. CMR serves as NASA’s metadata database and search index, and provides an API that clients can use to access and interact with this metadata.</p>
-<p>CMR powers:</p>
-<ul>
-<li>Earthdata Search<br>
-</li>
-<li>DAAC search portals<br>
-</li>
-<li>APIs for programmatic discovery<br>
-</li>
-<li>Cloud-native data access workflows</li>
-</ul>
-<p>CMR metadata is stored using the <strong>Unified Metadata Model (UMM)</strong>:</p>
-<ul>
-<li><strong>UMM-C</strong> → Collection metadata<br>
-</li>
-<li><strong>UMM-G</strong> → Granule metadata<br>
-</li>
-<li><strong>UMM-Var</strong> → Variables<br>
-</li>
-<li><strong>UMM-Svc</strong> → Services<br>
-</li>
-<li><strong>UMM-T</strong> → Tools</li>
-</ul>
-<p>Using the UMM allows CMR to host its metadata records in several supported native formats, with translation services available between formats.</p>
-<p>Simply, CMR is a high-performance, continuously evolving metadata system that catalogs all metadata for NASA’s Earth Science Data and Information System Project (ESDIS) program. You can learn more about it <a href="https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr">here</a>.</p>
-</section>
-<section id="collection-granule-names" class="level1">
-<h1>Collection &amp; Granule Names</h1>
-<p>NASA uses structured naming so files can be indexed, searched, and recognized by automated workflows.</p>
-<section id="collection-names" class="level3">
-<h3 class="anchored" data-anchor-id="collection-names">📘 Collection Names</h3>
-<p>Each collection has a unique CMR identifying <strong>Concept-ID</strong> (for example, the SMAP record below’s Concept-ID is <em>C3480440870-NSIDC_CPRD</em>) that makes it possible to reference a collection efficiently across tools. In addition, a collection will also have a:</p>
-<section id="long-name-human-readable" class="level5">
-<h5 class="anchored" data-anchor-id="long-name-human-readable">1. Long Name (Human-Readable)</h5>
-<p>Example:<br>
-<em>SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008</em></p>
-</section>
-<section id="short-name-machine-friendly" class="level5">
-<h5 class="anchored" data-anchor-id="short-name-machine-friendly">2. Short Name (Machine-Friendly)</h5>
-<p>Example:<br>
-<em>SPL4SMGP</em></p>
-</section>
-<section id="version" class="level5">
-<h5 class="anchored" data-anchor-id="version">3. Version</h5>
-<p>Example:<br>
-<em>008</em></p>
-<p>Where the combination of <strong>short name + version</strong> uniquely identifies a dataset within CMR.</p>
-</section>
-</section>
-<section id="granule-names" class="level3">
-<h3 class="anchored" data-anchor-id="granule-names">📄 Granule Names</h3>
-<p>Granule names can get pretty lengthy and will include some important information about the data collection they are contained within, as well as specifics about that granule in particular. For example, most products will have a naming “formula” that includes the following:</p>
-<ul>
-<li>Product short name<br>
-</li>
-<li>Date and optional time<br>
-</li>
-<li>Version<br>
-</li>
-<li>Spatial identifier (if applicable)</li>
-<li>File type</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Not all naming structures are the same across data products! The <em>User Guide</em> (linked on the data set landing page, see <a href="https://nsidc.org/data/nsidc-0803/versions/2">NSIDC-0803</a> for example) provides the exact naming convention for each data product.</p>
-</div>
-</div>
-<p>Some granules cover a global or regional extent, in which case no explicit spatial identifier appears in the filename (many gridded polar products are examples of this; see Example 1 below).</p>
-<p>Other products divide their data into smaller spatial segments, and the granule name will include an identifier to indicate which portion of the Earth the file represents (see Example 2).</p>
-<section id="example-1-amsr2-daily-polar-gridded-sea-ice-concentrations-version-2" class="level4">
-<h4 class="anchored" data-anchor-id="example-1-amsr2-daily-polar-gridded-sea-ice-concentrations-version-2">Example 1: AMSR2 Daily Polar Gridded Sea Ice Concentrations, Version 2</h4>
-<section id="where-one-granule-is" class="level5">
-<h5 class="anchored" data-anchor-id="where-one-granule-is">Where one granule is:</h5>
-<p><code>NSIDC0803_SEAICE_AMSR2_S_20240105_v2.0.nc</code></p>
-<p><em>This product does <strong>not</strong> include a spatial identifier because each granule covers a full polar region.</em></p>
-</section>
-<section id="naming-breakdown" class="level5">
-<h5 class="anchored" data-anchor-id="naming-breakdown">Naming Breakdown</h5>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 32%">
-<col style="width: 32%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Component</th>
-<th>Example</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Short name</td>
-<td><code>NSIDC0803</code></td>
-<td>AMSR2 Daily Polar Gridded Sea Ice Concentrations Product</td>
-</tr>
-<tr class="even">
-<td>Information</td>
-<td><code>SEAICE_AMSR2_S</code></td>
-<td>Variable, satellite, and hemisphere</td>
-</tr>
-<tr class="odd">
-<td>Date/time</td>
-<td><code>20240105</code></td>
-<td>YYYYMMDD format</td>
-</tr>
-<tr class="even">
-<td>Version</td>
-<td><code>v2.0</code></td>
-<td>Collection version</td>
-</tr>
-<tr class="odd">
-<td>File type</td>
-<td><code>.nc</code></td>
-<td>NetCDF format</td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="example-2-modisterra-snow-cover-daily-l3-global-500m-sin-grid-version-61" class="level4">
-<h4 class="anchored" data-anchor-id="example-2-modisterra-snow-cover-daily-l3-global-500m-sin-grid-version-61">Example 2: MODIS/Terra Snow Cover Daily L3 Global 500m SIN Grid, Version 61</h4>
-<section id="where-one-granule-is-1" class="level5">
-<h5 class="anchored" data-anchor-id="where-one-granule-is-1">Where one granule is:</h5>
-<p><code>MOD10A1.A2003001.h13v03.061.2019130062218.hdf</code></p>
-<p><em>This product <strong>does</strong> include a spatial identifier because each granule covers only a portion of the global grid.</em></p>
-</section>
-<section id="naming-breakdown-1" class="level5">
-<h5 class="anchored" data-anchor-id="naming-breakdown-1">Naming Breakdown</h5>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 32%">
-<col style="width: 32%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Component</th>
-<th>Example</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Short name</td>
-<td><code>MOD10A1</code></td>
-<td>MODIS/Terra Snow Cover Daily L3 Global 500m SIN Grid Product</td>
-</tr>
-<tr class="even">
-<td>Date/time acquired (A)</td>
-<td><code>A2003001</code></td>
-<td>AYYYYDDDD format</td>
-</tr>
-<tr class="odd">
-<td>Spatial identifier</td>
-<td><code>h13v03</code></td>
-<td>Horizontal and vertical tile number</td>
-</tr>
-<tr class="even">
-<td>Version</td>
-<td><code>061</code></td>
-<td>Collection version</td>
-</tr>
-<tr class="odd">
-<td>Production date</td>
-<td><code>2019130062218</code></td>
-<td>yyyydddhhmmss format in GMT</td>
-</tr>
-<tr class="even">
-<td>File type</td>
-<td><code>.hdf</code></td>
-<td>HDF-eos format</td>
-</tr>
-</tbody>
-</table>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>The “https” links enable data download with no egress charges to the data user. “S3” object urls can be used for direct S3 access within AWS region us-west-2. Parsing the urls is also a way to get at the filenames for your granule query results.</p>
 
 
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1257,13 +1088,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../reference-guides/data-structures.html" class="pagination-link" aria-label="Data types and formats">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data types and formats</span>
+      <a href="../how-to-guides/get_concept-ids.html" class="pagination-link" aria-label="How to get data set concept-ids using earthaccess">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to get data set concept-ids using earthaccess</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../reference-guides/projections.html" class="pagination-link" aria-label="NSIDC map projections and grids">
-        <span class="nav-page-text">NSIDC map projections and grids</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../how-to-guides/netcdf_cf.html" class="pagination-link" aria-label="Get the bounding box of a NetCDF file">
+        <span class="nav-page-text">Get the bounding box of a NetCDF file</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -70,7 +70,7 @@
     "href": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
     "title": "Searching for collections and granules",
     "section": "Search for granules (e.g. files) within a collection using filter parameters",
-    "text": "Search for granules (e.g. files) within a collection using filter parameters\n\nA simple example with earthaccess.search_data\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '006',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects from the data set we specified using short_name and version that fall within the spatial and temporal bounds we provided. We can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_datasets can be found here and additional usage examples can be found here.\nWe can get some basic information about the files:\npprint.pprint(files[0].size)\n&lt;bound method DataGranule.size of Collection: {'EntryTitle': 'ATLAS/ICESat-2 L3A Land Ice Height V006'}\nSpatial coverage: {'HorizontalSpatialDomain': {'Geometry': {'GPolygons': [{'Boundary': {'Points': [{'Longitude': -134.3399, 'Latitude': 59.03152}, {'Longitude': -134.44371, 'Latitude': 59.03709}, {'Longitude': -134.75456, 'Latitude': 57.4161}, {'Longitude': -134.6551, 'Latitude': 57.41076}, {'Longitude': -134.3399, 'Latitude': 59.03152}]}}]}}}\nTemporal coverage: {'RangeDateTime': {'BeginningDateTime': '2020-03-10T12:15:10.646Z', 'EndingDateTime': '2020-03-10T12:15:58.724Z'}}\nSize(MB): 3.034775733947754\nData: ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/006/2020/03/10/ATL06_20200310121504_11420606_006_01.h5']&gt;",
+    "text": "Search for granules (e.g. files) within a collection using filter parameters\n\nA simple example with earthaccess.search_data\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '006',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects from the data set we specified using short_name and version that fall within the spatial and temporal bounds we provided. We can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_datasets can be found here and additional usage examples can be found here.\nWe can look at file names by retrieving the access links for the files:\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nWe can get an estimate of file sizes:\n[granule.size() for granule in files]\n[16.0, 40.0, 40.0, 32.0]",
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
@@ -394,52 +394,59 @@
     "text": "Discussion\nMany grids, whether they are images or gridded data are in projected coordinate systems so that they can be displayed on a 2D screen. Converting from geographic coordinates (latitude, longitude) to image coordinates (column, row) is usually a two step process. In the first step, the geographic coordinates are transformed from a Geographic Coordinate System with coordinates latitude and longitude to the projected coordinate system of the image or grid. This is a Cartesian coordinate system with coordinates x and y, usually in meters. In the second step, the projected coordinates are converted into image coordinates. This is another Cartesian coordinate system with coordinates column and row or i and j with units grid-cells. Image coordinate systems often have the origin in the upper-left corner of the upper-left grid cell.\nIn Python the first step is easily acheived using the pyproj package. If the Coordinate Reference System (CRS) of the grid is registered in the EPSG database, defining the transformation is easily done with the EPSG codes for the CRS for the latitude and longitude coordinates and the CRS of the destination grid. Usually, latitude and longitude are in the Ensemble WGS84 CRS, which is EPSG:4326. For NSIDC gridded data, the CRS is some flavour of EASE Grid or Polar Stereographic. See the help pages for EASE Grid and Polar Stereographic for more information.\n\nBoth EASE Grid and Polar Stereographic CRS come in two main flavours Original and WGS84. For EASE Grids, these two flavours are EASE-Grid and EASE-Grid v2.0.\n\nTODO: Describe projected to image coordinate conversion\nAdd image showing the relationship between the three coordinate systems"
   },
   {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html",
-    "href": "how-to-guides/get_latitude_and_longitude.html",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "objectID": "how-to-guides/get_concept-ids.html",
+    "href": "how-to-guides/get_concept-ids.html",
+    "title": "How to use earthaccess to retrieve concept-ids for data sets",
     "section": "",
-    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
+    "text": "How can I use earthaccess to find the concept-id for a list of data sets?",
     "crumbs": [
       "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
+      "Search for data",
+      "How to get data set concept-ids using earthaccess"
     ]
   },
   {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html#problem",
-    "href": "how-to-guides/get_latitude_and_longitude.html#problem",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "objectID": "how-to-guides/get_concept-ids.html#problem",
+    "href": "how-to-guides/get_concept-ids.html#problem",
+    "title": "How to use earthaccess to retrieve concept-ids for data sets",
     "section": "",
-    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
+    "text": "How can I use earthaccess to find the concept-id for a list of data sets?",
     "crumbs": [
       "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
+      "Search for data",
+      "How to get data set concept-ids using earthaccess"
     ]
   },
   {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html#solution",
-    "href": "how-to-guides/get_latitude_and_longitude.html#solution",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "objectID": "how-to-guides/get_concept-ids.html#solution",
+    "href": "how-to-guides/get_concept-ids.html#solution",
+    "title": "How to use earthaccess to retrieve concept-ids for data sets",
     "section": "Solution",
-    "text": "Solution\n\nimport numpy as np\n\nimport rioxarray\nimport xarray as xr\nfrom pyproj import CRS, Transformer\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('../example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Instantiate source pyproj CRS from ds.rio.crs object\nsource_crs = CRS(ds.rio.crs.to_wkt())\n# Instantiate destination pyproj CRS using EPSG code for WGS84 \ndestination_crs = CRS(4326)\n\n# Instantiate pyproj transformer instance using source and destination CRS\ntransform = Transformer.from_crs(source_crs, destination_crs)\n\n# Create 2D arrays of x and y coordinates\nx2d, y2d = np.meshgrid(ds.x, ds.y)\n\n# Calculate latitude and longitudes for each grid cell\nlat, lon = transform.transform(x2d, y2d)",
+    "text": "Solution\nimport earthaccess\nresults = earthaccess.search_datasets(\n    keyword = 'icesat-2',\n    cloud_hosted = True\n)\nfor f in results:\n    print(', '.join([f.summary()[key] for key in [\"short-name\", \"version\", \"concept-id\"]]))\nATL03 , 007 , C3326974349-NSIDC_CPRD\nATL06 , 007 , C3564876127-NSIDC_CPRD\nATL10 , 007 , C3565574246-NSIDC_CPRD\nATL24 , 001 , C3433822507-NSIDC_CPRD\nATL07 , 007 , C3564876395-NSIDC_CPRD\nATL12 , 007 , C3566214012-NSIDC_CPRD\nATL11 , 007 , C3816968337-NSIDC_CPRD\nATL13QL , 007 , C3566183861-NSIDC_CPRD\nATL09 , 007 , C3578753623-NSIDC_CPRD\nATL10QL , 007 , C3566183646-NSIDC_CPRD\nATL14 , 004 , C3162179692-NSIDC_CPRD\nATL20 , 005 , C3825009052-NSIDC_CPRD\nATL23 , 002 , C3813004259-NSIDC_CPRD\nATL04 , 007 , C3420692319-NSIDC_CPRD\nIS2SITMOGR4 , 4 , C3878683537-NSIDC_CPRD\nATL07QL , 007 , C3566183486-NSIDC_CPRD\nATL08 , 007 , C3565574177-NSIDC_CPRD\nATL08QL , 007 , C3566183500-NSIDC_CPRD\nATL09QL , 007 , C3566183507-NSIDC_CPRD\nATL13 , 007 , C3565574351-NSIDC_CPRD\nATL14 , 005 , C3892627820-NSIDC_CPRD\nATL15 , 005 , C3892628343-NSIDC_CPRD\nATL15 , 004 , C3162334027-NSIDC_CPRD\nATL16 , 006 , C3817254195-NSIDC_CPRD\nATL17 , 006 , C3817255331-NSIDC_CPRD\nATL19 , 004 , C3824609081-NSIDC_CPRD\nATL21 , 004 , C3826284331-NSIDC_CPRD\nATL22 , 004 , C3824617301-NSIDC_CPRD\nATL02 , 007 , C2842844928-NSIDC_CPRD\nATL02 , 006 , C2547589158-NSIDC_CPRD\nATL03 , 006 , C2596864127-NSIDC_CPRD\nATL06 , 006 , C2670138092-NSIDC_CPRD\nATL07 , 006 , C2713030505-NSIDC_CPRD\nATL08 , 006 , C2613553260-NSIDC_CPRD\nATL09 , 006 , C2649212495-NSIDC_CPRD\nATL10 , 006 , C2613553243-NSIDC_CPRD\nATL11 , 006 , C2752556504-NSIDC_CPRD\nATL12 , 006 , C2613553216-NSIDC_CPRD\nATL13 , 006 , C2684928243-NSIDC_CPRD\nATL22 , 003 , C2761722214-NSIDC_CPRD\nATL04 , 006 , C2613553327-NSIDC_CPRD\nATL19 , 003 , C2754956786-NSIDC_CPRD\nATL20 , 004 , C2753295020-NSIDC_CPRD\nATL21 , 003 , C2753316241-NSIDC_CPRD\nATL23 , 001 , C2765424272-NSIDC_CPRD\nATL16 , 005 , C2769337070-NSIDC_CPRD\nATL17 , 005 , C2769338020-NSIDC_CPRD\nIS2SITDAT4 , 001 , C3263544354-NSIDC_CPRD\nIS2CHM , 1 , C3560202322-NSIDC_CPRD\nCMS_Global_Forest_AGC_2180 , 1 , C2756296671-ORNL_CLOUD\nBoreal_AGB_Density_ICESat2_2186 , 1 , C2756302505-ORNL_CLOUD\nIS2ATBABD , 1 , C3206501379-NSIDC_CPRD\nNSIDC-0773 , 1 , C3643680627-NSIDC_CPRD\nIS2GZANT , 1 , C3206509242-NSIDC_CPRD\nIS2MPDDA , 3 , C3206495206-NSIDC_CPRD\nIS2OLVIS1BCV , 1 , C3206487619-NSIDC_CPRD\nARCSIX_Aerosol_AircraftInSitu_P3B_Data , 1 , C3466129392-LARC_CLOUD\nARCSIX_AircraftRemoteSensing_LaRC-G3_HALO_Data , 1 , C3466130908-LARC_CLOUD\nARCSIX_AircraftRemoteSensing_Learjet_KPR_Data , 1 , C3527026802-LARC_CLOUD\nARCSIX_AircraftRemoteSensing_P3B_MARLi_Data , 1 , C3466129584-LARC_CLOUD\nARCSIX_AircraftRemoteSensing_P3B_RSP_Data , 1 , C3466129807-LARC_CLOUD\nARCSIX_Analysis_LaRC-G3_Data , 1 , C3466131024-LARC_CLOUD\nARCSIX_Analysis_P3B_Data , 1 , C3466130275-LARC_CLOUD\nARCSIX_Cloud_AircraftInSitu_P3B_Data , 1 , C3466130093-LARC_CLOUD\nARCSIX_Dropsondes_LaRC-G3_Data , 1 , C3466130980-LARC_CLOUD\nARCSIX_MetNav_AircraftInSitu_LaRC-G3_Data , 1 , C3466130634-LARC_CLOUD\nARCSIX_MetNav_AircraftInSitu_P3B_Data , 1 , C3466129125-LARC_CLOUD\nARCSIX_Radiation_AircraftInSitu_P3B_Data , 1 , C3466129502-LARC_CLOUD\nARCSIX_TraceGas_AircraftInSitu_P3B_Data , 1 , C3466130029-LARC_CLOUD\nARCSIX_Cloud_AircraftInSitu_Learjet_Data , 1 , C3466131054-LARC_CLOUD\nARCSIX_MetNav_AircraftInSitu_Learjet_Data , 1 , C3466131157-LARC_CLOUD\nGEDI_ICESAT2_Global_Veg_Height_2294 , 1 , C2889522012-ORNL_CLOUD\nIDBMG4 , 6 , C3903728370-NSIDC_CPRD\nBoreal_AGB_Density_ICESat2_V3_2437 , 3 , C3904051179-ORNL_CLOUD\nNSIDC-0782 , 1 , C3298526284-NSIDC_CPRD\nGLAH06 , 034 , C2033638023-NSIDC_CPRD\nISSITGR4 , 1 , C3207121268-NSIDC_CPRD\nTo write the output to a csv file file for easy sharing\nwith open(\"list_of_concept_ids.csv\", \"w\") as f:\n    f.write(\"short_name,version,concept_id\")  # Add header\n    for item in results:\n        f.write(', '.join([item.summary()[key] for key in [\"short-name\",\"version\",\"concept-id\"]])+\"\\n\")",
     "crumbs": [
       "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
+      "Search for data",
+      "How to get data set concept-ids using earthaccess"
     ]
   },
   {
-    "objectID": "how-to-guides/get_latitude_and_longitude.html#discussion",
-    "href": "how-to-guides/get_latitude_and_longitude.html#discussion",
-    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "objectID": "how-to-guides/get_concept-ids.html#discussion",
+    "href": "how-to-guides/get_concept-ids.html#discussion",
+    "title": "How to use earthaccess to retrieve concept-ids for data sets",
     "section": "Discussion",
-    "text": "Discussion\nThe workflow above assumes that the NetCDF file is CF-compliant and has a grid_mapping variable and projected coordinates defined. See the rioxarray CRS management documentation if this is not the case.\nIf the dataset rio.crs is not set, the source_crs could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.\nFor all datasets on projected grids, latitude and longitudes for grid cells will be 2-dimensional arrays. x- and y-coordinates for these datasets will be vectors. So 2-dimensional arrays of x and y coordinates need to be created. np.meshgrid is designed to do this.\nIf you want the latitudes and longitudes of the corners of grid cells, x and y coordinates can be incremented by half the grid cells width and height, and the resoluting projected coordinates passed to transform.transformer.\nIt is worth considering if you really need to have latitude and longitude arrays for your dataset. One reason that CF-conventions were changed, was that 2D arrays of geographic coordinates can increase the file size, especially for high resolution datasets. Projected coordinates as vectors take up much less space. Plotting tools such as cartopy can make maps without latitude and longitude. If you need to extract cell values for specific geographic coordinates, for example for a weather station or buoy, it is quicker and easier to transform these coordinates into the projected coordinate system of the dataset. The xarray.Dataset.sel or xarray.DataArray.sel methods can then be used to select the data for that location.",
+    "text": "Discussion\nConcept-ids are unique identifiers for collections (data sets) and granules (files) in NASA’s Common Metadata Repository (CMR). Collection concept-ids begin with the letter “C”, as seen in the list above. Granule concept-ids begin with the letter “G”. Concept-ids also indicate the data provider that stewards the data set.\n\nNSIDC_CPRD = National Snow and Ice Data Center DAAC\nLARC_CLOUD = Atmospheric Science Data Center DAAC\nORNL_CLOUD = Oak Ridge National Laboratory DAAC\nLPCLOUD = Land Processes DAAC at USGS\nOB_CLOUD = Ocean Biology DAAC\nPOCLOUD = Physical Oceanography DAAC at JPL\nASF = Alaska Satellite Facility DAAC\nGHRC_DAAC = Global Hydrometeorology Resource Center DAAC\nGES_DISC = Goddard Earth Sciences Data and Information Services Center\nLAADS = Level-1 and Atmosphere Archive and Distribution System DAAC\nCDDIS = Crustal Dynamics Data Information System DAAC",
     "crumbs": [
       "How-To Guides",
-      "Work with NetCDF files",
-      "Get the latitude and longitudes for grid cells"
+      "Search for data",
+      "How to get data set concept-ids using earthaccess"
     ]
+  },
+  {
+    "objectID": "how-to-guides/reprojection.html",
+    "href": "how-to-guides/reprojection.html",
+    "title": "How do I reproject data",
+    "section": "",
+    "text": "How do I reproject a data file from from the command line\nUse gdal\n\n\nHow do I reproject a NetCDF file using rioxarray\nSee rioxarray docs"
   },
   {
     "objectID": "tools-we-use.html",
@@ -515,11 +522,100 @@
     ]
   },
   {
-    "objectID": "how-to-guides/reprojection.html",
-    "href": "how-to-guides/reprojection.html",
-    "title": "How do I reproject data",
+    "objectID": "how-to-guides/get_data_links.html",
+    "href": "how-to-guides/get_data_links.html",
+    "title": "How to use earthaccess to get the data access links for granules returned from a query",
     "section": "",
-    "text": "How do I reproject a data file from from the command line\nUse gdal\n\n\nHow do I reproject a NetCDF file using rioxarray\nSee rioxarray docs"
+    "text": "How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?",
+    "crumbs": [
+      "How-To Guides",
+      "Access data",
+      "How to get data access links using earthaccess"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_data_links.html#problem",
+    "href": "how-to-guides/get_data_links.html#problem",
+    "title": "How to use earthaccess to get the data access links for granules returned from a query",
+    "section": "",
+    "text": "How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?",
+    "crumbs": [
+      "How-To Guides",
+      "Access data",
+      "How to get data access links using earthaccess"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_data_links.html#solution",
+    "href": "how-to-guides/get_data_links.html#solution",
+    "title": "How to use earthaccess to get the data access links for granules returned from a query",
+    "section": "Solution",
+    "text": "Solution\nFor an example query like the one below, applying a spatial filter over the Juneau ice field in Alaska for a specific time period:\nimport earthaccess\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '006',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\n[granule.data_links(access=\"https\") for granule in files]\n[['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nNote that a list of lists is returned. To get the urls as strings in a single list, add a first index to the method call.\n[granule.data_links(access=\"direct\")[0] for granule in files]\n['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']\n[granule.data_links(access=\"https\")[0] for granule in files]\n['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']",
+    "crumbs": [
+      "How-To Guides",
+      "Access data",
+      "How to get data access links using earthaccess"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_data_links.html#discussion",
+    "href": "how-to-guides/get_data_links.html#discussion",
+    "title": "How to use earthaccess to get the data access links for granules returned from a query",
+    "section": "Discussion",
+    "text": "Discussion\nThe “https” links enable data download with no egress charges to the data user. “S3” object urls can be used for direct S3 access within AWS region us-west-2. Parsing the urls is also a way to get at the filenames for your granule query results.",
+    "crumbs": [
+      "How-To Guides",
+      "Access data",
+      "How to get data access links using earthaccess"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html",
+    "href": "how-to-guides/get_latitude_and_longitude.html",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "",
+    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html#problem",
+    "href": "how-to-guides/get_latitude_and_longitude.html#problem",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "",
+    "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html#solution",
+    "href": "how-to-guides/get_latitude_and_longitude.html#solution",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "Solution",
+    "text": "Solution\n\nimport numpy as np\n\nimport rioxarray\nimport xarray as xr\nfrom pyproj import CRS, Transformer\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('../example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Instantiate source pyproj CRS from ds.rio.crs object\nsource_crs = CRS(ds.rio.crs.to_wkt())\n# Instantiate destination pyproj CRS using EPSG code for WGS84 \ndestination_crs = CRS(4326)\n\n# Instantiate pyproj transformer instance using source and destination CRS\ntransform = Transformer.from_crs(source_crs, destination_crs)\n\n# Create 2D arrays of x and y coordinates\nx2d, y2d = np.meshgrid(ds.x, ds.y)\n\n# Calculate latitude and longitudes for each grid cell\nlat, lon = transform.transform(x2d, y2d)",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
+  },
+  {
+    "objectID": "how-to-guides/get_latitude_and_longitude.html#discussion",
+    "href": "how-to-guides/get_latitude_and_longitude.html#discussion",
+    "title": "How to get latitude and longitude for the grid cells of a NetCDF file",
+    "section": "Discussion",
+    "text": "Discussion\nThe workflow above assumes that the NetCDF file is CF-compliant and has a grid_mapping variable and projected coordinates defined. See the rioxarray CRS management documentation if this is not the case.\nIf the dataset rio.crs is not set, the source_crs could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.\nFor all datasets on projected grids, latitude and longitudes for grid cells will be 2-dimensional arrays. x- and y-coordinates for these datasets will be vectors. So 2-dimensional arrays of x and y coordinates need to be created. np.meshgrid is designed to do this.\nIf you want the latitudes and longitudes of the corners of grid cells, x and y coordinates can be incremented by half the grid cells width and height, and the resoluting projected coordinates passed to transform.transformer.\nIt is worth considering if you really need to have latitude and longitude arrays for your dataset. One reason that CF-conventions were changed, was that 2D arrays of geographic coordinates can increase the file size, especially for high resolution datasets. Projected coordinates as vectors take up much less space. Plotting tools such as cartopy can make maps without latitude and longitude. If you need to extract cell values for specific geographic coordinates, for example for a weather station or buoy, it is quicker and easier to transform these coordinates into the projected coordinate system of the dataset. The xarray.Dataset.sel or xarray.DataArray.sel methods can then be used to select the data for that location.",
+    "crumbs": [
+      "How-To Guides",
+      "Work with NetCDF files",
+      "Get the latitude and longitudes for grid cells"
+    ]
   },
   {
     "objectID": "how-to-guides/netcdf_cf.html",
@@ -804,7 +900,7 @@
     "href": "reference-guides/projections.html",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -815,7 +911,7 @@
     "href": "reference-guides/projections.html#overview",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
