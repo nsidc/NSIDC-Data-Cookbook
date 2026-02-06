@@ -1071,7 +1071,7 @@
     "href": "reference-guides/find-access.html#programmatic-data-access-options",
     "title": "Finding and accessing data",
     "section": "Programmatic data access options",
-    "text": "Programmatic data access options\n\n\n\nProgrammatic method\nStrengths\nResource\n\n\n\n\nearthaccess Python library\nRecommended method - Search for and download or stream NASA Earth science data with just a few lines of code.\nDocumentation\n\n\nharmony-py Python library\nRecommended method - Utilize NASA Harmony services to subset, reformat, reproject certain NASA Earthdata cloud data sets.\nDocumentation\n\n\ncommand line tools, e.g. curl\nQuick access if you already know what you need and you are not a Python user\nDownloading Data from Earthdata Cloud to Your Local Computer Using the Command Line",
+    "text": "Programmatic data access options\n\n\n\nProgrammatic method\nStrengths\nResource\n\n\n\n\nearthaccess Python library\nRecommended method - Search for and download or stream NASA Earth science data with just a few lines of code.\nDocumentation\n\n\nharmony-py Python library\nRecommended method - Utilize NASA Harmony services to subset, reformat, reproject certain NASA Earthdata cloud data sets.\nSubsetting NASA Earthdata Using Harmony\n\n\ncommand line tools, e.g. curl\nQuick access if you already know what you need and you are not a Python user\nDownloading Data from Earthdata Cloud to Your Local Computer Using the Command Line",
     "crumbs": [
       "Working with Data",
       "Finding and accessing data"
