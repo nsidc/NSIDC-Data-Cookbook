@@ -25,3 +25,4 @@ dependencies:
  - ipyleaflet
  - virtualizarr
  - fsspec
+ - harmony-py
