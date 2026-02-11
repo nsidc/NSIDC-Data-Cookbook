@@ -1,5 +1,5 @@
 ---
-title: "How to use harmony-py to spatially subset ATLAS/ICESat-2 Land-ice Height (ATL06) data"
+title: "How to use harmony-py to spatially subset ICESat-2data"
 author: Mikala Beig and Andy Barrett
 date: last-modified
 execute:
@@ -7,7 +7,7 @@ execute:
 ---
 
 ## Problem
-How can I spatially subset ATL06 data using the harmony-py Python library?
+How can I spatially subset ATLAS/ICESat-2 Land-ice Height (ATL06) data using the harmony-py Python library?
 
 ## Solution
 
@@ -27,11 +27,11 @@ Define your spatial bounds (min_lon, min_lat, max_lon, max_lat). Example below i
 ```python
 bbox = BBox(-134.7,58.9,-133.9,59.2)
 ```
-Define your temporal range (passed as a dictionary with "start" and "stop" keys, and dates supplied as datetime objects.
-```pythonjjjjj
+Define your temporal range (passed as a dictionary with "start" and "stop" keys, and dates supplied as datetime objects).
+```python
 temporal = {'start': dt.datetime(2020, 4, 27),'stop': dt.datetime(2020, 5, 28)}
 ```
-Define which data you'd like to access using the collection concept-id (see this [how-to](./how-to-guides/) for retrieving collection concept-ids). For this example, we'll use ATL06 version 007, C3564876127-NSIDC_CPRD.
+Define which data set you'd like to access using the collection concept-id (see [how-to](./how-to-guides/get_concept_ids.qmd) for retrieving collection concept-ids). For this example, we'll use ATL06 version 007, C3564876127-NSIDC_CPRD.
 ```python
 collection = Collection(id='C3564876127-NSIDC_CPRD') 
 ```
