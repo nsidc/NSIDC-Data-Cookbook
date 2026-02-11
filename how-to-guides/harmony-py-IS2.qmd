@@ -70,3 +70,5 @@ len(filelist)
 ## Discussion
 NASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets.
 [Table](https://nsidc.org/data/user-resources/help-center/what-subsetting-and-reformatting-services-are-available-icesat-2-data) of Harmony services available for select ICESat-2 data sets.
+
+A longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found [here](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html).
