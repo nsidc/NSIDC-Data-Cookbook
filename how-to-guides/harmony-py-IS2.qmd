@@ -7,7 +7,7 @@ execute:
 ---
 
 ## Problem
-How can I apply a bounding box to spatially subset ICESat-2 data using the harmony-py Python library?
+How can I apply a bounding box to spatially subset ICESat-2 data using NASA Harmony services via the harmony-py Python library?
 
 ## Solution
 
