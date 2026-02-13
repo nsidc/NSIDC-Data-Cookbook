@@ -1,6 +1,6 @@
 ---
 title: "How to use harmony-py to spatially subset ICESat-2 data"
-author: Mikala Beig and Andy Barrett
+author: NSIDC Data Use and Education team
 date: last-modified
 execute:
   freeze: auto

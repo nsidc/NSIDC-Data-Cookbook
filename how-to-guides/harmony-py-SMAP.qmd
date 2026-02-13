@@ -1,6 +1,6 @@
 ---
 title: "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
-author: Mikala Beig
+author: NSIDC Data Use and Education team
 date: last-modified
 execute:
   freeze: auto
