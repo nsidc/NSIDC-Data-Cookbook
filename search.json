@@ -1116,7 +1116,7 @@
     "href": "reference-guides/projections.html",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -1127,7 +1127,7 @@
     "href": "reference-guides/projections.html#overview",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
