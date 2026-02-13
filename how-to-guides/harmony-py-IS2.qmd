@@ -7,15 +7,14 @@ execute:
 ---
 
 ## Problem
-How can I apply a bounding box to spatially subset ICESat-2 data using NASA Harmony services via the harmony-py Python library?
+How do I use a bounding box to spatially subset ICESat-2 data using NASA Harmony services via the harmony-py Python library?
 
 ## Solution
 
 
 ```python
-from harmony-py BBox, Client, Collection, Request
+from harmony import BBox, Client, Collection, Request
 import datetime as dt
-from IPython.display import display, JSON
 ```
 
 Initialize your Harmony client
@@ -23,7 +22,12 @@ Initialize your Harmony client
 harmony_client = Client()
 ```
 
-Define your spatial bounds (min_lon, min_lat, max_lon, max_lat). Example below is over the Juneau Ice Field in Alaska.
+Define which data set you'd like to access using the collection concept-id (see [how-to](/how-to-guides/get_concept_ids.qmd) for retrieving collection concept-ids). For this example, we'll use ATL06 version 007, C3564876127-NSIDC_CPRD.
+```python
+collection = Collection(id='C3564876127-NSIDC_CPRD') 
+```
+
+Define your spatial bounds (min_lon, min_lat, max_lon, max_lat). The example below is over the Juneau Ice Field in Alaska.
 ```python
 bbox = BBox(-134.7,58.9,-133.9,59.2)
 ```
@@ -31,10 +35,7 @@ Define your temporal range (passed as a dictionary with "start" and "stop" keys,
 ```python
 temporal = {'start': dt.datetime(2020, 4, 27),'stop': dt.datetime(2020, 5, 28)}
 ```
-Define which data set you'd like to access using the collection concept-id (see [how-to](./how-to-guides/get_concept_ids.qmd) for retrieving collection concept-ids). For this example, we'll use ATL06 version 007, C3564876127-NSIDC_CPRD.
-```python
-collection = Collection(id='C3564876127-NSIDC_CPRD') 
-```
+
 Build the request
 ```python
 request = Request(
@@ -43,7 +44,7 @@ request = Request(
     temporal=temporal
 )
 ```
-Submit the request
+Submit the request.  This returns a Harmony job ID that can be used to check on progress.
 ```python
 job_id = harmony_client.submit(request)
 job_id

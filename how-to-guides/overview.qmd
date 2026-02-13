@@ -14,9 +14,9 @@ a workflow.
 
 How-To Guides are organized into the following sections:
 
-- How to search for data (via `earthaccess`); 
-- How to access data (via `earthaccess`);
-- How to customize data using NASA Harmony services (via `harmony-py`)
+- How to search for data (via [`earthaccess`](https://earthaccess.readthedocs.io/en/stable/user_guide/search/)); 
+- How to access data (via [`earthaccess`](https://earthaccess.readthedocs.io/en/stable/user_guide/access/));
+- How to customize data using NASA Harmony services (via [`harmony-py`](https://harmony-py.readthedocs.io/en/main/))
 - How to reproject and resample data;
 - How to work with CF-compliant NetCDF files:
   - [How to get the bounding box of a NetCDF file in latitude and longitude](netcdf_cf.qmd)
