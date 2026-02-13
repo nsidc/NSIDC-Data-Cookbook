@@ -1,0 +1,75 @@
+---
+title: "How to use harmony-py to spatially subset ICESat-2 data"
+author: Mikala Beig and Andy Barrett
+date: last-modified
+execute:
+  freeze: auto
+---
+
+## Problem
+How do I use a bounding box to spatially subset ICESat-2 data using NASA Harmony services via the harmony-py Python library?
+
+## Solution
+
+
+```python
+from harmony import BBox, Client, Collection, Request
+import datetime as dt
+```
+
+Initialize your Harmony client
+```python 
+harmony_client = Client()
+```
+
+Define which data set you'd like to access using the collection concept-id (see [how-to](/how-to-guides/get_concept_ids.qmd) for retrieving collection concept-ids). For this example, we'll use ATL06 version 007, C3564876127-NSIDC_CPRD.
+```python
+collection = Collection(id='C3564876127-NSIDC_CPRD') 
+```
+
+Define your spatial bounds (min_lon, min_lat, max_lon, max_lat). The example below is over the Juneau Ice Field in Alaska.
+```python
+bbox = BBox(-134.7,58.9,-133.9,59.2)
+```
+Define your temporal range (passed as a dictionary with "start" and "stop" keys, and dates supplied as datetime objects).
+```python
+temporal = {'start': dt.datetime(2020, 4, 27),'stop': dt.datetime(2020, 5, 28)}
+```
+
+Build the request
+```python
+request = Request(
+    collection=collection,
+    spatial=bbox,
+    temporal=temporal
+)
+```
+Submit the request.  This returns a Harmony job ID that can be used to check on progress.
+```python
+job_id = harmony_client.submit(request)
+job_id
+```
+'6a512b21-1b22-4cff-acec-bfb28fdb9985'
+
+Check on Harmony job progress
+```python
+harmony_client.wait_for_processing(job_id, show_progress=True)
+```
+ [ Processing: 100% ] |###################################################| [|]
+
+Download the results to your local directory
+```python
+futures = harmony_client.download_all(job_id, directory=".", overwrite=False)
+filelist = [f.result() for f in futures]  # get filepaths
+len(filelist)
+```
+./152623268_ATL06_20200509204541_06770702_007_01_subsetted.h5
+./152623269_ATL06_20200511091850_07000706_007_01_subsetted.h5
+
+2
+
+## Discussion
+NASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets.
+[Table](https://nsidc.org/data/user-resources/help-center/what-subsetting-and-reformatting-services-are-available-icesat-2-data) of Harmony services available for select ICESat-2 data sets.
+
+A longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found [here](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html).
