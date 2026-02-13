@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikala Beig">
+<meta name="dcterms.date" content="2026-02-13">
 
-<title>Contributing – NSIDC Data Cookbook</title>
+<title>How to use harmony-py to subset and reformat SMAP data to GeoTIFF – NSIDC Data Cookbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../glossary/glossary.html" rel="next">
-<link href="../tutorials/working_with_icesat2_sea_ice_data.html" rel="prev">
+<link href="../how-to-guides/netcdf_cf.html" rel="next">
+<link href="../how-to-guides/harmony-py-IS2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/contributing.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/contributing.html">Contributing</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/harmony-py-IS2.html">Customize data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/harmony-py-SMAP.html">How to use harmony-py to subset and reformat SMAP data to GeoTIFF</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -462,11 +464,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../how-to-guides/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How-To Guides</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
@@ -503,13 +505,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Customize data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../how-to-guides/harmony-py-IS2.html" class="sidebar-item-text sidebar-link">
@@ -518,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/harmony-py-SMAP.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-guides/harmony-py-SMAP.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">How to use harmony-py to subset and reformat SMAP data to GeoTIFF</span></a>
   </div>
 </li>
@@ -578,16 +580,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/contributing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendices/contributing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Contributing</span></a>
   </div>
 </li>
@@ -609,14 +611,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ways-to-contribute" id="toc-ways-to-contribute" class="nav-link active" data-scroll-target="#ways-to-contribute">Ways to Contribute</a>
-  <ul class="collapse">
-  <li><a href="#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github." id="toc-for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github." class="nav-link" data-scroll-target="#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.">For most contributions, the first step is to create an “issue” or “discussion” on GitHub.</a></li>
-  <li><a href="#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now" id="toc-you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now" class="nav-link" data-scroll-target="#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now">You want to work on the cookbook directly and share your changes! What now?</a>
-  <ul class="collapse">
-  <li><a href="#the-pr-workflow" id="toc-the-pr-workflow" class="nav-link" data-scroll-target="#the-pr-workflow">The PR Workflow</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
     </div>
@@ -624,16 +621,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/contributing.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/contributing.html">Contributing</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/harmony-py-IS2.html">Customize data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/harmony-py-SMAP.html">How to use harmony-py to subset and reformat SMAP data to GeoTIFF</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Contributing</h1>
+<h1 class="title">How to use harmony-py to subset and reformat SMAP data to GeoTIFF</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikala Beig </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 13, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -643,153 +652,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="ways-to-contribute" class="level1">
-<h1>Ways to Contribute</h1>
-<p>We welcome contributions of all kinds! Your help makes the Cookbook stronger and more useful for the community. There are several ways to get involved, you can:</p>
-<ul>
-<li>🪲 <strong>Identify a bug or error</strong><br>
-</li>
-<li>💡 <strong>Suggest a change or improvement</strong><br>
-</li>
-<li>📘 <strong>Propose a new tutorial or example</strong><br>
-</li>
-<li>🗣️ <strong>Join a discussion or share an idea</strong></li>
-<li>🚀 <strong>Do some work and make a Pull Request (PR)</strong></li>
-</ul>
-<hr>
-<section id="for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github." class="level2">
-<h2 class="anchored" data-anchor-id="for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.">For most contributions, the first step is to create an “issue” or “discussion” on GitHub.</h2>
-<p>You can find the cookbook’s current lists of <a href="https://github.com/nsidc/NSIDC-Data-Cookbook/issues">issues</a> and <a href="https://github.com/nsidc/NSIDC-Data-Cookbook/discussions">discussions</a> by following the links.</p>
-<p>Both are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 39%">
-<col style="width: 45%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Use this</th>
-<th>When you …</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Issue</strong></td>
-<td>Need to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!</td>
-<td>- “Example X does not work.”<br> - “Can I use <code>rasterio</code> rather than <code>xarray</code> to open SMAP data?”<br>- “I found a bunch of typos / broken links in one of your notebooks.”</td>
-</tr>
-<tr class="even">
-<td><strong>Discussion</strong></td>
-<td>Want to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.</td>
-<td>- “Do we need a more in-depth description of the WGS84 datum?”<br>- “I have a great idea for a tutorial that answers a specific science question…”<br>- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”</td>
-</tr>
-</tbody>
-</table>
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem">Problem</h2>
+<p>How can I use NASA Harmony services via the harmony-py Python library to subset SMAP data by variable and bounding box and reformat the result to GeoTIFF?</p>
 </section>
-<section id="you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now" class="level2">
-<h2 class="anchored" data-anchor-id="you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now">You want to work on the cookbook directly and share your changes! What now?</h2>
-<p>Once you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a <strong>Pull Request (PR)</strong>.</p>
-<p>A PR is a request to <em>pull</em> your changes from your copy of the repository (your <em>branch</em> or <em>fork</em>) into the main repository.<br>
-It lets others:</p>
-<ul>
-<li>Review and test your work before it becomes part of the Cookbook<br>
-</li>
-<li>Discuss possible improvements or adjustments<br>
-</li>
-<li>Keep the project organized and version-controlled</li>
-</ul>
-<p>In short: a PR is how you propose changes and collaborate safely with others.</p>
-<section id="the-pr-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="the-pr-workflow">The PR Workflow</h3>
-<p>This section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.</p>
-<section id="get-a-copy-of-the-repository" class="level4">
-<h4 class="anchored" data-anchor-id="get-a-copy-of-the-repository">1. Get a Copy of the Repository</h4>
-<p>Have a GitHub account and start by <strong>forking</strong> the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.</p>
-<ol type="1">
-<li>Go to the Cookbook’s GitHub page.<br>
-</li>
-<li>Click <strong>Fork</strong> in the upper-right corner.<br>
-</li>
-<li>Choose where to create your fork (your account) and confirm.</li>
-</ol>
-<p>Once forked, clone it to your local machine so you can edit files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> NSIDC-Data-Cookbook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: <a href="https://foundations.projectpythia.org/foundations/github/github-cloning-forking/">Project Pythia’s Github Foundations</a> and the <a href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/contributing/workflow.html">NASA Earthdata Cloud Contributing Workflows</a>.</p>
-</div>
-</div>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> harmony <span class="im">import</span> BBox, Client, Collection, Request</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Initialize your Harmony client</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>harmony_client <span class="op">=</span> Client()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Define which data set you’d like to access using the collection concept-id (see <a href="../how-to-guides/get_concept_ids.qmd">how-to</a> for retrieving collection concept-ids). For this example, we’ll use SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture, Version 9 (SPL3SMP), C2938664585-NSIDC_CPRD.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> Collection(<span class="bu">id</span><span class="op">=</span><span class="st">'C2938664585-NSIDC_CPRD'</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Define your spatial bounds (min_lon, min_lat, max_lon, max_lat). The example below is over the Eastern United States.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> BBox(<span class="op">-</span><span class="fl">93.4</span>,<span class="fl">30.3</span>,<span class="op">-</span><span class="fl">77.0</span>,<span class="fl">44.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Define your temporal range (passed as a dictionary with “start” and “stop” keys, and dates supplied as datetime objects). The example below spans two days in December 2023.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>temporal <span class="op">=</span> {<span class="st">'start'</span>: dt.datetime(<span class="dv">2023</span>,<span class="dv">12</span>,<span class="dv">12</span>),<span class="st">'stop'</span>: dt.datetime(<span class="dv">2023</span>,<span class="dv">12</span>,<span class="dv">13</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Define the output file format. GeoTIFF is the only choice for reformatting SPL3SMP.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">format</span><span class="op">=</span><span class="st">'image/tiff'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Define the variable(s) within the original data you’d like to output to GeoTIFF.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>variables <span class="op">=</span> [<span class="st">'Soil_Moisture_Retrieval_Data_AM/soil_moisture'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Build the request</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>request <span class="op">=</span> Request(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    collection <span class="op">=</span> collection,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    spatial <span class="op">=</span> bbox,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> temporal,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">format</span> <span class="op">=</span> <span class="bu">format</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    variables <span class="op">=</span> variables</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Submit the request. This returns a Harmony job ID that can be used to check on progress.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>job_id <span class="op">=</span> harmony_client.submit(request)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>job_id</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>‘abc20650-4239-434a-9fff-b54c160f38bf’</p>
+<p>Check on Harmony job progress</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>harmony_client.wait_for_processing(job_id, show_progress<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>[ Processing: 100% ] |###################################################| [|]</p>
+<p>To view the url(s) for your staged files</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="bu">list</span>(harmony_client.result_urls(job_id))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>url</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>[‘https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/abc20650-4239-434a-9fff-b54c160f38bf/153252383/SMAP_L3_SM_P_20231213_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif’, ‘https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/abc20650-4239-434a-9fff-b54c160f38bf/153252397/SMAP_L3_SM_P_20231212_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif’]</p>
+<p>Download the results to your local directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>futures <span class="op">=</span> harmony_client.download_all(job_id, directory<span class="op">=</span><span class="st">"."</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>filelist <span class="op">=</span> [f.result() <span class="cf">for</span> f <span class="kw">in</span> futures]  <span class="co"># get filepaths</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>./153252383_SMAP_L3_SM_P_20231213_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif ./153252397_SMAP_L3_SM_P_20231212_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif</p>
 </section>
-<section id="work-on-your-edits-locally" class="level4">
-<h4 class="anchored" data-anchor-id="work-on-your-edits-locally">2. Work on Your Edits Locally</h4>
-<p>Now that you have your clone, you can make changes freely using your preferred text editor.</p>
-<p>First, create a new <strong>branch</strong> for your edits. This keeps your main branch clean and makes it easier to submit your changes later.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> your-branch-name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What’s a Branch?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>branch</strong> is like a separate workspace within your project. You can make edits on your branch without affecting the main version (<code>main</code> or <code>master</code>). When you’re done, you can merge your branch back into the main project through a pull request.</p>
-</div>
-</div>
-<p>Next, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Everything looks good? Great!</p>
-</section>
-<section id="commit-and-push-your-changes" class="level4">
-<h4 class="anchored" data-anchor-id="commit-and-push-your-changes">3. Commit and Push Your Changes</h4>
-<p>Once you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Brief description of what you changed"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin your-branch-name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Almost there! Right now your work is still only in your spaces, though.</p>
-</section>
-<section id="open-a-pull-request" class="level4">
-<h4 class="anchored" data-anchor-id="open-a-pull-request">4. Open a Pull Request</h4>
-<p>These next steps will share your work with the Cookbook team.</p>
-<ol type="1">
-<li>Go to your fork on GitHub.<br>
-</li>
-<li>You’ll see a button that says <strong>Compare &amp; pull request</strong> — click it.<br>
-</li>
-<li>Add a short title and description summarizing your changes.<br>
-</li>
-<li>Submit the pull request (PR) to the main Cookbook repository.</li>
-</ol>
-<p>Your changes are now out in the world for anyone interested in the Cookbook to see!</p>
-<p>After you open a pull request:</p>
-<ul>
-<li>The Cookbook maintainers will review your changes and may request small edits or have questions.<br>
-</li>
-<li>You can continue committing changes to the same branch and they’ll automatically appear in your PR.<br>
-</li>
-<li>Once everything looks good, your PR will be approved and merged into the main project.</li>
-</ul>
-</section>
-<section id="congratulations-youve-officially-contributed-and-helped-make-the-cookbook-a-better-place" class="level4">
-<h4 class="anchored" data-anchor-id="congratulations-youve-officially-contributed-and-helped-make-the-cookbook-a-better-place">Congratulations! You’ve officially contributed and helped make the Cookbook a better place! 🎉</h4>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>NASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets. <a href="https://nsidc.org/data/user-resources/help-center/what-data-subsetting-reformatting-and-reprojection-services-are-available-smap-data">Table</a> of Harmony services available for select SMAP data sets.</p>
+<p>A longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found <a href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html">here</a>.</p>
 
 
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1208,13 +1120,13 @@ It lets others:</p>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/working_with_icesat2_sea_ice_data.html" class="pagination-link" aria-label="Download ICESat-2 Sea Ice data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Download ICESat-2 Sea Ice data</span>
+      <a href="../how-to-guides/harmony-py-IS2.html" class="pagination-link" aria-label="How to use harmony-py to spatially subset ICESat-2 data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to use harmony-py to spatially subset ICESat-2 data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../glossary/glossary.html" class="pagination-link" aria-label="Glossary">
-        <span class="nav-page-text">Glossary</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../how-to-guides/netcdf_cf.html" class="pagination-link" aria-label="Get the bounding box of a NetCDF file">
+        <span class="nav-page-text">Get the bounding box of a NetCDF file</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
