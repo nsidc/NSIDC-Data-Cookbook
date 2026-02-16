@@ -19,6 +19,9 @@ def create_example_with_no_coordinates():
             "time","x","y","crs", "F16_ICECON","F17_ICECON"
         ]
     )
+    # Remove grid_mapping_variable ref
+    ds.F18_ICECON.attrs = {k: v for k, v in ds.F18_ICECON.attrs.items() if k != "grid_mapping"}
+
     ds.to_netcdf(EXAMPLE_DATA_PATH / EXAMPLE_FILE_PATH.name.replace(".nc", ".no_coords.nc"))
 
 
@@ -30,6 +33,9 @@ def create_example_with_no_crs():
             "crs", "F16_ICECON","F17_ICECON"
         ]
     )
+    # Remove grid_mapping_variable ref
+    ds.F18_ICECON.attrs = {k: v for k, v in ds.F18_ICECON.attrs.items() if k != "grid_mapping"}
+    
     ds.to_netcdf(EXAMPLE_DATA_PATH / EXAMPLE_FILE_PATH.name.replace(".nc", ".no_crs.nc"))
 
 
