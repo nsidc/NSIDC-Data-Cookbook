@@ -1,0 +1,16 @@
+---
+title: "Gridded Data"
+author: Andy P. Barrett
+date: last-modified
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+_Placeholder_
+
+# Overview
+
+Gridded data is data that is organized as an array with two or more dimensions.  For geospatial data, the dimensions of two-dimensional gridded data are spatial (e.g. $x$ and $y$ coordinates, or latitude and longitude). Additional dimensions are often altitude or depth, and time.
+
