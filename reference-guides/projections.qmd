@@ -74,18 +74,35 @@ ax.gridlines()
 ax.set_title('');
 ```
 
-You are probably familiar with at least two ways to represent
-geospatial data.  To a first approximation, the Earth can be thought
-of as a sphere[^1].  We could display geospatial data on a **globe**,
-which is a scaled representation of that sphere, using latitude and
-longitude as coordinates[^2].  @fig-globe-image shows an
-example of this approach from 1782 that was used to show the voyages of Captain James Cook.  A modern example is [NOAA's Science on a Sphere](https://sos.noaa.gov/), which
-can be seen at [over 175
-locations](https://sos.noaa.gov/sos/locations/) around the World.  However, even a desktop
-globe, let alone a room-size digital globe, is cumbersome.  Doing
-calculations on a sphere is also difficult.  A more common approach is to represent the Earth and geospatial data on a two-dimensional plane, either a flat sheet of paper or a screen that we call a **map**.  The Mercator map shown in @fig-map-image is an early example of a two-dimensional representation of Earth for navigation.
+You are probably familiar with two common ways to represent geospatial
+data.  The first is on a **globe**.  To a first approximation, the
+Earth can be represented as a sphere[^1].  A globe is a scaled
+representation of a spherical representation of Earth, using latitude
+and longitude as coordinates[^2].  @fig-globe-image shows an example
+of this approach from 1782 that was used to show the voyages of
+Captain James Cook.  A modern example of a globe, is [NOAA's Science
+on a Sphere](https://sos.noaa.gov/), which can be seen at [over 175
+locations](https://sos.noaa.gov/sos/locations/) around the World.
+However, even a desktop globe, let alone a room-size digital globe, is
+cumbersome.  Doing calculations on a sphere is also difficult.
 
-These two ways of representing geospatial data are examples of **coodinate systems**.  The globe is a spherical coordinate system that uses latitude and longitude as coordinates.   The Mercator map is a two-dimensional cartesian coordinate system.  A coordinate system is one component of a Coordinate Reference System.  Coordinate Systems are described in more detail in @sec-coordinate-systems.  The Mercator map is also an example of another component of a Coordinate Reference System, the **map projection**.  A map projection is a set of rules to transform coordinates from a spherical coordinate system into a two-dimensional cartesian coordinate system.  Map projections are desribed in more detail in @sec-map-projections.
+A more common approach is to represent the Earth and geospatial data
+on a two-dimensional plane, either a flat sheet of paper or a screen
+that we call a **map**.  The Mercator map shown in @fig-map-image is
+an early example of a two-dimensional representation of Earth for
+navigation.
+
+These two ways of representing geospatial data are examples of
+**coodinate systems**.  The globe is a spherical coordinate system
+that uses latitude and longitude as coordinates.  The Mercator map is
+a two-dimensional cartesian coordinate system.  A coordinate system is
+one component of a Coordinate Reference System.  Coordinate Systems
+are described in more detail in @sec-coordinate-systems.  The Mercator
+map is also an example of another component of a Coordinate Reference
+System, the **map projection**.  A map projection is a set of rules to
+transform coordinates from a spherical coordinate system into a
+two-dimensional cartesian coordinate system.  Map projections are
+desribed in more detail in @sec-map-projections.
 
 
 ::: {#fig-globe-and-map layout-ncol=2}
