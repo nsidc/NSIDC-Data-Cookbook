@@ -114,33 +114,29 @@ desribed in more detail in @sec-map-projections.
 Ways of representing geospatial data
 :::
 
-
-Relating coordinates expressed as latitude and longitude to a
-two-dimensional plane requires us to define a _Coordinate Reference
-System_, which is often shortened to CRS.  This not only tells us how
-coordinates in latitude and longitude relate to coordinates in a
-two-dimensional plane but also tells us locations with different
-coordinate reference systems relate to each other.  As you will see
-below, a point in one dataset with coordinates (40 $^\circ$N, -110
-$^\circ$E) is not same as a point with the same coordinates in another
-dataset, if that dataset has a different coordinate reference system.
+_Coordinate Reference Systems_ not only tells us how coordinates in
+latitude and longitude relate to coordinates in a two-dimensional
+plane but also how locations with different coordinate reference
+systems relate to each other.  As you will see below, a point in one
+dataset with coordinates (40 $^\circ$N, -110 $^\circ$E) is not same as
+a point with the same coordinates in another dataset, if that dataset
+has a different coordinate reference system.
 
 
 
 ## Geospatial Data{#sec-geospatial-data}
 
-Geospatial data and information are data and information
-associated with a location or set of locations on the Earth.  It is also referred
-to as geographic data and information, georeferenced data and
-information, or geodata and geoinformation.
+Maps and globes are great fun to paw over and are still useful but
+most analysis in the Earth Sciences is done with digital versions of
+geospatial data.
 
-There are two broad categories of geospatial data:
+There are two broad categories of digital geospatial data:
 
-- vector data,
-- raster or gridded data.
+- vector data;
+- raster data.
 
 Vector data are points, lines and polygons.  Examples vector datasets
-are the locations of capital cities defined by a latitude and
+are the locations of weather stations defined by a latitude and
 longitude for each city.  The network of US interstate highways can be
 represented as a set of line segments, where the end points of each
 line segment is a latitude longitude pair.  Country boundaries can be
