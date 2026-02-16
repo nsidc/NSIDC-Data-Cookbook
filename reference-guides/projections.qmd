@@ -10,17 +10,21 @@ jupyter: python3
 ## Overview
 
 Almost all of the data archived by NSIDC is _geospatial data_.  That
-is data that is tied to a location on Earth.  @fig-sea-ice-on-globe
-shows sea ice concentration data for September 2025 from NSIDC's Sea
-Ice index.  The colored image draped over a satellite perspective
-view, represents the amount of sea ice in 25 km by 25 km grid cells,
-expressed as a percentage, for thousands of grid cells.  Each of these
-grid cells is related to a location on Earth through a pair of
-coordinates and set of rules that transform these coordinate pairs
-into locations on the Earth.  This set of rules is called a _Coordinate
-Reference System_ or _CRS_.  This section of the NSIDC Data Cookbook
-provide an introduction to Coordinate Reference Systems in general and
-to the Coordinate Reference Systems used for NSIDC data.
+is data that is tied to a location on Earth.  Geospatial data is also
+called to as geographic data and information, georeferenced data and
+information, or geodata and geoinformation.
+
+@fig-sea-ice-on-globe shows sea ice concentration data for September
+2025 from NSIDC's Sea Ice index.  The colored image draped over a
+satellite perspective view, represents the amount of sea ice in 25 km
+by 25 km grid cells, expressed as a percentage, for thousands of grid
+cells.  Each of these grid cells is related to a location on Earth
+through a pair of coordinates and set of rules that transform these
+coordinate pairs into locations on the Earth.  This set of rules is
+called a _Coordinate Reference System_ or _CRS_.  This section of the
+NSIDC Data Cookbook provide an introduction to Coordinate Reference
+Systems in general and to the Coordinate Reference Systems used for
+NSIDC data.
 
 ::: {.callout-tip}
 If you want to skip the background and just learn about the main
