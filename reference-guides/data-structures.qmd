@@ -1,23 +1,577 @@
 ---
-title: "Data types and formats"
+title: "Data formats and structures"
 ---
 
-There are many common data types/ structures and terminology to go along with them. Some examples:
+Earth science and remote sensing data are stored in a variety of structures and file formats, each shaped by how the data were collected, processed, distributed, and historically used. At NSIDC, formats reflect satellite mission design, modeling needs, interoperability standards, and long-term archiving requirements.
 
-- **Tabular** – rows and columns, often stored in CSV or TSV files. Each row is an observation, and each column is a variable (e.g., time, latitude, longitude, temperature).  
-- **Data Frames** – tabular data structures used in programming languages like R or Python (pandas). Data frames allow for more complex indexing, metadata, and transformations than simple tabular files.  
-- **Swath** – along-track measurements collected as the satellite passes over an area, usually irregular in shape and resolution.  
-- **Raster / Grids** – data organized into regular grid cells, each cell representing a spatial unit (e.g., 25 km × 25 km grid of snow cover).  
-- **Resampling** – methods for transforming data between swath, raster, or other structures (e.g., nearest neighbor, bilinear interpolation).  
+Research usually starts with a science question, not a format or structure preference. This page explains some common hurdles with specific data formats, formats that are most prevalent at NSIDC, and briefly describes the underlying data structures that some of these formats represent.
 
 
-How to work with file formats commonly found at NSIDC: In most cases, it’s best to avoid low-level libraries such as `netCDF4` or `h5py`. Higher-level libraries provide more intuitive access, automatically handle metadata, and streamline analysis. Some format descriptions and reccomendations  are in the table below.
+It is helpful to distinguish between:
 
-| File Format           | Description                                                                                 | Recommended Tools                                        |
-| --------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| **NetCDF4 / NetCDFx** | Multidimensional climate/remote sensing data (time, lat, lon, variables).                   | `xarray` (`xr.open_dataset`) in Python; `terra` or `ncdf4` in R.    |
-| **HDF5**              | Hierarchical format for storing arrays, tables, and metadata; used widely in NASA products. | `xarray`, `pandas`; avoid `h5py` unless necessary.       |
-| **HDF-EOS**           | Earth Observing System variant of HDF, often with swath, grid, or point structures.         | `xarray`, `h5netcdf`, NASA `harmony-py`.                 |
-| **Shapefile**         | Vector geospatial data (points, lines, polygons) with CRS support.                          | `geopandas` (Python); `sf` (R).                          |
-| **GeoTIFF**           | Georeferenced raster imagery and gridded data.                                              | `rasterio`, `rioxarray` (Python); `terra`, `raster` (R). |
-| **CSV/TSV**           | Tabular text-based files, rows = observations, columns = variables.                         | `pandas` (Python); `readr`/`data.table`/`tibble` (R).    |
+**Data structure** — how observations relate to space, time, and each other  
+**File format** — how those structured data are stored and delivered 
+
+Formats and structure encode scientific assumptions and technical constraints within data products. Understanding the basics can help you:
+
+- Interpret results correctly  
+- Recognize limitations  
+- Avoid common analysis errors, and 
+- Do science more efficiently! 
+
+The flow chart below illustrates how a science question leads to data products with specific structures and formats, which in turn determine the tools (typically programmatic, graphical user interfaces (GUIs), or web based) needed for analysis.
+
+```{mermaid}
+flowchart TD
+
+A[Science question] --> B[Data structure]
+B --> B1[Raster]
+B --> B2[Swath]
+B --> B3[Vector]
+B --> B4[Tabular]
+
+B1 --> C[File formats]
+B2 --> C
+B3 --> C
+B4 --> C
+
+C --> C1[NetCDF]
+C --> C2[GeoTIFF]
+C --> C3[HDF5]
+C --> C4[CSV]
+C --> C5[Shapefile]
+
+C1 --> D[Tools]
+C2 --> D
+C3 --> D
+C4 --> D
+C5 --> D
+
+D --> D1[Python]
+D --> D2[GIS software]
+D --> D3[R]
+D --> D4[Web tools]
+```
+
+A single dataset may involve multiple structures and formats over its lifecycle.
+
+The table below lists common file formats encountered in NSIDC data products and some practical considerations when working with them.
+
+## Common file formats at NSIDC
+
+| File format | Common uses | Quirks | NSIDC example products | Common tools (programmatic + GUI) | 
+|------------|---------------|-------------|--------------------|------------------------|-----------------------------------|
+| **NetCDF4 / NetCDF classic** | Climate records, reanalysis products, gridded time series, model output. | Time encoding confusion; multidimensional indexing; large file sizes; steep learning curve without high-level tools. | [Sea Ice Concentration CDR](https://nsidc.org/data/G02202) • [Antarctic Ice Velocity](https://nsidc.org/data/NSIDC-0484)  | **Python:** `xarray`, `dask`, `netCDF4` (low-level) • **R:** `terra`, `stars`, `ncdf4` • **GUI:** Panoply, QGIS|
+| **HDF5** | Mission-level products, intermediate processing outputs, complex hierarchical datasets. | Deep hierarchies; unclear variable naming; inconsistent conventions between products. | [SMAP L3 Soil Moisture](https://nsidc.org/data/SPL3SMP) • [ICESat-2 ATL03](https://nsidc.org/data/ATL03) | **Python:** `xarray`, `pandas`, `h5py` (inspection) • **R:** `rhdf5` • **GUI:** HDFView|
+| **HDF-EOS2 / HDF-EOS5** | Satellite swath and gridded mission products (e.g., MODIS). | Specialized structure; harder to read without EOS-aware tools; metadata spread across groups. | [MODIS Snow Cover](https://nsidc.org/data/mod10a1/) • [AMSR-E/AMSR2 SWE](https://nsidc.org/data/au_dysno/) | **Python:** `xarray`, `h5netcdf`, `pyhdf` • **R:** `terra` • **GUI:** Panoply, HDFView|
+| **GeoTIFF / TIFF** | Gridded maps, spatial subsets, visualization-ready products. | Limited metadata compared to NetCDF; alignment issues across datasets; large files at high resolution. | [Ice Sheet Velocity](https://nsidc.org/data/nsidc-0731/) • [Land Freeze/Thaw Status](https://nsidc.org/data/nsidc-0728/) | **Python:** `rasterio`, `rioxarray`, `xarray` • **R:** `terra`, `raster` • **GUI:** QGIS, ArcGIS Pro |
+| **Shapefile** | Ice sheet boundaries, grounding lines, glacier outlines. | Multi-file dependency; field name limits; aging format. | [Glacier Database](https://nsidc.org/data/nsidc-0272/) • [Glacier Terminus Positions](https://nsidc.org/data/nsidc-0642/) | **Python:** `geopandas`, `shapely` • **R:** `sf` • **GUI:** QGIS, ArcGIS Pro |
+| **CSV / TSV** | Time series, summaries, point extractions. | No spatial context; metadata easily lost; scaling issues. | [Ice Thickness](https://nsidc.org/data/irmcr2/) | **Python:** `pandas` • **R:** `readr`, `data.table`, `tibble` • **GUI:** Excel, LibreOffice |
+| **ASCII grid / text** | Historical products, simple model outputs. | No embedded CRS; manual parsing required. | [Sea Ice Trends](https://nsidc.org/data/nsidc-0192/) | **Python:** `numpy`, `pandas` • **R:** base R, `terra` • **GUI:** Text editors, QGIS (limited) |
+| **PNG / GIF / JPEG** | Quicklook imagery, browse products, outreach. | Not analysis-ready; no quantitative metadata. | [Arctic Change](https://nsidc.org/data/nsidc-0589/) | **GUI:** Web browser, image viewers, NASA Worldview |
+| **JSON** | Metadata responses, data access services. | Not suitable for large arrays; not analysis-ready. | [SMAP Ancillary Files](https://nsidc.org/data/smap_l4_sm_anc_log/) | **Python:** `json`, `requests` • **R:** `jsonlite` • **GUI:** Web browser |
+
+
+## How Earth science data are structured
+
+Before working with specific file formats, it helps to understand the **underlying data structures** they represent. At NSIDC, most datasets fall into one or more of the structures below.
+
+## Raster / gridded data
+
+::: {.callout-tip}
+### At a glance... 
+**Best for:** Continuous spatial fields  
+**Common formats:** GeoTIFF, NetCDF, HDF5, COG, ASCII grid
+:::
+
+
+Raster data represent space as a **regular grid of cells**. Each cell corresponds to a defined area on Earth and stores a value or category. For example, below you have a grid where each box represents a numeric value between 1 and 5. 
+
+```
++----+----+----+
+|  3 |  4 |  5 |
++----+----+----+
+|  2 |  3 |  4 |
++----+----+----+
+|  1 |  2 |  3 |
++----+----+----+
+```
+
+Each one of these cells represents a geographic footprint, not a point. Meaning, anywhere within one of these boxes (whether it is in the middle, or near the outer edge) is represented by the same numeric value.
+
+### Key concepts
+- **Extent** — the geographic area covered  
+- **Resolution** — the size of each cell (e.g., 25 km × 25 km)  
+- **Coordinate Reference System (CRS)** — how the grid maps to Earth  
+- **Grid definition** — origin, orientation, and spacing  
+
+::: {.callout-note}
+### Why GeoTIFF exists
+
+GeoTIFF extends standard image files by embedding geographic referencing information directly in the file.  This makes them portable across GIS tools without requiring separate projection or coordinate files. 
+:::
+
+
+### What raster values mean
+Raster values usually represent either:
+
+- a value recorded at / near the **cell center**, or  
+- an **average or modeled value across the cell area**
+
+This distinction matters for interpretation and comparison. These decisions affect uncertainty and are typically documented in product metadata rather than the file format itself.
+
+### Where rasters come from
+Many raster products are **derived**, not directly observed. Examples of this would be:
+
+- Satellite swaths being aggregated to a grid
+- Multiple observations being averaged into one cell
+- Point data interpolated or modeled onto a grid
+
+::: {.callout-note}
+### Why ASCII grids exist
+
+ASCII grid formats were developed as simple, human-readable ways to store gridded data that could be shared across software systems. They remain common in legacy datasets because they are transparent and easy to parse, even though they lack embedded spatial metadata.
+:::
+ 
+
+### NetCDF data - a sometimes tricky container for raster data
+
+Many NSIDC datasets are best understood as named, labeled arrays, not as tables or spreadsheets.
+
+Instead of rows and columns, NetCDF organizes data by dimensions such as space, time, and height.
+
+```
+variable(time, y, x)
+```
+
+This means:
+
+- The data are stored as a multidimensional block
+- Each axis has a name, units, and meaning
+- Position along each axis matters
+
+NetCDF is a scientific data container designed to store multidimensional arrays with metadata.  
+At NSIDC it is often used to store gridded datasets, time series stacks, or model outputs, but it can represent many structures (not just raster or grid) depending on how it is written.
+
+::: {.callout-note}
+### Why NetCDF exists
+
+NetCDF was created to store large, multidimensional scientific datasets while keeping data and metadata together. It allows variables to be tied to named dimensions (time, latitude, longitude, height), making files self-describing and machine-interpretable. Because climate and Earth science datasets often span decades and regions, NetCDF became a community standard for storing gridded environmental data.
+:::
+
+
+#### NetCDF =  dimensions + variables + attributes
+
+A NetCDF file typically contains three key components.
+
+##### Dimensions define the **shape** of the data. Below is an example of a 3-Dimensional (3-D) data set.
+
+```
+Dimensions:
+  time = 365
+  y    = 720
+  x    = 720
+```
+
+Each dimension represents an independent axis:
+
+- `time` → when the observation occurred
+- `y`, `x` → spatial position on a grid
+- sometimes `z` or `level` → vertical structure (this would be a 4th dimension)
+
+
+##### Variables are **arrays of values** defined over one or more dimensions.
+
+```
+Variables:
+  sea_ice_concentration(time, y, x)
+  latitude(y, x)
+  longitude(y, x)
+```
+
+Visually, you can think of a variable (like `sea_ice_concentration` above) as a stack of 2-D maps through time:
+
+```
+time = t0      time = t1      time = t2
++----+----+    +----+----+    +----+----+
+|    |    |    |    |    |    |    |    |
++----+----+    +----+----+    +----+----+
+|    |    |    |    |    |    |    |    |
++----+----+    +----+----+    +----+----+
+```
+
+Each slice shares:
+
+- the same grid
+- the same projection
+- the same variable definition
+
+::: {.callout-note}
+### Why HDF5 exists
+
+HDF5 was designed as a flexible container for storing large scientific datasets with complex internal structure. It is the "backbone"/ underlying structure of NetCDF4. It supports hierarchical grouping, mixed data types, and metadata, making it useful for many NASA data products.
+:::
+
+##### Attributes store **metadata** that describe how to interpret the values and may be attached to:
+
+- the file (global attributes)
+- individual variables
+- individual dimensions
+
+Examples include:
+```
+units = "%"
+valid_range = 0 to 100
+missing_value = -9999
+long_name = "Sea Ice Concentration"
+```
+
+Attributes explain:
+
+- what the numbers mean
+- how they were produced
+- how they should (and should not) be used
+
+Having well defined attributes is something that sets NetCDF apart from simpler formats like CSV or plain text. A LOT of scientific information can be embedded within these attributes, and a lot of it is essential for proper data interpretation.
+
+##### Common NetCDF data shapes
+
+###### 3-D (for example, a variable over time and horizontal space)
+```
+variable(time, y, x)
+```
+
+Examples:
+
+- Sea ice concentration
+- Snow cover
+- Surface temperature
+
+###### 4-D (perhaps a variable over time + horizontal space + vertical space)
+```
+variable(time, level, y, x)
+```
+
+Examples:
+
+- Atmospheric pressure levels (e.g., 1000 hPa → 100 hPa)
+- Model layers (terrain-following or topography)
+- Depth or height above/ below a surface
+
+## Swath data 
+
+::: {.callout-tip}
+### At a glance... 
+
+**Best for:** Preserving original satellite observation geometry  
+**Common formats:** HDF-EOS, NetCDF with geolocation arrays
+:::
+
+
+Swath data preserve measurements **close to their native satellite measurement geometry** along an orbit.
+
+```
+Satellite flight direction →
+────────────────────────────────────
+
+   ◯     ◯      ◯      ◯      ◯
+     ◯      ◯      ◯      ◯
+   ◯     ◯      ◯      ◯      ◯
+     ◯      ◯      ◯      ◯
+```
+Each ◯ = one observation footprint
+
+The above is a highly idealized example as swath geometry varies by mission, but notice how: 
+
+- Spacing varies across the swath
+- Footprints overlap differently near edges
+- No fixed row/column alignment
+
+### Why swaths exist
+Swath formats preserve:
+
+- Native resolution
+- Viewing angle
+- Exact observation timing
+
+This makes them important for:
+
+- Calibration and validation
+- Algorithm development
+- Applications sensitive to observation geometry
+
+::: {.callout-note}
+### Why HDF-EOS exists
+
+HDF-EOS adds Earth Observing System conventions on top of HDF to represent satellite data structures such as swaths, grids, and point measurements. It was created so NASA mission products could store observation geometry and geolocation alongside measurements in a consistent way.
+:::
+
+
+### Common challenges
+- Harder to visualize
+- Not directly comparable across time or space
+- Usually must be transformed to a grid before analysis
+
+## Tabular data 
+::: {.callout-tip}
+### At a glance... 
+
+**Best for:** Discrete observations, station data, or summaries  
+**Common formats:** CSV, TSV, Parquet, NetCDF tables
+:::
+
+
+For many users, tabular data feels familiar because it resembles spreadsheets used in tools like Excel or Google Sheets.
+
+```
+| date       | latitude | longitude | value |
+|------------|----------|-----------|-------|
+| 2022-01-01 |  70.2    | -150.1    | 0.82  |
+| 2022-01-02 |  70.2    | -150.1    | 0.79  |
+| 2022-01-03 |  70.2    | -150.1    | 0.85  |
+```
+
+Each row represents an observation, and each column represents a variable.
+
+### Why tabular data exist
+
+Tabular formats exist because they are:
+
+- Human-readable
+- Easy to edit and inspect
+- Supported by nearly all software environments
+
+At NSIDC, tabular data are commonly used for:
+
+- Time series at fixed locations
+- Summary statistics derived from spatial products
+- Point-based observations or extractions
+
+Several file formats exist specifically to store tabular information, ranging from simple text tables to structured exchange formats.
+
+::: {.callout-note}
+### Why CSV and TSV exist
+
+Delimited text formats like CSV and TSV were created to provide a simple, universal way to store tabular data that can be opened in nearly any software environment. Because they are human-readable and easy to generate, they remain widely used for time series, summaries, and data exchange.
+:::
+
+
+### What tabular data do *not* standardize
+
+Unlike gridded or vector formats, tabular files typically do **not** embed:
+
+- Coordinate reference system (CRS)
+- Spatial resolution or footprint
+- Relationships between neighboring observations
+- Processing history 
+
+Instead, this information is often:
+
+- Documented externally
+- Assumed based on context
+- Non-existent
+
+For example, a table like this:
+
+```
+| latitude | longitude | value |
+|----------|-----------|-------|
+| 70.2     | -150.1    | 0.82  |
+```
+
+Does **not** tell you:
+
+- Whether the value represents a point measurement
+- Whether it is an average over an area
+- How large that area might be
+
+That meaning must come from metadata or documentation.
+
+A spreadsheet may show *what* the values are, but not *where* or *how* they were produced.
+
+::: {.callout-note}
+### Why JSON exists
+
+JSON was developed as a lightweight structured text format for exchanging data between systems, particularly in web services and APIs. In Earth science, it is commonly used for metadata, configuration files, and small structured datasets rather than large scientific arrays.
+:::
+
+In general, tabular structures are well-suited for:
+
+- Single-location time series
+- Small collections of points
+- Summaries and diagnostics
+
+But are less suitable for:
+
+- Continuous spatial fields
+- Large-scale gridded products
+- Analyses requiring detailed spatial context
+
+## Vector data 
+
+::: {.callout-tip}
+### At a glance... 
+
+**Best for:** Boundaries, tracks, and discrete geographic features  
+**Common formats:** Shapefile, GeoJSON, GeoPackage, KML
+:::
+
+
+Vector data represent **discrete geographic features** rather than continuous spatial fields. 
+
+```
+• Point        ─── Line        ▢ Polygon
+```
+
+Examples:
+
+- Glacier outlines
+- Ice sheet boundaries
+- Grounding lines
+
+Unlike rasters:
+
+- Geometry is explicit
+- Detail depends on how the feature was digitized
+- Attributes are attached to features, not grid cells
+
+### Geometry types
+
+#### Points
+```
+•
+```
+
+Points represent a single location with no area or length.
+
+Common uses:
+
+- Observation stations
+- Sample locations
+- Reference points
+
+
+#### Lines
+```
+───────
+```
+
+Lines represent linear features with length but no area.
+
+Common uses:
+
+- Grounding lines
+- Ice front positions
+- Transects
+
+#### Polygons
+```
+▢▢▢▢
+▢▢▢▢
+```
+
+Polygons represent areas with defined boundaries.
+
+Common uses:
+
+- Glacier outlines
+- Ice sheet masks
+- Drainage basins
+
+Polygons define *inside vs outside*, which is important for:
+
+- Area calculations
+- Masking raster data
+- Regional summaries
+
+### Attributes
+
+Each feature includes attributed data:
+
+```
+Feature ID | Name        | Area_km2 | Year
+-----------|-------------|----------|------
+001        | Glacier A   | 12.4     | 2020
+002        | Glacier B   |  8.9     | 2020
+```
+Importantly:
+
+- Attributes describe properties of **features**
+- They do not imply values between features
+
+### Why vector data exist
+
+Vector formats exist because many spatial features are:
+
+- Discrete rather than continuous
+- Better described by boundaries than averages
+- Interpreted as objects, not fields
+
+::: {.callout-note}
+### Why Shapefiles exist
+
+The shapefile format was introduced as an early GIS standard for storing vector features with attributes. Although newer formats now exist, shapefiles remain common because of their compatibility across tools and legacy datasets.
+:::
+
+
+### How vector data differ from rasters
+
+```
+Raster:  value everywhere
+Vector:  value only where features exist
+```
+
+Key differences:
+
+- Geometry is explicit, not implied by grid cells
+- Precision depends on digitization, not grid spacing
+- Attributes are attached to features, not cells
+
+Vector data represent **objects and boundaries**, not continuous fields.
+
+::: {.callout-note}
+### Why image formats exist in data portals
+
+Formats like PNG, JPEG, and GIF are optimized for visualization rather than analysis. They are often used as previews and quicklook imagery so users can inspect spatial patterns without downloading large scientific datasets. 
+:::
+
+
+## Bonus: Resampling data
+
+Resampling refers to transforming data between **different spatial or structural representations**, not simply changing file formats.
+
+Common transformations include:
+
+- swath → grid  
+- grid → different grid  
+- high resolution → low resolution  
+
+Why resampling is unavoidable:
+
+- Instruments observe along tracks, not grids
+- Different products use different projections
+- Analyses require common spatial frameworks
+
+Every resampling step introduces assumptions:
+
+- How values are aggregated
+- How gaps are handled
+- How boundaries are treated
+
+These choices affect uncertainty and comparability and are documented in processing descriptions rather than inherent to any single format.
+
+## Wrapping up
+
+A single NSIDC dataset may involve multiple structures (and formats!) over its lifecycle:
+
+```
+Swath observations
+        ↓
+Modeled / aggregated grid
+        ↓
+NetCDF storage
+        ↓
+Tabular extraction for analysis
+```
+
+Understanding **data structure** (and how that relates to the **data format**) can help you interpret values correctly, use appropriate tools, and avoid common issues or wrong assumptions.
