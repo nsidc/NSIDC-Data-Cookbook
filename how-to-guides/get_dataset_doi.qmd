@@ -1,0 +1,74 @@
+---
+title: "How to use earthaccess to retrieve a data set DOI and formatted citation"
+author: NSIDC Data Use and Education team
+date: last-modified
+execute:
+  freeze: auto
+---
+
+## Problem
+How can I use earthaccess to retrieve a data set digital object identifier (DOI) and formatted citation?
+
+## Solution
+
+
+```python
+import earthaccess
+```
+
+```python 
+results = earthaccess.search_datasets(
+    keyword = 'snowex'
+)
+len(results)
+```
+125
+
+```python
+for r in results[:5]:
+    doi = r.doi()
+    citation = r.citation(format='apa',language='en-US')
+    print(doi)
+    print()
+    print(citation)
+```
+
+10.5067/SJZ90KNPKCYR
+
+Mason,  Megan, Vuyovich,  Carrie, Stuefer,  Sveta, Elder,  Kelly, Vas,  Dragos, Marshall,  Hans-Peter, & Durand,  Michael. (2024). SnowEx23 Mar23 Snow Pit Measurements, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/SJZ90KNPKCYR
+
+10.5067/QIANJYJGRWOV
+
+Mason,  Megan, Marshall,  Hans-Peter, Craaybeek,  Dylan, Elder,  Kelly, & Vuyovich,  Carrie. (2024). SnowEx21 Time Series Snow Pits, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/QIANJYJGRWOV
+
+10.5067/KZ43HVLZV6G4
+
+Mason,  Megan, Marshall,  Hans-Peter, McCormick,  Maeve, Craaybeek,  Dylan, Elder,  Kelly, & Vuyovich,  Carrie. (2024). SnowEx20 Time Series Snow Pit Measurements, Version 2 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/KZ43HVLZV6G4
+
+10.5067/NE8CLN3ES5XQ
+
+Ciafone,  Siobhan, ONeel,  Shad, Adebisi,  Naheem, Zikan,  Karina, Enterkine,  Joshua, Van Der Weide,  Thomas, Wadhwani,  Yasmin, Wilder,  Brent, Hoppinen,  Zach, Filiano,  Dominic, & Marshall,  Hans-Peter. (2025). SnowEx Mores Creek Summit (MCS) Airborne LiDAR Survey, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/NE8CLN3ES5XQ
+
+10.5067/UO5ASXKLQTDR
+
+Mason,  Megan, Vuyovich,  Carrie, Stuefer,  Svetlana, Elder,  Kelly, Vas,  Dragos, Marshall,  Hans-Peter, Durand,  Michael, & Liston,  Glen. (2025). SnowEx23 Oct22 IOP Snow Pits and Substrate Conditions at Freeze Up, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/UO5ASXKLQTDR
+
+
+
+## Discussion
+
+**Data Set Digital Object Identifier (DOI)**
+
+A DOI is a unique, permanent alphanumeric code assigned to digital objects (most commonly academic journal articles, books, and *research datasets*) to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time.
+
+A data set DOI can be used as a parameter in an `earthaccess.search_data()` query to uniquely constrain (data set and version) the data set of interest as in this [how-to]().
+
+**Citations and NASA Earthdata Use Constraints**
+
+These data are freely, openly, and fully available to use without restrictions, provided that you cite the data. For more information on the NASA ESDIS Data Use Guidance, see https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance.
+
+
+
+
+
+

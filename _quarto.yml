@@ -71,6 +71,10 @@ website:
             contents:
               - text: "How to get data set concept-ids using earthaccess"
                 href: how-to-guides/get_concept-ids.qmd
+              - text: "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
+                href: how-to-guides/get_dataset_doi.qmd
+              - text: "How to examine data set metadata using earthaccess"
+                href: how-to-guides/get_umm_metadata.qmd
           - section: "Access data"
             contents:
               - text: "How to get data access links using earthaccess"
