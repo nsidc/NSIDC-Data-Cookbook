@@ -1,0 +1,39 @@
+### A temporary place to store content that didn't make the cut on other pages, but that may be useful in the future as more content is added. 
+____
+
+### Tabular data vs data frames
+
+Tabular files (CSV, TSV) are **storage formats** whereas data frames are **analysis structures** used in programming environments that:
+- Preserve column types
+- Support indexing and grouping
+- Can attach metadata alongside data
+
+Data frames can extend tabular data with indexing, metadata, and transformation capabilities.
+
+Conceptually:
+
+```
+CSV file  →  Data frame  →  Analysis / visualization
+```
+
+Many workflows often involve converting tabular files into data frames for analysis, then exporting results back to tabular form for sharing. Although it is easy to "imagine" data drames much like you would a spreadhseet, they can be created (and worked on) from data that is NOT tabular in nature.
+
+Although data frames can be inspected and may "look" like a spreadsheet, they can be created from various sources, including:
+- Tabular files (CSV, TSV)
+- Databases (SQL queries)
+- Slices of gridded data (e.g., extracting time series from a raster)
+- NetCDF/HDF files (e.g., summarizing variables across dimensions)
+- APIs (JSON responses)
+- In-memory transformations (e.g., pivoting, summarizing)
+- More not listed here!   
+
+Conceptually:
+- A CSV is a *storage format*
+- A data frame is a *working structure*
+
+Data frames are often used to:
+- Subset larger datasets
+- Join observations across sources
+- Prepare data for visualization or modeling
+
+---
