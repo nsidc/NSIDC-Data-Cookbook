@@ -14,3 +14,5 @@ _Placeholder_
 
 Gridded data is data that is organized as an array with two or more dimensions.  For geospatial data, the dimensions of two-dimensional gridded data are spatial (e.g. $x$ and $y$ coordinates, or latitude and longitude). Additional dimensions are often altitude or depth, and time.
 
+_For reference_
+https://carpentry.library.ucsb.edu/ucsb-geospatial/01-intro-raster-data/index.html
