@@ -16,3 +16,4 @@ Gridded data is data that is organized as an array with two or more dimensions. 
 
 _For reference_
 https://carpentry.library.ucsb.edu/ucsb-geospatial/01-intro-raster-data/index.html
+https://r-spatial.github.io/stars/
