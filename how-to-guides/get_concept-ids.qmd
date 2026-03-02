@@ -1,13 +1,13 @@
 ---
-title: "How to use earthaccess to retrieve concept-ids for data sets"
-author: Mikala Beig
+title: "How to use earthaccess to retrieve concept-id's for data sets"
+author: NSIDC Data Use and Education team
 date: last-modified
 execute:
   freeze: auto
 ---
 
 ## Problem
-How can I use earthaccess to find the concept-id for a list of data sets?
+How can I use earthaccess to find the concept-id's for a list of data sets?
 
 ## Solution
 
@@ -25,7 +25,7 @@ results = earthaccess.search_datasets(
 
 ```python
 for r in results[:10]:
-    print(', '.join([f.summary()[key] for key in ["short-name", "version", "concept-id"]]))
+    print(', '.join([r.summary()[key] for key in ["short-name", "version", "concept-id"]]))
 ```
 ```
 ATL03 , 007 , C3326974349-NSIDC_CPRD
