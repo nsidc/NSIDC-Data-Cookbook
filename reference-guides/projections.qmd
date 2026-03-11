@@ -11,7 +11,7 @@ jupyter: python3
 
 Almost all of the data archived by NSIDC is _geospatial data_.  That
 is data that is tied to a location on Earth.  Geospatial data is also
-called to as geographic data and information, georeferenced data and
+called geographic data and information, georeferenced data and
 information, or geodata and geoinformation.
 
 @fig-sea-ice-on-globe shows sea ice concentration data for September
