@@ -90,7 +90,7 @@ A more common approach is to represent the Earth and geospatial data
 on a two-dimensional plane, either a flat sheet of paper or a screen,
 that we call a **map**.  The Mercator map shown in @fig-map-image is
 an early example of a two-dimensional representation of Earth for
-navigation.
+navigation designed by Gerardus Mercator. 
 
 These two ways of representing geospatial data are examples of
 **coodinate systems**.  The globe is a spherical coordinate system
