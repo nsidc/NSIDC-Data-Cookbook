@@ -87,7 +87,7 @@ However, even a desktop globe, let alone a room-size digital globe, is
 cumbersome.  Doing calculations on a sphere is also difficult.
 
 A more common approach is to represent the Earth and geospatial data
-on a two-dimensional plane, either a flat sheet of paper or a screen
+on a two-dimensional plane, either a flat sheet of paper or a screen,
 that we call a **map**.  The Mercator map shown in @fig-map-image is
 an early example of a two-dimensional representation of Earth for
 navigation.
