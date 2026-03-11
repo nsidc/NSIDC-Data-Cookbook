@@ -114,9 +114,7 @@ desribed in more detail in @sec-map-projections.
 Ways of representing geospatial data
 :::
 
-_Coordinate Reference Systems_ not only tells us how coordinates in
-latitude and longitude relate to coordinates in a two-dimensional
-plane but also how locations with different coordinate reference
+_Coordinate Reference Systems_ not only tell us how coordinates on a map or globe relate to the Earth but also how locations with different coordinate reference
 systems relate to each other.  As you will see below, a point in one
 dataset with coordinates (40 $^\circ$N, -110 $^\circ$E) is not same as
 a point with the same coordinates in another dataset, if that dataset
