@@ -16,7 +16,7 @@ Conceptually:
 CSV file  →  Data frame  →  Analysis / visualization
 ```
 
-Many workflows often involve converting tabular files into data frames for analysis, then exporting results back to tabular form for sharing. Although it is easy to "imagine" data drames much like you would a spreadhseet, they can be created (and worked on) from data that is NOT tabular in nature.
+Many workflows often involve converting tabular files into data frames for analysis, then exporting results back to tabular form for sharing. 
 
 Although data frames can be inspected and may "look" like a spreadsheet, they can be created from various sources, including:
 - Tabular files (CSV, TSV)
@@ -31,9 +31,34 @@ Conceptually:
 - A CSV is a *storage format*
 - A data frame is a *working structure*
 
-Data frames are often used to:
+Data frames are therefore fundamental in many data analysis workflows and are often used to:
 - Subset larger datasets
 - Join observations across sources
 - Prepare data for visualization or modeling
 
 ---
+
+
+## Bonus: Resampling data
+
+Resampling refers to transforming data between **different spatial or structural representations**, not simply changing file formats.
+
+Common transformations include:
+
+- swath → grid  
+- grid → different grid  
+- high resolution → low resolution  
+
+Why resampling is unavoidable:
+
+- Instruments observe along tracks, not grids
+- Different products use different projections
+- Analyses require common spatial frameworks
+
+Every resampling step introduces assumptions:
+
+- How values are aggregated
+- How gaps are handled
+- How boundaries are treated
+
+These choices affect uncertainty and comparability and are documented in processing descriptions rather than inherent to any single format.
