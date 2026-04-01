@@ -1,0 +1,93 @@
+---
+title: "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
+author: NSIDC Data Use and Education team
+date: last-modified
+execute:
+  freeze: auto
+---
+
+## Problem
+How can I use NASA Harmony services via the harmony-py Python library to subset SMAP data by variable and bounding box and reformat the result to GeoTIFF?
+
+
+## Solution
+
+
+```python
+from harmony import BBox, Client, Collection, Request
+import datetime as dt
+```
+
+Initialize your Harmony client
+```python 
+harmony_client = Client()
+```
+Define which data set you'd like to access using the collection concept-id (see [how-to](/how-to-guides/get_concept_ids.qmd) for retrieving collection concept-ids). For this example, we'll use SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture, Version 9 (SPL3SMP), C2938664585-NSIDC_CPRD.
+```python
+collection = Collection(id='C2938664585-NSIDC_CPRD') 
+```
+
+Define your spatial bounds (min_lon, min_lat, max_lon, max_lat). The example below is over the Eastern United States.  
+```python
+bbox = BBox(-93.4,30.3,-77.0,44.5)
+```
+Define your temporal range (passed as a dictionary with "start" and "stop" keys, and dates supplied as datetime objects). The example below spans two days in December 2023.
+```python
+temporal = {'start': dt.datetime(2023,12,12),'stop': dt.datetime(2023,12,13)}
+```
+
+Define the output file format. GeoTIFF is the only choice for reformatting SPL3SMP.
+```python
+format='image/tiff'
+```
+Define the variable(s) within the original data you'd like to output to GeoTIFF.
+```python
+variables = ['Soil_Moisture_Retrieval_Data_AM/soil_moisture']
+```
+
+Build the request
+```python
+request = Request(
+    collection = collection,
+    spatial = bbox,
+    temporal = temporal,
+    format = format,
+    variables = variables
+)
+```
+Submit the request. This returns a Harmony job ID that can be used to check on progress.
+```python
+job_id = harmony_client.submit(request)
+job_id
+```
+'abc20650-4239-434a-9fff-b54c160f38bf'
+
+Check on Harmony job progress
+```python
+harmony_client.wait_for_processing(job_id, show_progress=True)
+```
+ [ Processing: 100% ] |###################################################| [|]
+
+To view the url(s) for your staged files
+```python
+url = list(harmony_client.result_urls(job_id))
+url
+```
+['https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/abc20650-4239-434a-9fff-b54c160f38bf/153252383/SMAP_L3_SM_P_20231213_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif',
+ 'https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/abc20650-4239-434a-9fff-b54c160f38bf/153252397/SMAP_L3_SM_P_20231212_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif']
+
+Download the results to your local directory.
+```python
+futures = harmony_client.download_all(job_id, directory=".")
+filelist = [f.result() for f in futures]  # get filepaths
+```
+./153252383_SMAP_L3_SM_P_20231213_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif
+./153252397_SMAP_L3_SM_P_20231212_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif
+
+
+
+## Discussion
+NASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets.
+[Table](https://nsidc.org/data/user-resources/help-center/what-data-subsetting-reformatting-and-reprojection-services-are-available-smap-data) of Harmony services available for select SMAP data sets.
+
+A longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found [here](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html).

@@ -76,6 +76,12 @@ website:
             contents:
               - text: "How to get data access links using earthaccess"
                 href: how-to-guides/get_data_links.qmd
+          - section: "Customize data"
+            contents:
+              - text: "How to use harmony-py to spatially subset ICESat-2 data"
+                href: how-to-guides/harmony-py-IS2.qmd
+              - text: "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
+                href: how-to-guides/harmony-py-SMAP.qmd
           - section: "Reproject data"
           - section: "Work with NetCDF files"
             contents:

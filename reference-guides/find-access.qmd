@@ -23,7 +23,7 @@ There are a variety of search and discovery methods allowing users to find NASA 
 | Programmatic method                         | Strengths                                                  |Resource                                                                              |
 | ------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 |`earthaccess` Python library|**Recommended method** - Search for and download or stream NASA Earth science data with just a few lines of code.|[Documentation](https://earthaccess.readthedocs.io/en/stable/)|
-|`harmony-py` Python library|**Recommended method** - Utilize NASA Harmony services to subset, reformat, reproject certain NASA Earthdata cloud data sets.|[Documentation](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html)|
+|`harmony-py` Python library|**Recommended method** - Utilize NASA Harmony services to subset, reformat, reproject certain NASA Earthdata cloud data sets.|[Subsetting NASA Earthdata Using Harmony](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html)|
 |command line tools, e.g. `curl`|Quick access if you already know what you need and you are not a Python user|[Downloading Data from Earthdata Cloud to Your Local Computer Using the Command Line](https://nsidc.org/data/user-resources/help-center/downloading-data-earthdata-cloud-your-local-computer-using-command-line)|
 
 
