@@ -26,3 +26,6 @@ dependencies:
  - virtualizarr
  - fsspec
  - harmony-py
+ - pip
+ - pip:
+   - -e cookbook_utils
