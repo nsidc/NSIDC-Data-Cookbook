@@ -218,27 +218,25 @@ Each point, line and polygon in @fig-vector-features is a discrete feature.  A p
 #| label: fig-vector-ushcn
 #| fig-cap: "Locations of weather stations in Colorado in the US Historical Climatology Network"
 
-# Change to executable once import sorted out
-
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
-from cookbook_utils.io import load_ushcn_stations
+from ..cookbook_utils.io import load_ushcn_stations
 
 ushcn_stations = load_ushcn_stations()
 ushcn_stations.head()
 
-#projection = ccrs.AlbersEqualArea(
-#    central_longitude=-100.,
-#    central_latitude=40.
-#)
-#
-#fig, ax = plt.subplots(subplot_kw={"projection": projection})
-#ax.set_extent([-109.1, -102., 36.99, 41.1], ccrs.PlateCarree())
-#ax.add_feature(cfeature.STATES)
+projection = ccrs.AlbersEqualArea(
+    central_longitude=-100.,
+    central_latitude=40.
+)
 
-#ushcn_stations[ushcn_stations.state == "CO"].to_crs(projection.to_wkt()).plot(ax=ax, aspect=1)
+fig, ax = plt.subplots(subplot_kw={"projection": projection})
+ax.set_extent([-109.1, -102., 36.99, 41.1], ccrs.PlateCarree())
+ax.add_feature(cfeature.STATES)
+
+ushcn_stations[ushcn_stations.state == "CO"].to_crs(projection.to_wkt()).plot(ax=ax, aspect=1)
 ```
 
 A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosiac shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.
@@ -334,7 +332,7 @@ def setup_2daxis(ax, xlim, ylim, xlabel, ylabel,
         ax.xaxis.set_label_position('top')
 
 
-fig = plt.figure(figsize=(12,9))
+fig = plt.figure(figsize=(10,9))
 nrow = 3
 ncol = 2
 
@@ -375,6 +373,20 @@ ax4.plot([0.,1.], [0.,1.], [0.,1.])
 
 fig.tight_layout()
 ```
+
+@fig-coordinate-systems show examples of four 2D cartesian coordinate systems.  @fig-coordinate-systems a has axes **x** and **y** with units in meters.  The **x** axis increases to the right.  The **y** axis increases in an upwards direction.  Examples b and c are similar to a but b has axis called Easting and Northing with units kilometers.  c is an example of the so-called Plate Carree projection (see @sec-projected-coordinate-systems) which has axes Latitude and Longitude in units degrees of arc.  @fig-coordinate-systems d is an example of am _image coordinate system_.  This is a common coordinate system for digital raster data, including remotely sensed images.  For remotely sensed images, the image coordinate system is related to a geospatial coordinate system by a _geotransform_.  Axes are Column and Row.  However unlike the previous examples, the origin of the coordinate system is in the top-left corner.  The Column axis increments from left to right but the row axis increments from top to bottom.[^3]
+
+:::{@fig-3d-coordinate-systems}
+ 
+{{< placeholder 400 200 >}}
+
+:::
+
+@fig-3d-coordinate-systems shows two coordinate systems for a sphere or ellipsoid.  @fig-3d-coordinates-systems-a is the familiar 2-dimensional _Geographic Coordinate System_ with latitude and longitude.  @fig-3d-coordinate-systems-b is a Geocentric Cartesian Coordinate System with axes; x, y and z.  Units for x, y and z are usually in meters.  For a sphere, latitude and longitude are related to x, y and z through trigonometry.
+
+$$
+x = R \cos \phi \sin \theta
+$$
 
 A coordinate syetem is related to the Earth by a datum, which defines the origin of the coordinate system relative to a model of the earth.
 
@@ -478,6 +490,8 @@ more information.
 [^2]: These are spherical or geographic coordinates.
 
 [^3]: Computer Aided Design
+
+[^4]: This is why some plotting tools that assume the origin is in the bottom-left corner of an image plot images upside-down.
 
 ## NSIDC Coordinate Reference Systems{#sec-nsidc-crs}
 
