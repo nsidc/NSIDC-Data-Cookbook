@@ -1,5 +1,5 @@
 ---
-title: "How to use earthaccess to retrieve a data set DOI and formatted citation"
+title: "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
 author: NSIDC Data Use and Education team
 date: last-modified
 execute:
@@ -22,7 +22,7 @@ results = earthaccess.search_datasets(
 )
 len(results)
 ```
-125
+127
 
 ```python
 for r in results[:5]:
@@ -65,7 +65,7 @@ A data set DOI can be used as a parameter in an `earthaccess.search_data()` quer
 
 **Citations and NASA Earthdata Use Constraints**
 
-These data are freely, openly, and fully available to use without restrictions, provided that you cite the data. For more information on the NASA ESDIS Data Use Guidance, see https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance.
+These data are freely, openly, and fully available to use without restrictions, provided that you cite the data. For more information on the [NASA ESDIS Data Use Guidance](https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance).
 
 
 

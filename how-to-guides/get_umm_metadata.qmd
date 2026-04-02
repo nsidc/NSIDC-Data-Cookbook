@@ -63,7 +63,7 @@ Some useful metadata available through the `get_umm()` function:
 - Abstract - short description of a data set including information such as location, temporal range, and data collection methods.
 - DOI - a Digital Object Identifier is a unique, permanent alphanumeric code assigned to digital objects—most commonly academic journal articles, books, and research datasets—to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time. 
 - SpatialExtent - geolocation information about the data set which can include latitude/longitude coordinates for the bounding box that encompasses the data
-- ScienceKeywords - science terms associated with the data set that provide information about 
+- ScienceKeywords - science terms associated with the relevant parameters contained in the data set 
 - Version - data set version
 - VersionDescription - description of updates included in most recent version
 - UseConstraints - license text and citation instructions
