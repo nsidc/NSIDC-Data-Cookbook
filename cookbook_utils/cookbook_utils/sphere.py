@@ -61,4 +61,10 @@ class Horizon:
             
         x, y, z = self.horizon
         ax.plot(x, y, z, color=color, ls=ls, lw=lw, **kwargs)
-        
+
+
+class Axis(Vector3D):
+    """Creates an axis class"""
+
+    def __init__(self, name):
+        pass
