@@ -34,7 +34,8 @@ class GreatCircle:
             ax = plt.gca()
             
         ax.plot(self.x, self.y, self.z, c=color, ls=ls)
-        
+
+
 class Horizon:
     """Generates and plots horizon for a sphere"""
 
