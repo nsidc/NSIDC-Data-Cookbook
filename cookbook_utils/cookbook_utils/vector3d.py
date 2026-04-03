@@ -2,6 +2,9 @@
 
 from numbers import Number
 
+import matplotlib.pyplot as plt
+
+
 CARDINAL_AXES = {
     "x": [1, 0, 0],
     "y": [0, 1, 0],
@@ -82,7 +85,7 @@ class Vector3D():
         else:
             raise ValueError(f"Unknown plane: expects one of 'xy', 'xz', or 'yz'")
             
-    def plot(self, ax=ax, 
+    def plot(self, ax=None, 
              add_label=False, label_position='end', label=None, 
              xoffset=0.0, yoffset=0.0, zoffset=0.0,
              show_angle=False, angle_name=None, angle_plane=None,
