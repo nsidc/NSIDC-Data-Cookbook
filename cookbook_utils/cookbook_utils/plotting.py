@@ -34,9 +34,12 @@ def add_sphere(
         ylabel='y',
         zlabel='z',
     )
-
     ax.set_aspect('equal')
     ax.view_init(10., 30., 0.)
+
+    # Add Horizon
+    horizon = Horizon(ax=ax)
+    horizon.plot(zorder=1)
 
     return ax
 
