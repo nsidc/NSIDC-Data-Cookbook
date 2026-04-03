@@ -2,6 +2,7 @@
 
 from numbers import Number
 
+import numpy as np
 import matplotlib.pyplot as plt
 
 
