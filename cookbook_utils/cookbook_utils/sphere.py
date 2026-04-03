@@ -43,8 +43,8 @@ class Horizon:
         if not ax:
             ax = plt.gca()
             
-        self.tangent = Vector.from_spherical(ax.elev, 180+ax.azim, name="t", degrees=True)
-        self.observation = Vector.from_geographic(ax.elev, ax.azim, name='o')
+        self.tangent = Vector3D.from_spherical(ax.elev, 180+ax.azim, name="t", degrees=True)
+        self.observation = Vector3D.from_geographic(ax.elev, ax.azim, name='o')
 
     def get_tangent_point(self, rho):
         """Returns tangent point for a given rotation"""
