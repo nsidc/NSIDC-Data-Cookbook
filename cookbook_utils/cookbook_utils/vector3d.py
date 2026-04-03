@@ -79,11 +79,11 @@ class Vector3D():
           A new `Vector` object.
         """
         if plane == "xy":
-            return Vector(self.x, self.y, 0, origin=self.origin, name=f"self.name_{plane}")
+            return Vector3D(self.x, self.y, 0, origin=self.origin, name=f"self.name_{plane}")
         elif plane == "xz":
-            return Vector(self.x, 0, self.z, origin=self.origin, name=f"self.name_{plane}")
+            return Vector3D(self.x, 0, self.z, origin=self.origin, name=f"self.name_{plane}")
         elif plane == "yz":
-            return Vector(0, self.y, self.z, origin=self.origin, name=f"self.name_{plane}")
+            return Vector3D(0, self.y, self.z, origin=self.origin, name=f"self.name_{plane}")
         else:
             raise ValueError(f"Unknown plane: expects one of 'xy', 'xz', or 'yz'")
             
@@ -135,7 +135,7 @@ class Vector3D():
             return (self.x/2., self.y/2., self.z/2.)
             
     @classmethod
-    def from_spherical(cls, phi: float, theta: float, r: float=1, degrees=True, name: str=None) -> Vector:
+    def from_spherical(cls, phi: float, theta: float, r: float=1, degrees=True, name: str=None) -> Vector3D:
         """creates a 3D vector in Euclidean space from
         spherical coordinates.
 
@@ -149,7 +149,7 @@ class Vector3D():
           name : name of point or vector
 
         Returns:
-          Vector object
+          Vector3D object
         """
         if degrees:
             phi = np.radians(phi)
@@ -157,7 +157,7 @@ class Vector3D():
         return cls(*sphere2xyz(phi, theta, r), name=name)
 
     @classmethod
-    def from_geographic(cls, lat: float, lon: float, r: float=1, name: float=None) -> Vector:
+    def from_geographic(cls, lat: float, lon: float, r: float=1, name: float=None) -> Vector3D:
         """Creates a 3D cartesian vector from geographic coordinates.
 
         Arguments:
@@ -167,7 +167,7 @@ class Vector3D():
           name : name of point or vector
 
         Returns:
-          Instance of Vector class
+          Instance of Vector3D class
         """
         phi = np.radians(90. - lat)
         if (lon >= 0.) & (lon < 360.):
@@ -182,7 +182,7 @@ class Vector3D():
         return cls(*sphere2xyz(phi, theta, r), name=name)
 
     @classmethod
-    def from_numpy(cls, arr, origin=(0,0,0), name="") -> Vector:
+    def from_numpy(cls, arr, origin=(0,0,0), name="") -> Vector3D:
         """Creates a 3D cartesian vector from a numpy array or array like object
 
         Arguments:
@@ -191,87 +191,87 @@ class Vector3D():
           name : name of vector
 
         Returns:
-          Vector object
+          Vector3D object
         """
         return cls(*arr, origin=origin, name=name)
         
-    def __add__(self, other: Vector) -> Vector:
+    def __add__(self, other: Vector3D) -> Vector3D:
         """Adds to vector objects and returns a new vector object"""
-        if isinstance(other, Vector):
+        if isinstance(other, Vector3D):
             if self.name and other.name:
                 name = f"{self.name} + {other.name}"
-            return Vector(
+            return Vector3D(
                 self.x + other.x, self.y + other.y, self.z + other.z, 
                 origin=self.vector, name=name)
         else:
-            raise NotImplemented("Only supports addition of Vector objects")
+            raise NotImplemented("Only supports addition of Vector3D objects")
 
-    def __sub__(self, other: Vector) -> Vector:
-        """Subtract two Vector objects"""
-        if isinstance(other, Vector):
+    def __sub__(self, other: Vector3D) -> Vector3D:
+        """Subtract two Vector3D objects"""
+        if isinstance(other, Vector3D):
             if self.name and other.name:
                 name = f"{self.name} - {other.name}"
-            return Vector(
+            return Vector3D(
                 self.x - other.x, self.y - other.y, self.z - other.z, 
                 origin=self.vector, name=name)
         else:
-            raise NotImplemented("Only supports subtraction of Vector objects")
+            raise NotImplemented("Only supports subtraction of Vector3D objects")
 
-    def __truediv__(self, other: Number) -> Vector:
-        """Scalar division for Vector object.  Not defined for two vectors"""
+    def __truediv__(self, other: Number) -> Vector3D:
+        """Scalar division for Vector3D object.  Not defined for two vectors"""
         if isinstance(other, Number):
-            return Vector(*(self.vector / other), origin=self.origin)
+            return Vector3D(*(self.vector / other), origin=self.origin)
         else:
-            raise NotImplemented("Only supports scalar division Vector objects")
+            raise NotImplemented("Only supports scalar division Vector3D objects")
 
-    def __mul__(self, other: Number) -> Vector:
-        """Scalar multiplication for Vector object. Only defined for scaler multiplication"""
+    def __mul__(self, other: Number) -> Vector3D:
+        """Scalar multiplication for Vector3D object. Only defined for scaler multiplication"""
         if isinstance(other, Number):
-            return Vector(*(self.vector * other), origin=self.origin)
+            return Vector3D(*(self.vector * other), origin=self.origin)
         else:
-            raise NotImplemented("Only supports scalar multiplication Vector objects")
+            raise NotImplemented("Only supports scalar multiplication Vector3D objects")
 
-    def dot(self, other: Vector) -> Number:
+    def dot(self, other: Vector3D) -> Number:
         """Returns the dot product of self and other.  Wrapper for numpy.dot
 
         Arguments:
-          other : Vector object
+          other : Vector3D object
 
         Returns:
           dot product of self and other.  Scalar 
         """
-        if isinstance(other, Vector):
+        if isinstance(other, Vector3D):
             return np.dot(self.vector, other.vector)
         else:
-            raise NotImplemented("Only supports Vector objects")
+            raise NotImplemented("Only supports Vector3D objects")
 
-    def cross(self, other: Vector, name=None) -> Vector:
-        """Returns the cross product of two Vector objects"""
-        if isinstance(other, Vector):
+    def cross(self, other: Vector3D, name=None) -> Vector3D:
+        """Returns the cross product of two Vector3D objects"""
+        if isinstance(other, Vector3D):
             if not name:
                 if self.name and other.name:
                     name = f"{self.name} x {other.name}"
                     
-            return Vector.from_numpy(np.cross(self.vector, other.vector), name=name)
+            return Vector3D.from_numpy(np.cross(self.vector, other.vector), name=name)
 
-    def rotate(self, axis, angle: float, degrees: bool=False, name: str=None) -> Vector:
-        """Rotate Vector about axis by angle
+    def rotate(self, axis, angle: float, degrees: bool=False, name: str=None) -> Vector3D:
+        """Rotate Vector3D about axis by angle
 
         Arguments:
-          axis : either named axis (x, y, z) or list-like or Vector to rotate about
+          axis : either named axis (x, y, z) or list-like or Vector3D to rotate about
           angle : angle of rotation.  By default angle in radians but degrees if degrees=False
           degrees : if True, angle is in degrees
           name : name of new vector
 
         Returns:
-          Vector object rotated about axis by angle
+          Vector3D object rotated about axis by angle
         """
         if isinstance(axis, str):
             if axis in CARDINAL_AXES:
                 axis_arr = CARDINAL_AXES[axis]
             else:
                 raise KeyError(f"String instance of axis expected as one of `x`, `y`, or `z`, for `{axis}` instead")
-        elif isinstance(axis, Vector):
+        elif isinstance(axis, Vector3D):
             axis_arr = axis.vector
         elif isinstance(axis, (np.array, list, tuple)):
             axis_arr = axis
@@ -284,7 +284,7 @@ class Vector3D():
         m = transforms3d.axangles.axangle2aff(axis_arr, angle, point=self.origin)
         q = np.dot(m, np.append(self.vector, 1))
         
-        return Vector.from_numpy(q[:3], origin=self.origin, name=name)
+        return Vector3D.from_numpy(q[:3], origin=self.origin, name=name)
 
 
 def sphere2xyz(phi, theta, r=1.):
