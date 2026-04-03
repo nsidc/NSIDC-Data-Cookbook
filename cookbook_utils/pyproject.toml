@@ -10,11 +10,9 @@ dependencies = [
     "matplotlib",
     "pandas",
     "geopandas",
+    "transforms3d",
     "pytest",
 ]
-
-#[tool.setuptools.packages.find]
-#where = ["src"]  # Look for packages in the 'src' directory
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
