@@ -64,7 +64,24 @@ class Horizon:
 
 
 class Axis(Vector3D):
-    """Creates an axis class"""
+    """Creates an axis class for plotting on a 3D projection"""
 
-    def __init__(self, name):
-        pass
+    axis_coords = {
+        "x": (1, 0, 0),
+        "y": (0, 1, 0),
+        "z": (0, 0, 1),
+        }
+    
+    def __init__(self, name, length=1.5):
+        """Initialize an instance of the axis class
+
+        Arguments:
+          name : name of axis from "x", "y", "z"
+          length : length of axis, default is 1.5
+
+        Returns:
+          Axis class object
+        """
+        super().__init__(*np.array(self.axis_coords[name])*length, name=name)
+
+    
