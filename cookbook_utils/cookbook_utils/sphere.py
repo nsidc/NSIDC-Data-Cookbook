@@ -1,11 +1,15 @@
 """Classes and functions for sphere elements"""
 
+import numpy as np
 import matplotlib.pyplot as plt
+
+from cookbook_utils.vector3d import Vector3D
 
 
 def great_circle(lon, r=1, lat_range=(-90,90), density=90):
     """Returns x, y, z coordinates for a Great Circle"""
     return list(zip(*[Vector.from_geographic(phi, lon).vector for phi in np.linspace(-90., 90., 90)]))
+
 
 class GreatCircle:
 
