@@ -333,7 +333,7 @@ def setup_2daxis(ax, xlim, ylim, xlabel, ylabel,
 
 
 fig = plt.figure(figsize=(10,9))
-nrow = 3
+nrow = 2
 ncol = 2
 
 # 2D cartesian, x, y
@@ -364,17 +364,10 @@ ax3.scatter(7.5, 8.2)
 ax3.xaxis.set_major_locator(MultipleLocator(1.))
 ax3.yaxis.set_major_locator(MultipleLocator(1.))
 
-# 3D Spherical Coordinates
-ax4 = fig.add_subplot(nrow, ncol, 5, projection='3d')
-ax4.set_xlim(-1.,1.)
-ax4.set_ylim(-1.,1.)
-ax4.set_zlim(-1.,1.)
-ax4.plot([0.,1.], [0.,1.], [0.,1.])
-
 fig.tight_layout()
 ```
 
-@fig-coordinate-systems show examples of four 2D cartesian coordinate systems.  @fig-coordinate-systems a has axes **x** and **y** with units in meters.  The **x** axis increases to the right.  The **y** axis increases in an upwards direction.  Examples b and c are similar to a but b has axis called Easting and Northing with units kilometers.  c is an example of the so-called Plate Carree projection (see @sec-projected-coordinate-systems) which has axes Latitude and Longitude in units degrees of arc.  @fig-coordinate-systems d is an example of am _image coordinate system_.  This is a common coordinate system for digital raster data, including remotely sensed images.  For remotely sensed images, the image coordinate system is related to a geospatial coordinate system by a _geotransform_.  Axes are Column and Row.  However unlike the previous examples, the origin of the coordinate system is in the top-left corner.  The Column axis increments from left to right but the row axis increments from top to bottom.[^3]
+@fig-coordinate-systems show examples of four 2-dimensional cartesian coordinate systems.  @fig-coordinate-systems a has axes **x** and **y** with units in meters.  The **x** axis increases to the right.  The **y** axis increases in an upwards direction.  Examples b and c are similar to a but b has axis called Easting and Northing with units kilometers.  c is an example of the so-called Plate Carree projection (see @sec-projected-coordinate-systems) which has axes Latitude and Longitude in units degrees of arc.  @fig-coordinate-systems d is an example of am _image coordinate system_.  This is a common coordinate system for digital raster data, including remotely sensed images.  For remotely sensed images, the image coordinate system is related to a geospatial coordinate system by a _geotransform_.  Axes are Column and Row.  However unlike the previous examples, the origin of the coordinate system is in the top-left corner.  The Column axis increments from left to right but the row axis increments from top to bottom.[^3]
 
 :::{@fig-3d-coordinate-systems}
  
