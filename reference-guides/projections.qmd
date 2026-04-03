@@ -290,7 +290,27 @@ Geospatial _Coordinate Reference Systems_ are either *Geodetic Coordinate Refere
 
 ### Components of a Coordinate Reference System{#sec-crs-components}
 
-A _Coordinate Reference System_ comprises a **coordinate system**, a **datum** and **reference ellipsoid**.  Projected Coordinate Reference Systems also include a **projection method** and **projection parameters**.  The following sections describe each of these components.
+A _Coordinate Reference System_ comprises an **ellipsoid**, a **coordinate system**, and a **datum** .  Projected Coordinate Reference Systems also include a **projection method** and **projection parameters**.  The following sections describe each of these components.
+
+### The ellipsoid
+
+The Earth is an irregular shape with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  A useful simplification is to map the apparent mean sea level, which represents a geopotential.
+
+#### The geoid
+
+The geoidal surface is irregular.  It is the surface that an ocean would form if the water were free to adjust to the combined effects of Earth's gravity and rotation.  As such the gravitation potential[^the energy...] is equal, there is no change in potential energy between to points on the surface.  And the direction of gravity is perpendicular to the surface.
+
+A spherical Earth
+
+An ellipsoidal Earth
+    [wkipedia: figure of the Earth](https://en.wikipedia.org/wiki/Figure_of_the_Earth#Geoid)
+    Newton, Huygens bulging at the center and flattended at the poles - by about 22 km
+    An ellipsoid of rotation
+    Equatorial (semimajor) radius and polar (semiminor) radius
+    Semimajor axis and eccentricity
+    Semimajor and flattening
+    Semimajor and inverse flattening
+
 
 ### Coordinate Systems{#sec-coordinate-systems}
 
