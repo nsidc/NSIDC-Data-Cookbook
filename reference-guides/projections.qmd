@@ -319,7 +319,7 @@ A _Coordinate System_ is set of rules that define how coordinates (for example l
 
 ```{python}
 #| label: fig-coordinate-systems
-#| fig-cap: "Some coordinate system examples"
+#| fig-cap: "Some examples of two-dimensional coordinate systems"
 #| echo: false
 
 import matplotlib.pyplot as plt
