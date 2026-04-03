@@ -84,4 +84,8 @@ class Axis(Vector3D):
         """
         super().__init__(*np.array(self.axis_coords[name])*length, name=name)
 
-    
+    def plot(self, ax=None, color='k', add_label=True, label_position='end', zorder=3):
+        if not ax:
+            ax = plt.gca()
+            super().plot(ax, c=color, add_label=add_label,
+                         label_position=label_position, zorder=zorder)
