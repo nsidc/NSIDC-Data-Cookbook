@@ -35,7 +35,7 @@ class Vector3D():
             return f"{self.name} = ({self.x} {self.y} {self.z})"
 
     def __repr__(self):
-        return f"Vector({self.x} {self.y} {self.z}, name=`{self.name}`)"
+        return f"Vector3D({self.x} {self.y} {self.z}, name=`{self.name}`)"
         
     @property
     def magnitude(self):
