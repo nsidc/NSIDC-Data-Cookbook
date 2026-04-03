@@ -5,6 +5,7 @@ from numbers import Number
 import numpy as np
 import matplotlib.pyplot as plt
 
+import transforms3d
 
 CARDINAL_AXES = {
     "x": [1, 0, 0],
