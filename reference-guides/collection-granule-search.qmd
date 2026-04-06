@@ -91,12 +91,12 @@ For ICESat-2, `ShortNames` are generally how different products are referred to.
 
 ## **Search for granules (e.g. files) within a collection using filter parameters**
 
-`earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.
+`earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters. Below we'll search for land-ice height data over the Juneau Ice Field in Alaska for a certain time period.
 
 ```python
 files = earthaccess.search_data(
     short_name = 'ATL06',
-    version = '006',
+    version = '007',
     bounding_box = (-134.7,58.9,-133.9,59.2),
     temporal = ('2020-03-01','2020-04-30'),
 )

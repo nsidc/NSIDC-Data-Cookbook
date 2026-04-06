@@ -1,0 +1,118 @@
+---
+title: "Contributing"
+---
+
+# Ways to Contribute
+
+We welcome contributions of all kinds! Your help makes the Cookbook stronger and more useful for the community. There are several ways to get involved, you can:
+
+- 🪲 **Identify a bug or error**  
+- 💡 **Suggest a change or improvement**  
+- 📘 **Propose a new tutorial or example**  
+- 🗣️ **Join a discussion or share an idea**
+- 🚀 **Do some work and make a Pull Request (PR)**
+
+---
+
+## For most contributions, the first step is to create an "issue" or "discussion" on GitHub.
+
+You can find the cookbook's current lists of [issues](https://github.com/nsidc/NSIDC-Data-Cookbook/issues) and  [discussions](https://github.com/nsidc/NSIDC-Data-Cookbook/discussions) by following the links. 
+
+Both are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:
+
+| Use this | When you ... | Examples |
+|-------|------------------|---------------------|
+|**Issue** | Need to report a bug, detect missing info, run into a reproducibility problem... in general, find something that is not working!  | - “Example X does not work.”<br> - “Can I use `rasterio` rather than `xarray` to open SMAP data?”<br>- "I found a bunch of typos / broken links in one of your notebooks."
+|**Discussion** | Want to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)... things that would warrant some back and forth chatting. | - “Do we need a more in-depth description of the WGS84 datum?”<br>- "I have a great idea for a tutorial that answers a specific science question..."<br>- "I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?"
+
+
+## You want to work on the cookbook directly and share your changes! What now? 
+
+Once you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a **Pull Request (PR)**.
+
+A PR is a request to *pull* your changes from your copy of the repository (your *branch* or *fork*) into the main repository.  
+It lets others:
+
+- Review and test your work before it becomes part of the Cookbook  
+- Discuss possible improvements or adjustments  
+- Keep the project organized and version-controlled  
+
+In short: a PR is how you propose changes and collaborate safely with others.
+
+### The PR Workflow
+
+This section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.
+
+
+#### 1. Get a Copy of the Repository
+
+Have a GitHub account and start by **forking** the repository.  A fork is your own copy of the project under your GitHub account where you can freely make changes.
+
+1. Go to the Cookbook’s GitHub page.  
+2. Click **Fork** in the upper-right corner.  
+3. Choose where to create your fork (your account) and confirm.
+
+Once forked, clone it to your local machine so you can edit files:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git
+cd NSIDC-Data-Cookbook
+```
+::: {.callout-tip}
+## Tip
+We know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources:
+[Project Pythia's Github Foundations](https://foundations.projectpythia.org/foundations/github/github-cloning-forking/) and the [NASA Earthdata Cloud Contributing Workflows](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/contributing/workflow.html).
+:::
+
+#### 2. Work on Your Edits Locally
+
+Now that you have your clone, you can make changes freely using your preferred text editor.
+
+First, create a new **branch** for your edits. This keeps your main branch clean and makes it easier to submit your changes later.  
+
+```bash
+git checkout -b your-branch-name
+```
+
+::: {.callout-note}
+## What’s a Branch?
+A **branch** is like a separate workspace within your project. You can make edits on your branch without affecting the main version (`main` or `master`). When you’re done, you can merge your branch back into the main project through a pull request.
+:::
+
+Next, make your changes, whatever they may be.  Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.  
+
+```bash
+quarto preview
+```
+Everything looks good? Great!
+
+#### 3. Commit and Push Your Changes
+
+Once you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work. 
+
+```bash
+git add .
+git commit -m "Brief description of what you changed"
+git push origin your-branch-name
+```
+
+Almost there! Right now your work is still only in your spaces, though. 
+
+#### 4. Open a Pull Request
+
+These next steps will share your work with the Cookbook team. 
+
+1. Go to your fork on GitHub.  
+2. You’ll see a button that says **Compare & pull request** — click it.  
+3. Add a short title and description summarizing your changes.  
+4. Submit the pull request (PR) to the main Cookbook repository.
+
+Your changes are now out in the world for anyone interested in the Cookbook to see! 
+
+After you open a pull request:
+
+- The Cookbook maintainers will review your changes and may request small edits or have questions.  
+- You can continue committing changes to the same branch and they’ll automatically appear in your PR.  
+- Once everything looks good, your PR will be approved and merged into the main project.
+
+#### Congratulations! You’ve officially contributed and helped make the Cookbook a better place! 🎉

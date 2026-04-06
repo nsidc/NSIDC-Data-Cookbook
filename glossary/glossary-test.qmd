@@ -1,0 +1,24 @@
+---
+title: "Glossary Test"
+format:
+  html:
+    toc: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+This page is currently a place holder for eventually scripting our user-facing glossary. The text that renders pulls from glossary.yml. 
+
+```{python}
+#| results: asis
+import yaml
+
+with open("glossary.yml", "r") as f:
+    glossary = yaml.safe_load(f)
+
+for term, definition in sorted(glossary.items()):
+    print(f"{term}\n")
+    print(f"{definition}\n")
+```
+
