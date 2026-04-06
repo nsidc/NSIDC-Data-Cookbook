@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew P. Barrett">
+<meta name="author" content="NSIDC Data Use and Education team">
 <meta name="dcterms.date" content="2026-04-06">
 
-<title>How to get the bounding box of a NetCDF file in latitude and longitude – NSIDC Data Cookbook</title>
+<title>How to fetch a formatted citation and retrieve a data set DOI using earthaccess – NSIDC Data Cookbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -34,8 +69,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../how-to-guides/get_latitude_and_longitude.html" rel="next">
-<link href="../how-to-guides/harmony-py-SMAP.html" rel="prev">
+<link href="../how-to-guides/get_umm_metadata.html" rel="next">
+<link href="../how-to-guides/get_concept-ids.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -253,7 +288,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/netcdf_cf.html">Work with NetCDF files</a></li><li class="breadcrumb-item"><a href="../how-to-guides/netcdf_cf.html">Get the bounding box of a NetCDF file</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_concept-ids.html">Search for data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_dataset_doi.html">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -438,13 +473,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Search for data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../how-to-guides/get_concept-ids.html" class="sidebar-item-text sidebar-link">
@@ -453,7 +488,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/get_dataset_doi.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-guides/get_dataset_doi.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</span></a>
   </div>
 </li>
@@ -511,16 +546,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
  <span class="menu-text">Work with NetCDF files</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/netcdf_cf.html" class="sidebar-item-text sidebar-link active">
+  <a href="../how-to-guides/netcdf_cf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get the bounding box of a NetCDF file</span></a>
   </div>
 </li>
@@ -591,10 +626,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
-  <ul class="collapse">
-  <li><a href="#using-xarray-and-rioxarray" id="toc-using-xarray-and-rioxarray" class="nav-link" data-scroll-target="#using-xarray-and-rioxarray">Using xarray and rioxarray</a></li>
-  </ul></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
@@ -603,9 +635,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/netcdf_cf.html">Work with NetCDF files</a></li><li class="breadcrumb-item"><a href="../how-to-guides/netcdf_cf.html">Get the bounding box of a NetCDF file</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_concept-ids.html">Search for data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_dataset_doi.html">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">How to get the bounding box of a NetCDF file in latitude and longitude</h1>
+<h1 class="title">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</h1>
 </div>
 
 
@@ -615,7 +647,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Andrew P. Barrett </p>
+             <p>NSIDC Data Use and Education team </p>
           </div>
   </div>
     
@@ -636,39 +668,40 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="problem" class="level2">
 <h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?</p>
+<p>How can I use earthaccess to retrieve a data set digital object identifier (DOI) and formatted citation?</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<section id="using-xarray-and-rioxarray" class="level3">
-<h3 class="anchored" data-anchor-id="using-xarray-and-rioxarray">Using xarray and rioxarray</h3>
-<pre><code>import rioxarray
-import xarray as xr
-
-
-# Load dataset using decode_coords='all'
-ds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',
-                     decode_coords='all')
-
-# Get the bounds of the data grid in WGS84 (EPSG code 4362)
-ds.rio.transform_bounds(4326)</code></pre>
-<pre><code>(-180.0, 30.98056405144958, 180.0, 90.0)</code></pre>
-</section>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_datasets(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    keyword <span class="op">=</span> <span class="st">'snowex'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>127</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> results[:<span class="dv">5</span>]:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    doi <span class="op">=</span> r.doi()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    citation <span class="op">=</span> r.citation(<span class="bu">format</span><span class="op">=</span><span class="st">'apa'</span>,language<span class="op">=</span><span class="st">'en-US'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(doi)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(citation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>10.5067/SJZ90KNPKCYR</p>
+<p>Mason, Megan, Vuyovich, Carrie, Stuefer, Sveta, Elder, Kelly, Vas, Dragos, Marshall, Hans-Peter, &amp; Durand, Michael. (2024). SnowEx23 Mar23 Snow Pit Measurements, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/SJZ90KNPKCYR</p>
+<p>10.5067/QIANJYJGRWOV</p>
+<p>Mason, Megan, Marshall, Hans-Peter, Craaybeek, Dylan, Elder, Kelly, &amp; Vuyovich, Carrie. (2024). SnowEx21 Time Series Snow Pits, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/QIANJYJGRWOV</p>
+<p>10.5067/KZ43HVLZV6G4</p>
+<p>Mason, Megan, Marshall, Hans-Peter, McCormick, Maeve, Craaybeek, Dylan, Elder, Kelly, &amp; Vuyovich, Carrie. (2024). SnowEx20 Time Series Snow Pit Measurements, Version 2 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/KZ43HVLZV6G4</p>
+<p>10.5067/NE8CLN3ES5XQ</p>
+<p>Ciafone, Siobhan, ONeel, Shad, Adebisi, Naheem, Zikan, Karina, Enterkine, Joshua, Van Der Weide, Thomas, Wadhwani, Yasmin, Wilder, Brent, Hoppinen, Zach, Filiano, Dominic, &amp; Marshall, Hans-Peter. (2025). SnowEx Mores Creek Summit (MCS) Airborne LiDAR Survey, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/NE8CLN3ES5XQ</p>
+<p>10.5067/UO5ASXKLQTDR</p>
+<p>Mason, Megan, Vuyovich, Carrie, Stuefer, Svetlana, Elder, Kelly, Vas, Dragos, Marshall, Hans-Peter, Durand, Michael, &amp; Liston, Glen. (2025). SnowEx23 Oct22 IOP Snow Pits and Substrate Conditions at Freeze Up, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/UO5ASXKLQTDR</p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>As of <a href="https://cfconventions.org/Data/cf-conventions/cf-conventions-1.10/cf-conventions.html#grid-mappings-and-projections">CF v1.8</a>, latitude and longitude coordinate variables are no longer required in CF-compliant NetCDF files, as long as projected horizontal spatial coordinates (e.g.&nbsp;<code>x</code> and <code>y</code>, or <code>easting</code> and <code>northing</code>) and a <code>grid_mapping</code> variable is provided. The <code>grid_mapping</code> variable defines the coordinate reference system (CRS) of the projected horizontal coordinates.</p>
-<p>The easiest, and frankly best, way to read and work with NetCDF files is to use <code>xarray</code>. <code>rioxarray</code> extends the <code>xarray</code> package to use CRS and make geospatial tasks, such as reprojecting and regridding, easier. By setting the keyword <code>decode-coords='all'</code>, <code>rioxarray</code> searches the <code>xarray.DataArray</code> or <code>xarray.Dataset</code> for the CRS. <code>rioxarray</code> also determines the <code>transform</code> or <code>geotransform</code>, which defines the image CRS that transforms cell coordinates (column and row) into projected coordinates (x, y). The <code>transform</code> is calculated from the coordinates of the data. See the <code>rioxarray</code> <a href="https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#">documentaton</a> for more details.</p>
-<p>Both these spatial coordinates can be accessed as follows:</p>
-<pre><code>ds.rio.crs</code></pre>
-<pre><code>CRS.from_wkt('PROJCS["NSIDC Sea Ice Polar Stereographic North",GEOGCS["Unspecified datum based upon the Hughes 1980 ellipsoid",DATUM["Not_specified_based_on_Hughes_1980_ellipsoid",SPHEROID["Hughes 1980",6378273,298.279411123061,AUTHORITY["EPSG","7058"]],AUTHORITY["EPSG","6054"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4054"]],PROJECTION["Polar_Stereographic"],PARAMETER["latitude_of_origin",70],PARAMETER["central_meridian",-45],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["X",EAST],AXIS["Y",NORTH],AUTHORITY["EPSG","3411"]]')</code></pre>
-<pre><code>ds.rio.transform()</code></pre>
-<pre><code>Affine(25000.0, 0.0, -3850000.0,
-       0.0, -25000.0, 5850000.0)</code></pre>
-<p>If this information is not found, all is not lost. <a href="https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#Setting-the-CRS"><code>rio.write_crs</code></a> and <a href="https://corteva.github.io/rioxarray/stable/getting_started/crs_management.html#Setting-the-transform-of-the-dataset"><code>rio.write_transform</code></a> can be used to set the CRS and the transform of the dataset.</p>
-<p>Once these variables are set, the horizontal spatial bounds of the dataset can be queried as described above. If all you want is the bounds in projected coordinates, these can be accessed using <code>ds.rio.bounds()</code>.</p>
-<pre><code>ds.rio.bounds()</code></pre>
-<pre><code>(-3850000.0, -5350000.0, 3750000.0, 5850000.0)</code></pre>
+<p><strong>Data Set Digital Object Identifier (DOI)</strong></p>
+<p>A DOI is a unique, permanent alphanumeric code assigned to digital objects (most commonly academic journal articles, books, and <em>research datasets</em>) to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time.</p>
+<p>A data set DOI can be used as a parameter in an <code>earthaccess.search_data()</code> query to uniquely constrain (data set and version) the data set of interest as in this <a href="">how-to</a>.</p>
+<p><strong>Citations and NASA Earthdata Use Constraints</strong></p>
+<p>These data are freely, openly, and fully available to use without restrictions, provided that you cite the data. For more information on the <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance">NASA ESDIS Data Use Guidance</a>.</p>
 
 
 </section>
@@ -1089,13 +1122,13 @@ ds.rio.transform_bounds(4326)</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../how-to-guides/harmony-py-SMAP.html" class="pagination-link" aria-label="How to use harmony-py to subset and reformat SMAP data to GeoTIFF">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to use harmony-py to subset and reformat SMAP data to GeoTIFF</span>
+      <a href="../how-to-guides/get_concept-ids.html" class="pagination-link" aria-label="How to get data set concept-ids using earthaccess">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to get data set concept-ids using earthaccess</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../how-to-guides/get_latitude_and_longitude.html" class="pagination-link" aria-label="Get the latitude and longitudes for grid cells">
-        <span class="nav-page-text">Get the latitude and longitudes for grid cells</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../how-to-guides/get_umm_metadata.html" class="pagination-link" aria-label="How to examine data set metadata using earthaccess">
+        <span class="nav-page-text">How to examine data set metadata using earthaccess</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
