@@ -74,7 +74,7 @@ website:
                 href: how-to-guides/get_concept-ids.qmd
               - text: "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
                 href: how-to-guides/get_dataset_doi.qmd
-              - text: "How to use data set DOI to designate my data set of interest in a search"
+              - text: "How to use a DOI to search for a data set"
                 href: how-to-guides/search_datasets_using_doi.qmd  
               - text: "How to examine data set metadata using earthaccess"
                 href: how-to-guides/get_umm_metadata.qmd
