@@ -11,7 +11,7 @@ How can I use a data set's DOI (Digital Object Identifier) to search for a data 
 
 ## Solution 
 
-`earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.  You can specify the collection by supplying a data set DOI as a search parameter.  The data set DOI serves as a unique identifier for the specific version of a data set.  Here we supply the DOI for ATL06 Version 007 - 10.5067/ATLAS/ATL06.007.
+`earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.  You can specify the collection by supplying a data set DOI as a search parameter.  The data set DOI is a unique identifier for the specific version of a data set.  Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.
 
 ```python
 files = earthaccess.search_data(
