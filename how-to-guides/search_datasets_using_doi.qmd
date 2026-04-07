@@ -7,7 +7,7 @@ execute:
 ---
 
 ## Problem
-How can I use a data set's DOI (Direct Object Identifier) to designate my data set of interest for an `earthaccess.search_data()` query?
+How can I use a data set's DOI (Digital Object Identifier) to search for a data set with `earthaccess.search_data()`?
 
 ## Solution 
 
