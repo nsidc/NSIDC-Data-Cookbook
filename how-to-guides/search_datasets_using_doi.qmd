@@ -9,9 +9,14 @@ execute:
 ## Problem
 How can I use a data set's DOI (Digital Object Identifier) to search for a data set with `earthaccess.search_data()`?
 
-## Solution 
+## Solution
 
-`earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters.  You can specify the collection by supplying a data set DOI as a search parameter.  The data set DOI is a unique identifier for the specific version of a data set.  Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.
+```python
+import earthaccess
+earthaccess.login()
+```
+
+`earthaccess.search_data` allows you to search for specific granules (i.e. files or bundles of files) within collections using filters.  You can specify the collection by supplying a data set DOI as a search parameter.  The data set DOI is a unique identifier for the specific version of a data set.  Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.
 
 ```python
 files = earthaccess.search_data(
@@ -21,7 +26,7 @@ files = earthaccess.search_data(
 )
 ```
 
-`search_data` queries NASA's Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI and spatial and temporal bounds. 
+`search_data` queries NASA's Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI, spatial, and temporal bounds. 
 
 We can find the number of granules or CMR "hits" returned for those filter paramaters using `len()`. 
 
@@ -45,4 +50,4 @@ We can look at file names by retrieving the access links for the files:
  ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
  ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]
 ```
-Filenames are the last item in the S3 object url path, e.g. ATL06_20200310121504_11420606_007_01.h5. File naming conventions can be found in data set [user guides](https://nsidc.org/sites/default/files/documents/user-guide/atl06-v007-userguide.pdf).
+Filenames are the last item in the S3 object url path, e.g. ATL06_20200310121504_11420606_007_01.h5. File naming conventions can be found in data set user guides found on data set landing pages, such as this [landing page](https://www.earthdata.nasa.gov/data/catalog/nsidc-cprd-atl06-007) for ATL06 (ATLAS/ICESat-2 L3A Land Ice Height V007).
