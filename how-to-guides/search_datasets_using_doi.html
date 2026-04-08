@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="NSIDC Data Use and Education team">
+<meta name="author" content="Mikala Beig">
 <meta name="dcterms.date" content="2026-04-08">
 
-<title>How to fetch a formatted citation and retrieve a data set DOI using earthaccess – NSIDC Data Cookbook</title>
+<title>How to use DOI to designate my data set of interest for an earthaccess.search_data() query – NSIDC Data Cookbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -69,8 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../how-to-guides/search_datasets_using_doi.html" rel="next">
-<link href="../how-to-guides/get_concept-ids.html" rel="prev">
+<link href="../how-to-guides/get_umm_metadata.html" rel="next">
+<link href="../how-to-guides/get_dataset_doi.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_concept-ids.html">Search for data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_dataset_doi.html">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_concept-ids.html">Search for data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/search_datasets_using_doi.html">How to use a DOI to search for a data set</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -488,13 +488,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/get_dataset_doi.html" class="sidebar-item-text sidebar-link active">
+  <a href="../how-to-guides/get_dataset_doi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../how-to-guides/search_datasets_using_doi.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-guides/search_datasets_using_doi.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">How to use a DOI to search for a data set</span></a>
   </div>
 </li>
@@ -633,7 +633,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
     </div>
@@ -641,9 +640,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_concept-ids.html">Search for data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_dataset_doi.html">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-guides/overview.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../how-to-guides/get_concept-ids.html">Search for data</a></li><li class="breadcrumb-item"><a href="../how-to-guides/search_datasets_using_doi.html">How to use a DOI to search for a data set</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</h1>
+<h1 class="title">How to use DOI to designate my data set of interest for an <code>earthaccess.search_data()</code> query</h1>
 </div>
 
 
@@ -653,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>NSIDC Data Use and Education team </p>
+             <p>Mikala Beig </p>
           </div>
   </div>
     
@@ -674,40 +673,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="problem" class="level2">
 <h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>How can I use earthaccess to retrieve a data set digital object identifier (DOI) and formatted citation?</p>
+<p>How can I use a data set’s DOI (Digital Object Identifier) to search for a data set with <code>earthaccess.search_data()</code>?</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_datasets(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    keyword <span class="op">=</span> <span class="st">'snowex'</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>127</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> results[:<span class="dv">5</span>]:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    doi <span class="op">=</span> r.doi()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    citation <span class="op">=</span> r.citation(<span class="bu">format</span><span class="op">=</span><span class="st">'apa'</span>,language<span class="op">=</span><span class="st">'en-US'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(doi)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(citation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>10.5067/SJZ90KNPKCYR</p>
-<p>Mason, Megan, Vuyovich, Carrie, Stuefer, Sveta, Elder, Kelly, Vas, Dragos, Marshall, Hans-Peter, &amp; Durand, Michael. (2024). SnowEx23 Mar23 Snow Pit Measurements, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/SJZ90KNPKCYR</p>
-<p>10.5067/QIANJYJGRWOV</p>
-<p>Mason, Megan, Marshall, Hans-Peter, Craaybeek, Dylan, Elder, Kelly, &amp; Vuyovich, Carrie. (2024). SnowEx21 Time Series Snow Pits, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/QIANJYJGRWOV</p>
-<p>10.5067/KZ43HVLZV6G4</p>
-<p>Mason, Megan, Marshall, Hans-Peter, McCormick, Maeve, Craaybeek, Dylan, Elder, Kelly, &amp; Vuyovich, Carrie. (2024). SnowEx20 Time Series Snow Pit Measurements, Version 2 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/KZ43HVLZV6G4</p>
-<p>10.5067/NE8CLN3ES5XQ</p>
-<p>Ciafone, Siobhan, ONeel, Shad, Adebisi, Naheem, Zikan, Karina, Enterkine, Joshua, Van Der Weide, Thomas, Wadhwani, Yasmin, Wilder, Brent, Hoppinen, Zach, Filiano, Dominic, &amp; Marshall, Hans-Peter. (2025). SnowEx Mores Creek Summit (MCS) Airborne LiDAR Survey, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/NE8CLN3ES5XQ</p>
-<p>10.5067/UO5ASXKLQTDR</p>
-<p>Mason, Megan, Vuyovich, Carrie, Stuefer, Svetlana, Elder, Kelly, Vas, Dragos, Marshall, Hans-Peter, Durand, Michael, &amp; Liston, Glen. (2025). SnowEx23 Oct22 IOP Snow Pits and Substrate Conditions at Freeze Up, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/UO5ASXKLQTDR</p>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p><strong>Data Set Digital Object Identifier (DOI)</strong></p>
-<p>A DOI is a unique, permanent alphanumeric code assigned to digital objects (most commonly academic journal articles, books, and <em>research datasets</em>) to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time.</p>
-<p>A data set DOI can be used as a parameter in an <code>earthaccess.search_data()</code> query to uniquely constrain (data set and version) the data set of interest as in this <a href="">how-to</a>.</p>
-<p><strong>Citations and NASA Earthdata Use Constraints</strong></p>
-<p>These data are freely, openly, and fully available to use without restrictions, provided that you cite the data. For more information on the <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance">NASA ESDIS Data Use Guidance</a>.</p>
+<p><code>earthaccess.search_data</code> allows you to search for specific granules (i.e.&nbsp;files or bundles of files) within a specified collection using filters. You can specify the collection by supplying a data set DOI as a search parameter. The data set DOI is a unique identifier for the specific version of a data set. Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    doi <span class="op">=</span> <span class="st">'10.5067/ATLAS/ATL06.007'</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    bounding_box <span class="op">=</span> (<span class="op">-</span><span class="fl">134.7</span>,<span class="fl">58.9</span>,<span class="op">-</span><span class="fl">133.9</span>,<span class="fl">59.2</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> (<span class="st">'2020-03-01'</span>,<span class="st">'2020-04-30'</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>search_data</code> queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI and spatial and temporal bounds.</p>
+<p>We can find the number of granules or CMR “hits” returned for those filter paramaters using <code>len()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(files))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>4</code></pre>
+<p>Other parameters accepted by <code>earthaccess.search_datasets</code> can be found <a href="https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_data">here</a> and additional usage examples can be found <a href="https://earthaccess.readthedocs.io/en/stable/user_guide/search/#search-for-data-granules-using-search_data">here</a>.</p>
+<p>We can look at file names by retrieving the access links for the files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[granule.data_links(access<span class="op">=</span><span class="st">"direct"</span>) <span class="cf">for</span> granule <span class="kw">in</span> files]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],
+ ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]</code></pre>
+<p>Filenames are the last item in the S3 object url path, e.g.&nbsp;ATL06_20200310121504_11420606_007_01.h5. File naming conventions can be found in data set <a href="https://nsidc.org/sites/default/files/documents/user-guide/atl06-v007-userguide.pdf">user guides</a>.</p>
 
 
 </section>
@@ -1128,13 +1115,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../how-to-guides/get_concept-ids.html" class="pagination-link" aria-label="How to get data set concept-ids using earthaccess">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to get data set concept-ids using earthaccess</span>
+      <a href="../how-to-guides/get_dataset_doi.html" class="pagination-link" aria-label="How to fetch a formatted citation and retrieve a data set DOI using earthaccess">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../how-to-guides/search_datasets_using_doi.html" class="pagination-link" aria-label="How to use a DOI to search for a data set">
-        <span class="nav-page-text">How to use a DOI to search for a data set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../how-to-guides/get_umm_metadata.html" class="pagination-link" aria-label="How to examine data set metadata using earthaccess">
+        <span class="nav-page-text">How to examine data set metadata using earthaccess</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
