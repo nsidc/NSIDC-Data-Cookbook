@@ -111,7 +111,7 @@ print(len(files))
 4
 ```
 
-Other parameters accepted by `earthaccess.search_datasets` can be found [here](https://earthaccess.readthedocs.io/en/stable/api/#earthaccess.api.search_data) and additional usage examples can be found [here](https://earthaccess.readthedocs.io/en/stable/user/search/#search-for-data-granules-using-search_data).
+Other parameters accepted by `earthaccess.search_data` can be found [here](https://earthaccess.readthedocs.io/en/stable/api/#earthaccess.api.search_data) and additional usage examples can be found [here](https://earthaccess.readthedocs.io/en/stable/user/search/#search-for-data-granules-using-search_data).
 
 We can look at file names by retrieving the access links for the files:  
 
