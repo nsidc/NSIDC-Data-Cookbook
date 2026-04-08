@@ -9,7 +9,7 @@ title: "Searching for collections  and granules"
 >
 >Luis López, NSIDC softare developer and earthaccess creator
 
-Earthaccess has a [Quickstart Guide](https://earthaccess.readthedocs.io/en/stable/quick-start/) with instructions for installation as well as more [detailed documentation](https://earthaccess.readthedocs.io/en/stable/user_guide/search/) on searching for data.
+Earthaccess has a [Quickstart Guide](https://earthaccess.readthedocs.io/en/stable/user/quick-start/) with instructions for installation as well as more [detailed documentation](https://earthaccess.readthedocs.io/en/stable/user/) on searching for data.
 
 
 ## **Search for collections (i.e. data sets)**
@@ -37,7 +37,7 @@ print(len(datasets))
 ```
 77
 ```
-Other parameters accepted by `earthaccess.search_datasets` can be found [here](https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_datasets).
+Other parameters accepted by `earthaccess.search_datasets` can be found [here](https://earthaccess.readthedocs.io/en/stable/api/#earthaccess.api.search_datasets).
 
 Collection objects have a `summary` method associated with them that we can use to explore certain metadata for the collection.  We can use the built-in Python `pprint` module to view the summary metadata.
 
@@ -111,7 +111,7 @@ print(len(files))
 4
 ```
 
-Other parameters accepted by `earthaccess.search_datasets` can be found [here](https://earthaccess.readthedocs.io/en/stable/user-reference/api/api/#earthaccess.api.search_data) and additional usage examples can be found [here](https://earthaccess.readthedocs.io/en/stable/user_guide/search/#search-for-data-granules-using-search_data).
+Other parameters accepted by `earthaccess.search_datasets` can be found [here](https://earthaccess.readthedocs.io/en/stable/api/#earthaccess.api.search_data) and additional usage examples can be found [here](https://earthaccess.readthedocs.io/en/stable/user/search/#search-for-data-granules-using-search_data).
 
 We can look at file names by retrieving the access links for the files:  
 
