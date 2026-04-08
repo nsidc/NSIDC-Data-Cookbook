@@ -26,7 +26,7 @@ files = earthaccess.search_data(
 )
 ```
 
-`search_data` queries NASA's Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI and spatial and temporal bounds. 
+`search_data` queries NASA's Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI, spatial, and temporal bounds. 
 
 We can find the number of granules or CMR "hits" returned for those filter paramaters using `len()`. 
 
