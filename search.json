@@ -307,7 +307,7 @@
     "href": "reference-guides/projections.html",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -318,7 +318,7 @@
     "href": "reference-guides/projections.html#overview",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for map projections. For a full treatment, please consult @snyder_projections_",
     "crumbs": [
       "NSIDC Data",
       "NSIDC map projections and grids"
@@ -1235,7 +1235,7 @@
     "href": "how-to-guides/search_datasets_using_doi.html#solution",
     "title": "How to use DOI to designate my data set of interest for an earthaccess.search_data() query",
     "section": "Solution",
-    "text": "Solution\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters. You can specify the collection by supplying a data set DOI as a search parameter. The data set DOI is a unique identifier for the specific version of a data set. Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.\nfiles = earthaccess.search_data(\n    doi = '10.5067/ATLAS/ATL06.007',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI and spatial and temporal bounds.\nWe can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_datasets can be found here and additional usage examples can be found here.\nWe can look at file names by retrieving the access links for the files:\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nFilenames are the last item in the S3 object url path, e.g. ATL06_20200310121504_11420606_007_01.h5. File naming conventions can be found in data set user guides.",
+    "text": "Solution\nimport earthaccess\nearthaccess.login()\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within collections using filters. You can specify the collection by supplying a data set DOI as a search parameter. The data set DOI is a unique identifier for the specific version of a data set. Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.\nfiles = earthaccess.search_data(\n    doi = '10.5067/ATLAS/ATL06.007',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI, spatial, and temporal bounds.\nWe can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_datasets can be found here and additional usage examples can be found here.\nWe can look at file names by retrieving the access links for the files:\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nFilenames are the last item in the S3 object url path, e.g. ATL06_20200310121504_11420606_007_01.h5. File naming conventions can be found in data set user guides found on data set landing pages, such as this landing page for ATL06 (ATLAS/ICESat-2 L3A Land Ice Height V007).",
     "crumbs": [
       "How-To Guides",
       "Search for data",
