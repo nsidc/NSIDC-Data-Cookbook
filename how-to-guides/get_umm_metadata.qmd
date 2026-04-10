@@ -30,11 +30,8 @@ for r in results[:3]:
     short_name = r.get_umm('ShortName')
     description = r.get_umm('Abstract')
     doi = r.get_umm('DOI')
-    print(long_name)
-    print(short_name)
-    print(description)
-    print(doi)
-    print()
+    print(long_name, short_name, description, doi, sep='\n')
+    print( )
 ```
 SnowEx23 Mar23 Snow Pit Measurements V001  
 SNEX23_MAR23_SP  
