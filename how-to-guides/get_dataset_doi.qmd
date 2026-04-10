@@ -14,6 +14,7 @@ How can I use earthaccess to retrieve a data set digital object identifier (DOI)
 
 ```python
 import earthaccess
+earthaccess.login()
 ```
 
 ```python 
