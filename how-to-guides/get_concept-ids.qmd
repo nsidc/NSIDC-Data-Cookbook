@@ -14,6 +14,7 @@ How can I use earthaccess to find the concept-id's for a list of data sets?
 
 ```python
 import earthaccess
+earthaccess.login()
 ```
 
 ```python 
