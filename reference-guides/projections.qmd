@@ -292,13 +292,29 @@ Geospatial _Coordinate Reference Systems_ are either *Geodetic Coordinate Refere
 
 A _Coordinate Reference System_ comprises an **ellipsoid**, a **coordinate system**, and a **datum** .  Projected Coordinate Reference Systems also include a **projection method** and **projection parameters**.  The following sections describe each of these components.
 
-### The ellipsoid
+### The Ellipsoid
 
-The Earth is an irregular shape with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  A useful simplification is to map the apparent mean sea level, which represents a geopotential.
+#### The figure of the Earth
+
+The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because the ocean is a less viscous fluid than rock, it is free to adjust to the effects of gravity and the rotation of the Earth, formaing a "level" surface where gravitation potential is a constant - an _equipotential_ surface.  If a mass moved between any two points on this surface it would not change it's potential energy - it would do no work against gravity.  The gravitation force is perpendicular to the surface.
+
+This equipotential surface can be extended under the continents to create a _mathematical figure of the Earth_.
+
+**The Geoid is close to mean sea level but it is not the same as mean sea level because msl is affected by tides and other things...**
+
+![geoid](https://github.com/tsutterley/icesat-2-geophysical-transforms/blob/main/geoid.gif?raw=true){#fig-gravity-anomalies}
+
+![Geoid Undulation with a vertical exaggeration of 100000](https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2008/05/earth_s_geoid_as_seen_by_goce2/17878996-2-eng-GB/Earth_s_geoid_as_seen_by_GOCE_pillars.jpg){#fig-geoid-undulation}
 
 #### The geoid
 
+The Earth is an irregular and complex shape with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  
+
 The geoidal surface is irregular.  It is the surface that an ocean would form if the water were free to adjust to the combined effects of Earth's gravity and rotation.  As such the gravitation potential[^the energy...] is equal, there is no change in potential energy between to points on the surface.  And the direction of gravity is perpendicular to the surface.
+
+
+  This is a complex shape to treat mathematically.  To simplify computations, A useful simplification is to map the apparent mean sea level, which represents a geopotential.
+
 
 A spherical Earth
 
