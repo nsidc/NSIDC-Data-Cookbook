@@ -8,7 +8,7 @@ from cookbook_utils.vector3d import Vector3D
 
 def great_circle(lon, r=1, lat_range=(-90,90), density=90):
     """Returns x, y, z coordinates for a Great Circle"""
-    return list(zip(*[Vector.from_geographic(phi, lon).vector for phi in np.linspace(-90., 90., 90)]))
+    return list(zip(*[Vector3D.from_geographic(phi, lon).vector for phi in np.linspace(-90., 90., 90)]))
 
 
 class GreatCircle:
@@ -33,7 +33,7 @@ class GreatCircle:
         if not ax:
             ax = plt.gca()
             
-        ax.plot(self.x, self.y, self.z, c=color, ls=ls)
+        ax.plot(self.x, self.y, self.z, c=color, ls=ls, **kwargs)
 
 
 class Horizon:
@@ -89,3 +89,49 @@ class Axis(Vector3D):
             ax = plt.gca()
             super().plot(ax, c=color, add_label=add_label,
                          label_position=label_position, zorder=zorder)
+
+
+class Equator():
+    """Creates an Equator object for plotting a sphere"""
+
+    def __init__(self, horizon: Horizon):
+        horizon_at_equator = horizon.get_tangent_point(np.radians(-90))
+
+        xe0, ye0, ze0 = list(zip(*[
+            horizon_at_equator.rotate('z', rho).vector for rho in np.linspace(-np.pi, 0)
+        ]))
+        self.x_front = xe0
+        self.y_front = ye0
+        self.z_front = ze0
+
+        xe1, ye1, ze1 = list(zip(*[
+            horizon_at_equator.rotate('z', rho).vector for rho in np.linspace(0,np.pi)
+        ]))
+        self.x_back = xe1
+        self.y_back = ye1
+        self.z_back = ze1
+
+    def plot(self, ax=None, frontcolor='r', backcolor='r',
+             front_linestyle='-', back_linestyle='--',
+             zorder=0):
+        if not ax:
+            ax = plt.gca()
+            
+        ax.plot(
+            self.x_front,
+            self.y_front,
+            self.z_front,
+            c=frontcolor,
+            ls=front_linestyle,
+            zorder=zorder
+        )
+        
+        ax.plot(
+            self.x_back,
+            self.y_back,
+            self.z_back,
+            c=backcolor,
+            ls=back_linestyle,
+            zorder=zorder,
+            alpha=0.3
+        )
