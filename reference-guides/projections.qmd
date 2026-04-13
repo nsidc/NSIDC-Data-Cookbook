@@ -389,29 +389,100 @@ fig.tight_layout()
 
 @fig-coordinate-systems show examples of four two-dimensional (2D) cartesian coordinate systems.  @fig-coordinate-systems a has axes **x** and **y** with units in meters.  The **x** axis increases to the right.  The **y** axis increases in an upwards direction.  Examples b and c are similar to a but b has axis called Easting and Northing with units kilometers.  c is an example of the so-called Plate Carree projection (see @sec-projected-coordinate-systems) which has axes Latitude and Longitude in units degrees of arc.  @fig-coordinate-systems d is an example of an _image coordinate system_.  This is a common coordinate system for digital raster data, including remotely sensed images.  For remotely sensed images, the image coordinate system is related to a geospatial coordinate system by a _geotransform_.  Axes are Column and Row.  However unlike the previous examples, the origin of the coordinate system is in the top-left corner.  The Column axis increments from left to right but the row axis increments from top to bottom.[^3]
 
-:::{@fig-3d-coordinate-systems}
- 
-{{< placeholder 400 200 >}}
+```{python}
+#| label: fig-3d-coordinate-systems
+#| fig-cap: "Three-dimensional coordinate systems"
+#| fig-subcap:
+#|  - "Spherical coordinates ()"
+#|  - "3D Cartesian Coordinates ($x, y, z$)"
 
-:::
+import matplotlib.pyplot as plt
+from cookbook_utils.vector3d import Vector3D
+from cookbook_utils.plotting import add_sphere
+from cookbook_utils.sphere import Axis, GreatCircle
 
-@fig-3d-coordinate-systems shows two coordinate systems for a sphere or ellipsoid.  @fig-3d-coordinates-systems-a is the familiar 2-dimensional _Geographic Coordinate System_ with latitude and longitude.  @fig-3d-coordinate-systems-b is a Geocentric Cartesian Coordinate System with axes; x, y and z.  Units for x, y and z are usually in meters.  For a sphere, latitude and longitude are related to x, y and z through trigonometry.
+fig = plt.figure(figsize=(10,5))
+
+ax1 = fig.add_subplot(1, 2, 1, projection="3d")
+ax1, horizon = add_sphere(
+    ax=ax1,
+    add_axes=["x", "z"],
+    show_axis_labels=False,
+    axis_length=1,
+    return_horizon=True
+)
+
+lat = 40.
+lon = 55.
+
+# Add point vector
+r = Vector3D.from_geographic(lat, lon, name="r")
+r.plot(add_label=True, label_position="end")
+# Show r projeted onto xy plane
+r.project("xy").unit.plot(c='0.4')
+
+raxis = horizon.get_tangent_point(0)  #.project('xy')  #.unit.rotate('z', 90)
+gc = GreatCircle(lon, lat_range=(-80,90)).plot(color='tab:blue')
+
+lat_label_pos = Vector3D.from_geographic(0., lon/2, r=0.5)
+ax1.text(*lat_label_pos.vector, r"$\lambda$", [0,1,0], va='center', ha='center')
+
+lat_label_pos = Vector3D.from_geographic(lat/2, lon, r=0.25)
+ax1.text(*lat_label_pos.vector, r"$\phi$", "y");
+
+ax2 = fig.add_subplot(1,2,2, projection="3d")
+ax2, horizon = add_sphere(
+    ax=ax2,
+    add_axes=["x", "y", "z"],
+    show_axis_labels=True,
+    axis_length=1.5,
+    return_horizon=True
+)
+
+# Add point vector
+r = Vector3D.from_geographic(lat, lon, name="r")
+r.plot(add_label=True, label_position="end")
+# Show r projeted onto xy plane
+rxy = r.project("xy").unit
+rxy.plot(c='0.4')
+
+raxis = horizon.get_tangent_point(0)  #.project('xy')  #.unit.rotate('z', 90)
+gc = GreatCircle(lon, lat_range=(-80,90)).plot(color='tab:blue')
+
+(r.project('xy') + Vector3D(0., 0., r.z)).plot(
+    color="purple",
+    label=r"$z$",
+    label_position="middle",
+    label_kwargs=dict(ha="left")
+    )
+(r.component('x') + r.component('y')).plot(
+    color="purple",
+    label=r"$y$",
+    label_position="middle"
+    )
+(r.component('y') + r.component('x')).plot(
+    color="purple",
+    label=r"$x$",
+    label_position="middle",
+    label_kwargs=dict(ha="left")
+    )
+
+fig.tight_layout()
+```
+
+
+@fig-3d-coordinate-systems shows two coordinate systems for a sphere or ellipsoid.  @fig-3d-coordinate-systems a is 3-dimensional _Geographic Coordinate System_ with latitude ($\lambda$) and longitude ($\phi$), and radial distance ($r$).  @fig-3d-coordinate-systems b is a Geocentric Cartesian Coordinate System with axes; $x$, $y$ and $z$.  Units for $x$, $y$ and $z$ are usually in meters.  For a sphere, latitude and longitude are related to x, y and z through trigonometry.
 
 $$
-x = R \cos \phi \sin \theta
+\begin{align}
+x &= r \cos \phi \cos \lambda \\
+y &= r \sin \phi \sin \lambda \\
+z &= r \sin \phi
+\end{align}
 $$
 
 A coordinate syetem is related to the Earth by a datum, which defines the origin of the coordinate system relative to a model of the earth.
 
-_From Iliffe and Lott (2008)_
-
-
-  A coordinate system is defined by
-a dimension (the number of axes), each axes has a coordinate associated with it.  Each axis of a coordinates system has the following attributes:
-- the name or abbreviation of the axis (e.g. Latitude);
-- the sequence number of the axis so that coordinate order is define (e.g. (x,y,z) or (z,y,x));
-- the direction of the axis in which coordinates increment;
-- the units of the axis.
 
 ### Ellipsoid and Datums{#sec-ellipsoids-and-datums}
 
