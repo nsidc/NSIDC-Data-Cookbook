@@ -36,7 +36,7 @@ class Vector3D():
             return f"{self.name} = ({self.x} {self.y} {self.z})"
 
     def __repr__(self):
-        return f"Vector3D({self.x} {self.y} {self.z}, name=`{self.name}`)"
+        return f"Vector3D({self.x} {self.y} {self.z}, origin=({self.origin}) name=`{self.name}`)"
         
     @property
     def magnitude(self):
@@ -86,12 +86,30 @@ class Vector3D():
             return Vector3D(0, self.y, self.z, origin=self.origin, name=f"self.name_{plane}")
         else:
             raise ValueError(f"Unknown plane: expects one of 'xy', 'xz', or 'yz'")
-            
+
+    def component(self, axis):
+        """Returns a vector for x, y, or z component
+        
+        Arguments:
+          axis : name of axis to return
+
+        Returns:
+          A new vector3d object for the component axis
+        """
+        if axis == "x":
+            return Vector3D(self.x, 0., 0., name="x")
+        elif axis == "y":
+            return Vector3D(0., self.y, 0., name="y")
+        elif axis == "z":
+            return Vector3D(0., 0., self.z, name="z")
+        else:
+            raise ValueError(f"Unknown axis name.  Expects one of 'x', 'y', or 'z', for {axis}")
+        
     def plot(self, ax=None, 
              add_label=False, label_position='end', label=None, 
              xoffset=0.0, yoffset=0.0, zoffset=0.0,
              show_angle=False, angle_name=None, angle_plane=None,
-             **kwargs):
+             label_kwargs={}, **kwargs):
         """Plots vector on axis `ax` or current axis
 
         Arguments:
@@ -119,8 +137,10 @@ class Vector3D():
 
         # TODO a smart way to locate label
         if add_label or label:
+            if not label:
+                label = self.name
             xt, yt, zt = self._get_label_pos(label_position)
-            ax.text(xt, yt, zt, self.name, ha="left")
+            ax.text(xt, yt, zt, label, **label_kwargs)
 
         if show_angle:
             raise NotImplemented
@@ -132,7 +152,11 @@ class Vector3D():
         if label_position == "end":
             return (self.x, self.y, self.z)
         elif label_position == "middle":
-            return (self.x/2., self.y/2., self.z/2.)
+            return (
+                (self.origin[0] + self.x)/2.,
+                (self.origin[1] + self.y)/2.,
+                (self.origin[2] + self.z)/2.
+            )
             
     @classmethod
     def from_spherical(cls, phi: float, theta: float, r: float=1, degrees=True, name: str=None) -> Vector3D:
@@ -200,6 +224,8 @@ class Vector3D():
         if isinstance(other, Vector3D):
             if self.name and other.name:
                 name = f"{self.name} + {other.name}"
+            else:
+                name = ""
             return Vector3D(
                 self.x + other.x, self.y + other.y, self.z + other.z, 
                 origin=self.vector, name=name)
