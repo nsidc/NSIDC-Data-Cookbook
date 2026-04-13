@@ -36,7 +36,7 @@ website:
       - section: "NSIDC Data"
         # href: reference-guides/data-orient-overview.qmd
         contents:
-           - text: "Data types and formats"
+           - text: "Data formats and structures"
              href: reference-guides/data-structures.qmd
            - text: "NASA collections and granules"
              href: reference-guides/collections-granules.qmd
