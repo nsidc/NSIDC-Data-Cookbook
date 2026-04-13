@@ -62,7 +62,7 @@ Mason,  Megan, Vuyovich,  Carrie, Stuefer,  Svetlana, Elder,  Kelly, Vas,  Drago
 
 A DOI is a unique, permanent alphanumeric code assigned to digital objects (most commonly academic journal articles, books, and *research datasets*) to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time.
 
-A data set DOI can be used as a parameter in an `earthaccess.search_data()` query to uniquely constrain (data set and version) the data set of interest as in this [how-to]().
+A data set DOI can be used as a parameter in an `earthaccess.search_data()` query to uniquely constrain (data set and version) the data set of interest as in this [how-to](https://nsidc.github.io/NSIDC-Data-Cookbook/how-to-guides/search_datasets_using_doi.html).
 
 **Citations and NASA Earthdata Use Constraints**
 
