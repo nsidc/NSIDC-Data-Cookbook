@@ -27,6 +27,7 @@ dependencies:
  - fsspec
  - harmony-py
  - transforms3d
+ - tabulate
  - pip
  - pip:
    - -e cookbook_utils
