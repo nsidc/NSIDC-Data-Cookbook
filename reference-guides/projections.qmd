@@ -214,18 +214,32 @@ ax[2].set_ylim(0,1);
 
 Each point, line and polygon in @fig-vector-features is a discrete feature.  A point is defined by a single set of coordinates ($x$,$y$).  Points are zero-dimensional.  That is they have no area, length or width.  An example of a dataset with point features is the location of weather stations in the [US Historical Climatology Network](https://www.ncei.noaa.gov/products/land-based-station/us-historical-climatology-network) (@fig-vector-ushcn).  Each weather station is defined a latitude and longitude.  Attributes are associated with stations, such as station name, USHCN ID, elevation, state, etc.  
 
-```{.python}
+```{python}
 #| label: fig-vector-ushcn
 #| fig-cap: "Locations of weather stations in Colorado in the US Historical Climatology Network"
 
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+import pandas as pd
 
-from ..cookbook_utils.io import load_ushcn_stations
+from IPython.display import Markdown
+from tabulate import tabulate
+
+from cookbook_utils.io import load_ushcn_stations
 
 ushcn_stations = load_ushcn_stations()
-ushcn_stations.head()
+
+example_station = ushcn_stations[
+                             (ushcn_stations.state == "CO") &
+                             (ushcn_stations.name == "BOULDER")
+                         ]
+
+# Add table of attributes
+#print(example_station.to_dict())
+xy = example_station.to_crs(projection.to_wkt()).get_coordinates().itertuples(index=False, name=None)
+#print(list(*xy))
+#print(example_station.name.values[0])
 
 projection = ccrs.AlbersEqualArea(
     central_longitude=-100.,
@@ -237,6 +251,8 @@ ax.set_extent([-109.1, -102., 36.99, 41.1], ccrs.PlateCarree())
 ax.add_feature(cfeature.STATES)
 
 ushcn_stations[ushcn_stations.state == "CO"].to_crs(projection.to_wkt()).plot(ax=ax, aspect=1)
+#ax.annotate(text=example_station.name.values[0], xy=list(*xy), ha='left')
+#ax.annotate(text="Boulder", xy=[-398762.1943516234, -3645694.10140368], ha='left');
 ```
 
 A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosiac shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.
