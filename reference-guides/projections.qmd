@@ -312,11 +312,9 @@ A _Coordinate Reference System_ comprises an **ellipsoid**, a **coordinate syste
 
 #### The figure of the Earth
 
-The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because the ocean is a less viscous fluid than rock, it is free to adjust to the effects of gravity and the rotation of the Earth, formaing a "level" surface where gravitation potential is a constant - an _equipotential_ surface.  If a mass moved between any two points on this surface it would not change it's potential energy - it would do no work against gravity.  The gravitation force is perpendicular to the surface.
+The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because sea water is a fluid, it is free to adjust to the effects of gravity and the rotation of the Earth.  Neglecting tides and other motions, the ocean surface forms a surface where gravitational potential is a constant.   This surface is an _equipotential_ surface.  If a mass moved between any two points on this surface it'spotential energy would not change.  Put another way it would do no work against gravity.  The gravitation force is perpendicular to the surface.
 
-This equipotential surface can be extended under the continents to create a _mathematical figure of the Earth_.
-
-**The Geoid is close to mean sea level but it is not the same as mean sea level because msl is affected by tides and other things...**
+We can extend this equipotential surface under the continents to create the _Geoid_.  **The Geoid is close to mean sea level but it is not the same as mean sea level because sea level is affected by tides and other things.**
 
 ![geoid](https://github.com/tsutterley/icesat-2-geophysical-transforms/blob/main/geoid.gif?raw=true){#fig-gravity-anomalies}
 
