@@ -1,6 +1,6 @@
 ---
 title: "Projections and Coordinate Systems"
-author: Andy P. Barrett
+author: Andrew P. Barrett
 format:
   html:
     code-fold: true
