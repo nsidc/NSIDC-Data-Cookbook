@@ -15,14 +15,6 @@ Below we mention various tools that perform different tasks. To help distinguish
  ![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%} ![computation](images/computation.svg){width=10%}
 
 
-<!-- | task | icon |
-| ----- | --- |
-| Data Access: | ![data-access](images/data-access.svg){width=30%} |
-| Data Visualization: | ![data-visualization](images/data-visualization.svg){width=30%} |
-| Data Conversion: | ![data-conversion](images/data-conversion.svg){width=30%} |
-| Data Analysis: | ![data-analysis](images/data-analysis.svg){width=30%} |
-| Computation Scaling: | ![computation](images/computation.svg){width=30%} | -->
-
 <br>
 
 
