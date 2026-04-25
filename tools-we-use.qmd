@@ -12,8 +12,15 @@ Using web or locally-installed applications is a good way to start to discover a
 Below we mention various tools that perform different tasks. To help distinguish which tools can perform which tasks, look for the following symbols:
 <br>
 
- ![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%} ![computation](images/computation.svg){width=10%}
+ <!-- ![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%} ![computation](images/computation.svg){width=10%} -->
 
+| task | symbol |
+| ----- | --- |
+| Data acces and discovery: | ![data-access](images/data-access.svg){width=30%} |
+| Data visualization: | ![data-visualization](images/data-visualization.svg){width=30%} |
+| Data reformatting and transformation: | ![data-conversion](images/data-conversion.svg){width=30%} |
+| Data analysis: | ![data-analysis](images/data-analysis.svg){width=30%} |
+| Computation scaling: | ![computation](images/computation.svg){width=30%} |
 
 <br>
 
@@ -53,7 +60,7 @@ There are many Python packages available for working with Earth science data.  T
 
 #### sliderule &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
-[`sliderule`](https://github.com/ICESat2-SlideRule/sliderule-python) — on-demand processing and access to ICESat-2 data.
+[`sliderule`](https://docs.slideruleearth.io/) — on-demand processing and access to ICESat-2 data.
 
 #### icepyx &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
@@ -85,7 +92,7 @@ Applications provide graphical interfaces for exploring, visualizing, and workin
 
 #### Open Altimetry &nbsp;![data-access](images/data-access.svg){width=2%} ![data-visualization](images/data-visualization.svg){width=10%}
 
-[`Open Altimetry`](https://openaltimetry.org/) — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.
+[`Open Altimetry`](https://openaltimetry.earthdatacloud.nasa.gov/data/) — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.
 
 #### SlideRule &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
@@ -93,15 +100,15 @@ Applications provide graphical interfaces for exploring, visualizing, and workin
 
 #### HDFView &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
 
-[`HDFView`](https://portal.hdfgroup.org/display/support/HDFView) — a desktop application for viewing and editing HDF4 and HDF5 files.
+[`HDFView`](https://www.hdfgroup.org/download-hdfview/) — a desktop application for viewing and editing HDF4 and HDF5 files.
 
 #### Panoply &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
 
 [`Panoply`](https://www.giss.nasa.gov/tools/panoply/) — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.
 
-#### NCView &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
+<!-- #### NCView &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
 
-[`NCView`](http://meteora.ucsd.edu/~pierce/ncview_home_page.html) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.
+[`NCView`](https://cirrus.ucsd.edu/ncview/) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables. -->
 
 
 #### QGIS &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
