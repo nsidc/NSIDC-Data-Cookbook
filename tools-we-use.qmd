@@ -14,9 +14,9 @@ Below we mention various tools that perform different tasks. To help distinguish
 
  <!-- ![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%} ![computation](images/computation.svg){width=10%} -->
 
-| task | symbol |
+| Task | Symbol |
 | ----- | --- |
-| Data acces and discovery: | ![data-access](images/data-access.svg){width=30%} |
+| Data access and discovery: | ![data-access](images/data-access.svg){width=30%} |
 | Data visualization: | ![data-visualization](images/data-visualization.svg){width=30%} |
 | Data reformatting and transformation: | ![data-conversion](images/data-conversion.svg){width=30%} |
 | Data analysis: | ![data-analysis](images/data-analysis.svg){width=30%} |
