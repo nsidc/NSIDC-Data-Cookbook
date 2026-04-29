@@ -1,5 +1,5 @@
 ---
-title: "Data formats and structures"
+title: "Data structures and formats"
 ---
 
 Earth observation data are stored in a variety of structures and file formats, each shaped by how the data were collected, processed, distributed, and historically used, along with the science questions that guided their creation. At NSIDC, formats reflect satellite mission design, modeling needs, interoperability standards, and long-term archiving requirements.
@@ -19,7 +19,7 @@ Understanding the basics (and differences between the two) can help you:
 - Avoid common analysis errors, and 
 - Do science more efficiently! 
 
-In practice, the relationship between a science question, available data, and the tools used for analysis is often not linear. Science questions often guide data collection and product design, but they are also shaped by what data already exist. As a result, data structures, file formats, and tools are interconnected, with multiple valid pathways depending on the dataset and workflow. The figure below highlights these conceptual relationships between science questions, data structures, file formats, and analysis tools. 
+In practice, the relationship between a science question, available data, and the tools used for analysis is often not linear. Science questions often guide data collection and product design, but they are also shaped by what data already exist. As a result, data structures, file formats, and tools are interconnected, with multiple valid pathways depending on the data set and workflow. The figure below highlights these conceptual relationships between science questions, data structures, file formats, and analysis tools. 
 
 ```{mermaid}
 flowchart TD
@@ -38,11 +38,11 @@ C2[GeoTIFF]
 C3[Shapefile]
 C4[CSV]
 
-D[Tools]
-D1[Python]
-D2[R]
-D3[GIS software]
-D4[Web tools]
+D((Analysis tools))
+D1((Python))
+D2((R))
+D3((GIS software))
+D4((Web tools))
 
 A -.-> B
 B -.-> A
@@ -72,7 +72,7 @@ D --> D4
 
 ## How Earth science data are structured
 
-Before working with specific file formats, it helps to understand the **underlying data structures** they represent. At NSIDC, most datasets fall into one or more of the structures below.
+Before working with specific file formats, it helps to understand the **underlying data structures** they represent. At NSIDC, most data sets fall into one or more of the structures below.
 
 ### Raster / gridded data
 
@@ -83,19 +83,70 @@ Before working with specific file formats, it helps to understand the **underlyi
 :::
 
 
-For most remotely sensed imagery products, raster data represent space as a **regular grid of cells**. Each cell corresponds to a defined area on Earth and stores a value or category. For example, below you have a grid where each grid-cell (also called a pixel) contains a numeric value between 1 and 5.
+For most remotely sensed imagery products, raster data represent space as a **regular grid of cells**. Each cell corresponds to a defined area on Earth and stores a value or category. For example, below is a grid where each grid cell (also called a pixel) contains a numeric value between 1 and 5.
 
-```
-+----+----+----+
-|  3 |  4 |  5 |
-+----+----+----+
-|  2 |  3 |  4 |
-+----+----+----+
-|  1 |  2 |  3 |
-+----+----+----+
+```{=html}
+<svg width="320" viewBox="0 0 260 240" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Raster grid where each pixel stores a value</title>
+  <desc>A 3 by 3 raster grid with each cell containing a numeric value between 1 and 5. One cell is highlighted.</desc>
+
+  <!-- Grid -->
+  <g transform="translate(40,30)">
+
+    <!-- Cells -->
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+    <rect x="50" y="0" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+    <rect x="100" y="0" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+
+    <!-- Row 2 -->
+    <rect x="0" y="50" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+    <rect x="50" y="50" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+    <rect x="100" y="50" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+
+    <!-- Row 3 -->
+    <rect x="0" y="100" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+    <rect x="50" y="100" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+    <rect x="100" y="100" width="50" height="50" fill="#E6F1FB" stroke="#185FA5"/>
+
+    <!-- Values -->
+    <g font-family="monospace" font-size="16" fill="#0C447C" text-anchor="middle">
+      <text x="25" y="30">3</text>
+      <text x="75" y="30">4</text>
+      <text x="125" y="30">5</text>
+
+      <text x="25" y="80">2</text>
+      <text x="75" y="80">3</text>
+      <text x="125" y="80">4</text>
+
+      <text x="25" y="130">1</text>
+      <text x="75" y="130">2</text>
+      <text x="125" y="130">3</text>
+    </g>
+
+    <!-- Highlighted pixel -->
+    <rect x="50" y="50" width="50" height="50"
+          fill="none" stroke="#D7263D" stroke-width="3"/>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="140" y1="200" x2="140" y2="135"
+        stroke="#D7263D"
+        stroke-width="1.5"/>
+
+  <!-- Label BELOW grid -->
+  <text x="140" y="220"
+        font-size="12"
+        font-family="sans-serif"
+        fill="#D7263D"
+        text-anchor="middle">
+    pixel (cell)
+  </text>
+
+</svg>
 ```
 
-In this simplified example, each one of these cells represents a geographic footprint, not a point. Meaning, anywhere within one of these boxes (whether it is in the middle, or near the outer edge) is represented by the same numeric value. It is worth noting that this interpretaion can vary by product and methodology, where output from models is typically only valid for a point, and techniques for resampling remote sensing data can change the assumptions around grid-cell interpretation.
+In this simplified example, each of these cells represents a geographic footprint, not a point. This means that anywhere within one of these boxes (whether it is in the middle, or near the outer edge) is represented by the same numeric value. It is worth noting that this interpretation can vary by product and methodology, where output from models is typically only valid for a point, and techniques for resampling remote sensing data can change the assumptions around grid cell interpretation.
 
 #### Key concepts
 - **Extent** — the geographic area covered  
@@ -118,9 +169,9 @@ GeoTIFF extends standard image files by embedding geographic referencing informa
 
 :::
 
-#### NetCDF data formats are commonly used to store raster data (although they can represent other structures as well).
+#### NetCDF data format is commonly used to store raster data (although they can represent other structures as well).
 
-Many NSIDC datasets are best understood as named, labeled arrays, not as tables or spreadsheets.
+Many NSIDC data sets are best understood as named, labeled arrays, not as tables or spreadsheets.
 
 NetCDF allows data to be organized by named dimensions such as space, time, and height.
 
@@ -134,12 +185,12 @@ This means:
 - Each axis has a name, units, and meaning
 - Position along each axis matters
 
-NetCDF is a scientific data container designed to store multidimensional arrays with metadata. At NSIDC it is often used to store gridded datasets, time series stacks, or model outputs, but it can represent many structures (not just raster or grid) depending on how it is written.
+NetCDF is a scientific data container designed to store multidimensional arrays with metadata. At NSIDC it is often used to store gridded data sets, time series stacks, or model outputs, but it can represent many structures (not just raster or grid) depending on how it is written.
 
 ::: {.callout-note}
 ### More about HDF5 and NetCDF data formats...
 
-HDF5 was designed as a flexible container for storing large scientific datasets with complex internal structure. It is the "backbone"/ underlying structure of NetCDF4. It supports hierarchical grouping, mixed data types, and metadata, where NetCDF was created to store large, multidimensional scientific datasets while keeping data and metadata together. It allows variables to be tied to named dimensions (time, latitude, longitude, height), making files self-describing and machine-interpretable. 
+HDF5 was designed as a flexible container for storing large scientific data sets with complex internal structure. It is the "backbone"/ underlying structure of NetCDF4. It supports hierarchical grouping, mixed data types, and metadata, where NetCDF was created to store large, multidimensional scientific data sets while keeping data and metadata together. It allows variables to be tied to named dimensions (time, latitude, longitude, height), making files self-describing and machine-interpretable. 
 
 :::
 
@@ -147,7 +198,7 @@ HDF5 was designed as a flexible container for storing large scientific datasets 
 
 A NetCDF file typically contains three key components.
 
-##### Dimensions define the **shape** of the data. Below is an example of a 3-Dimensional (3-D) data set.
+##### **Dimensions** define the **shape** of the data. Below is an example of a 3-dimensional (3-D) data set.
 
 ```
 Dimensions:
@@ -163,7 +214,7 @@ Each dimension represents an independent axis:
 - sometimes `z` or `level` → vertical structure (this would be a 4th dimension)
 
 
-##### Variables are **arrays of values** defined over one or more dimensions.
+##### **Variables** are **arrays of values** defined over one or more dimensions.
 
 ```
 Variables:
@@ -174,13 +225,84 @@ Variables:
 
 Visually, you can think of a 3-dimensional variable (like `sea_ice_concentration` above) as a stack of 2-D maps through time that form a data-cube:
 
-```
-time = t0      time = t1      time = t2
-+----+----+    +----+----+    +----+----+
-|    |    |    |    |    |    |    |    |
-+----+----+    +----+----+    +----+----+
-|    |    |    |    |    |    |    |    |
-+----+----+    +----+----+    +----+----+
+```{=html}
+<svg width="100%" viewBox="0 85 600 200" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>"Stacked" 2D grid slices to create a 3-dimensional NetCDF datacube</title>
+  <desc>Sea ice concentration at three time steps, showing a 3-dimensional NetCDF variable(time, y, x) is as stack of 2D arrays.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </marker>
+  </defs>
+
+  
+  <line x1="114.9" y1="252.3" x2="416.4" y2="161.3" stroke="#73726c" stroke-width="2" marker-end="url(#arrow)"></line>
+
+  
+  <rect x="114.8" y="161.8" width="90" height="90" fill="#378ADD" stroke="#185FA5" stroke-width="1.2"></rect>
+  <line x1="145.0" y1="161.8" x2="145.0" y2="251.8" stroke="#E6F1FB" stroke-width="0.5" opacity="0.7"></line>
+  <line x1="174.6" y1="161.8" x2="174.6" y2="251.8" stroke="#E6F1FB" stroke-width="0.5" opacity="0.7"></line>
+  <line x1="114.8" y1="192.0" x2="204.8" y2="192.0" stroke="#E6F1FB" stroke-width="0.5" opacity="0.7"></line>
+  <line x1="114.8" y1="221.6" x2="204.8" y2="221.6" stroke="#E6F1FB" stroke-width="0.5" opacity="0.7"></line>
+  <text x="130.2" y="179.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.82</text>
+  <text x="159.8" y="179.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.74</text>
+  <text x="190.0" y="179.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.61</text>
+  <text x="130.2" y="206.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.78</text>
+  <text x="159.8" y="206.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.70</text>
+  <text x="190.0" y="206.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.52</text>
+  <text x="130.2" y="236.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.36</text>
+  <text x="159.8" y="236.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.43</text>
+  <text x="190.0" y="236.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#E6F1FB">0.29</text>
+  <text x="146.0" y="157.4" font-size="11" font-family="monospace" fill="#73726c">t = t₀</text>
+
+  
+  <rect x="209.7" y="133.8" width="90" height="90" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"></rect>
+  <line x1="239.9" y1="133.8" x2="239.9" y2="223.8" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <line x1="269.5" y1="133.8" x2="269.5" y2="223.8" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <line x1="209.7" y1="164.0" x2="299.7" y2="164.0" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <line x1="209.7" y1="193.6" x2="299.7" y2="193.6" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <text x="225.1" y="151.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.91</text>
+  <text x="254.7" y="151.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.85</text>
+  <text x="284.9" y="151.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.72</text>
+  <text x="225.1" y="178.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.88</text>
+  <text x="254.7" y="178.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.79</text>
+  <text x="284.9" y="178.8" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.63</text>
+  <text x="225.1" y="208.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.44</text>
+  <text x="254.7" y="208.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.51</text>
+  <text x="284.9" y="208.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#042C53">0.38</text>
+  <text x="243.0" y="129.7" font-size="11" font-family="monospace" fill="#73726c">t = t₁</text>
+
+  
+  <rect x="304.2" y="105.4" width="90" height="90" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.2"></rect>
+  <line x1="334.4" y1="105.4" x2="334.4" y2="195.4" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <line x1="364.0" y1="105.4" x2="364.0" y2="195.4" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <line x1="304.2" y1="135.6" x2="394.2" y2="135.6" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <line x1="304.2" y1="165.2" x2="394.2" y2="165.2" stroke="#185FA5" stroke-width="0.5" opacity="0.6"></line>
+  <text x="319.6" y="123.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.87</text>
+  <text x="349.2" y="123.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.80</text>
+  <text x="379.4" y="123.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.69</text>
+  <text x="319.6" y="150.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.83</text>
+  <text x="349.2" y="150.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.75</text>
+  <text x="379.4" y="150.4" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.58</text>
+  <text x="319.6" y="180.0" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.40</text>
+  <text x="349.2" y="180.0" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.47</text>
+  <text x="379.4" y="180.0" text-anchor="middle" font-size="10" font-family="monospace" fill="#0C447C">0.33</text>
+  <text x="337.8" y="100.6" font-size="11" font-family="monospace" fill="#73726c">t = t₂</text>
+
+  
+  <line x1="114.2" y1="252.6" x2="114.0" y2="149.2" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"></line>
+  <text x="103.4" y="208.0" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#73726c">y</text>
+
+  
+  <line x1="114.2" y1="252.6" x2="219.0" y2="252" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"></line>
+  <text x="157.5" y="264.0" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#73726c">x</text>
+
+  
+  <line x1="256.7" y1="247.0" x2="338.5" y2="218.1" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"></line>
+  <text x="303.3" y="240.6" font-size="12" font-family="sans-serif" fill="#73726c">time</text>
+
+</svg>
 ```
 
 Each slice shares:
@@ -189,14 +311,14 @@ Each slice shares:
 - the same projection
 - the same variable definition
 
-##### Attributes store **metadata** that describe how to interpret the values and may be attached to:
+##### **Attributes** store **metadata** that describe how to interpret the values and may be attached to:
 
 - the file (global attributes)
 - individual variables
 - spatial coordinate variables
 
-Examples include:
 ```
+Attributes:
 units = "%"
 valid_range = 0 to 100
 missing_value = -9999
@@ -209,7 +331,7 @@ Attributes explain:
 - how they were produced
 - how they should (and should not) be used
 
-Having well defined attributes is something that sets NetCDF apart from simpler formats. A LOT of scientific information can be embedded within these attributes, and a lot of it is essential for proper data interpretation.
+Having well-defined attributes is something that sets NetCDF apart from simpler formats. A LOT of scientific information can be embedded within these attributes, and a lot of it is essential for proper data interpretation.
 
 ##### Common NetCDF data shapes
 
@@ -296,14 +418,14 @@ HDF-EOS adds Earth Observing System conventions on top of HDF to represent satel
 :::
 
 
-For many users, tabular data feels familiar because it resembles spreadsheets used in tools like Excel or Google Sheets.
+For many users, tabular or delimited data feels familiar because it resembles spreadsheets used in tools like Excel or Google Sheets.
 
 ```
 | date       | latitude | longitude | variable |
 |------------|----------|-----------|----------|
-| 2022-01-01 |  70.2    | -150.1    | 0.82  |
-| 2022-01-02 |  70.2    | -150.1    | 0.79  |
-| 2022-01-03 |  70.2    | -150.1    | 0.85  |
+| 2022-01-01 |  70.2    | -150.1    | 0.82     |
+| 2022-01-02 |  70.2    | -150.1    | 0.79     |
+| 2022-01-03 |  70.2    | -150.1    | 0.85     |
 ```
 
 Each row represents a record, and each column represents a field.
@@ -381,8 +503,24 @@ Delimited text formats like CSV were created to provide a simple, universal way 
 
 Vector data typically represent **discrete geographic features** rather than continuous spatial fields. 
 
-```
-• Point        ─── Line        ▢ Polygon
+```{=html}
+<svg width="100%" height="90" viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Point -->
+  <circle cx="50" cy="40" r="6" fill="#1f77b4"/>
+  <text x="50" y="75" text-anchor="middle" font-size="12">Point</text>
+
+  <!-- Line -->
+  <line x1="110" y1="40" x2="180" y2="40" stroke="#2ca02c" stroke-width="4" stroke-linecap="round"/>
+  <text x="145" y="75" text-anchor="middle" font-size="12">Line</text>
+
+  <!-- Polygon -->
+  <polygon points="230,25 280,25 270,55 220,55"
+           fill="#ff7f0e" fill-opacity="0.2"
+           stroke="#ff7f0e" stroke-width="2"/>
+  <text x="250" y="75" text-anchor="middle" font-size="12">Polygon</text>
+
+</svg>
 ```
 
 Examples:
@@ -394,8 +532,10 @@ Examples:
 #### Geometry types
 
 ##### Points
-```
-•
+```{=html}
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="6" fill="#1f77b4"/>
+</svg>
 ```
 
 Points represent a single location with no area or length.
@@ -408,8 +548,10 @@ Common uses:
 
 
 ##### Lines
-```
-───────
+```{=html}
+<svg width="100" height="60" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+  <line x1="10" y1="30" x2="90" y2="30"
+        stroke="#2ca02c" stroke-width="4" stroke-linecap="round"/>
 ```
 
 Lines represent linear features with length but no area.
@@ -421,9 +563,14 @@ Common uses:
 - Transects
 
 ##### Polygons
-```
-▢▢▢▢
-▢▢▢▢
+```{=html}
+<svg width="80" height="60" viewBox="210 20 80 60" xmlns="http://www.w3.org/2000/svg">
+
+  <polygon points="230,25 280,25 270,55 220,55"
+           fill="#ff7f0e" fill-opacity="0.2"
+           stroke="#ff7f0e" stroke-width="2"/>
+
+</svg>
 ```
 
 Polygons represent areas with defined boundaries.
@@ -439,10 +586,10 @@ Common uses:
 Each feature includes attributed data, where attributes describe properties of **unique features**:
 
 ```
-Feature ID | Name        | Area_km2 | Year
------------|-------------|----------|------
-001        | Glacier A   | 12.4     | 2020
-002        | Glacier B   |  8.9     | 2020
+| Feature ID | Name        | Area_km2 | Year |
+|------------|-------------|----------|------|
+| 001        | Glacier A   | 12.4     | 2020 |
+| 002        | Glacier B   |  8.9     | 2020 |
 ```
 
 Vector formats exist because many spatial features are:
@@ -454,7 +601,7 @@ Vector formats exist because many spatial features are:
 ::: {.callout-note}
 ### More about Shapefile data format...
 
-The shapefile format was introduced as an early GIS standard for storing vector features with attributes. Although newer formats now exist, shapefiles remain common because of their compatibility across tools and legacy datasets.
+The shapefile format, actually composed of multiple files, was introduced as an early GIS standard for storing vector features with attributes. Although newer formats now exist, shapefiles remain common because of their compatibility across tools and legacy data sets.
 :::
 
 
@@ -477,22 +624,161 @@ Vector data represent **objects and boundaries**, not continuous fields.
 
 The table below lists common file formats encountered in NSIDC data products and some practical considerations when working with them.
 
-| File format | Common uses | Quirks | NSIDC example products | Common tools (programmatic + GUI) | 
-|------------|---------------|-------------|--------------------|------------------------|-----------------------------------|
-| **NetCDF4 / NetCDF classic** | Climate records, reanalysis products, gridded time series, model output. | Time encoding confusion; multidimensional indexing; large file sizes; steep learning curve without high-level tools. | [Sea Ice Concentration CDR](https://nsidc.org/data/G02202) • [Antarctic Ice Velocity](https://nsidc.org/data/NSIDC-0484)  | **Python:** `xarray`, `netCDF4` (low-level) • **R:** `terra`, `stars`, `ncdf4` • **GUI:** Panoply, QGIS, ArcGIS Pro, HDFView|
-| **HDF5** | Mission-level products, intermediate processing outputs, complex hierarchical datasets. | Deep hierarchies; unclear variable naming; inconsistent conventions between products. | [SMAP L3 Soil Moisture](https://nsidc.org/data/SPL3SMP) • [ICESat-2 ATL03](https://nsidc.org/data/ATL03) | **Python:** `rioxarray`, `h5py` • **R:** `rhdf5` • **GUI:** Panoply, HDFView|
-| **HDF-EOS2 / HDF-EOS5** | Satellite swath and gridded mission products (e.g., MODIS). | Specialized structure; harder to read without EOS-aware tools; metadata spread across groups. | [MODIS Snow Cover](https://nsidc.org/data/mod10a1/) • [AMSR-E/AMSR2 SWE](https://nsidc.org/data/au_dysno/) | **Python:** `xarray`, `h5netcdf`, `pyhdf` • **R:** `terra` • **GUI:** Panoply, HDFView|
-| **GeoTIFF / TIFF/ COG** | Gridded maps, spatial subsets, visualization-ready products. | Limited metadata compared to NetCDF; alignment issues across datasets; large files at high resolution. | [Ice Sheet Velocity](https://nsidc.org/data/nsidc-0731/) • [Land Freeze/Thaw Status](https://nsidc.org/data/nsidc-0728/) | **Python:** `rasterio`, `rioxarray`, `xarray` • **R:** `terra`, `raster` • **GUI:** QGIS, ArcGIS Pro |
-| **Shapefile** | Ice sheet boundaries, grounding lines, glacier outlines. | Multi-file dependency; field name limits; aging format. | [Glacier Database](https://nsidc.org/data/nsidc-0272/) • [Glacier Terminus Positions](https://nsidc.org/data/nsidc-0642/) | **Python:** `geopandas`, `shapely` • **R:** `sf` • **GUI:** QGIS, ArcGIS Pro |
-| **CSV / TSV / Other Delimited Text** | Time series, summaries, point extractions. | Often lacks spatial context or a coordinate reference system; metadata easily lost; scaling issues. | [Ice Thickness](https://nsidc.org/data/irmcr2/) | **Python:** `pandas` • **R:** `readr`, `data.table`, `tibble` • **GUI:** Excel, LibreOffice |
-| **ASCII grid / text** | Historical products, simple model outputs. | No embedded CRS; manual parsing required. | [Sea Ice Trends](https://nsidc.org/data/nsidc-0192/) | **Python:** `numpy` • **R:** base R, `terra` • **GUI:** Text editors, QGIS (limited) |
-| **PNG / GIF / JPEG** | Quicklook imagery, browse products, outreach. | Not analysis-ready; no quantitative metadata. | [Arctic Change](https://nsidc.org/data/nsidc-0589/) | **Python:** `numpy`, `OpenCV`, `Pillow` • **GUI:** Web browser, image viewers, NASA Worldview |
-| **JSON** | Metadata responses, data access services. | Not suitable for large arrays; not analysis-ready. | [SMAP Ancillary Files](https://nsidc.org/data/smap_l4_sm_anc_log/) | **Python:** `json` • **R:** `jsonlite` • **GUI:** Web browser |
+```{=html}
+<table style="width:100%; border-collapse: collapse;">
+  <colgroup>
+    <col style="width: 16%;">
+    <col style="width: 22%;">
+    <col style="width: 22%;">
+    <col style="width: 20%;">
+    <col style="width: 20%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>File format</th>
+      <th>Common uses</th>
+      <th>Quirks</th>
+      <th>NSIDC example products</th>
+      <th>Common tools (programmatic + GUI)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>NetCDF4 / NetCDF classic</strong></td>
+      <td>Climate records, reanalysis products, gridded time series, model output.</td>
+      <td>Time encoding confusion; multidimensional indexing; large file sizes; steep learning curve without high-level tools.</td>
+      <td>
+        <a href="https://nsidc.org/data/G02202">Sea Ice Concentration CDR</a><br>
+        <a href="https://nsidc.org/data/NSIDC-0484">Antarctic Ice Velocity</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>xarray</code>, <code>netCDF4</code> (low-level)<br>
+        <strong>R:</strong> <code>terra</code>, <code>stars</code>, <code>ncdf4</code><br>
+        <strong>GUI:</strong> Panoply, QGIS, ArcGIS Pro, HDFView
+      </td>
+    </tr>
 
+    <tr>
+      <td><strong>HDF5</strong></td>
+      <td>Mission-level products, intermediate processing outputs, complex hierarchical data sets.</td>
+      <td>Deep hierarchies; unclear variable naming; inconsistent conventions between products.</td>
+      <td>
+        <a href="https://nsidc.org/data/SPL3SMP">SMAP L3 Soil Moisture</a><br>
+        <a href="https://nsidc.org/data/ATL03">ICESat-2 ATL03</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>rioxarray</code>, <code>h5py</code><br>
+        <strong>R:</strong> <code>rhdf5</code><br>
+        <strong>GUI:</strong> Panoply, HDFView
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>HDF-EOS2 / HDF-EOS5</strong></td>
+      <td>Satellite swath and gridded mission products (e.g., MODIS).</td>
+      <td>Specialized structure; harder to read without EOS-aware tools; metadata spread across groups.</td>
+      <td>
+        <a href="https://nsidc.org/data/mod10a1/">MODIS Snow Cover</a><br>
+        <a href="https://nsidc.org/data/au_dysno/">AMSR-E/AMSR2 SWE</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>xarray</code>, <code>h5netcdf</code>, <code>pyhdf</code><br>
+        <strong>R:</strong> <code>terra</code><br>
+        <strong>GUI:</strong> Panoply, HDFView
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>GeoTIFF / TIFF / COG</strong></td>
+      <td>Gridded maps, spatial subsets, visualization-ready products.</td>
+      <td>Limited metadata compared to NetCDF; alignment issues across data sets; large files at high resolution.</td>
+      <td>
+        <a href="https://nsidc.org/data/nsidc-0731/">Ice Sheet Velocity</a><br>
+        <a href="https://nsidc.org/data/nsidc-0728/">Land Freeze/Thaw Status</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>rasterio</code>, <code>rioxarray</code>, <code>xarray</code><br>
+        <strong>R:</strong> <code>terra</code>, <code>raster</code><br>
+        <strong>GUI:</strong> QGIS, ArcGIS Pro
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Shapefile</strong></td>
+      <td>Ice sheet boundaries, grounding lines, glacier outlines.</td>
+      <td>Multi-file dependency; field name limits; aging format.</td>
+      <td>
+        <a href="https://nsidc.org/data/nsidc-0272/">Glacier Database</a><br>
+        <a href="https://nsidc.org/data/nsidc-0642/">Glacier Terminus Positions</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>geopandas</code>, <code>shapely</code><br>
+        <strong>R:</strong> <code>sf</code><br>
+        <strong>GUI:</strong> QGIS, ArcGIS Pro
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>CSV / TSV / Other Delimited Text</strong></td>
+      <td>Time series, summaries, point extractions.</td>
+      <td>Often lacks spatial context or a coordinate reference system; metadata easily lost; scaling issues.</td>
+      <td>
+        <a href="https://nsidc.org/data/irmcr2/">Ice Thickness</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>pandas</code><br>
+        <strong>R:</strong> <code>readr</code>, <code>data.table</code>, <code>tibble</code><br>
+        <strong>GUI:</strong> Excel, LibreOffice
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>ASCII grid / text</strong></td>
+      <td>Historical products, simple model outputs.</td>
+      <td>No embedded CRS; manual parsing required.</td>
+      <td>
+        <a href="https://nsidc.org/data/nsidc-0192/">Sea Ice Trends</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>numpy</code><br>
+        <strong>R:</strong> base R, <code>terra</code><br>
+        <strong>GUI:</strong> Text editors, QGIS (limited)
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>PNG / GIF / JPEG</strong></td>
+      <td>Quicklook imagery, browse products, outreach.</td>
+      <td>Not analysis-ready; no quantitative metadata.</td>
+      <td>
+        <a href="https://nsidc.org/data/nsidc-0589/">Arctic Change</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>numpy</code>, <code>OpenCV</code>, <code>Pillow</code><br>
+        <strong>GUI:</strong> Web browser, image viewers, NASA Worldview
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>JSON</strong></td>
+      <td>Metadata responses, data access services.</td>
+      <td>Not suitable for large arrays; not analysis-ready.</td>
+      <td>
+        <a href="https://nsidc.org/data/smap_l4_sm_anc_log/">SMAP Ancillary Files</a>
+      </td>
+      <td>
+        <strong>Python:</strong> <code>json</code><br>
+        <strong>R:</strong> <code>jsonlite</code><br>
+        <strong>GUI:</strong> Web browser
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
 
 ## Wrapping up
 
-A single NSIDC dataset may involve multiple structures (and formats!) through stages of its development and use. For example, a satellite mission may produce swath data in HDF-EOS, which are then resampled to a regular grid and stored in NetCDF for distribution, and users may extract tabular time series for analysis...
+A single NSIDC data set may involve multiple structures (and formats!) through stages of its development and use. For example, a satellite mission may produce swath data in HDF-EOS, which are then resampled to a regular grid and stored in NetCDF for distribution, and users may extract tabular time series for analysis...
 
 ```
 Swath observations
