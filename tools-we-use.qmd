@@ -90,7 +90,7 @@ Applications provide graphical interfaces for exploring, visualizing, and workin
 [`Earthdata Search`](https://search.earthdata.nasa.gov/) — NASA’s primary web application for searching, filtering, and downloading Earth science data.
 
 
-#### Open Altimetry &nbsp;![data-access](images/data-access.svg){width=2%} ![data-visualization](images/data-visualization.svg){width=10%}
+#### Open Altimetry &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%}
 
 [`Open Altimetry`](https://openaltimetry.earthdatacloud.nasa.gov/data/) — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.
 
