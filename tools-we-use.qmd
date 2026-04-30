@@ -9,51 +9,68 @@ The focus on Python not only reflects the expertise of NSIDC DAAC but also refle
 
 Using web or locally-installed applications is a good way to start to discover and learn about data.  We often use these applications to explore datasets, find what data is available, and quickly visualize data.  However, many investigations require large numbers of files to be accessed and processed.  It is often more efficient to write scripts in Python or some other language to do this.  In the cloud, scripts are often the only way to search for and access data.  Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.
 
+Below we mention various tools that perform different tasks. To help distinguish which tools can perform which tasks, look for the following symbols:
+<br>
+
+ <!-- ![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%} ![computation](images/computation.svg){width=10%} -->
+
+| Task | Symbol |
+| ----- | --- |
+| Data access and discovery: | ![data-access](images/data-access.svg){width=30%} |
+| Data visualization: | ![data-visualization](images/data-visualization.svg){width=30%} |
+| Data reformatting and transformation: | ![data-conversion](images/data-conversion.svg){width=30%} |
+| Data analysis: | ![data-analysis](images/data-analysis.svg){width=30%} |
+| Computation scaling: | ![computation](images/computation.svg){width=30%} |
+
+<br>
+
+
+
 ## Python Packages {#sec-pythonpkg}
 
 There are many Python packages available for working with Earth science data.  The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use.  We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC.  Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science.  This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.
 
-#### earthaccess
+#### earthaccess &nbsp;![data-access](images/data-access.svg){width=10%}
 
 [`earthaccess`](https://earthaccess.readthedocs.io/en/latest/) — search for and access NASA Earth science data.
 
-#### xarray
+#### xarray &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`xarray`](https://xarray.dev/) — work with N-dimensional labeled data (e.g. `(time, x, y, z)`).
 
-#### rioxarray
+#### rioxarray &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`rioxarray`](https://corteva.github.io/rioxarray/stable/index.html) — add geospatial awareness to `xarray`.
 
-#### rasterio
+#### rasterio &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`rasterio`](https://rasterio.readthedocs.io/en/stable/intro.html) — read, write, and process raster datasets.
 
-#### pandas
+#### pandas &nbsp;![data-analysis](images/data-analysis.svg){width=10%}
 
 [`pandas`](https://pandas.pydata.org/docs/index.html) — handle tabular data (spreadsheets, databases, CSV).
 
-#### geopandas
+#### geopandas &nbsp;![data-analysis](images/data-analysis.svg){width=10%}
 
 [`geopandas`](https://geopandas.org/en/stable/) — extend `pandas` to work with geospatial vector data.
 
-#### cartopy
+#### cartopy &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
 
 [`cartopy`](https://scitools.org.uk/cartopy/docs/latest/) — map projections, transformations, and plotting for geospatial data.
 
-#### SlideRule
+#### sliderule &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
-[`SlideRule`](https://github.com/ICESat2-SlideRule/sliderule-python) — on-demand processing and access to ICESat-2 data.
+[`sliderule`](https://docs.slideruleearth.io/) — on-demand processing and access to ICESat-2 data.
 
-#### icepyx
+#### icepyx &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`icepyx`](https://icepyx.readthedocs.io/en/latest/) — search, subset, and download ICESat-2 data with built-in metadata handling.
 
-#### satpy
+#### satpy &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%}
 
 [`satpy`](https://satpy.readthedocs.io/en/stable/) — read, composite, and visualize meteorological satellite data.
 
-#### dask
+#### dask &nbsp;![computation](images/computation.svg){width=10%}
 
 [`dask`](https://www.dask.org/) — scale computations from laptops to clusters with parallel, out-of-core workflows.
 
@@ -65,33 +82,40 @@ For more details, see the [official Python documentation on installing packages]
 
 ## Applications {#sec-applications}
 
-Applications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, and learning about data structures before moving on to scripted workflows.
+Applications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, learning about data structures before moving on to scripted workflows. Some are capapble of performing analysis and have built-in mechanisms for repeatable workflows.
 
-#### Earthdata Search
+
+#### Earthdata Search &nbsp;![data-access](images/data-access.svg){width=10%}
 
 [`Earthdata Search`](https://search.earthdata.nasa.gov/) — NASA’s primary web application for searching, filtering, and downloading Earth science data.
 
-#### Open Altimetry
 
-[`Open Altimetry`](https://openaltimetry.org/) — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.
+#### Open Altimetry &nbsp;![data-access](images/data-access.svg){width=2%} ![data-visualization](images/data-visualization.svg){width=10%}
 
-#### HDFView
+[`Open Altimetry`](https://openaltimetry.earthdatacloud.nasa.gov/data/) — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.
 
-[`HDFView`](https://portal.hdfgroup.org/display/support/HDFView) — a desktop application for viewing and editing HDF4 and HDF5 files.
+#### SlideRule &nbsp;![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
-#### Panoply
+[`SlideRule`](https://slideruleearth.io) — web client for on-demand processing and access to ICESat-2 data.
+
+#### HDFView &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
+
+[`HDFView`](https://www.hdfgroup.org/download-hdfview/) — a desktop application for viewing and editing HDF4 and HDF5 files.
+
+#### Panoply &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
 
 [`Panoply`](https://www.giss.nasa.gov/tools/panoply/) — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.
 
-#### NCView
+<!-- #### NCView &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
 
-[`NCView`](http://meteora.ucsd.edu/~pierce/ncview_home_page.html) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.
+[`NCView`](https://cirrus.ucsd.edu/ncview/) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables. -->
 
-#### QGIS
+
+#### QGIS &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`QGIS`](https://qgis.org/) — an open-source geographic information system for analyzing and visualizing spatial data.
 
-#### ArcGIS
+#### ArcGIS &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`ArcGIS`](https://www.esri.com/en-us/arcgis/about-arcgis/overview) — a commercial GIS platform for advanced mapping, spatial analysis, and data management.
 
