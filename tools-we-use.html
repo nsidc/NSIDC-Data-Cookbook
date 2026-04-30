@@ -628,51 +628,88 @@ ul.task-list li input[type="checkbox"] {
 <p>Currently, this cookbook features <a href="#sec-pythonpkg">Python Packages</a> for working with data supported by NSIDC DAAC. It also features some <a href="#sec-applications">applications</a> that are accessible through a web browser or as stand alone packages that need to be installed on your local machine.</p>
 <p>The focus on Python not only reflects the expertise of NSIDC DAAC but also reflects the popularity of Python within the Earth and atmospheric science communities. However, we recognize that many of our users are more familiar with other programming langauges such as R and Matlab. We hope that we will be able to include these langauges as the Cookbook develops.</p>
 <p>Using web or locally-installed applications is a good way to start to discover and learn about data. We often use these applications to explore datasets, find what data is available, and quickly visualize data. However, many investigations require large numbers of files to be accessed and processed. It is often more efficient to write scripts in Python or some other language to do this. In the cloud, scripts are often the only way to search for and access data. Scripts are also a way to make workflows reproducible, something that is difficult to do with a GUI application.</p>
+<p>Below we mention various tools that perform different tasks. To help distinguish which tools can perform which tasks, look for the following symbols: <br></p>
+<p><!-- ![data-access](images/data-access.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%} ![computation](images/computation.svg){width=10%} --></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 62%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data access and discovery:</td>
+<td><img src="images/data-access.svg" class="img-fluid" style="width:30.0%" alt="data-access"></td>
+</tr>
+<tr class="even">
+<td>Data visualization:</td>
+<td><img src="images/data-visualization.svg" class="img-fluid" style="width:30.0%" alt="data-visualization"></td>
+</tr>
+<tr class="odd">
+<td>Data reformatting and transformation:</td>
+<td><img src="images/data-conversion.svg" class="img-fluid" style="width:30.0%" alt="data-conversion"></td>
+</tr>
+<tr class="even">
+<td>Data analysis:</td>
+<td><img src="images/data-analysis.svg" class="img-fluid" style="width:30.0%" alt="data-analysis"></td>
+</tr>
+<tr class="odd">
+<td>Computation scaling:</td>
+<td><img src="images/computation.svg" class="img-fluid" style="width:30.0%" alt="computation"></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
 <section id="sec-pythonpkg" class="level2">
 <h2 class="anchored" data-anchor-id="sec-pythonpkg">Python Packages</h2>
 <p>There are many Python packages available for working with Earth science data. The packages we use in this Cookbook are an unashamedly opinionated selection; they are the tools we like to use. We also think that these tools are the easiest to use for the types of data mananaged by NSIDC DAAC. Most of the tools have been developed so that researchers do not have to worry about the low-level details of accessing and working with often complicated data used in Earth science. This reduces the amount of code you have to write and also reduces the number of mistakes you will inevitably make.</p>
-<section id="earthaccess" class="level4">
-<h4 class="anchored" data-anchor-id="earthaccess">earthaccess</h4>
+<section id="earthaccess-data-access" class="level4">
+<h4 class="anchored" data-anchor-id="earthaccess-data-access">earthaccess &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"></h4>
 <p><a href="https://earthaccess.readthedocs.io/en/latest/"><code>earthaccess</code></a> — search for and access NASA Earth science data.</p>
 </section>
-<section id="xarray" class="level4">
-<h4 class="anchored" data-anchor-id="xarray">xarray</h4>
+<section id="xarray-data-conversion-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="xarray-data-conversion-data-analysis">xarray &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://xarray.dev/"><code>xarray</code></a> — work with N-dimensional labeled data (e.g.&nbsp;<code>(time, x, y, z)</code>).</p>
 </section>
-<section id="rioxarray" class="level4">
-<h4 class="anchored" data-anchor-id="rioxarray">rioxarray</h4>
+<section id="rioxarray-data-conversion-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="rioxarray-data-conversion-data-analysis">rioxarray &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://corteva.github.io/rioxarray/stable/index.html"><code>rioxarray</code></a> — add geospatial awareness to <code>xarray</code>.</p>
 </section>
-<section id="rasterio" class="level4">
-<h4 class="anchored" data-anchor-id="rasterio">rasterio</h4>
+<section id="rasterio-data-conversion-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="rasterio-data-conversion-data-analysis">rasterio &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://rasterio.readthedocs.io/en/stable/intro.html"><code>rasterio</code></a> — read, write, and process raster datasets.</p>
 </section>
-<section id="pandas" class="level4">
-<h4 class="anchored" data-anchor-id="pandas">pandas</h4>
+<section id="pandas-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="pandas-data-analysis">pandas &nbsp;<img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://pandas.pydata.org/docs/index.html"><code>pandas</code></a> — handle tabular data (spreadsheets, databases, CSV).</p>
 </section>
-<section id="geopandas" class="level4">
-<h4 class="anchored" data-anchor-id="geopandas">geopandas</h4>
+<section id="geopandas-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="geopandas-data-analysis">geopandas &nbsp;<img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://geopandas.org/en/stable/"><code>geopandas</code></a> — extend <code>pandas</code> to work with geospatial vector data.</p>
 </section>
-<section id="cartopy" class="level4">
-<h4 class="anchored" data-anchor-id="cartopy">cartopy</h4>
+<section id="cartopy-data-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="cartopy-data-visualization">cartopy &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"></h4>
 <p><a href="https://scitools.org.uk/cartopy/docs/latest/"><code>cartopy</code></a> — map projections, transformations, and plotting for geospatial data.</p>
 </section>
-<section id="sliderule" class="level4">
-<h4 class="anchored" data-anchor-id="sliderule">SlideRule</h4>
-<p><a href="https://github.com/ICESat2-SlideRule/sliderule-python"><code>SlideRule</code></a> — on-demand processing and access to ICESat-2 data.</p>
+<section id="sliderule-data-access-data-visualization-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="sliderule-data-access-data-visualization-data-analysis">sliderule &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
+<p><a href="https://docs.slideruleearth.io/"><code>sliderule</code></a> — on-demand processing and access to ICESat-2 data.</p>
 </section>
-<section id="icepyx" class="level4">
-<h4 class="anchored" data-anchor-id="icepyx">icepyx</h4>
+<section id="icepyx-data-access-data-visualization-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="icepyx-data-access-data-visualization-data-analysis">icepyx &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://icepyx.readthedocs.io/en/latest/"><code>icepyx</code></a> — search, subset, and download ICESat-2 data with built-in metadata handling.</p>
 </section>
-<section id="satpy" class="level4">
-<h4 class="anchored" data-anchor-id="satpy">satpy</h4>
+<section id="satpy-data-visualization-data-conversion" class="level4">
+<h4 class="anchored" data-anchor-id="satpy-data-visualization-data-conversion">satpy &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"></h4>
 <p><a href="https://satpy.readthedocs.io/en/stable/"><code>satpy</code></a> — read, composite, and visualize meteorological satellite data.</p>
 </section>
-<section id="dask" class="level4">
-<h4 class="anchored" data-anchor-id="dask">dask</h4>
+<section id="dask-computation" class="level4">
+<h4 class="anchored" data-anchor-id="dask-computation">dask &nbsp;<img src="images/computation.svg" class="img-fluid" style="width:10.0%" alt="computation"></h4>
 <p><a href="https://www.dask.org/"><code>dask</code></a> — scale computations from laptops to clusters with parallel, out-of-core workflows.</p>
 </section>
 <section id="installing-python-packages" class="level3">
@@ -683,33 +720,36 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sec-applications" class="level2">
 <h2 class="anchored" data-anchor-id="sec-applications">Applications</h2>
-<p>Applications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, and learning about data structures before moving on to scripted workflows.</p>
-<section id="earthdata-search" class="level4">
-<h4 class="anchored" data-anchor-id="earthdata-search">Earthdata Search</h4>
+<p>Applications provide graphical interfaces for exploring, visualizing, and working with Earth science data. Some run directly in a web browser, while others require installation on your local machine. They are useful for quickly examining datasets, generating plots or maps, learning about data structures before moving on to scripted workflows. Some are capapble of performing analysis and have built-in mechanisms for repeatable workflows.</p>
+<section id="earthdata-search-data-access" class="level4">
+<h4 class="anchored" data-anchor-id="earthdata-search-data-access">Earthdata Search &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"></h4>
 <p><a href="https://search.earthdata.nasa.gov/"><code>Earthdata Search</code></a> — NASA’s primary web application for searching, filtering, and downloading Earth science data.</p>
 </section>
-<section id="open-altimetry" class="level4">
-<h4 class="anchored" data-anchor-id="open-altimetry">Open Altimetry</h4>
-<p><a href="https://openaltimetry.org/"><code>Open Altimetry</code></a> — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.</p>
+<section id="open-altimetry-data-access-data-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="open-altimetry-data-access-data-visualization">Open Altimetry &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:2.0%" alt="data-access"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"></h4>
+<p><a href="https://openaltimetry.earthdatacloud.nasa.gov/data/"><code>Open Altimetry</code></a> — a browser-based tool for visualizing and accessing ICESat and ICESat-2 altimetry data.</p>
 </section>
-<section id="hdfview" class="level4">
-<h4 class="anchored" data-anchor-id="hdfview">HDFView</h4>
-<p><a href="https://portal.hdfgroup.org/display/support/HDFView"><code>HDFView</code></a> — a desktop application for viewing and editing HDF4 and HDF5 files.</p>
+<section id="sliderule-data-access-data-visualization-data-analysis-1" class="level4">
+<h4 class="anchored" data-anchor-id="sliderule-data-access-data-visualization-data-analysis-1">SlideRule &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
+<p><a href="https://slideruleearth.io"><code>SlideRule</code></a> — web client for on-demand processing and access to ICESat-2 data.</p>
 </section>
-<section id="panoply" class="level4">
-<h4 class="anchored" data-anchor-id="panoply">Panoply</h4>
+<section id="hdfview-data-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="hdfview-data-visualization">HDFView &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"></h4>
+<p><a href="https://www.hdfgroup.org/download-hdfview/"><code>HDFView</code></a> — a desktop application for viewing and editing HDF4 and HDF5 files.</p>
+</section>
+<section id="panoply-data-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="panoply-data-visualization">Panoply &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"></h4>
 <p><a href="https://www.giss.nasa.gov/tools/panoply/"><code>Panoply</code></a> — a NASA tool for visualizing netCDF, HDF, and GRIB files with quick map and plot options.</p>
+<!-- #### NCView &nbsp;![data-visualization](images/data-visualization.svg){width=10%}
+
+[`NCView`](https://cirrus.ucsd.edu/ncview/) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables. -->
 </section>
-<section id="ncview" class="level4">
-<h4 class="anchored" data-anchor-id="ncview">NCView</h4>
-<p><a href="http://meteora.ucsd.edu/~pierce/ncview_home_page.html"><code>NCView</code></a> — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables.</p>
-</section>
-<section id="qgis" class="level4">
-<h4 class="anchored" data-anchor-id="qgis">QGIS</h4>
+<section id="qgis-data-visualization-data-conversion-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="qgis-data-visualization-data-conversion-data-analysis">QGIS &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://qgis.org/"><code>QGIS</code></a> — an open-source geographic information system for analyzing and visualizing spatial data.</p>
 </section>
-<section id="arcgis" class="level4">
-<h4 class="anchored" data-anchor-id="arcgis">ArcGIS</h4>
+<section id="arcgis-data-visualization-data-conversion-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="arcgis-data-visualization-data-conversion-data-analysis">ArcGIS &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://www.esri.com/en-us/arcgis/about-arcgis/overview"><code>ArcGIS</code></a> — a commercial GIS platform for advanced mapping, spatial analysis, and data management.</p>
 
 

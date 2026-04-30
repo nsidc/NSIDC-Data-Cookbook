@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97 26">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-4 {
+        fill: #df7153;
+        font-family: Roboto-Bold, Roboto;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        stroke: #df7153;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="tag">
+      <g id="Rectangle_2038" data-name="Rectangle 2038">
+        <path class="cls-1" d="M13,0h71c7.18,0,13,5.82,13,13h0c0,7.18-5.82,13-13,13H13C5.82,26,0,20.18,0,13h0C0,5.82,5.82,0,13,0Z"/>
+        <path class="cls-2" d="M13,.5h71c6.9,0,12.5,5.6,12.5,12.5h0c0,6.9-5.6,12.5-12.5,12.5H13C6.1,25.5.5,19.9.5,13h0C.5,6.1,6.1.5,13,.5Z"/>
+      </g>
+      <g id="Visualize" class="cls-3">
+        <text class="cls-4" transform="translate(18 19)"><tspan x="0" y="0">Visualize</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
