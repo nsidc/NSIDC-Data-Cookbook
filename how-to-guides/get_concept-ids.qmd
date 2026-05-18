@@ -1,0 +1,69 @@
+---
+title: "How to use earthaccess to retrieve concept-id's for data sets"
+author: NSIDC Data Use and Education team
+date: last-modified
+execute:
+  freeze: auto
+---
+
+## Problem
+How can I use earthaccess to find the concept-id's for a list of data sets?
+
+## Solution
+
+
+```python
+import earthaccess
+earthaccess.login()
+```
+
+```python 
+results = earthaccess.search_datasets(
+    keyword = 'icesat-2',
+    cloud_hosted = True
+)
+```
+
+```python
+for r in results[:10]:
+    print(', '.join([r.summary()[key] for key in ["short-name", "version", "concept-id"]]))
+```
+```
+ATL03 , 007 , C3326974349-NSIDC_CPRD
+ATL06 , 007 , C3564876127-NSIDC_CPRD
+ATL10 , 007 , C3565574246-NSIDC_CPRD
+ATL24 , 001 , C3433822507-NSIDC_CPRD
+ATL07 , 007 , C3564876395-NSIDC_CPRD
+ATL12 , 007 , C3566214012-NSIDC_CPRD
+ATL11 , 007 , C3816968337-NSIDC_CPRD
+ATL13QL , 007 , C3566183861-NSIDC_CPRD
+ATL09 , 007 , C3578753623-NSIDC_CPRD
+ATL10QL , 007 , C3566183646-NSIDC_CPRD
+```
+To write the output to a csv file file for easy sharing
+```python
+with open("list_of_concept_ids.csv", "w") as f:
+    f.write("short_name,version,concept_id")  # Add header
+    for item in results:
+        f.write(', '.join([item.summary()[key] for key in ["short-name","version","concept-id"]])+"\n")
+```
+
+## Discussion
+Concept-ids are unique identifiers for collections (data sets) and granules (files) in NASA's Common Metadata Repository (CMR).  Collection concept-ids begin with the letter "C", as seen in the list above.  Granule concept-ids begin with the letter "G".  Concept-ids also indicate the data provider that stewards the data set. Concept-ids can be used in `earthaccess.search_data()`.
+
+- NSIDC_CPRD = National Snow and Ice Data Center DAAC
+- LARC_CLOUD = Atmospheric Science Data Center DAAC
+- ORNL_CLOUD = Oak Ridge National Laboratory DAAC
+- LPCLOUD = Land Processes DAAC at USGS
+- OB_CLOUD = Ocean Biology DAAC
+- POCLOUD = Physical Oceanography DAAC at JPL
+- ASF = Alaska Satellite Facility DAAC
+- GHRC_DAAC = Global Hydrometeorology Resource Center DAAC
+- GES_DISC = Goddard Earth Sciences Data and Information Services Center
+- LAADS = Level-1 and Atmosphere Archive and Distribution System DAAC
+- CDDIS = Crustal Dynamics Data Information System DAAC
+
+
+
+
+
