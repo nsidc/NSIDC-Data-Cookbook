@@ -4,6 +4,7 @@ author: Andrew P. Barrett
 format:
   html:
     code-fold: true
+number-sections: true
 jupyter: python3
 ---
 
@@ -255,12 +256,32 @@ ushcn_stations[ushcn_stations.state == "CO"].to_crs(projection.to_wkt()).plot(ax
 #ax.annotate(text="Boulder", xy=[-398762.1943516234, -3645694.10140368], ha='left');
 ```
 
-A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosiac shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.
+A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosaic shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.
 
-```{.python}
+```{python}
 #| label: fig-vector-mosaic
-#| fig-cap: "Drift track of the RV Polarstern during the MOSAiC expedition
+#| fig-cap: "Drift track of the RV Polarstern during the MOSAiC expedition"
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 
+
+gdf = gpd.read_file("../example_data/mosaic_drift_track_co1.linestring.shp")
+
+projection = ccrs.NorthPolarStereo()
+
+fig, ax = plt.subplots(subplot_kw={"projection": projection})
+ax.set_extent([-180.,180.,60.,90.], ccrs.PlateCarree())
+    
+ax.add_feature(cfeature.OCEAN)
+ax.add_feature(cfeature.LAND)
+
+gdf.to_crs(projection.to_wkt()).plot(
+    ax=ax, 
+    column="speed", 
+    legend=True, 
+    legend_kwds={"label": r"Daily Drift Speed ($m\,s^{-1}$)"});
 ```
 
 A polygon consists of line segments that form a closed boundary where the last vertex of the last line segment matches the first vertex of the first line segment.  A polygon has an area and a perimeter.  Lines and polygons also have a direction which is set by the order in which vertices are defined.  
