@@ -256,7 +256,7 @@ ushcn_stations[ushcn_stations.state == "CO"].to_crs(projection.to_wkt()).plot(ax
 #ax.annotate(text="Boulder", xy=[-398762.1943516234, -3645694.10140368], ha='left');
 ```
 
-A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosaic shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.
+A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosaic shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.  Line segments are color-coded by drift speed.  See [how-to-download-a-file-from-pangea.ipynb](../how-to-guides/how-to-download-a-file-from-pangea.ipynb) for the code used to generate the drift vectors. 
 
 ```{python}
 #| label: fig-vector-mosaic
