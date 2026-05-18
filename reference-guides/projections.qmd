@@ -279,7 +279,7 @@ for the area of grid cells.  For remote sensing data, cells are often interprett
 
 ```{.python}
 #| label: fig-raster-interp
-#| fig-cap: "Different interpreations of grid cell values in raster data"
+#| fig-cap: "Different interpretions of grid cell values in raster data"
 
 ```
 
