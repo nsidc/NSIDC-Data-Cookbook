@@ -1,18 +1,411 @@
 ---
 title: "Projections and Coordinate Systems"
 author: Andy P. Barrett
+format:
+  html:
+    code-fold: true
+jupyter: python3
 ---
 
 ## Overview
 
-The purpose of this reference guide is to provide an introduction to
-and background for {{< glossary "Map projection" display="map projections">}}.  For a full treatment, please
-consult @snyder_projections_ 
+Almost all of the data archived by NSIDC is _geospatial data_.  That
+is data that is tied to a location on Earth.  Geospatial data is also
+called geographic data and information, georeferenced data and
+information, or geodata and geoinformation.
 
-## What is a map projection?
+@fig-sea-ice-on-globe shows sea ice concentration data for September
+2025 from NSIDC's Sea Ice index.  The colored image draped over a
+satellite perspective view, represents the amount of sea ice in 25 km
+by 25 km grid cells, expressed as a percentage, for thousands of grid
+cells.  Each of these grid cells is related to a location on Earth
+through a pair of coordinates and set of rules that transform these
+coordinate pairs into locations on the Earth.  This set of rules is
+called a _Coordinate Reference System_ or _CRS_.  This section of the
+NSIDC Data Cookbook provide an introduction to Coordinate Reference
+Systems in general and to the Coordinate Reference Systems used for
+NSIDC data.
+
+::: {.callout-tip}
+If you want to skip the background and just learn about the main
+Coordinate Reference Systems used at NSIDC go to @sec-nsidc-crs.
+:::
+
+```{python}
+#| label: fig-sea-ice-on-globe
+#| fig-cap: "Sea Ice Concentration for September 2025 on a globe. Data source: [NSIDC Sea Ice Index, Version 3](https://nsidc.org/data/g02135/versions/3)."
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import xarray as xr
+import rioxarray
+
+# Set display projection as satellite perspective
+projection = ccrs.NearsidePerspective(
+    central_latitude=65.,
+    central_longitude=-45.,
+    satellite_height=10000000.0
+    )
+
+# Open example data
+ds = xr.open_dataset("../example_data/N_202509_concentration_v4.0.tif", engine="rasterio").squeeze()
+# remove data flags and scale to 0 to 100
+ds['band_data'] = ds.band_data.where(
+    (ds.band_data > 0) & (ds.band_data <= 1000)
+    ) / 10
+
+# Define CRS of sea ice data using EPSG for NSIDC Polar Stereographic North
+src_crs = ccrs.epsg(3411)
+
+# Create plot
+fig = plt.figure(figsize=(5, 5))
+ax = fig.add_subplot(1, 1, 1, projection=projection)
+ax.set_global()
+
+ds.band_data.plot(
+    ax=ax,
+    transform=src_crs,
+    cbar_kwargs=dict(shrink=0.7, label='%'),
+    cmap='Blues',
+    )
+
+ax.coastlines(resolution='110m')
+ax.gridlines()
+ax.set_title('');
+```
+
+You are probably familiar with two common ways to represent geospatial
+data.  The first is on a **globe**.  To a first approximation, the
+Earth can be represented as a sphere[^1].  A globe is a scaled
+representation of a spherical representation of Earth, using latitude
+and longitude as coordinates[^2].  @fig-globe-image shows an example
+of this approach from 1782 that was used to show the voyages of
+Captain James Cook.  A modern example of a globe, is [NOAA's Science
+on a Sphere](https://sos.noaa.gov/), which can be seen at [over 175
+locations](https://sos.noaa.gov/sos/locations/) around the World.
+However, even a desktop globe, let alone a room-size digital globe, is
+cumbersome.  Doing calculations on a sphere is also difficult.
+
+A more common approach is to represent the Earth and geospatial data
+on a two-dimensional plane, either a flat sheet of paper or a screen,
+that we call a **map**.  The Mercator map shown in @fig-map-image is
+an early example of a two-dimensional representation of Earth for
+navigation designed by Gerardus Mercator. 
+
+These two ways of representing geospatial data are examples of
+**coodinate systems**.  The globe is a spherical coordinate system
+that uses latitude and longitude as coordinates.  The Mercator map is
+a two-dimensional cartesian coordinate system.  A coordinate system is
+one component of a Coordinate Reference System.  Coordinate Systems
+are described in more detail in @sec-coordinate-systems.  The Mercator
+map is also an example of another component of a Coordinate Reference
+System, the **map projection**.  A map projection is a set of rules to
+transform coordinates from a spherical coordinate system into a
+two-dimensional cartesian coordinate system.  Map projections are
+desribed in more detail in @sec-map-projections.
 
 
-## What is a datum?
+::: {#fig-globe-and-map layout-ncol=2}
+
+![John Newton and William Palmer globe, 1782](https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/John_Newton_and_William_Palmer_SLNSW_globe_1782.jpg/500px-John_Newton_and_William_Palmer_SLNSW_globe_1782.jpg?20170115055139){#fig-globe-image height=400}
+
+![The Mercator world map of 1569](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Mercator_1569.png/960px-Mercator_1569.png){#fig-map-image height=400}
+
+Ways of representing geospatial data
+:::
+
+_Coordinate Reference Systems_ not only tell us how coordinates on a map or globe relate to the Earth but also how locations with different coordinate reference
+systems relate to each other.  As you will see below, a point in one
+dataset with coordinates (40 $^\circ$N, -110 $^\circ$E) is not same as
+a point with the same coordinates in another dataset, if that dataset
+has a different coordinate reference system.
+
+
+
+## Geospatial Data Models {#sec-geospatial-data}
+
+Maps and globes are great fun to paw over and are still very useful but
+most analysis in the Earth Sciences is done with digital versions of
+geospatial data.  To represent this data in a digital format, we need a **data model**.  A data model is a standardized way of representing data.
+
+There are two broad categories of digital geospatial data model:
+
+- vector data;
+- raster data.
+
+::: {.callout-note}
+Vector and raster data are not unique to geospatial data.  Raster and vector data models are used widely for computer graphics.  JPEG, PNG and TIFF image formats all use the raster data model.  Vector data models are used by SVG formats and CAD[^3] packages.  The addition of a CRS is what makes these data models, geospatial data models.
+:::
+
+Vector data consists of points, lines and polygons.  These are called features.  @fig-vector-features shows examples of these three basic vector feature types.
+
+```{python}
+#| label: fig-vector-features
+#| fig-cap: "Vector point, line and polygon features."
+
+import geopandas as gpd
+from shapely import Point, LineString, Polygon
+
+import matplotlib.pyplot as plt
+
+
+fig, ax = plt.subplots(1, 3, figsize=(12,4))
+
+gdf_point = gpd.GeoDataFrame(
+    {
+        'col1': ['name1', 'name2', 'name3', 'name4'], 
+        'geometry': [Point(0.03, 0.97), Point(0.7, 0.8), Point(0.875, 0.9), Point(0.97, 0.5)]
+    }
+)
+gdf_point.plot(ax=ax[0])
+gdf_point.apply(lambda row: ax[0].annotate(text='x,y', xy=row.geometry.coords[0], xytext=(5,5), 
+                                     textcoords='offset points', ha='left', va='bottom'), axis=1)
+ax[0].axis("off");
+ax[0].set_title("Points")
+ax[0].set_xlim(0,1)
+ax[0].set_ylim(0,1)
+
+gdf_line = gpd.GeoDataFrame(
+    {
+        'col1': ['Line1', 'Line2'], 
+        'geometry': [
+            LineString([[0.1, 0.8], [0.4, 0.6], [0.3, 0.5], [0.5, 0.2]]),
+            LineString([[0.55, 0.5], [0.63, 0.6], [0.75, 0.75], [0.9, 0.6]]),
+            ]
+        }
+)
+gdf_line.plot(ax=ax[1])
+for idx, line in gdf_line.iterrows():
+    x, y = line.geometry.coords.xy
+    ax[1].plot(x, y, ls='', marker='o', markerfacecolor='k', markeredgecolor='k', markersize=3)
+    if idx == 0:
+        for xi, yi in zip(x, y):
+            ax[1].annotate(text='x,y', xy=(xi,yi), 
+                           xytext=(5,5), textcoords='offset points', 
+                           ha='left', va='bottom')
+ax[1].axis("off")
+ax[1].set_title("Lines");
+ax[1].set_xlim(0,1)
+ax[1].set_ylim(0,1);
+
+gdf_poly = gpd.GeoDataFrame(
+    {
+        'col1': ['Line1', 'Line2'], 
+        'geometry': [
+            Polygon([[0.1, 0.1], [0.4, 0.15], [0.3, 0.3]]),
+            Polygon([[0.55, 0.5], [0.6, 0.8], [0.75, 0.83], [0.9, 0.6], [0.78, 0.4]]),
+            ]
+        }
+)
+gdf_poly.boundary.plot(ax=ax[2])
+for idx, poly in gdf_poly.iterrows():
+    x, y = poly.geometry.boundary.coords.xy
+    ax[2].plot(x, y, ls='', marker='o', markerfacecolor='k', markeredgecolor='k', markersize=3)
+    if idx == 0:
+        for xi, yi in zip(x, y):
+            ax[2].annotate(text='x,y', xy=(xi,yi), 
+                           xytext=(5,5), textcoords='offset points', 
+                           ha='left', va='bottom')
+ax[2].axis("off")
+ax[2].set_title("Polygons");
+ax[2].set_xlim(0,1)
+ax[2].set_ylim(0,1);
+```
+
+Each point, line and polygon in @fig-vector-features is a discrete feature.  A point is defined by a single set of coordinates ($x$,$y$).  Points are zero-dimensional.  That is they have no area, length or width.  An example of a dataset with point features is the location of weather stations in the [US Historical Climatology Network](https://www.ncei.noaa.gov/products/land-based-station/us-historical-climatology-network) (@fig-vector-ushcn).  Each weather station is defined a latitude and longitude.  Attributes are associated with stations, such as station name, USHCN ID, elevation, state, etc.  
+
+```{.python}
+#| label: fig-vector-ushcn
+#| fig-cap: "Locations of weather stations in Colorado in the US Historical Climatology Network"
+
+# Change to executable once import sorted out
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+
+from cookbook_utils.io import load_ushcn_stations
+
+ushcn_stations = load_ushcn_stations()
+ushcn_stations.head()
+
+#projection = ccrs.AlbersEqualArea(
+#    central_longitude=-100.,
+#    central_latitude=40.
+#)
+#
+#fig, ax = plt.subplots(subplot_kw={"projection": projection})
+#ax.set_extent([-109.1, -102., 36.99, 41.1], ccrs.PlateCarree())
+#ax.add_feature(cfeature.STATES)
+
+#ushcn_stations[ushcn_stations.state == "CO"].to_crs(projection.to_wkt()).plot(ax=ax, aspect=1)
+```
+
+A line is defined by multiple points, called vertices. Vertices are shown as black dots in @fig-vector-features. A pair of vertices define a single line segment.  Lines are one-dimensional with only a length.  @fig-vector-mosiac shows the drift of the RV Polarstern during the [MOSIAC expedition](https://mosaic-expedition.org/) in winter 2019/2020.  The drift track shown here consists of line segments that represent each day's drift.
+
+```{.python}
+#| label: fig-vector-mosaic
+#| fig-cap: "Drift track of the RV Polarstern during the MOSAiC expedition
+
+```
+
+A polygon consists of line segments that form a closed boundary where the last vertex of the last line segment matches the first vertex of the first line segment.  A polygon has an area and a perimeter.  Lines and polygons also have a direction which is set by the order in which vertices are defined.  
+
+Raster data is a rectangular array of cells.  Each cell has a set of coordinates that relate that cell to a location on Earth.  Usually, cell coordinates refer to the center point of each cell.  Each cell in a raster has a value.  All values in a raster are for the same quantity, e.g. air temperature, sea ice concentration.
+
+```{.python}
+#| label: fig-raster-example
+#| fig-cap: "A fasle color composite (NIR, Red, Green) of the Findel Valley from a Sentinel-2 image.  Snow in the accumulation area of glaciers shows up as a bright blues and whites.  Exposed ice in the ablation areas show as greys.  Reds are vegetated areas.
+
+
+```
+
+Raster data can represent values at grid intersections or as values
+for the area of grid cells.  For remote sensing data, cells are often interpretted as representing some average[^4] value for the area of the cell.  For model data, for example from an atmospheric reanalysis, cell values represent the values of a quantity (e.g. air temperature or precipitation) at the center of the cell.  It is important to understand how quantities represented by rasters are derived.
+
+```{.python}
+#| label: fig-raster-interp
+#| fig-cap: "Different interpreations of grid cell values in raster data"
+
+```
+
+@fig-vector shows the outline of Findelngletscher, a glacier in the Swiss Alps, as polygon.  The glacier outline was downloaded from the [GLIMS Glacier Database](https://nsidc.org/data/nsidc-0272/versions/1).  @fig-raster shows the same glacier as a raster.
+
+::: {#fig-data-types layout-ncol=2}
+
+
+![Vector](findeln_vector.png){#fig-vector}
+![Raster](findeln_raster.png){#fig-raster}
+
+Findelngletscher, Kanton Wallis, Switzerland, downloaded from the GLIMS Glacier Database, shown as a vector polygon and as a raster.
+:::
+
+See the [An introduction to grids and raster data](../tutorials/an_introduction_to_grids_and_raster_data.ipynb) tutorial for an in-depth look at the raster data model.
+
+## Coordinate Reference Systems{#sec-crs}
+
+### What is a CRS?
+
+A **Coordinate Reference System** (CRS) defines the position, scale and orientation of a coordinate system with respect to an object.  For geospatial data this object is the Earth.
+
+Geospatial _Coordinate Reference Systems_ are either *Geodetic Coordinate Reference Systems* or *Projected Coordinate Reference Systems*.  *Image Coordinate Reference Systems* and *Engineering Coordinate Reference Systems* relate raster or gridded data, and survey data to Geodetic and Projected Coordinate Reference Systems.   
+
+### Components of a Coordinate Reference System{#sec-crs-components}
+
+A _Coordinate Reference System_ comprises a **coordinate system**, a **datum** and **reference ellipsoid**.  Projected Coordinate Reference Systems also include a **projection method** and **projection parameters**.  The following sections describe each of these components.
+
+### Coordinate Systems{#sec-coordinate-systems}
+
+A _Coordinate System_ is set of rules that define how coordinates (for example latitude and longitude, or x and y) are assigned to locations.  A coordinate system has a dimension.  The dimension determines the number of axes.  For geospatial coordinate systems, the dimension is 2 or 3, so there 2 or 3 axes.  Each axis has a name; a direction in which the axis increases; and units of the axis.  The coordinate system also defines the order of the coordinates.  For example, the centroid of the City of Boulder, Colorado is at latitude 40° 0′ 54″ N and longitude 105° 16′ 13.8″ W, which in decimal degrees are latitude 40.015 and longitude -105.2705.  Expressed as coordinate pairs, the coordinates could be (40.015, -105.2705) or (-105.2705, 40.015), depending on if the coordinate system orders latitude first or longitude first.
+
+
+```{python}
+#| label: fig-coordinate-systems
+#| fig-cap: "Some coordinate system examples"
+#| echo: false
+
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
+
+import numpy as np
+
+def setup_2daxis(ax, xlim, ylim, xlabel, ylabel,
+               spines=['bottom', 'left'], aspect='equal',
+               grid=None, invert_yaxis=False):
+
+    if spines == 'all':
+        spines = ['top', 'bottom', 'left', 'right']
+        
+    ax.set_aspect(aspect)
+    ax.set_xlim(*xlim)
+    ax.set_ylim(*ylim)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    for spine in ['top', 'bottom', 'left', 'right']:
+        if spine in spines:
+            ax.spines[spine].set_visible(True)
+        else:
+            ax.spines[spine].set_visible(False);
+    if grid:
+        ax.grid(which=grid, axis=grid);
+    if invert_yaxis:
+        ax.invert_yaxis()
+        ax.xaxis.tick_top()
+        ax.xaxis.set_label_position('top')
+
+
+fig = plt.figure(figsize=(12,9))
+nrow = 3
+ncol = 2
+
+# 2D cartesian, x, y
+ax0 = fig.add_subplot(nrow, ncol, 1)
+setup_2daxis(ax0, (-1.,1.), (-1.,1.), "x (m)", "y (m)")
+ax0.scatter(.3, .6)
+
+# 2D cartesian Easting, Northing
+ax1 = fig.add_subplot(nrow, ncol, 2)
+setup_2daxis(ax1, (-2500,1000.), (-1000,2000.), "Easting (km)", "Northing (km)")
+ax1.scatter(-500, 225)
+
+# 2D lat-lon
+ax2 = fig.add_subplot(nrow, ncol, 3)
+setup_2daxis(ax2, (-180,180.), (-89,89.),
+             "Longitude (degrees)", "Latitude (degrees)",)
+ax2.scatter(-105.2705, 40.015)
+ax2.xaxis.set_major_locator(MultipleLocator(90.))
+ax2.yaxis.set_major_locator(MultipleLocator(30.))
+
+# Image coordinate system
+ax3 = fig.add_subplot(nrow, ncol, 4)
+setup_2daxis(ax3, (0,10), (0,12),
+             "Column", "Row",
+             spines=['top', 'left'],
+             grid='both', invert_yaxis=True)
+ax3.scatter(7.5, 8.2)
+ax3.xaxis.set_major_locator(MultipleLocator(1.))
+ax3.yaxis.set_major_locator(MultipleLocator(1.))
+
+# 3D Spherical Coordinates
+ax4 = fig.add_subplot(nrow, ncol, 5, projection='3d')
+ax4.set_xlim(-1.,1.)
+ax4.set_ylim(-1.,1.)
+ax4.set_zlim(-1.,1.)
+ax4.plot([0.,1.], [0.,1.], [0.,1.])
+
+fig.tight_layout()
+```
+
+A coordinate syetem is related to the Earth by a datum, which defines the origin of the coordinate system relative to a model of the earth.
+
+_From Iliffe and Lott (2008)_
+
+
+  A coordinate system is defined by
+a dimension (the number of axes), each axes has a coordinate associated with it.  Each axis of a coordinates system has the following attributes:
+- the name or abbreviation of the axis (e.g. Latitude);
+- the sequence number of the axis so that coordinate order is define (e.g. (x,y,z) or (z,y,x));
+- the direction of the axis in which coordinates increment;
+- the units of the axis.
+
+### Ellipsoid and Datums{#sec-ellipsoids-and-datums}
+
+_Datum_: A datum is the information that fixes a _coordinate system_ to an object (e.g. Earth).  A _Geodetic datum_ is a datum that defined the relationship of a coordinate system to an ellipsoidal model of Earth with the Geoid (I&L say real Earth).
+
+The size and shape of the best fitting ellipsoid to the Earth is GRS 1980.
+
+International Terrestrial Reference System (ITRS) describes a 3
+dimensional cartesian coordinate system in which the direction of the
+Earth's rotation axis and speed of rotation are defined.  These change
+and the International Earth Rotation and Reference Systems Service
+(IERS) monitors and predicts the Earth's rotation and the movement of
+it's poles.  This information is essential to determine the position
+of a satellite in a terrestrial (reference) system.
+
+For a global datum, the prime meridian is defined and allows for the
+movement of the poles (precession and nutation).  Note: the prime
+meridian does not agree with the old Greenwich Observatory and may be
+off by 102 m.  Greenwich prime meridian is defined by IERS.
 
 Ellipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton.
 Confirmed by measurements of length of arc.
@@ -42,10 +435,20 @@ f = 1 - (1 - e^2)^{1/2}
 $$
 
 
-## What is a coordinate reference system?
+### Map Projections {#sec-map-projections}
+
+for {{< glossary "Map projection" display="map projections">}}.  For a full treatment, please
+consult @snyder_projections_ 
+
+Projection parameters - depend on projection type.  But at the very
+least require a datum or reference ellipsoid.  Geographic coordinates
+that relate the projected surface to this sphere or ellipsoid.  This
+defines the origin of the projected coordinates.  Definitions also
+include false northings and false easting if the origin of the
+projected coordinates is not at the center of the projection???.
 
 
-## NSIDC coordinate reference systems
+### Terrestrial Reference Frames
 
 
 ## How can I define a map projects of CRS in a data file?
@@ -67,3 +470,22 @@ The latitude of a point on the reference ellipsoid is the angle formed
 by the normal to the reference surface at the point of interest, and
 the plane of the Equator or Equatorial Plane.  The Equatorial plane is
 perpendicular to the Earths axis of rotation.
+
+[^1]: To a better approximation, the Earth can be represented as an ellipsoid, or oblate spheroid,
+with the polar axis about 22 km shorter than the equatorial axis.  See @ellipsoids-and-datums for
+more information.
+
+[^2]: These are spherical or geographic coordinates.
+
+[^3]: Computer Aided Design
+
+## NSIDC Coordinate Reference Systems{#sec-nsidc-crs}
+
+NSIDC Polar Sterographic, EASE Grid
+
+
+
+## Parking lot for links
+
+https://github.com/ICESat-2/icesat2-cookbook
+https://icesat-2.github.io/icesat2-cookbook/notebooks/geospatial-transforms/#geographic-coordinate-systems
