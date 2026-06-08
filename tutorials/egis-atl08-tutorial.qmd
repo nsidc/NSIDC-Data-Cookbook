@@ -1,0 +1,26 @@
+---
+title: "Earthdata GIS land and vegetation height data (ATL08) Feature Service Access"
+---
+
+Authored by Diane Fritz, NSIDC DAAC
+
+Versions used: ArcGIS Pro 3.x.x, QGIS 3.xx.x
+
+## Summary
+
+### Learning Objections
+
+- Connecting to the ATL08 Feature Service through the Map Viewer, QGIS, or ArcGIS Pro.
+
+### Map Viewer
+
+- Finding the data on the map (lines -> points / time)
+
+### QGIS
+
+- importing feature service with URL
+
+
+### ArcGIS Pro
+
+- importing feature service with URL
