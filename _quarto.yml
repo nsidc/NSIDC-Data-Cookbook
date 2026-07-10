@@ -102,6 +102,8 @@ website:
             href: tutorials/ATL06-direct-access.ipynb
           - text: "Download ICESat-2 Sea Ice data"
             href: tutorials/working_with_icesat2_sea_ice_data.ipynb
+          - text: "Subset data in the cloud and download to your local machine"
+            href: tutorials/HMA_subsetting_cloud_workflow.ipynb
       - section: "Appendices"
         contents:
           - text: "Contributing"
