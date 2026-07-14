@@ -1,6 +1,8 @@
 /.quarto/
 _site/
-example_data/
+example_data/*
+!example_data/subsetting_tutorial/
+!example_data/subsetting_tutorial/Himalayas_outline.geojson
 *.h5
 *.nc
 _freeze
