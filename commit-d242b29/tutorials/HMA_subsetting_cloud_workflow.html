@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Subsetting NSIDC Data in the Cloud and Exporting to Your Local Machine – NSIDC Data Cookbook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendices/contributing.html" rel="next">
+<link href="../tutorials/working_with_icesat2_sea_ice_data.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7dcacba329e404329b300f6d037e468d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-675335edd9ea4f6e5d2e4e3eb31ee0e4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-7dcacba329e404329b300f6d037e468d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/tutorials_overview.html">Tutorials / Workshops</a></li><li class="breadcrumb-item"><a href="../tutorials/HMA_subsetting_cloud_workflow.html">Subset data in the cloud and download to your local machine</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="https://nsidc.org/themes/custom/nsidc/logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">NSIDC Data Cookbook</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/nsidc/NSIDC-Data-Cookbook" title="NSIDC Data Cookbook repo" class="quarto-navigation-tool px-1" aria-label="NSIDC Data Cookbook repo"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to our Cookbook</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/get-edl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting an Earthdata Login</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tools-we-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools we use</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">NSIDC Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/data-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures and formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/collections-granules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NASA collections and granules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/projections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NSIDC map projections and grids</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quirky datasets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Working with Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../reference-guides/find-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding and accessing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/collection-granule-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searching for collections and granules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/access-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Wrangling data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">Subsetting</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Reformatting</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Reprojecting</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Resampling</span>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Visualizing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">Plotting data - time series, scatter plots</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference-guides/plotting-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plotting data on a map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../how-to-guides/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How-To Guides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Search for data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_concept-ids.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to get data set concept-ids using earthaccess</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_dataset_doi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to fetch a formatted citation and retrieve a data set DOI using earthaccess</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/search_datasets_using_doi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to use a DOI to search for a data set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_umm_metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to examine data set metadata using earthaccess</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Access data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_data_links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to get data access links using earthaccess</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Customize data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/harmony-py-IS2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to use harmony-py to spatially subset ICESat-2 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/harmony-py-SMAP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to use harmony-py to subset and reformat SMAP data to GeoTIFF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Reproject data</span></span>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Work with NetCDF files</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/netcdf_cf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get the bounding box of a NetCDF file</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-guides/get_latitude_and_longitude.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get the latitude and longitudes for grid cells</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../tutorials/tutorials_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials / Workshops</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/ATL06-direct-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Direct cloud access of ICESat-2 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/working_with_icesat2_sea_ice_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Download ICESat-2 Sea Ice data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/HMA_subsetting_cloud_workflow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Subset data in the cloud and download to your local machine</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/contributing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contributing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../glossary/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tutorial-overview" id="toc-tutorial-overview" class="nav-link active" data-scroll-target="#tutorial-overview"><strong>1. Tutorial Overview</strong></a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><strong>Learning Objectives</strong></a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><strong>Prerequisites</strong></a></li>
+  </ul></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><strong>2. Set up</strong></a>
+  <ul class="collapse">
+  <li><a href="#import-packages" id="toc-import-packages" class="nav-link" data-scroll-target="#import-packages">Import Packages</a></li>
+  <li><a href="#authenticate" id="toc-authenticate" class="nav-link" data-scroll-target="#authenticate">Authenticate</a></li>
+  <li><a href="#search-for-granules-using-earthaccess.search_data-with-temporal-and-granule-filters" id="toc-search-for-granules-using-earthaccess.search_data-with-temporal-and-granule-filters" class="nav-link" data-scroll-target="#search-for-granules-using-earthaccess.search_data-with-temporal-and-granule-filters">Search for granules using earthaccess.search_data() with temporal and granule filters</a></li>
+  <li><a href="#use-direct-access-to-open-the-data-stored-on-s3" id="toc-use-direct-access-to-open-the-data-stored-on-s3" class="nav-link" data-scroll-target="#use-direct-access-to-open-the-data-stored-on-s3">Use direct access to open the data stored on S3</a></li>
+  </ul></li>
+  <li><a href="#subset-the-dataset-to-specific-variables" id="toc-subset-the-dataset-to-specific-variables" class="nav-link" data-scroll-target="#subset-the-dataset-to-specific-variables">3. <strong>Subset the dataset to specific variables</strong></a>
+  <ul class="collapse">
+  <li><a href="#open-the-file-and-explore-the-variables" id="toc-open-the-file-and-explore-the-variables" class="nav-link" data-scroll-target="#open-the-file-and-explore-the-variables">Open the file and explore the variables</a></li>
+  <li><a href="#create-a-variables-list-and-subset-the-dataset" id="toc-create-a-variables-list-and-subset-the-dataset" class="nav-link" data-scroll-target="#create-a-variables-list-and-subset-the-dataset">Create a variables list and subset the dataset</a></li>
+  <li><a href="#plot-a-variable-of-the-subsetted-dataset" id="toc-plot-a-variable-of-the-subsetted-dataset" class="nav-link" data-scroll-target="#plot-a-variable-of-the-subsetted-dataset">Plot a variable of the subsetted dataset</a></li>
+  </ul></li>
+  <li><a href="#clip-the-dataset-to-your-area-of-interest-using-a-provided-outline" id="toc-clip-the-dataset-to-your-area-of-interest-using-a-provided-outline" class="nav-link" data-scroll-target="#clip-the-dataset-to-your-area-of-interest-using-a-provided-outline"><strong>4. Clip the dataset to your area of interest using a provided outline</strong></a>
+  <ul class="collapse">
+  <li><a href="#load-the-outline-for-your-area-of-interest" id="toc-load-the-outline-for-your-area-of-interest" class="nav-link" data-scroll-target="#load-the-outline-for-your-area-of-interest"><strong>Load the outline for your area of interest</strong></a></li>
+  <li><a href="#clip-the-data-to-the-outline-with-rioxarray" id="toc-clip-the-data-to-the-outline-with-rioxarray" class="nav-link" data-scroll-target="#clip-the-data-to-the-outline-with-rioxarray"><strong>Clip the data to the outline with rioxarray</strong></a></li>
+  <li><a href="#convert-the-geotransform-to-gdal-conventions" id="toc-convert-the-geotransform-to-gdal-conventions" class="nav-link" data-scroll-target="#convert-the-geotransform-to-gdal-conventions"><strong>Convert the GeoTransform to GDAL conventions</strong></a></li>
+  <li><a href="#plot-the-clipped-data" id="toc-plot-the-clipped-data" class="nav-link" data-scroll-target="#plot-the-clipped-data"><strong>Plot the clipped data</strong></a></li>
+  </ul></li>
+  <li><a href="#export-subsetted-and-clipped-dataset-as-a-new-netcdf-file" id="toc-export-subsetted-and-clipped-dataset-as-a-new-netcdf-file" class="nav-link" data-scroll-target="#export-subsetted-and-clipped-dataset-as-a-new-netcdf-file">5. <strong>Export subsetted and clipped dataset as a new netcdf file</strong></a></li>
+  <li><a href="#move-directory-containing-subsetted-files-to-your-local-machine" id="toc-move-directory-containing-subsetted-files-to-your-local-machine" class="nav-link" data-scroll-target="#move-directory-containing-subsetted-files-to-your-local-machine">6. <strong>Move directory containing subsetted files to your local machine</strong></a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">7. <strong>Putting it all together</strong></a>
+  <ul class="collapse">
+  <li><a href="#loop-through-all-results-from-search_data" id="toc-loop-through-all-results-from-search_data" class="nav-link" data-scroll-target="#loop-through-all-results-from-search_data">Loop through all results from <code>search_data()</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/tutorials_overview.html">Tutorials / Workshops</a></li><li class="breadcrumb-item"><a href="../tutorials/HMA_subsetting_cloud_workflow.html">Subset data in the cloud and download to your local machine</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><strong>Subsetting NSIDC Data in the Cloud and Exporting to Your Local Machine</strong></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="tutorial-overview" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-overview"><strong>1. Tutorial Overview</strong></h2>
+<p>This notebook demonstrates searching for and directly accessing cloud-hosted granules from an Amazon Compute Cloud (EC2) instance using the <code>earthaccess</code> package. It walks through subsetting the data by variable, clipping it spatially to an area of interest using a provided outline, and finally copying the processed files to your local machine.</p>
+<p><strong>Direct Access</strong> is an efficient way to work with data stored in an S3 Bucket when you’re working in the cloud. Cloud-hosted granules can be opened and loaded into memory without the need to download them first. This means you can subset and clip data before it ever touches your local storage, keeping the volume hitting your local machine to a minimum.</p>
+<p>Many NASA earthdata collections offer customization services through <a href="https://harmony.earthdata.nasa.gov/">Harmony</a>, which allows for subsetting, reprojecting, and/or reformatting data before you download or open it. Please see the following tables for <a href="https://nsidc.org/data/user-resources/help-center/what-subsetting-and-reformatting-services-are-available-icesat-2-data">ICESat-2</a> and <a href="https://nsidc.org/data/user-resources/help-center/what-data-subsetting-reformatting-and-reprojection-services-are-available-smap-data">SMAP</a> for which NSIDC datasets provide these customization services.</p>
+<p>However, as seen from the tables linked above, there are many data sets that do not yet have customization services. For these datasets, it then necessary to either download the full sized granules, or to develop a workflow to manually customize granules in the cloud before transferring them to local storage. This tutorial was developed to walk through the latter option.</p>
+<p>For this tutorial, we’ll use granules from the <a href="https://doi.org/10.5067/CG4OT8DJX2Z7">High Mountain Asia 12 km Modeled Estimates of Aerosol Transport, Chemistry, and Deposition Reanalysis, 2003-2019, Version 1</a> (<strong>HMA2_MATCHA</strong>) data set. HMA2_MATCHA contains a 12 km resolution, simulated reanalysis of aerosol transport, chemistry, and deposition over the High Mountain Asia (HMA) region for 1 January 2003 through 31 August 2019. Also known as the Model for Atmospheric Transport and Chemistry in Asia (MATCHA), the data comprise a wide range of variables intended to help assess the impacts of aerosols on the cryosphere in the HMA region. Data are stored in NetCDF-4 format.</p>
+<section id="learning-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="learning-objectives"><strong>Learning Objectives</strong></h3>
+<p>By the end of this demonstration you will be able to: 1. use <code>earthaccess</code> to search for and directly access cloud-hosted HMA2_MATCHA data in an AWS EC2 instance 2. subset the dataset to specific variables using <code>xarray</code> 3. spatially clip the dataset to an area of interest using <code>rioxarray</code> 4. export the variable and spatially subsetted dataset and transfer it to your local machine</p>
+</section>
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites"><strong>Prerequisites</strong></h3>
+<ol type="1">
+<li>An AWS account with an EC2 instance in the United States (Oregon) — <code>us-west-2</code> region.
+<ul>
+<li>A step-by-step tutorial for setting up an AWS EC2 instance is <a href="https://nsidc.org/data/user-resources/help-center/accessing-nasa-earthdata-cloud-jupyterlab-ec2">provided here.</a></li>
+<li>This tutorial was developed and tested on an AWS EC2 <code>t2.medium</code> Ubuntu instance with a 20 GB storage volume.</li>
+</ul></li>
+<li>An Earthdata Login account is required for data access. If you don’t have one, you can register for one <a href="https://urs.earthdata.nasa.gov/">here</a>.</li>
+<li>A .netrc file, that contains your Earthdata Login credentials, in the home directory of your EC2 instance. Instructions for creating a .netrc are provided <a href="https://nsidc.org/data/user-resources/help-center/creating-netrc-file-earthdata-login">here</a>.</li>
+<li>This notebook file on your EC2 instance.
+<ul>
+<li>This notebook can be downloaded directly from the NSIDC Data Cookbook Repository to your EC2 instance using the command:<br>
+<strong>REPLACE WITH MAIN BRANCH</strong> <code>wget https://raw.githubusercontent.com/nsidc/NSIDC-Data-Cookbook/refs/heads/subsetting-tutorial/tutorials/HMA_subsetting_cloud_workflow.ipynb</code></li>
+</ul></li>
+<li>An environment with all the necessary modules installed on your EC2 instance.
+<ul>
+<li>An <code>environment.yml</code> file exists in the root of the NSIDC Data Cookbook repository. This file can be used to create the conda environment on your EC2 instance with the command:<br>
+<code>conda env create -f https://raw.githubusercontent.com/nsidc/NSIDC-Data-Cookbook/refs/heads/main/environment.yml</code></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up"><strong>2. Set up</strong></h2>
+<section id="import-packages" class="level3">
+<h3 class="anchored" data-anchor-id="import-packages">Import Packages</h3>
+<div id="5" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For searching NASA data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For reading, processing, and plotting data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray <span class="im">as</span> rio</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hvplot.xarray</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> affine <span class="im">import</span> Affine</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># For crafting output filenames</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># For memory management</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="authenticate" class="level3">
+<h3 class="anchored" data-anchor-id="authenticate">Authenticate</h3>
+<p>The first step is to get the correct authentication that will allow us to get <em>cloud-hosted</em> HMA data. This is all done through Earthdata Login. The <code>login</code> method also gets the correct AWS credentials.</p>
+<p>Login requires your Earthdata Login username and password. The <code>login</code> method will automatically search for these credentials as environment variables or in a <code>.netrc</code> file, and if those aren’t available it will prompt us to enter our username and password. We use a <code>.netrc</code> strategy. A <code>.netrc</code> file is a text file located in our home directory that contains login information for remote machines. If we don’t have a <code>.netrc</code> file, <code>login</code> can create one for us.</p>
+<div id="7" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="search-for-granules-using-earthaccess.search_data-with-temporal-and-granule-filters" class="level3">
+<h3 class="anchored" data-anchor-id="search-for-granules-using-earthaccess.search_data-with-temporal-and-granule-filters">Search for granules using earthaccess.search_data() with temporal and granule filters</h3>
+<p>The HMA2_MATCHA dataset provides two-dimensional surface (SFC) data at one hour intervals, and three-dimensional atmospheric (ATM) data at three-hour intervals. For this tutorial, we’ll filter the results to only return atmospheric data granules. To do this, we use the <code>granule_name</code> argument with a wildcard search (*) to only return granule names containing “<code>*_ATM_*</code>”.</p>
+<p>We will print the number of results returned using the chosen filters.<br>
+For fun, we’ll also print the total storage that would be needed if we downloaded the results as-is to our local machine.</p>
+<div id="9" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    short_name<span class="op">=</span><span class="st">'HMA2_MATCHA'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    cloud_hosted<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    temporal<span class="op">=</span>(<span class="st">'2018-07-01'</span>, <span class="st">'2018-07-01'</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    granule_name<span class="op">=</span><span class="st">'*_ATM_*'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of results: </span><span class="sc">{</span><span class="bu">len</span>(results)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>results_volume <span class="op">=</span> <span class="bu">sum</span>(result.size() <span class="cf">for</span> result <span class="kw">in</span> results)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total volume of results: </span><span class="sc">{</span><span class="bu">round</span>(results_volume, <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> MBs (</span><span class="sc">{</span><span class="bu">round</span>(results_volume <span class="op">/</span> <span class="dv">1000</span>, <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> GBs)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="use-direct-access-to-open-the-data-stored-on-s3" class="level3">
+<h3 class="anchored" data-anchor-id="use-direct-access-to-open-the-data-stored-on-s3">Use direct access to open the data stored on S3</h3>
+<p>The files can now be opened using the <code>open</code> method, with the <code>auth</code> object created at the start of the notebook providing the Earthdata Login authentication and AWS credentials.</p>
+<div id="11" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.<span class="bu">open</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="subset-the-dataset-to-specific-variables" class="level2">
+<h2 class="anchored" data-anchor-id="subset-the-dataset-to-specific-variables">3. <strong>Subset the dataset to specific variables</strong></h2>
+<section id="open-the-file-and-explore-the-variables" class="level3">
+<h3 class="anchored" data-anchor-id="open-the-file-and-explore-the-variables">Open the file and explore the variables</h3>
+<p>We will start with viewing and processing just a single file from the results. To open the file, we use <code>decode_coords='all'</code> to load the grid mapping variable (<code>crs</code>, in this case) into the data set coordinates, and <code>mask_and_scale=False</code> to ensure all original data values are maintained.</p>
+<p>The structure of the netcdf files for HMA2_MATCHA are relatively simple, with all the variables being located in the root of the file. Because there are no variables contained within nested groups, we can use xarray’s <code>open_dataset()</code> method to open the file and have access to all the variables in the file.</p>
+<div id="14" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(files[<span class="dv">0</span>], engine<span class="op">=</span><span class="st">'h5netcdf'</span>, decode_coords<span class="op">=</span><span class="st">'all'</span>, mask_and_scale<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="create-a-variables-list-and-subset-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-variables-list-and-subset-the-dataset">Create a variables list and subset the dataset</h3>
+<p>We can see the HMA2_MATCHA atmospheric files contain 128 data variables. The attributes for each variable in the file can be explored by clicking the ‘Data Variables’ dropdown in the above output. This can be useful for initial exploration of the dataset and for determining which variables may be useful to our specific analysis.</p>
+<p>For this tutorial we want the data variables <code>lat</code> (latitude), <code>lon</code> (longitude), <code>time</code>, <code>temperature</code>, <code>ua</code> (x wind component), <code>va</code> (y wind component), and <code>bc_3d_tot</code> (total black carbon mass concentration), which we store as strings to the <code>data_vars</code> list below.</p>
+<ul>
+<li><strong>Note</strong>: The <code>x</code>, <code>y</code>, and <code>lev</code> dimensions are used by our chosen data variables, so these dimensions will transfer to our subsetted dataset automatically and don’t need to be specified.</li>
+</ul>
+<div id="16" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_vars <span class="op">=</span> [</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lat'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lon'</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'time'</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'temperature'</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ua'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'va'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'bc_3d_tot'</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With the <code>data_vars</code> list defined, we can create a subset of the original dataset that contains only those variables:</p>
+<div id="18" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ds_subset <span class="op">=</span> ds[data_vars]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ds_subset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><strong>Note</strong>: We included <code>time</code> in the <code>data_vars</code> list, but the output above only shows <code>time</code> as a dimension and coordinate variable – not a data variable. In the original dataset, <code>time</code> is a coordinate variable, but it is not associated with any of the data variables in our <code>data_vars</code> list. As a result, it would be dropped during subsetting unless we explicitly include it. Because the <code>time</code> coordinate contains important information, we include it in <code>data_vars</code> to ensure it is retained.</li>
+</ul>
+<p>Let’s extract the uncompressed size of the original dataset, the subsetted data, and compare the savings on volume.</p>
+<div id="20" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ds_volume <span class="op">=</span> ds.nbytes</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ds_subset_volume <span class="op">=</span> ds_subset.nbytes</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The beginning volume of the file (uncompressed) was </span><span class="sc">{</span><span class="bu">round</span>((ds_volume <span class="op">/</span> <span class="fl">1e+6</span>), <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> MBs"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The volume of the subsetted file (uncompressed) is now </span><span class="sc">{</span><span class="bu">round</span>((ds_subset_volume <span class="op">/</span> <span class="fl">1e+6</span>), <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> MBs"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"That is a </span><span class="sc">{</span><span class="bu">round</span>(<span class="dv">100</span> <span class="op">-</span> ((ds_subset_volume <span class="op">/</span> ds_volume)<span class="op">*</span><span class="dv">100</span>), <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> percent reduction in volume for this one file."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="plot-a-variable-of-the-subsetted-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="plot-a-variable-of-the-subsetted-dataset">Plot a variable of the subsetted dataset</h3>
+<p>We can now use hvplot to plot the <code>bc_3d_tot</code> variable of our subsetted data.</p>
+<div id="22" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_variable(ds, var):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ds[var].hvplot.quadmesh(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'x'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'y'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        groupby<span class="op">=</span><span class="st">'lev'</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        project<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        tiles<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        geo<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        rasterize<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">'turbo'</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plot_variable(ds_subset, <span class="st">'bc_3d_tot'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="clip-the-dataset-to-your-area-of-interest-using-a-provided-outline" class="level2">
+<h2 class="anchored" data-anchor-id="clip-the-dataset-to-your-area-of-interest-using-a-provided-outline"><strong>4. Clip the dataset to your area of interest using a provided outline</strong></h2>
+<section id="load-the-outline-for-your-area-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-outline-for-your-area-of-interest"><strong>Load the outline for your area of interest</strong></h3>
+<p>From the plot above we can see the HMA2_Matcha dataset covers the whole High-Mountain Asia region. For this tutorial, we want to clip this down to only include data over the Himalayan mountain range.</p>
+<p>Let’s use GeoPandas (aliased as <code>gpd</code>) to load and plot the outline of the Himalayas. We’ll use the <code>Himalayas_outline.geojson</code> file that lives in the <code>example_data/subsetting_tutorial</code> directory of the NSIDC Data Cookbook repository.<br>
+We can use the GitHub raw URL with GeoPandas to load the GeoJSON file directly from the repository: <strong>REPLACE WITH THE URL FOR THE MAIN BRANCH</strong></p>
+<div id="25" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>aoi_outline <span class="op">=</span> gpd.read_file(<span class="st">'https://raw.githubusercontent.com/nsidc/NSIDC-Data-Cookbook/refs/heads/subsetting-tutorial/example_data/subsetting_tutorial/Himalayas_outline.geojson'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>aoi_outline.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="clip-the-data-to-the-outline-with-rioxarray" class="level3">
+<h3 class="anchored" data-anchor-id="clip-the-data-to-the-outline-with-rioxarray"><strong>Clip the data to the outline with rioxarray</strong></h3>
+<p>To clip our dataset to our provided outline, we will use <a href="https://corteva.github.io/rioxarray/stable/readme.html">rioxarray</a>. <code>rioxarray</code> is an extension of the <code>xarray</code> library that adds geospatial capabilities, allowing Xarray objects to store and work with spatial metadata such as coordinate reference systems (CRS) and spatial dimensions. In other words, it gives Xarray geospatial awareness.</p>
+<p>In the following cell we use <code>rioxarray</code> to: 1. Extract the CRS of our dataset, and reproject our region outline to match this projection. Having both datasets in the same CRS ensures everything is spatially aligned before we clip the data. 2. Define the spatial dimensions of our dataset, using the <code>x</code> and <code>y</code> dimensions of <code>ds_subset</code></p>
+<div id="27" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Reproject the country outline to the same crs as the data.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>aoi_outline <span class="op">=</span> aoi_outline.to_crs(ds_subset.rio.crs)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Tell rioxarray which dimensions in ds_subset represent the x and y coordinates.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ds_subset <span class="op">=</span> ds_subset.rio.set_spatial_dims(x_dim<span class="op">=</span><span class="st">'x'</span>, y_dim<span class="op">=</span><span class="st">'y'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We now have everything inplace – rioxarray is aware of the correct spatial dimesions, and our outline is in the same crs as our dataset. We can now put it together to spatially subset the data using <code>rioxarray.clip()</code>. We provide <code>rioxarray.clip()</code> with the desired geometry, the argument <code>all_touched=True</code> to ensure all pixels that overlap with the geometry are included, and the argument <code>drop=True</code> to ensure data outside the clipping area are dropped from the dataset.</p>
+<div id="29" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ds_clipped <span class="op">=</span> ds_subset.rio.clip(aoi_outline.geometry, all_touched<span class="op">=</span><span class="va">True</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ds_clipped</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Our dataset has been successfully clipped to our area of interest! But, you may notice the <code>time</code> coordinate is missing. Same as when we subsetted the dataset by variables, xarray notices the time coordinate isn’t used as a dimension by any of our data variables, so it gets dropped.</p>
+<p>We still want the data <code>time</code> holds in our final product, so to fix this we extract the <code>time</code> variable from <code>ds_subset</code> and add it back into <code>ds_clipped</code> using <code>assign_coords()</code>.</p>
+<div id="31" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>time_var <span class="op">=</span> ds_subset[<span class="st">'time'</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ds_clipped <span class="op">=</span> ds_clipped.assign_coords(time<span class="op">=</span>time_var)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ds_clipped.coords</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And let’s do a final comparison to see the savings on volume:</p>
+<div id="33" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ds_clipped_volume <span class="op">=</span> ds_clipped.nbytes</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The beginning volume of the file (uncompressed) was </span><span class="sc">{</span><span class="bu">round</span>((ds_volume <span class="op">/</span> <span class="fl">1e+6</span>), <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> MBs"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The volume of the clipped data (uncompressed) is now </span><span class="sc">{</span><span class="bu">round</span>((ds_clipped_volume <span class="op">/</span> <span class="fl">1e+6</span>), <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> MBs"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"That is a </span><span class="sc">{</span><span class="bu">round</span>(<span class="dv">100</span> <span class="op">-</span> ((ds_clipped_volume <span class="op">/</span> ds_volume)<span class="op">*</span><span class="dv">100</span>),<span class="dv">1</span>)<span class="sc">}</span><span class="ss"> percent reduction in volume for this one file."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="convert-the-geotransform-to-gdal-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="convert-the-geotransform-to-gdal-conventions"><strong>Convert the GeoTransform to GDAL conventions</strong></h3>
+<p>If we intend to use the clipped dataset in geographic software (such as QGIS), we need to make a small adjustment to its GeoTransform.</p>
+<p>A GeoTransform defines the relationship between image pixels and real-world coordinates. As described in the GDAL documentation, it is “an affine transformation from the image coordinate space… to the georeferenced coordinate space.” In simpler terms, it tells GIS software where each pixel belongs on the map.</p>
+<p>Let’s first inspect the GeoTransform of the original dataset:</p>
+<div id="35" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds.rio.transform())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The first six coefficients in the matrix represent:</p>
+<p><strong>a</strong> – pixel width: 12000.00<br>
+<strong>b</strong> – row rotation: 0.00<br>
+<strong>c</strong> – x-coordinate of the upper-left corner: -3144000.95<br>
+<strong>d</strong> – column rotation: 0.00<br>
+<strong>e</strong> – pixel height: -12000.00<br>
+<strong>f</strong> – y-coordinate of the upper-left corner: -2784000.20<br>
+Note that the third (bottom) row of the affine geotransform matrix is essentially a placeholder and carries no geographic information itself.</p>
+<p>Now compare this with the GeoTransform of the clipped dataset:</p>
+<div id="37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds_clipped.rio.transform(recalc<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The pixel width and the new origin are what we would expect after clipping. However, notice that the pixel height is now positive (12000) instead of negative (-12000).</p>
+<p>This happens because rioxarray derives the GeoTransform directly from the x and y coordinate arrays. In our dataset, both coordinate arrays increase in value, so the resulting transform describes an image whose origin is at the lower-left corner with a positive pixel height.</p>
+<p>Many geographic tools, such as GDAL, expect the opposite convention – the origin at the upper-left corner and with a negative pixel height. Meaning, if we exported the dataset at this stage, the data would appear vertically flipped when opened in QGIS.</p>
+<p>To make the dataset compatible with GDAL-based software (such as QGIS), we’ll manually construct a new GeoTransform that follows the conventional raster orientation.</p>
+<p>Here, we’ll use the <code>Affine</code> constructor to:</p>
+<ol type="1">
+<li>Extract the clipped dataset’s GeoTransform, computed by rioxarray.</li>
+<li>Calculate the y-coordinate of the upper-left corner.</li>
+<li>Create a new GeoTransform with a negative pixel height.
+<ul>
+<li>With the <code>Affine</code> constructor, the letters a, b, c, etc. correspond to the coefficients labeled above.</li>
+<li>The pixel height, x-origin, and row/column rotation remains the same, so we pull these as-is from <code>gt</code>.</li>
+</ul></li>
+<li>Write the corrected GeoTransform back to the clipped dataset.</li>
+</ol>
+<div id="39" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the geotransform of the clipped dataset</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gt <span class="op">=</span> ds_clipped.rio.transform(recalc<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate y-coordinate of the upper-left corner by multiplying the number rows by the pixel height and adding this to the y-coordinate of the bottom left corner</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>y_upper_left <span class="op">=</span> gt.f <span class="op">+</span> ds_clipped.sizes[<span class="st">'y'</span>] <span class="op">*</span> gt.e</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new geotransform with the a negative pixel height and the new y-coordinate of the upper-left corner</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>new_geotransform <span class="op">=</span> Affine(gt.a, gt.b, gt.c, gt.d, <span class="op">-</span>gt.e, y_upper_left)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_geotransform)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite the geotransform of the clipped dataset with the new geotransform</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>ds_clipped <span class="op">=</span> ds_clipped.rio.write_transform(new_geotransform)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="plot-the-clipped-data" class="level3">
+<h3 class="anchored" data-anchor-id="plot-the-clipped-data"><strong>Plot the clipped data</strong></h3>
+<p>Our dataset has been clipped, contains the desired coordinate and data variables, and now holds a GeoTransform that follows GDAL conventions that will georeference the data correctly in QGIS. Let’s plot the same data variable as before to look at our progress.</p>
+<div id="41" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_variable(ds_clipped, <span class="st">'bc_3d_tot'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="export-subsetted-and-clipped-dataset-as-a-new-netcdf-file" class="level2">
+<h2 class="anchored" data-anchor-id="export-subsetted-and-clipped-dataset-as-a-new-netcdf-file">5. <strong>Export subsetted and clipped dataset as a new netcdf file</strong></h2>
+<p>To reiterate a key point: streaming the data directly with earthaccess means no data ever actually touched our local storage or the EC2 disk – everything happened in EC2 memory. At this point in the tutorial, however, our clipped dataset is ready to be written to a new file. We will follow these steps to complete this:</p>
+<ol type="1">
+<li>Create a new <code>temp</code> directory that we will store our new file in</li>
+<li>Grab the filename of the file we subsetted</li>
+<li>Create an output filename by appending the source filename with <code>_subsetted</code> just before the file extension</li>
+<li>Write the subsetted dataset to the <code>temp</code> directory</li>
+</ol>
+<div id="44" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>temp_dir <span class="op">=</span> Path(<span class="st">"temp"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>temp_dir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> results[<span class="dv">0</span>][<span class="st">"meta"</span>][<span class="st">"native-id"</span>]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>output_filename <span class="op">=</span> Path(filename).with_stem(<span class="ss">f"</span><span class="sc">{</span>Path(filename)<span class="sc">.</span>stem<span class="sc">}</span><span class="ss">_subsetted"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>ds_clipped.to_netcdf(temp_dir <span class="op">/</span> output_filename, engine<span class="op">=</span><span class="st">'h5netcdf'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'NETCDF4'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="move-directory-containing-subsetted-files-to-your-local-machine" class="level2">
+<h2 class="anchored" data-anchor-id="move-directory-containing-subsetted-files-to-your-local-machine">6. <strong>Move directory containing subsetted files to your local machine</strong></h2>
+<p>The file <code>HMA2_MATCHA_ATM_20180701T000000Z_V01.0_subsetted.nc</code> has been written to the temp/ folder on our EC2 instance. To move this file to our local machine, we have 2 options: 1. Navigate to the file in the Jupyter Server directory, right click on the file and select ‘Download’ 2. Copy the /temp directory to our local machine using the secure copy (<code>scp</code>) command in the terminal of our local machine.</p>
+<p>If the temp/ folder contains many files that wewant copied to our local machine (e.g., after looping through the results in section 7 below), then option 2 allows us to do this efficiently. On our local machine, open the terminal and run the command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-i</span> /path/key-pair-name.pem <span class="at">-r</span> ec2-user@instance-public-dns-name:path/to/temp/folder /path/to/local/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Make sure you replace the paths to the pem key, the path to the temp/ folder, the output location, and the name of the EC2 instance with your specific information.</p>
+<p><strong>A note on egress costs</strong>: When transferring data from an AWS EC2 instance over the public internet (i.e., to your local machine), there may be associated costs with this action known as egress costs. Each month, AWS users can transfer 100GB of data out of AWS EC2 at no cost. As we have seen, we were able to reduce the file to an uncompressed volume of 15.6 MB – well short of the 100GB limit. The cost of transferring data exceeding beyond the free 100GB of data is scaled, starting at $0.09 per GB for the first 10TB. For more information, please see documentation on <a href="https://aws.amazon.com/ec2/pricing/on-demand/">Amazon EC2 On-Demand Pricing</a></p>
+<p>Lastly, for workflows subsetting large volumes of data that would strain the EC2 instance’s storage, writing the files to an S3 bucket instead can be beneficial. Subsetted data in your S3 bucket can be pulled into the EC2 instance when needed, or downloaded directly to your local machine. Additionally, storing data in S3 is generally cheaper than keeping it on EC2 storage, and will avoid the egress costs noted above until the data is downloaded from S3 to your local machine.</p>
+</section>
+<section id="putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together">7. <strong>Putting it all together</strong></h2>
+<section id="loop-through-all-results-from-search_data" class="level3">
+<h3 class="anchored" data-anchor-id="loop-through-all-results-from-search_data">Loop through all results from <code>search_data()</code></h3>
+<p>So far, you’ve subset and clipped a single file from the search results in section 2. To apply the same steps to every file, loop through <code>results</code> and repeat the subset and clip for each one.<br>
+<strong>Note</strong> - This loop assumes the following objects created earlier in the notebook exist in the current session: - <code>results</code> from earthaccess.search_data() - <code>data_vars</code>, the list of variables to subset on - <code>aoi_outline</code>, the region of interest (and in the same CRS as HMA2_MATCHA)</p>
+<div id="50" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>total_subset_volume <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> result <span class="kw">in</span> results:</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grab source filename, and create the output filename</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    filename <span class="op">=</span> result[<span class="st">"meta"</span>][<span class="st">"native-id"</span>]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    output_filename <span class="op">=</span> Path(filename).with_stem(<span class="ss">f"</span><span class="sc">{</span>Path(filename)<span class="sc">.</span>stem<span class="sc">}</span><span class="ss">_subsetted"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load the file</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span> <span class="op">=</span> earthaccess.<span class="bu">open</span>([result])[<span class="dv">0</span>]</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># open the file using a context manager</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> xr.open_dataset(<span class="bu">file</span>, engine<span class="op">=</span><span class="st">'h5netcdf'</span>, decode_coords<span class="op">=</span><span class="st">'all'</span>, mask_and_scale<span class="op">=</span><span class="va">False</span>) <span class="im">as</span> ds:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># subset ds to specified variables</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        ds_subset <span class="op">=</span> ds[data_vars]</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># subset file to AOI</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>        ds_subset <span class="op">=</span> ds_subset.rio.set_spatial_dims(x_dim<span class="op">=</span><span class="st">'x'</span>, y_dim<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        ds_clipped <span class="op">=</span> ds_subset.rio.clip(aoi_outline.geometry, all_touched<span class="op">=</span><span class="va">True</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># re-insert the time coordinate</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        time_var <span class="op">=</span> ds_subset[<span class="st">'time'</span>]</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        ds_clipped <span class="op">=</span> ds_clipped.assign_coords(time<span class="op">=</span>time_var)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># re-write the geotransform</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        gt <span class="op">=</span> ds_clipped.rio.transform(recalc<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>        y_upper_left <span class="op">=</span> gt.f <span class="op">+</span> ds_clipped.sizes[<span class="st">'y'</span>] <span class="op">*</span> gt.e</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>        new_geotransform <span class="op">=</span> Affine(gt.a, gt.b, gt.c, gt.d, <span class="op">-</span>gt.e, y_upper_left)</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>        ds_clipped <span class="op">=</span> ds_clipped.rio.write_transform(new_geotransform)</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>        total_subset_volume <span class="op">+=</span> ds_clipped.nbytes</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># write the clipped dataset to a new NetCDF file in the temp folder</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        ds_clipped.to_netcdf(<span class="ss">f"temp/</span><span class="sc">{</span>output_filename<span class="sc">}</span><span class="ss">"</span>, engine<span class="op">=</span><span class="st">"h5netcdf"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'NETCDF4'</span>)</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove objects from memory and run garbage collection</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> <span class="bu">file</span>, ds_subset, ds_clipped</span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    gc.collect()</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The file </span><span class="sc">{</span>filename<span class="sc">}</span><span class="ss"> has been processed and a subsetted version saved to the temp folder."</span>)</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All files have been processed, subsetted, and written to the temp folder."</span>)</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total uncompressed volume of the </span><span class="sc">{</span><span class="bu">len</span>(results)<span class="sc">}</span><span class="ss"> subsetted files written to disk: </span><span class="sc">{</span><span class="bu">round</span>((total_subset_volume <span class="op">/</span> <span class="fl">1e+6</span>), <span class="dv">1</span>)<span class="sc">}</span><span class="ss"> MBs."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The temp folder now contains 8 subsetted and clipped HMA2_Matcha netcdf files. We can now use the <code>scp</code> command from above in our local terminal to move all the files to our local machine for local analysis.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorials/working_with_icesat2_sea_ice_data.html" class="pagination-link" aria-label="Download ICESat-2 Sea Ice data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Download ICESat-2 Sea Ice data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../appendices/contributing.html" class="pagination-link" aria-label="Contributing">
+        <span class="nav-page-text">Contributing</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
