@@ -71,7 +71,7 @@ website:
                 # href: egis-overview.qmd
                 contents:
                   - text: "Working with Land and Vegetation Height (ATL08) GIS data"
-                    href: tutorials/egis-atl08-tutorial.qmdegis-atl08-tutorial.qmd
+                    href: tutorials/egis-atl08-tutorial.qmd
       - section: "How-To Guides"
         href: how-to-guides/overview.qmd
         contents:
