@@ -65,6 +65,13 @@ website:
               - text: "Plotting data - time series, scatter plots"
               - text: "Plotting data on a map"
                 href: reference-guides/plotting-data.qmd
+          - section: "GIS"
+            contents:
+              - section: "NASA Earthdata GIS (EGIS)"
+                # href: egis-overview.qmd
+                contents:
+                  - text: "Working with Land and Vegetation Height (ATL08) GIS data"
+                    href: tutorials/egis-atl08-tutorial.qmd
       - section: "How-To Guides"
         href: how-to-guides/overview.qmd
         contents:
