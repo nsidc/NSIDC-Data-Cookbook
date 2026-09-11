@@ -8,6 +8,7 @@ This section of the cookbook contains longer form tutorials providing examples o
 
 - [Direct cloud access of ICESat-2 (*ATL06 Land Ice Height*) data](/tutorials/ATL06-direct-access.ipynb): a notebook that demonstrates searching for cloud-hosted ICESat-2 data and directly accessing Land Ice Height (ATL06) granules from an Amazon Compute Cloud (EC2) instance using the `earthaccess` package. 
 - [Download of ICESat-2 (*ATL07 Sea Ice*) data](/tutorials/working_with_icesat2_sea_ice_data.ipynb): a notebook that demonstrates searching for and accessing ICESat-2 data using the Python `earthaccess` package, reading and visualizing the data using `xarray` and `pandas`, and that uses `matplotlib` and `cartopy` to produce a map of search results.
+- [Cloud workflow for manually subsetting data (*HMA2_MATCHA*) and downloading to your local machine](/tutorials/HMA_subsetting_cloud_workflow.ipynb): a notebook that demonstrates accessing cloud-hosted HMA2_MATCHA directly using the `earthaccess` package, subsetting the data by select variables and area of interest using `xarray` and `rioxarray`, and then downloading to a local machine.
 
 **Tutorials coming soon:**
 

@@ -1,0 +1,60 @@
+{
+  "type": "FeatureCollection",
+  "name": "Himalayas_outline",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Himalayan Range (example outline)",
+        "description": "Generalized outline of the Himalayas for use in HMA2_MATCHA subsetting tutorial"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.377766,
+              37.368473
+            ],
+            [
+              70.083641,
+              34.969868
+            ],
+            [
+              77.640645,
+              29.819436
+            ],
+            [
+              84.393230,
+              26.793845
+            ],
+            [
+              91.805716,
+              25.676430
+            ],
+            [
+              99.203454,
+              27.372511
+            ],
+            [
+              97.354362,
+              31.421922
+            ],
+            [
+              90.914268,
+              29.579697
+            ],
+            [
+              82.915999,
+              31.427716
+            ],
+            [
+              73.377766,
+              37.368473
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
