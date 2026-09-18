@@ -531,100 +531,63 @@
     "href": "reference-guides/projections.html",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_"
   },
   {
     "objectID": "reference-guides/projections.html#overview",
     "href": "reference-guides/projections.html#overview",
     "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_"
   },
   {
     "objectID": "reference-guides/projections.html#what-is-a-map-projection",
     "href": "reference-guides/projections.html#what-is-a-map-projection",
     "title": "Projections and Coordinate Systems",
     "section": "What is a map projection?",
-    "text": "What is a map projection?",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "What is a map projection?"
   },
   {
     "objectID": "reference-guides/projections.html#what-is-a-datum",
     "href": "reference-guides/projections.html#what-is-a-datum",
     "title": "Projections and Coordinate Systems",
     "section": "What is a datum?",
-    "text": "What is a datum?\nEllipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton. Confirmed by measurements of length of arc.\nThe geoid - the figure (shape) of the Earth if it were measured at mean sea level - involves gravity. The geoid is an undulating surface that deviates from a well fitting ellipsoid by ~ 100 m.\nReference ellipsoid defined by: 1. semi-major and semi-minor axes; 2. semi-major axis and flattening; 3. semi-major axis and eccentricity;\nThese are all related.\nNewton flattening 1/~300. Add WGS84 for current estimate.\nA datum is a smooth mathematical surface that closely fits the mean sea-level surface - from @snyder\nEarth centered datums - e.g. WGS84 - no local reference point. The center of the Earth is the reference point.\n\\[\nb = a(1 - f); f = 1-b/a\n\\] \\[\ne^2 = 2f - f^2; \\\\\nf = 1 - (1 - e^2)^{1/2}\n\\]",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "What is a datum?\nEllipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton. Confirmed by measurements of length of arc.\nThe geoid - the figure (shape) of the Earth if it were measured at mean sea level - involves gravity. The geoid is an undulating surface that deviates from a well fitting ellipsoid by ~ 100 m.\nReference ellipsoid defined by: 1. semi-major and semi-minor axes; 2. semi-major axis and flattening; 3. semi-major axis and eccentricity;\nThese are all related.\nNewton flattening 1/~300. Add WGS84 for current estimate.\nA datum is a smooth mathematical surface that closely fits the mean sea-level surface - from @snyder\nEarth centered datums - e.g. WGS84 - no local reference point. The center of the Earth is the reference point.\n\\[\nb = a(1 - f); f = 1-b/a\n\\] \\[\ne^2 = 2f - f^2; \\\\\nf = 1 - (1 - e^2)^{1/2}\n\\]"
   },
   {
     "objectID": "reference-guides/projections.html#what-is-a-coordinate-reference-system",
     "href": "reference-guides/projections.html#what-is-a-coordinate-reference-system",
     "title": "Projections and Coordinate Systems",
     "section": "What is a coordinate reference system?",
-    "text": "What is a coordinate reference system?",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "What is a coordinate reference system?"
   },
   {
     "objectID": "reference-guides/projections.html#nsidc-coordinate-reference-systems",
     "href": "reference-guides/projections.html#nsidc-coordinate-reference-systems",
     "title": "Projections and Coordinate Systems",
     "section": "NSIDC coordinate reference systems",
-    "text": "NSIDC coordinate reference systems",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "NSIDC coordinate reference systems"
   },
   {
     "objectID": "reference-guides/projections.html#how-can-i-define-a-map-projects-of-crs-in-a-data-file",
     "href": "reference-guides/projections.html#how-can-i-define-a-map-projects-of-crs-in-a-data-file",
     "title": "Projections and Coordinate Systems",
     "section": "How can I define a map projects of CRS in a data file?",
-    "text": "How can I define a map projects of CRS in a data file?\n\nNetCDF and CF-Conventions\nInclude a link to NSIDC projection definitions\n\n\nGeoTIFF",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "How can I define a map projects of CRS in a data file?\n\nNetCDF and CF-Conventions\nInclude a link to NSIDC projection definitions\n\n\nGeoTIFF"
   },
   {
     "objectID": "reference-guides/projections.html#geographic-coordinate-systems",
     "href": "reference-guides/projections.html#geographic-coordinate-systems",
     "title": "Projections and Coordinate Systems",
     "section": "Geographic Coordinate Systems",
-    "text": "Geographic Coordinate Systems\nA Geographic Coordinate System is a spherical or ellipsoidal coordinate system with coordinates latitude \\(\\phi\\), longitude \\(\\lambda\\), and height \\(z\\). Latitude and Longitude are defined relative to a reference ellipsoid. There are many reference ellipsoids, so a full definition of geographic coordinates requires a full specification of the coordinate reference system. Check! Most global datasets, GPS and satellites use the WGS84 ellipsoid.\nTwo levels of abstraction are required to define latitude and longitude. First a model of the surface of the Earth is required. This model approximates mean sea level over the oceans and continues this surface under the continents. The second step is to approximate the geoid with a mathematical definition of the surface of the geoid. A simple solution is to use a sphere. However, it is more accurate to use an Ellipsoid.\nThe latitude of a point on the reference ellipsoid is the angle formed by the normal to the reference surface at the point of interest, and the plane of the Equator or Equatorial Plane. The Equatorial plane is perpendicular to the Earths axis of rotation.",
-    "crumbs": [
-      "NSIDC Data",
-      "NSIDC map projections and grids"
-    ]
+    "text": "Geographic Coordinate Systems\nA Geographic Coordinate System is a spherical or ellipsoidal coordinate system with coordinates latitude \\(\\phi\\), longitude \\(\\lambda\\), and height \\(z\\). Latitude and Longitude are defined relative to a reference ellipsoid. There are many reference ellipsoids, so a full definition of geographic coordinates requires a full specification of the coordinate reference system. Check! Most global datasets, GPS and satellites use the WGS84 ellipsoid.\nTwo levels of abstraction are required to define latitude and longitude. First a model of the surface of the Earth is required. This model approximates mean sea level over the oceans and continues this surface under the continents. The second step is to approximate the geoid with a mathematical definition of the surface of the geoid. A simple solution is to use a sphere. However, it is more accurate to use an Ellipsoid.\nThe latitude of a point on the reference ellipsoid is the angle formed by the normal to the reference surface at the point of interest, and the plane of the Equator or Equatorial Plane. The Equatorial plane is perpendicular to the Earths axis of rotation."
   },
   {
     "objectID": "reference-guides/plotting-data.html",
     "href": "reference-guides/plotting-data.html",
     "title": "Plotting Data",
     "section": "",
-    "text": "Describes how to plotting NSIDC Datasets using standard tools like cartopy, GeoViews.\n\nCover tricky plotting problems - e.g. ice motion vectors\n\nDefining EASE and NSIDC Polar projections in cartopy\n\nExamples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions). A set of specific examples might not be necessary if coordinates are included",
-    "crumbs": [
-      "Working with Data",
-      "Visualizing data",
-      "Plotting data on a map"
-    ]
+    "text": "Describes how to plotting NSIDC Datasets using standard tools like cartopy, GeoViews.\n\nCover tricky plotting problems - e.g. ice motion vectors\n\nDefining EASE and NSIDC Polar projections in cartopy\n\nExamples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions). A set of specific examples might not be necessary if coordinates are included"
   },
   {
     "objectID": "reference-guides/overview.html",
@@ -735,11 +698,7 @@
     "href": "reference-guides/datasets.html",
     "title": "Datasets",
     "section": "",
-    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nVIIRS subsetting “on your own” in lieu of service availability\nWhat others?",
-    "crumbs": [
-      "NSIDC Data",
-      "Quirky datasets"
-    ]
+    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nVIIRS subsetting “on your own” in lieu of service availability\nWhat others?"
   },
   {
     "objectID": "reference-guides/find-access.html",
