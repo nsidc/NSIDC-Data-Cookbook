@@ -40,10 +40,10 @@ website:
              href: reference-guides/data-structures.qmd
            - text: "NASA collections and granules"
              href: reference-guides/collections-granules.qmd
-           - text: "NSIDC map projections and grids"
-             href: reference-guides/projections.qmd
-           - text: "Quirky datasets"
-             href: reference-guides/datasets.qmd
+           - text: "NSIDC map projections and grids (WIP)"
+             # href: reference-guides/projections.qmd
+          # - text: "Quirky datasets"
+          #   href: reference-guides/datasets.qmd
       - section: "Working with Data"
         # href: reference-guides/working-with-data-overview.qmd
         contents:
@@ -54,17 +54,17 @@ website:
                 href: reference-guides/collection-granule-search.qmd
               - text: "Accessing data"
                 href: reference-guides/access-data.qmd
-          - section: "Wrangling data"
+          - section: "Wrangling data (WIP)"
             contents:
               - text: "Subsetting"
               - text: "Reformatting"
               - text: "Reprojecting"
               - text: "Resampling"
-          - section: "Visualizing data"
+          - section: "Visualizing data (WIP)"
             contents:
               - text: "Plotting data - time series, scatter plots"
               - text: "Plotting data on a map"
-                href: reference-guides/plotting-data.qmd
+               # href: reference-guides/plotting-data.qmd
       - section: "How-To Guides"
         href: how-to-guides/overview.qmd
         contents:
@@ -88,7 +88,7 @@ website:
                 href: how-to-guides/harmony-py-IS2.qmd
               - text: "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
                 href: how-to-guides/harmony-py-SMAP.qmd
-          - section: "Reproject data"
+         # - section: "Reproject data"
           - section: "Work with NetCDF files"
             contents:
               - text: "Get the bounding box of a NetCDF file"
