@@ -9,7 +9,7 @@ At NSIDC we make learning content in many mediums, including video. You can find
 ## Short-form videos
 
 | Title | Description |
-|-------|------------------|
+|----------|---------------|
 |[**Using the earthaccess Python Library to Stream Data**](https://www.earthdata.nasa.gov/events/using-earthaccess-python-library-stream-data) | This short webinar demonstrates how to use the earthaccess Python library to stream NASA data directly to memory, skipping the download. The presenter explains the difference between downloading data and streaming data, and then works through an example using the NASA MERRA-2 reanalysis product.
 |[**Subsetting and Reformatting Data from the NASA Earthdata Cloud Using harmony-py**](https://www.earthdata.nasa.gov/learn/webinars/subsetting-reformatting-data-from-nasa-earthdata-cloud-using-harmony-py) | This short, informative walkthrough on subsetting and reformatting data from the NASA Earthdata Cloud using harmony-py helps users understand how the harmony-py Python library can help them customize the data they request from the NASA Earthdata Cloud. The presenter introduces Harmony services and demonstrates how to explore and implement available subsetting and reformatting services using an example dataset within a Jupyter notebook environment.
 |[**Downloading Data from the NASA Earthdata Cloud Using the earthaccess Python Library**](https://www.earthdata.nasa.gov/learn/webinars/downloading-data-from-nasa-earthdata-cloud-using-earthaccess-python-library) | This NASA Earthdata webinar short demonstrates the basics of using earthaccess to download data from the NASA Earthdata Cloud.
@@ -17,6 +17,6 @@ At NSIDC we make learning content in many mediums, including video. You can find
 ## Long-form videos
 
 | Title | Description |
-|-------|------------------|
+|----------|---------------|
 |[**Laser Altimetry Applications for a Changing World: Measuring Snow Depth with ICESat-2**](https://www.earthdata.nasa.gov/learn/webinars/laser-altimetry-applications-changing-world-measuring-snow-depth-icesat-2) | In this webinar, speakers from NSIDC, NASA's Goddard Space Flight Center, and NASA's Langley Research Center introduce the ICESat-2 Global Geolocated Photons product (ATL03) and present an overview of two snow depth estimation methods: the pathlength method and the snow on/off method. Viewers can explore data discovery and access through live demonstrations using Jupyter Notebooks and NASA Earthdata Search.
 |[**Laser Altimetry Applications for a Changing World: Working with ICESat-2 Inland Surface Water Data**](https://www.earthdata.nasa.gov/learn/webinars/laser-altimetry-applications-changing-world-working-icesat-2-inland-surface-water) | In this webinar, speakers from NASA's Goddard Space Flight Center and the University of New Hampshire (UNH) will introduce the ICESat-2 Inland Surface Water product (ATL13) and Gridded Inland Surface Water product, (ATL22), as well as their associated application areas for water resources decision support. In addition, a data discovery and data access demonstration will showcase icepyx, a shared software library of resources including code, tutorials, and use-cases/examples that simplify the process of querying, obtaining, analyzing, and manipulating ICESat-2 datasets to enable scientific discovery.
