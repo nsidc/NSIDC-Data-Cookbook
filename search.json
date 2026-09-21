@@ -378,230 +378,167 @@
     ]
   },
   {
-    "objectID": "appendices/contributing.html",
-    "href": "appendices/contributing.html",
-    "title": "Contributing",
+    "objectID": "appendices/videos.html",
+    "href": "appendices/videos.html",
+    "title": "Video Resources",
     "section": "",
-    "text": "We welcome contributions of all kinds! Your help makes the Cookbook stronger and more useful for the community. There are several ways to get involved, you can:\n\n🪲 Identify a bug or error\n\n💡 Suggest a change or improvement\n\n📘 Propose a new tutorial or example\n\n🗣️ Join a discussion or share an idea\n🚀 Do some work and make a Pull Request (PR)\n\n\n\n\nYou can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”\n\n\n\n\n\n\nOnce you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
+    "text": "At NSIDC we make learning content in many mediums, including video. You can find links to the various topics we have covered, categorized by either “short-form” (less than 30 minutes long) or “long-form” (videos longer than half an hour).",
     "crumbs": [
       "Appendices",
-      "Contributing"
+      "Video Resources"
     ]
   },
   {
-    "objectID": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
-    "href": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
-    "title": "Contributing",
-    "section": "",
-    "text": "You can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”",
+    "objectID": "appendices/videos.html#short-form-videos",
+    "href": "appendices/videos.html#short-form-videos",
+    "title": "Video Resources",
+    "section": "Short-form videos",
+    "text": "Short-form videos\n\n\n\nTitle\nDescription\n\n\n\n\nUsing the earthaccess Python Library to Stream Data\nThis short webinar demonstrates how to use the earthaccess Python library to stream NASA data directly to memory, skipping the download. The presenter explains the difference between downloading data and streaming data, and then works through an example using the NASA MERRA-2 reanalysis product.\n\n\nSubsetting and Reformatting Data from the NASA Earthdata Cloud Using harmony-py\nThis short, informative walkthrough on subsetting and reformatting data from the NASA Earthdata Cloud using harmony-py helps users understand how the harmony-py Python library can help them customize the data they request from the NASA Earthdata Cloud. The presenter introduces Harmony services and demonstrates how to explore and implement available subsetting and reformatting services using an example dataset within a Jupyter notebook environment.\n\n\nDownloading Data from the NASA Earthdata Cloud Using the earthaccess Python Library\nThis NASA Earthdata webinar short demonstrates the basics of using earthaccess to download data from the NASA Earthdata Cloud.",
     "crumbs": [
       "Appendices",
-      "Contributing"
+      "Video Resources"
     ]
   },
   {
-    "objectID": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
-    "href": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
-    "title": "Contributing",
-    "section": "",
-    "text": "Once you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
+    "objectID": "appendices/videos.html#long-form-videos",
+    "href": "appendices/videos.html#long-form-videos",
+    "title": "Video Resources",
+    "section": "Long-form videos",
+    "text": "Long-form videos\n\n\n\nTitle\nDescription\n\n\n\n\nLaser Altimetry Applications for a Changing World: Measuring Snow Depth with ICESat-2\nIn this webinar, speakers from NSIDC, NASA’s Goddard Space Flight Center, and NASA’s Langley Research Center introduce the ICESat-2 Global Geolocated Photons product (ATL03) and present an overview of two snow depth estimation methods: the pathlength method and the snow on/off method. Viewers can explore data discovery and access through live demonstrations using Jupyter Notebooks and NASA Earthdata Search.\n\n\nLaser Altimetry Applications for a Changing World: Working with ICESat-2 Inland Surface Water Data\nIn this webinar, speakers from NASA’s Goddard Space Flight Center and the University of New Hampshire (UNH) will introduce the ICESat-2 Inland Surface Water product (ATL13) and Gridded Inland Surface Water product, (ATL22), as well as their associated application areas for water resources decision support. In addition, a data discovery and data access demonstration will showcase icepyx, a shared software library of resources including code, tutorials, and use-cases/examples that simplify the process of querying, obtaining, analyzing, and manipulating ICESat-2 datasets to enable scientific discovery.\n\n\nLaser Altimetry Applications for a Changing World: Working with ICESat-2 Sea Ice Data\nIn this webinar, we provide an overview of the reference ICESat-2 sea ice data products. These include the along-track sea ice height and freeboard products (ATL07 and ATL10), as well as the derived gridded products ATL20 and ATL21. We demonstrate earthaccess, a Python package to search for and access NASA data, including ICESat-2 datasets, both in the cloud and from your local machine. Lastly, we present specific data use cases, including the derivation of sea ice thickness and applications in sea ice and climate modeling.\n\n\nLaser Altimetry Applications for a Changing World: Working with ICESat-2 Bathymetry Data\nIn this webinar, we cover a new global ICESat-2 bathymetric data product, ATL24, including results of an ATL24 accuracy test. We then present use cases, including training models for extracting bathymetry from multispectral imagery and identifying hazards to marine navigation. We also demonstrate a public web application programming interface (API) for processing ICESat-2 data in the cloud.\n\n\nLaser Altimetry Applications for a Changing World: Working with ICESat-2 Land and Vegetation Height Data\nIn this webinar, speakers from the NASA ICESat-2 Science and Application teams and Goddard Space Flight Center introduce the ICESat-2 Land and Vegetation Height data product and provide an overview of a derived continental scale canopy model. In addition, the webinar showcases the SlideRule Earth web service, demonstrating high-performance, on-demand science data processing of ICESat-2 and other relevant geospatial data.\n\n\nLaser Altimetry Applications for a Changing World: Explore ICESat-2 Data\nThis webinar is the first in a series to introduce the ICESat-2 platform. Topics include an overview of the platform, data products and data discovery, and data access tools. A demonstration showcases the advanced data discovery and data visualization features of OpenAltimetry—a web-based application that provides on-demand surface elevation profiles.",
     "crumbs": [
       "Appendices",
-      "Contributing"
+      "Video Resources"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "NSIDC Data Cookbook",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Miscellaneous Resources",
     "section": "",
-    "text": "[!WARNING] This cookbook is under active development. Major changes to the structure of the book and its content are expected. We are striving to develop content that is well-tested and peer-reviewed, but nothing contained here should be expected to work correctly (or at all!) in this early phase. Many sections contain only an outline of the content. These sections will have content added as the project develops.",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
+    "text": "NSIDC How to"
   },
   {
-    "objectID": "index.html#welcome-to-the-nsidc-data-cookbook",
-    "href": "index.html#welcome-to-the-nsidc-data-cookbook",
-    "title": "NSIDC Data Cookbook",
-    "section": "Welcome to the NSIDC Data Cookbook!",
-    "text": "Welcome to the NSIDC Data Cookbook!\nThis Cookbook for National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes (or data tutorials). The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but instead is an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you master the art of working with cryospheric data.",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
-  },
-  {
-    "objectID": "index.html#how-to-use-this-cookbook",
-    "href": "index.html#how-to-use-this-cookbook",
-    "title": "NSIDC Data Cookbook",
-    "section": "How to use this cookbook",
-    "text": "How to use this cookbook\nIf you are new to NASA or NSIDC data, begin with the Getting Started section. Beyond that, the cookbook is divided into four major sections: NSIDC Data, Working with Data, How-To Guides, and Tutorials / Workshops. We also include some Appendices that include a best practices guide for Python scripting, some background details on computing, and how to contribute to the cookbook (if you are so inclined!).\nThe NSIDC Data section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.\nThe Working with Data section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.\nThe How-To Guides section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks.\nLastly, the Tutorials / Workshops section serves to highlight content that was developed for past events or specific use cases.",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
-  },
-  {
-    "objectID": "index.html#about-the-nsidc-daac",
-    "href": "index.html#about-the-nsidc-daac",
-    "title": "NSIDC Data Cookbook",
-    "section": "About the NSIDC DAAC",
-    "text": "About the NSIDC DAAC\nNSIDC has managed the NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) since 1993, archiving and distributing cryospheric and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns and field observations. The NSIDC DAAC provides hundreds of free and open-access NASA Earth science data sets, detailed data documentation, data tools, resources and tutorials, as well as robust data user support services. These data can be used to study topics relating to snow cover, sea ice, ice sheets, ice shelves, glaciers, frozen ground, soil moisture, climate interactions, and more!",
-    "crumbs": [
-      "Welcome to our Cookbook"
-    ]
-  },
-  {
-    "objectID": "reference-guides/collections-granules.html",
-    "href": "reference-guides/collections-granules.html",
-    "title": "Collections & Granules",
+    "objectID": "resources.html#programatic-download",
+    "href": "resources.html#programatic-download",
+    "title": "Miscellaneous Resources",
     "section": "",
-    "text": "NASA Earth science data can feel overwhelming when you’re new to it… there are thousands of datasets, millions of files, and many tools for accessing them. A first step in combatting the overhwhelm is better understanding how NASA organizes, and talks about, their data. Below we define two terms; collection and granule. These are, for the most part, synonymous with a dataset and a file respectively.",
+    "text": "NSIDC How to"
+  },
+  {
+    "objectID": "resources.html#projections",
+    "href": "resources.html#projections",
+    "title": "Miscellaneous Resources",
+    "section": "Projections",
+    "text": "Projections\nNSIDC Polar Stereographic Projection NSIDC EASE Grid\nCF Conventions Grid Mappings\nLatitude Geodetic Datums\nSnyder\nrioxarray.raster_dataset\nrasterio.affine GDAL Affine pyproj cartopy.crs.CRS"
+  },
+  {
+    "objectID": "reference-guides/data-structures.html",
+    "href": "reference-guides/data-structures.html",
+    "title": "Data structures and formats",
+    "section": "",
+    "text": "Earth observation data are stored in a variety of structures and file formats, each shaped by how the data were collected, processed, distributed, and historically used, along with the science questions that guided their creation. At NSIDC, formats reflect satellite mission design, modeling needs, interoperability standards, and long-term archiving requirements.\nThis page describes the formats and structures used to store NSIDC data so that users can better understand how to work with this data.\nIt is helpful to distinguish between:\nData structure — how data observations are organized conceptually (e.g. as a grid, rows/columns, discrete features, etc.), and\nFile format — how those structured data are stored and delivered.\nUnderstanding the basics (and differences between the two) can help you:\nIn practice, the relationship between a science question, available data, and the tools used for analysis is often not linear. Science questions often guide data collection and product design, but they are also shaped by what data already exist. As a result, data structures, file formats, and tools are interconnected, with multiple valid pathways depending on the data set and workflow. The figure below highlights these conceptual relationships between science questions, data structures, file formats, and analysis tools.\nflowchart TD\n\nA[Science question]\n\nB[Data structures]\nB1[Raster]\nB2[Swath]\nB3[Vector]\nB4[Tabular]\n\nC[File formats]\nC1[NetCDF / HDF5]\nC2[GeoTIFF]\nC3[Shapefile]\nC4[CSV]\n\nD((Analysis tools))\nD1((Python))\nD2((R))\nD3((GIS software))\nD4((Web tools))\n\nA -.-&gt; B\nB -.-&gt; A\n\nB --&gt; B1\nB --&gt; B2\nB --&gt; B3\nB --&gt; B4\n\nB1 --&gt; C\nB2 --&gt; C\nB3 --&gt; C\nB4 --&gt; C\n\nC --&gt; C1\nC --&gt; C2\nC --&gt; C3\nC --&gt; C4\n\nC -.-&gt; D\n\nD --&gt; D1\nD --&gt; D2\nD --&gt; D3\nD --&gt; D4",
     "crumbs": [
       "NSIDC Data",
-      "NASA collections and granules"
+      "Data structures and formats"
     ]
   },
   {
-    "objectID": "reference-guides/collections-granules.html#collections",
-    "href": "reference-guides/collections-granules.html#collections",
-    "title": "Collections & Granules",
-    "section": "📘 Collections",
-    "text": "📘 Collections\nA collection is NASA’s version of a “dataset family.”\nEvery collection groups together many related files that share common features, such as:\n\nThe same satellite or instrument\n\nThe same science product type\n\nThe same processing level\n\nA consistent file structure\n\nA collection is the group that defines what the dataset is.\nExamples:\n\nSMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008\n\nATLAS/ICESat-2 L3A Land and Vegetation Height V007\n\nCollection metadata includes at least the following:\n\nProduct description\n\nSpatial & temporal coverage\n\nData provider\nVariables\n\nVersion",
+    "objectID": "reference-guides/data-structures.html#how-earth-science-data-are-structured",
+    "href": "reference-guides/data-structures.html#how-earth-science-data-are-structured",
+    "title": "Data structures and formats",
+    "section": "How Earth science data are structured",
+    "text": "How Earth science data are structured\nBefore working with specific file formats, it helps to understand the underlying data structures they represent. At NSIDC, most data sets fall into one or more of the structures below.\n\nRaster / gridded data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Continuous spatial fields\nCommon formats: GeoTIFF, NetCDF, HDF5, COG, ASCII grid\n\n\nFor most remotely sensed imagery products, raster data represent space as a regular grid of cells. Each cell corresponds to a defined area on Earth and stores a value or category. For example, below is a grid where each grid cell (also called a pixel) contains a numeric value between 1 and 5.\n\n  Raster grid where each pixel stores a value\n  A 3 by 3 raster grid with each cell containing a numeric value between 1 and 5. One cell is highlighted.\n\n  \n  \n\n    \n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    \n      3\n      4\n      5\n\n      2\n      3\n      4\n\n      1\n      2\n      3\n    \n\n    \n    \n  \n\n  \n  \n\n  \n  \n    pixel (cell)\n  \n\n\nIn this simplified example, each of these cells represents a geographic footprint, not a point. This means that anywhere within one of these boxes (whether it is in the middle, or near the outer edge) is represented by the same numeric value. It is worth noting that this interpretation can vary by product and methodology, where output from models is typically only valid for a point, and techniques for resampling remote sensing data can change the assumptions around grid cell interpretation.\n\nKey concepts\n\nExtent — the geographic area covered\n\nCell size — the size of each cell (e.g., 25 km × 25 km)\n\nCoordinate Reference System (CRS) — how the grid maps to Earth\n\nGrid definition — origin, orientation, and spacing\n\nMany raster products are derived, not directly observed. Examples of this would be:\n\nIndividual satellite observations being aggregated to a grid\nStatistics from multiple observations (a mean, max, or min, etc.) for each grid cell\nPoint data interpolated onto a grid\n\nRaster data can be stored in a variety of file formats (such as GeoTIFF, NetCDF, HDF5, COG, ASCII grid as stated above), but they all share the same underlying structure of a regular grid with values assigned to each cell. The specific format may affect how you read and interpret the data, but the conceptual model of a raster grid remains consistent across formats.\n\n\n\n\n\n\nNoteMore about GeoTIFF and COG data formats…\n\n\n\nGeoTIFF extends standard image files by embedding geographic referencing information directly in the file. Cloud Optimized GeoTIFF (COG) is an extension of GeoTIFF designed for cloud storage and efficient access. COG files are structured to allow for efficient reading of data over the internet, making them ideal for web mapping and analysis.\n\n\n\n\nNetCDF data format is commonly used to store raster data (although they can represent other structures as well).\nMany NSIDC data sets are best understood as named, labeled arrays, not as tables or spreadsheets.\nNetCDF allows data to be organized by named dimensions such as space, time, and height.\nvariable(time, y, x)\nThis means:\n\nThe data are stored as a multidimensional block\nEach axis has a name, units, and meaning\nPosition along each axis matters\n\nNetCDF is a scientific data container designed to store multidimensional arrays with metadata. At NSIDC it is often used to store gridded data sets, time series stacks, or model outputs, but it can represent many structures (not just raster or grid) depending on how it is written.\n\n\n\n\n\n\nNoteMore about HDF5 and NetCDF data formats…\n\n\n\nHDF5 was designed as a flexible container for storing large scientific data sets with complex internal structure. It is the “backbone”/ underlying structure of NetCDF4. It supports hierarchical grouping, mixed data types, and metadata, where NetCDF was created to store large, multidimensional scientific data sets while keeping data and metadata together. It allows variables to be tied to named dimensions (time, latitude, longitude, height), making files self-describing and machine-interpretable.\n\n\n\n\nNetCDF = dimensions + variables + attributes\nA NetCDF file typically contains three key components.\n\nDimensions define the shape of the data. Below is an example of a 3-dimensional (3-D) data set.\nDimensions:\n  time = 365\n  y    = 720\n  x    = 720\nEach dimension represents an independent axis:\n\ntime → when the observation occurred\ny, x → the coordinates of each grid cell (usually the center of the grid cell).\nsometimes z or level → vertical structure (this would be a 4th dimension)\n\n\n\nVariables are arrays of values defined over one or more dimensions.\nVariables:\n  sea_ice_concentration(time, y, x)\n  latitude(y, x)\n  longitude(y, x)\nVisually, you can think of a 3-dimensional variable (like sea_ice_concentration above) as a stack of 2-D maps through time that form a data-cube:\n\n  \"Stacked\" 2D grid slices to create a 3-dimensional NetCDF datacube\n  Sea ice concentration at three time steps, showing a 3-dimensional NetCDF variable(time, y, x) is as stack of 2D arrays.\n\n  \n    \n      \n    \n  \n\n  \n  \n\n  \n  \n  \n  \n  \n  \n  0.82\n  0.74\n  0.61\n  0.78\n  0.70\n  0.52\n  0.36\n  0.43\n  0.29\n  t = t₀\n\n  \n  \n  \n  \n  \n  \n  0.91\n  0.85\n  0.72\n  0.88\n  0.79\n  0.63\n  0.44\n  0.51\n  0.38\n  t = t₁\n\n  \n  \n  \n  \n  \n  \n  0.87\n  0.80\n  0.69\n  0.83\n  0.75\n  0.58\n  0.40\n  0.47\n  0.33\n  t = t₂\n\n  \n  \n  y\n\n  \n  \n  x\n\n  \n  \n  time\n\n\nEach slice shares:\n\nthe same grid\nthe same projection\nthe same variable definition\n\n\n\nAttributes store metadata that describe how to interpret the values and may be attached to:\n\nthe file (global attributes)\nindividual variables\nspatial coordinate variables\n\nAttributes:\nunits = \"%\"\nvalid_range = 0 to 100\nmissing_value = -9999\nlong_name = \"Sea Ice Concentration\"\nAttributes explain:\n\nwhat the numbers mean\nhow they were produced\nhow they should (and should not) be used\n\nHaving well-defined attributes is something that sets NetCDF apart from simpler formats. A LOT of scientific information can be embedded within these attributes, and a lot of it is essential for proper data interpretation.\n\n\nCommon NetCDF data shapes\n\n3-D (for example, a variable over time and horizontal space)\nvariable(time, y, x)\nExamples:\n\nSea ice concentration\nSnow cover\nSurface temperature\n\n\n\n4-D (perhaps a variable over time + horizontal space + vertical space)\nvariable(time, level, y, x)\nExamples:\n\nAir temperature at atmospheric pressure levels (e.g., 1000 hPa → 100 hPa)\nOcean salinity at different depths\nSoil temperature/moisture at different depths\n\n\n\n\n\n\nSwath data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Preserving original satellite observation geometry\nCommon formats: HDF-EOS, NetCDF with geolocation arrays\n\n\nSwath data preserve measurements close to their native satellite measurement geometry along an orbit.\nSatellite flight direction →\n────────────────────────────────────\n\n   ◯     ◯      ◯      ◯      ◯\n     ◯      ◯      ◯      ◯\n   ◯     ◯      ◯      ◯      ◯\n     ◯      ◯      ◯      ◯\nEach ◯ = one observation footprint\nThe above is a highly idealized example as swath geometry varies by mission, but notice how:\n\nSpacing can vary across the swath (although this is not the case for all sensors)\nFootprints overlap differently near edges\nNo fixed row/column alignment\n\nSwath data typically preserves:\n\nNative resolution\nViewing angle\nExact observation timing\n\nThis makes them important for:\n\nCalibration and validation\nAlgorithm development\nApplications sensitive to observation geometry\n\n\nCommon challenges\n\nHarder to visualize\nNot directly comparable across time or space\nMust be transformed to a regular geospatial grid before analysis\n\n\n\n\n\n\n\nNoteMore about the HDF-EOS data format…\n\n\n\nHDF-EOS adds Earth Observing System conventions on top of HDF to represent satellite data structures such as swaths, grids, and point measurements. It was created so NASA mission products could store observation geometry and geolocation alongside measurements in a consistent way.\n\n\n\n\n\nTabular data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Discrete observations, station data, or summaries\nCommon formats: CSV, TSV, Parquet, NetCDF tables\n\n\nFor many users, tabular or delimited data feels familiar because it resembles spreadsheets used in tools like Excel or Google Sheets.\n| date       | latitude | longitude | variable |\n|------------|----------|-----------|----------|\n| 2022-01-01 |  70.2    | -150.1    | 0.82     |\n| 2022-01-02 |  70.2    | -150.1    | 0.79     |\n| 2022-01-03 |  70.2    | -150.1    | 0.85     |\nEach row represents a record, and each column represents a field.\nTabular formats are widely used because the record–field structure organizes data into simple rows and columns. They are human-readable, easy to edit and inspect, and supported by nearly all software environments.\nAt NSIDC, tabular data are commonly used for:\n\nTime series for a location or region\nSummary statistics derived from spatial products\nPoint-based observations or extractions\n\nSeveral file formats exist specifically to store tabular information, ranging from simple text tables to structured exchange formats.\n\nWhat tabular data do not standardize\nUnlike gridded or vector formats, tabular files typically do not embed:\n\nCoordinate reference system (CRS)\nSpatial resolution or footprint\nRelationships between neighboring observations\nProcessing history\n\nInstead, this information is often:\n\nDocumented externally\nAssumed based on context\nNon-existent\n\nFor example, a table like this:\n| latitude | longitude | value |\n|----------|-----------|-------|\n| 70.2     | -150.1    | 0.82  |\nDoes not tell you:\n\nWhether the value represents a point measurement\nWhether it is an average over an area\nHow large that area might be\n\nThat meaning must come from metadata or documentation.\nA spreadsheet may show what the values are, but not where or how they were produced.\nIn general, tabular structures are well-suited for:\n\nSingle-location time series\nSmall collections of points\nSummaries and diagnostics\n\nBut are less suitable for:\n\nContinuous spatial fields\nLarge-scale gridded products\nAnalyses requiring detailed spatial context\n\n\n\n\n\n\n\nNoteMore about delimited text formats…\n\n\n\nDelimited text formats like CSV were created to provide a simple, universal way to store tabular data that can be opened in nearly any software environment. Because they are human-readable and easy to generate, they remain widely used for time series, summaries, and data exchange.\n\n\n\n\n\nVector spatial data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Boundaries, tracks, and discrete geographic features\nCommon formats: Shapefile, GeoJSON, GeoPackage, KML\n\n\nVector data typically represent discrete geographic features rather than continuous spatial fields.\n\n\n  \n  \n  Point\n\n  \n  \n  Line\n\n  \n  \n  Polygon\n\n\nExamples:\n\nGlacier outlines\nIce sheet boundaries\nGrounding lines\n\n\nGeometry types\n\nPoints\n\n  \n\nPoints represent a single location with no area or length.\nCommon uses:\n\nObservation stations\nSample locations\nReference points\n\n\n\nLines\n\n  \nLines represent linear features with length but no area.\nCommon uses:\n\nGrounding lines\nIce front positions\nTransects\n\n\n\nPolygons\n\n\n  \n\n\nPolygons represent areas with defined boundaries.\nCommon uses:\n\nGlacier outlines\nIce sheet masks\nDrainage basins\n\n\n\n\nAttributes\nEach feature includes attributed data, where attributes describe properties of unique features:\n| Feature ID | Name        | Area_km2 | Year |\n|------------|-------------|----------|------|\n| 001        | Glacier A   | 12.4     | 2020 |\n| 002        | Glacier B   |  8.9     | 2020 |\nVector formats exist because many spatial features are:\n\nDiscrete rather than continuous\nBetter described by boundaries than averages\nInterpreted as objects, not fields\n\n\n\n\n\n\n\nNoteMore about Shapefile data format…\n\n\n\nThe shapefile format, actually composed of multiple files, was introduced as an early GIS standard for storing vector features with attributes. Although newer formats now exist, shapefiles remain common because of their compatibility across tools and legacy data sets.\n\n\n\n\nHow vector data differ from rasters\nRaster:  value everywhere\nVector:  value only where features exist\nKey differences:\n\nGeometry is explicit, not implied by grid cells\nPrecision depends on digitization, not grid spacing\nAttributes are attached to features, not cells\n\nVector data represent objects and boundaries, not continuous fields.",
     "crumbs": [
       "NSIDC Data",
-      "NASA collections and granules"
+      "Data structures and formats"
     ]
   },
   {
-    "objectID": "reference-guides/collections-granules.html#granules",
-    "href": "reference-guides/collections-granules.html#granules",
-    "title": "Collections & Granules",
-    "section": "📄 Granules",
-    "text": "📄 Granules\nA granule is the smallest discrete data unit in a collection. Depending on the data format, a granule may be a single file or a set of files that together represent one logical item (for example, a shapefile’s .shp, .shx, .dbf components).\nWhat each granule represents can vary from one science mission (and data product) to the next. For example, one granule could represent:\n\nOne SMAP L2 soil moisture half-orbit pass,\n\nOne AMSR2 daily polar gridded brightness temperature file, or\nOne MEaSUREs Greenland monthly ice sheet velocity magnitude mosaic\n\nGranules also have their own metadata, such as:\n\nTimestamps\n\nA spatial bounding box\n\nFile size\n\nVariables included, etc.\n\nGranules are what you actually download and analyze. It is common to need MANY granules for a specific research objective!",
+    "objectID": "reference-guides/data-structures.html#common-file-formats-at-nsidc",
+    "href": "reference-guides/data-structures.html#common-file-formats-at-nsidc",
+    "title": "Data structures and formats",
+    "section": "Common file formats at NSIDC",
+    "text": "Common file formats at NSIDC\nThe table below lists common file formats encountered in NSIDC data products and some practical considerations when working with them.\n\n\n\n\n\n\n\n\n\n\nFile format\nCommon uses\nQuirks\nNSIDC example products\nCommon tools (programmatic + GUI)\n\n\n\n\nNetCDF4 / NetCDF classic\nClimate records, reanalysis products, gridded time series, model output.\nTime encoding confusion; multidimensional indexing; large file sizes; steep learning curve without high-level tools.\nSea Ice Concentration CDR\nAntarctic Ice Velocity\nPython: xarray, netCDF4 (low-level)\nR: terra, stars, ncdf4\nGUI: Panoply, QGIS, ArcGIS Pro, HDFView\n\n\nHDF5\nMission-level products, intermediate processing outputs, complex hierarchical data sets.\nDeep hierarchies; unclear variable naming; inconsistent conventions between products.\nSMAP L3 Soil Moisture\nICESat-2 ATL03\nPython: rioxarray, h5py\nR: rhdf5\nGUI: Panoply, HDFView\n\n\nHDF-EOS2 / HDF-EOS5\nSatellite swath and gridded mission products (e.g., MODIS).\nSpecialized structure; harder to read without EOS-aware tools; metadata spread across groups.\nMODIS Snow Cover\nAMSR-E/AMSR2 SWE\nPython: xarray, h5netcdf, pyhdf\nR: terra\nGUI: Panoply, HDFView\n\n\nGeoTIFF / TIFF / COG\nGridded maps, spatial subsets, visualization-ready products.\nLimited metadata compared to NetCDF; alignment issues across data sets; large files at high resolution.\nIce Sheet Velocity\nLand Freeze/Thaw Status\nPython: rasterio, rioxarray, xarray\nR: terra, raster\nGUI: QGIS, ArcGIS Pro\n\n\nShapefile\nIce sheet boundaries, grounding lines, glacier outlines.\nMulti-file dependency; field name limits; aging format.\nGlacier Database\nGlacier Terminus Positions\nPython: geopandas, shapely\nR: sf\nGUI: QGIS, ArcGIS Pro\n\n\nCSV / TSV / Other Delimited Text\nTime series, summaries, point extractions.\nOften lacks spatial context or a coordinate reference system; metadata easily lost; scaling issues.\nIce Thickness\nPython: pandas\nR: readr, data.table, tibble\nGUI: Excel, LibreOffice\n\n\nASCII grid / text\nHistorical products, simple model outputs.\nNo embedded CRS; manual parsing required.\nSea Ice Trends\nPython: numpy\nR: base R, terra\nGUI: Text editors, QGIS (limited)\n\n\nPNG / GIF / JPEG\nQuicklook imagery, browse products, outreach.\nNot analysis-ready; no quantitative metadata.\nArctic Change\nPython: numpy, OpenCV, Pillow\nGUI: Web browser, image viewers, NASA Worldview\n\n\nJSON\nMetadata responses, data access services.\nNot suitable for large arrays; not analysis-ready.\nSMAP Ancillary Files\nPython: json\nR: jsonlite\nGUI: Web browser",
     "crumbs": [
       "NSIDC Data",
-      "NASA collections and granules"
+      "Data structures and formats"
     ]
   },
   {
-    "objectID": "reference-guides/points-pixels-grids/points_pixels_grids.html",
-    "href": "reference-guides/points-pixels-grids/points_pixels_grids.html",
-    "title": "Points, Pixels, Grids",
-    "section": "",
-    "text": "Points, Pixels, Grids\nA placeholder for a deeper dive into grids and resampling. I plan on basing this on Ken Knowles page of a similar name but modified for gdal, python and other new tools.\nhttps://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells"
+    "objectID": "reference-guides/data-structures.html#wrapping-up",
+    "href": "reference-guides/data-structures.html#wrapping-up",
+    "title": "Data structures and formats",
+    "section": "Wrapping up",
+    "text": "Wrapping up\nA single NSIDC data set may involve multiple structures (and formats!) through stages of its development and use. For example, a satellite mission may produce swath data in HDF-EOS, which are then resampled to a regular grid and stored in NetCDF for distribution, and users may extract tabular time series for analysis…\nSwath observations\n        ↓\nModeled / aggregated grid\n        ↓\nNetCDF storage\n        ↓\nTabular extraction for analysis\nUnderstanding data structure (and how that relates to the data format) can help you interpret values correctly, use appropriate tools, and avoid common issues or wrong assumptions.",
+    "crumbs": [
+      "NSIDC Data",
+      "Data structures and formats"
+    ]
   },
   {
-    "objectID": "reference-guides/collection-granule-search.html",
-    "href": "reference-guides/collection-granule-search.html",
-    "title": "Searching for collections and granules",
+    "objectID": "reference-guides/definitions.html",
+    "href": "reference-guides/definitions.html",
+    "title": "Definitions",
     "section": "",
-    "text": "earthaccess is a Python library to search for and download or stream NASA Earth science data with just a few lines of code.\nEarthaccess has a Quickstart Guide with instructions for installation as well as more detailed documentation on searching for data.",
+    "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” In Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
+  },
+  {
+    "objectID": "reference-guides/find-access.html",
+    "href": "reference-guides/find-access.html",
+    "title": "Finding and accessing data",
+    "section": "",
+    "text": "Prerequisite reminder\nA NASA Earthdata Login is required for all data access methods, including download and direct cloud access.",
     "crumbs": [
       "Working with Data",
-      "Finding and accessing data",
-      "Searching for collections and granules"
+      "Finding and accessing data"
     ]
   },
   {
-    "objectID": "reference-guides/collection-granule-search.html#search-for-collections-i.e.-data-sets",
-    "href": "reference-guides/collection-granule-search.html#search-for-collections-i.e.-data-sets",
-    "title": "Searching for collections and granules",
-    "section": "Search for collections (i.e. data sets)",
-    "text": "Search for collections (i.e. data sets)\nearthaccess.search_datasets allows you to search for NASA collections using keywords. As a simple example, we’ll search for data sets with the keyword “icesat-2” associated with them.\nIf you haven’t already, import the library. We also use the pprint library in this example, so import it as well.\nimport earthaccess\nimport pprint\ndatasets = earthaccess.search_datasets(\n    keyword=\"icesat-2\"\n    )\nsearch_datasets queries NASA’s Common Metadata Repository (CMR) and returns a list of collection objects associated with that keyword. We can find the number of collections or CMR “hits” using len().\nprint(len(datasets))\n77\nOther parameters accepted by earthaccess.search_datasets can be found here.\nCollection objects have a summary method associated with them that we can use to explore certain metadata for the collection. We can use the built-in Python pprint module to view the summary metadata.\npprint.pprint(datasets[0].summary()))\n{'cloud-info': {'Region': 'us-west-2',\n                'S3BucketAndObjectPrefixNames': ['nsidc-cumulus-prod-protected/ATLAS/ATL08/007',\n                                                 'nsidc-cumulus-prod-public/ATLAS/ATL08/007'],\n                'S3CredentialsAPIDocumentationURL': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentialsREADME',\n                'S3CredentialsAPIEndpoint': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentials'},\n 'concept-id': 'C3565574177-NSIDC_CPRD',\n 'file-type': \"[{'FormatType': 'Native', 'Format': 'HDF5', \"\n              \"'FormatDescription': 'HTTPS'}]\",\n 'get-data': ['https://search.earthdata.nasa.gov/search/granules?p=C3565574177-NSIDC_CPRD',\n              'https://openaltimetry.earthdatacloud.nasa.gov/data/',\n              'https://nsidc.org/data/data-access-tool/ATL08/versions/7/',\n              'https://cmr.earthdata.nasa.gov/virtual-directory/collections/C3565574177-NSIDC_CPRD',\n              'https://earthaccess.readthedocs.io/en/stable/'],\n 'short-name': 'ATL08',\n 'version': '007'}\nFor each collection, summary returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM):\n\nconcept-id is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center).\nshort_name is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after ‘DATA SET ID’. See the table below for a list of the shortnames for ICESat-2 collections.\nversion is the version of each collection.\nfile-type gives information about the file format of the collection granules.\nget-data is a collection of URLs that can be used to access the data, collection landing pages and data tools.\ncloud-info this is for cloud-hosted data and provides additional information about the location of the S3 bucket that holds the data and where to get temporary AWS S3 credentials to access the S3 buckets. earthaccess handles these credentials and the links to the S3 buckets, so in general you won’t need to worry about this information.\n\nFor the ICESat-2 search results, within the concept-id, there is a provider-id NSIDC_CPRD. NSIDC_CPRD is for the cloud-hosted collections.\nFor ICESat-2, ShortNames are generally how different products are referred to.\n\n\n\n\n\n\n\nShortName\nProduct Description\n\n\n\n\nATL03\nATLAS/ICESat-2 L2A Global Geolocated Photon Data\n\n\nATL06\nATLAS/ICESat-2 L3A Land Ice Height\n\n\nATL07\nATLAS/ICESat-2 L3A Sea Ice Height\n\n\nATL08\nATLAS/ICESat-2 L3A Land and Vegetation Height\n\n\nATL09\nATLAS/ICESat-2 L3A Calibrated Backscatter Profiles and Atmospheric Layer Characteristics\n\n\nATL10\nATLAS/ICESat-2 L3A Sea Ice Freeboard\n\n\nATL11\nATLAS/ICESat-2 L3B Slope-Corrected Land Ice Height Time Series\n\n\nATL12\nATLAS/ICESat-2 L3A Ocean Surface Height\n\n\nATL13\nATLAS/ICESat-2 L3A Along Track Inland Surface Water Data",
+    "objectID": "reference-guides/find-access.html#programmatic-data-access-options",
+    "href": "reference-guides/find-access.html#programmatic-data-access-options",
+    "title": "Finding and accessing data",
+    "section": "Programmatic data access options",
+    "text": "Programmatic data access options\n\n\n\nProgrammatic method\nStrengths\nResource\n\n\n\n\nearthaccess Python library\nRecommended method - Search for and download or stream NASA Earth science data with just a few lines of code.\nDocumentation\n\n\nharmony-py Python library\nRecommended method - Utilize NASA Harmony services to subset, reformat, reproject certain NASA Earthdata cloud data sets.\nSubsetting NASA Earthdata Using Harmony\n\n\ncommand line tools, e.g. curl\nQuick access if you already know what you need and you are not a Python user\nDownloading Data from Earthdata Cloud to Your Local Computer Using the Command Line",
     "crumbs": [
       "Working with Data",
-      "Finding and accessing data",
-      "Searching for collections and granules"
+      "Finding and accessing data"
     ]
   },
   {
-    "objectID": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
-    "href": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
-    "title": "Searching for collections and granules",
-    "section": "Search for granules (e.g. files) within a collection using filter parameters",
-    "text": "Search for granules (e.g. files) within a collection using filter parameters\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters. Below we’ll search for land-ice height data over the Juneau Ice Field in Alaska for a certain time period.\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '007',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects from the data set we specified using short_name and version that fall within the spatial and temporal bounds we provided. We can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_data can be found here and additional usage examples can be found here.\nWe can look at file names by retrieving the access links for the files:\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nWe can get an estimate of file sizes:\n[granule.size() for granule in files]\n[16.0, 40.0, 40.0, 32.0]",
+    "objectID": "reference-guides/find-access.html#graphical-user-interfaces-enabling-data-access",
+    "href": "reference-guides/find-access.html#graphical-user-interfaces-enabling-data-access",
+    "title": "Finding and accessing data",
+    "section": "Graphical User Interfaces enabling data access",
+    "text": "Graphical User Interfaces enabling data access\n\n\n\nGraphical User Interface\nStrengths\nResource\n\n\n\n\nNASA Earthdata Search\nDiscover, visualize, and access petabytes of NASA Earth observing data. Filter data by mission, keyword, spatial and temporal range, filename, etc. Subset, reformat, reproject select data sets.\nSearch, order, and customize NSIDC DAAC data with NASA Earthdata Search\n\n\nNSIDC Data Access Tool\nIntuitive and simple way to quickly filter and access data from the NSIDC website. Access from a data set landing page. Provides multiple ways to place your order.\nFilter and order from a data set web page using the Data Access Tool\n\n\nOpenAltimetry\nDiscover, visualize, and download ICESat-2 and ICESat data\nExplore OpenAltimetry\n\n\nAppEARS\nAccess data from a variety of federal data archives. Subset data spatially, temporally, and by variable. Transform data from its original format into an analysis ready format (e.g. GeoTIFF).\nGetting started with AppEARS\n\n\nNASA Worldview\nExplore imagery and visualize NASA Earth science data\nAbout Worldview",
     "crumbs": [
       "Working with Data",
-      "Finding and accessing data",
-      "Searching for collections and granules"
+      "Finding and accessing data"
     ]
   },
   {
-    "objectID": "reference-guides/projections.html",
-    "href": "reference-guides/projections.html",
-    "title": "Projections and Coordinate Systems",
+    "objectID": "reference-guides/datasets.html",
+    "href": "reference-guides/datasets.html",
+    "title": "Datasets",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_"
+    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nVIIRS subsetting “on your own” in lieu of service availability\nWhat others?"
   },
   {
-    "objectID": "reference-guides/projections.html#overview",
-    "href": "reference-guides/projections.html#overview",
-    "title": "Projections and Coordinate Systems",
+    "objectID": "reference-guides/get-edl.html",
+    "href": "reference-guides/get-edl.html",
+    "title": "NASA Earthdata Login",
     "section": "",
-    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_"
+    "text": "NASA Earthdata are freely accessible to all users, but a NASA Earthdata Login is required for access. Users can register for an Earthdata Login at https://urs.earthdata.nasa.gov/.\nSome programmatic data access methods are simplified by setting up your Earthdata Login credentials in a netrc file for easy authentication. Instructions for creating a netrc file can be found here.",
+    "crumbs": [
+      "Getting Started",
+      "Getting an Earthdata Login"
+    ]
   },
   {
-    "objectID": "reference-guides/projections.html#what-is-a-map-projection",
-    "href": "reference-guides/projections.html#what-is-a-map-projection",
-    "title": "Projections and Coordinate Systems",
-    "section": "What is a map projection?",
-    "text": "What is a map projection?"
-  },
-  {
-    "objectID": "reference-guides/projections.html#what-is-a-datum",
-    "href": "reference-guides/projections.html#what-is-a-datum",
-    "title": "Projections and Coordinate Systems",
-    "section": "What is a datum?",
-    "text": "What is a datum?\nEllipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton. Confirmed by measurements of length of arc.\nThe geoid - the figure (shape) of the Earth if it were measured at mean sea level - involves gravity. The geoid is an undulating surface that deviates from a well fitting ellipsoid by ~ 100 m.\nReference ellipsoid defined by: 1. semi-major and semi-minor axes; 2. semi-major axis and flattening; 3. semi-major axis and eccentricity;\nThese are all related.\nNewton flattening 1/~300. Add WGS84 for current estimate.\nA datum is a smooth mathematical surface that closely fits the mean sea-level surface - from @snyder\nEarth centered datums - e.g. WGS84 - no local reference point. The center of the Earth is the reference point.\n\\[\nb = a(1 - f); f = 1-b/a\n\\] \\[\ne^2 = 2f - f^2; \\\\\nf = 1 - (1 - e^2)^{1/2}\n\\]"
-  },
-  {
-    "objectID": "reference-guides/projections.html#what-is-a-coordinate-reference-system",
-    "href": "reference-guides/projections.html#what-is-a-coordinate-reference-system",
-    "title": "Projections and Coordinate Systems",
-    "section": "What is a coordinate reference system?",
-    "text": "What is a coordinate reference system?"
-  },
-  {
-    "objectID": "reference-guides/projections.html#nsidc-coordinate-reference-systems",
-    "href": "reference-guides/projections.html#nsidc-coordinate-reference-systems",
-    "title": "Projections and Coordinate Systems",
-    "section": "NSIDC coordinate reference systems",
-    "text": "NSIDC coordinate reference systems"
-  },
-  {
-    "objectID": "reference-guides/projections.html#how-can-i-define-a-map-projects-of-crs-in-a-data-file",
-    "href": "reference-guides/projections.html#how-can-i-define-a-map-projects-of-crs-in-a-data-file",
-    "title": "Projections and Coordinate Systems",
-    "section": "How can I define a map projects of CRS in a data file?",
-    "text": "How can I define a map projects of CRS in a data file?\n\nNetCDF and CF-Conventions\nInclude a link to NSIDC projection definitions\n\n\nGeoTIFF"
-  },
-  {
-    "objectID": "reference-guides/projections.html#geographic-coordinate-systems",
-    "href": "reference-guides/projections.html#geographic-coordinate-systems",
-    "title": "Projections and Coordinate Systems",
-    "section": "Geographic Coordinate Systems",
-    "text": "Geographic Coordinate Systems\nA Geographic Coordinate System is a spherical or ellipsoidal coordinate system with coordinates latitude \\(\\phi\\), longitude \\(\\lambda\\), and height \\(z\\). Latitude and Longitude are defined relative to a reference ellipsoid. There are many reference ellipsoids, so a full definition of geographic coordinates requires a full specification of the coordinate reference system. Check! Most global datasets, GPS and satellites use the WGS84 ellipsoid.\nTwo levels of abstraction are required to define latitude and longitude. First a model of the surface of the Earth is required. This model approximates mean sea level over the oceans and continues this surface under the continents. The second step is to approximate the geoid with a mathematical definition of the surface of the geoid. A simple solution is to use a sphere. However, it is more accurate to use an Ellipsoid.\nThe latitude of a point on the reference ellipsoid is the angle formed by the normal to the reference surface at the point of interest, and the plane of the Equator or Equatorial Plane. The Equatorial plane is perpendicular to the Earths axis of rotation."
-  },
-  {
-    "objectID": "reference-guides/plotting-data.html",
-    "href": "reference-guides/plotting-data.html",
-    "title": "Plotting Data",
+    "objectID": "reference-guides/nsidc-file-formats.html",
+    "href": "reference-guides/nsidc-file-formats.html",
+    "title": "File formats",
     "section": "",
-    "text": "Describes how to plotting NSIDC Datasets using standard tools like cartopy, GeoViews.\n\nCover tricky plotting problems - e.g. ice motion vectors\n\nDefining EASE and NSIDC Polar projections in cartopy\n\nExamples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions). A set of specific examples might not be necessary if coordinates are included"
-  },
-  {
-    "objectID": "reference-guides/overview.html",
-    "href": "reference-guides/overview.html",
-    "title": "Reference Guides",
-    "section": "",
-    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
-  },
-  {
-    "objectID": "reference-guides/overview.html#introduction",
-    "href": "reference-guides/overview.html#introduction",
-    "title": "Reference Guides",
-    "section": "",
-    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
+    "text": "How to read and navigate file formats commonly found at NSIDC. This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.\n\nNetCDF4 (and NetCDFx)\nHDF5\nHDF-EOS\nShapefiles\nGeoTIFF"
   },
   {
     "objectID": "reference-guides/access-data.html",
@@ -676,134 +613,230 @@
     ]
   },
   {
-    "objectID": "reference-guides/nsidc-file-formats.html",
-    "href": "reference-guides/nsidc-file-formats.html",
-    "title": "File formats",
+    "objectID": "reference-guides/overview.html",
+    "href": "reference-guides/overview.html",
+    "title": "Reference Guides",
     "section": "",
-    "text": "How to read and navigate file formats commonly found at NSIDC. This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.\n\nNetCDF4 (and NetCDFx)\nHDF5\nHDF-EOS\nShapefiles\nGeoTIFF"
+    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
   },
   {
-    "objectID": "reference-guides/get-edl.html",
-    "href": "reference-guides/get-edl.html",
-    "title": "NASA Earthdata Login",
+    "objectID": "reference-guides/overview.html#introduction",
+    "href": "reference-guides/overview.html#introduction",
+    "title": "Reference Guides",
     "section": "",
-    "text": "NASA Earthdata are freely accessible to all users, but a NASA Earthdata Login is required for access. Users can register for an Earthdata Login at https://urs.earthdata.nasa.gov/.\nSome programmatic data access methods are simplified by setting up your Earthdata Login credentials in a netrc file for easy authentication. Instructions for creating a netrc file can be found here.",
-    "crumbs": [
-      "Getting Started",
-      "Getting an Earthdata Login"
-    ]
+    "text": "This section of the cookbook contains Reference Guides to a variety of topics. Reference Guides are intended to provide background information for the How-To Guides.\nReference Guides are organized into the following sections: Maybe add a short description of each section here\n\nWhat is an API?;\nUnderstanding NASA-speak for datasets;\nMap projections and grids demystified."
   },
   {
-    "objectID": "reference-guides/datasets.html",
-    "href": "reference-guides/datasets.html",
-    "title": "Datasets",
+    "objectID": "reference-guides/plotting-data.html",
+    "href": "reference-guides/plotting-data.html",
+    "title": "Plotting Data",
     "section": "",
-    "text": "ICESat-2 - a guide to accessing ICESat-2 data\n\nHow to navigate HDF5 groups\n\nFinding key variables\n\nHow do I get surface height and surface types\n\nGeophysical corrections\n\n\nWorking with ITRFs - use Kevin’s tutorial\n\nGridding data\n\nA naive approach\n\n\nFinding intersections with other data\n\n\n\nMODIS\n\nSMAP\n\nSea ice index\n\nRecreate time series plots using pandas\n\n\nPM TBs and sea ice concentration (0001, 0051, 0079, 0080, 0081, CDR)\n\nCETB (NSIDC-0630)\n\nHMA\n\nVIIRS subsetting “on your own” in lieu of service availability\nWhat others?"
+    "text": "Describes how to plotting NSIDC Datasets using standard tools like cartopy, GeoViews.\n\nCover tricky plotting problems - e.g. ice motion vectors\n\nDefining EASE and NSIDC Polar projections in cartopy\n\nExamples of common grids (e.g., EASE2 25 km, PS 25 km), and hints for other grids (e.g., different resolutions). A set of specific examples might not be necessary if coordinates are included"
   },
   {
-    "objectID": "reference-guides/find-access.html",
-    "href": "reference-guides/find-access.html",
-    "title": "Finding and accessing data",
+    "objectID": "reference-guides/projections.html",
+    "href": "reference-guides/projections.html",
+    "title": "Projections and Coordinate Systems",
     "section": "",
-    "text": "Prerequisite reminder\nA NASA Earthdata Login is required for all data access methods, including download and direct cloud access.",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_"
+  },
+  {
+    "objectID": "reference-guides/projections.html#overview",
+    "href": "reference-guides/projections.html#overview",
+    "title": "Projections and Coordinate Systems",
+    "section": "",
+    "text": "The purpose of this reference guide is to provide an introduction to and background for A coordinate conversion from an ellipsoidal coordinate system to a plane.map projections. For a full treatment, please consult @snyder_projections_"
+  },
+  {
+    "objectID": "reference-guides/projections.html#what-is-a-map-projection",
+    "href": "reference-guides/projections.html#what-is-a-map-projection",
+    "title": "Projections and Coordinate Systems",
+    "section": "What is a map projection?",
+    "text": "What is a map projection?"
+  },
+  {
+    "objectID": "reference-guides/projections.html#what-is-a-datum",
+    "href": "reference-guides/projections.html#what-is-a-datum",
+    "title": "Projections and Coordinate Systems",
+    "section": "What is a datum?",
+    "text": "What is a datum?\nEllipsoid - the Earth is not a sphere but an oblate spheroid of revolution - discovered by Newton. Confirmed by measurements of length of arc.\nThe geoid - the figure (shape) of the Earth if it were measured at mean sea level - involves gravity. The geoid is an undulating surface that deviates from a well fitting ellipsoid by ~ 100 m.\nReference ellipsoid defined by: 1. semi-major and semi-minor axes; 2. semi-major axis and flattening; 3. semi-major axis and eccentricity;\nThese are all related.\nNewton flattening 1/~300. Add WGS84 for current estimate.\nA datum is a smooth mathematical surface that closely fits the mean sea-level surface - from @snyder\nEarth centered datums - e.g. WGS84 - no local reference point. The center of the Earth is the reference point.\n\\[\nb = a(1 - f); f = 1-b/a\n\\] \\[\ne^2 = 2f - f^2; \\\\\nf = 1 - (1 - e^2)^{1/2}\n\\]"
+  },
+  {
+    "objectID": "reference-guides/projections.html#what-is-a-coordinate-reference-system",
+    "href": "reference-guides/projections.html#what-is-a-coordinate-reference-system",
+    "title": "Projections and Coordinate Systems",
+    "section": "What is a coordinate reference system?",
+    "text": "What is a coordinate reference system?"
+  },
+  {
+    "objectID": "reference-guides/projections.html#nsidc-coordinate-reference-systems",
+    "href": "reference-guides/projections.html#nsidc-coordinate-reference-systems",
+    "title": "Projections and Coordinate Systems",
+    "section": "NSIDC coordinate reference systems",
+    "text": "NSIDC coordinate reference systems"
+  },
+  {
+    "objectID": "reference-guides/projections.html#how-can-i-define-a-map-projects-of-crs-in-a-data-file",
+    "href": "reference-guides/projections.html#how-can-i-define-a-map-projects-of-crs-in-a-data-file",
+    "title": "Projections and Coordinate Systems",
+    "section": "How can I define a map projects of CRS in a data file?",
+    "text": "How can I define a map projects of CRS in a data file?\n\nNetCDF and CF-Conventions\nInclude a link to NSIDC projection definitions\n\n\nGeoTIFF"
+  },
+  {
+    "objectID": "reference-guides/projections.html#geographic-coordinate-systems",
+    "href": "reference-guides/projections.html#geographic-coordinate-systems",
+    "title": "Projections and Coordinate Systems",
+    "section": "Geographic Coordinate Systems",
+    "text": "Geographic Coordinate Systems\nA Geographic Coordinate System is a spherical or ellipsoidal coordinate system with coordinates latitude \\(\\phi\\), longitude \\(\\lambda\\), and height \\(z\\). Latitude and Longitude are defined relative to a reference ellipsoid. There are many reference ellipsoids, so a full definition of geographic coordinates requires a full specification of the coordinate reference system. Check! Most global datasets, GPS and satellites use the WGS84 ellipsoid.\nTwo levels of abstraction are required to define latitude and longitude. First a model of the surface of the Earth is required. This model approximates mean sea level over the oceans and continues this surface under the continents. The second step is to approximate the geoid with a mathematical definition of the surface of the geoid. A simple solution is to use a sphere. However, it is more accurate to use an Ellipsoid.\nThe latitude of a point on the reference ellipsoid is the angle formed by the normal to the reference surface at the point of interest, and the plane of the Equator or Equatorial Plane. The Equatorial plane is perpendicular to the Earths axis of rotation."
+  },
+  {
+    "objectID": "reference-guides/collection-granule-search.html",
+    "href": "reference-guides/collection-granule-search.html",
+    "title": "Searching for collections and granules",
+    "section": "",
+    "text": "earthaccess is a Python library to search for and download or stream NASA Earth science data with just a few lines of code.\nEarthaccess has a Quickstart Guide with instructions for installation as well as more detailed documentation on searching for data.",
     "crumbs": [
       "Working with Data",
-      "Finding and accessing data"
+      "Finding and accessing data",
+      "Searching for collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/find-access.html#programmatic-data-access-options",
-    "href": "reference-guides/find-access.html#programmatic-data-access-options",
-    "title": "Finding and accessing data",
-    "section": "Programmatic data access options",
-    "text": "Programmatic data access options\n\n\n\nProgrammatic method\nStrengths\nResource\n\n\n\n\nearthaccess Python library\nRecommended method - Search for and download or stream NASA Earth science data with just a few lines of code.\nDocumentation\n\n\nharmony-py Python library\nRecommended method - Utilize NASA Harmony services to subset, reformat, reproject certain NASA Earthdata cloud data sets.\nSubsetting NASA Earthdata Using Harmony\n\n\ncommand line tools, e.g. curl\nQuick access if you already know what you need and you are not a Python user\nDownloading Data from Earthdata Cloud to Your Local Computer Using the Command Line",
+    "objectID": "reference-guides/collection-granule-search.html#search-for-collections-i.e.-data-sets",
+    "href": "reference-guides/collection-granule-search.html#search-for-collections-i.e.-data-sets",
+    "title": "Searching for collections and granules",
+    "section": "Search for collections (i.e. data sets)",
+    "text": "Search for collections (i.e. data sets)\nearthaccess.search_datasets allows you to search for NASA collections using keywords. As a simple example, we’ll search for data sets with the keyword “icesat-2” associated with them.\nIf you haven’t already, import the library. We also use the pprint library in this example, so import it as well.\nimport earthaccess\nimport pprint\ndatasets = earthaccess.search_datasets(\n    keyword=\"icesat-2\"\n    )\nsearch_datasets queries NASA’s Common Metadata Repository (CMR) and returns a list of collection objects associated with that keyword. We can find the number of collections or CMR “hits” using len().\nprint(len(datasets))\n77\nOther parameters accepted by earthaccess.search_datasets can be found here.\nCollection objects have a summary method associated with them that we can use to explore certain metadata for the collection. We can use the built-in Python pprint module to view the summary metadata.\npprint.pprint(datasets[0].summary()))\n{'cloud-info': {'Region': 'us-west-2',\n                'S3BucketAndObjectPrefixNames': ['nsidc-cumulus-prod-protected/ATLAS/ATL08/007',\n                                                 'nsidc-cumulus-prod-public/ATLAS/ATL08/007'],\n                'S3CredentialsAPIDocumentationURL': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentialsREADME',\n                'S3CredentialsAPIEndpoint': 'https://data.nsidc.earthdatacloud.nasa.gov/s3credentials'},\n 'concept-id': 'C3565574177-NSIDC_CPRD',\n 'file-type': \"[{'FormatType': 'Native', 'Format': 'HDF5', \"\n              \"'FormatDescription': 'HTTPS'}]\",\n 'get-data': ['https://search.earthdata.nasa.gov/search/granules?p=C3565574177-NSIDC_CPRD',\n              'https://openaltimetry.earthdatacloud.nasa.gov/data/',\n              'https://nsidc.org/data/data-access-tool/ATL08/versions/7/',\n              'https://cmr.earthdata.nasa.gov/virtual-directory/collections/C3565574177-NSIDC_CPRD',\n              'https://earthaccess.readthedocs.io/en/stable/'],\n 'short-name': 'ATL08',\n 'version': '007'}\nFor each collection, summary returns a subset of fields from the collection metadata and the Unified Metadata Model (UMM):\n\nconcept-id is a unique id for the collection. It consists of an alphanumeric code and the provider-id specific to the DAAC (Distributed Active Archive Center).\nshort_name is a quick way of referring to a collection (instead of using the full title). It can be found on the collection landing page underneath the collection title after ‘DATA SET ID’. See the table below for a list of the shortnames for ICESat-2 collections.\nversion is the version of each collection.\nfile-type gives information about the file format of the collection granules.\nget-data is a collection of URLs that can be used to access the data, collection landing pages and data tools.\ncloud-info this is for cloud-hosted data and provides additional information about the location of the S3 bucket that holds the data and where to get temporary AWS S3 credentials to access the S3 buckets. earthaccess handles these credentials and the links to the S3 buckets, so in general you won’t need to worry about this information.\n\nFor the ICESat-2 search results, within the concept-id, there is a provider-id NSIDC_CPRD. NSIDC_CPRD is for the cloud-hosted collections.\nFor ICESat-2, ShortNames are generally how different products are referred to.\n\n\n\n\n\n\n\nShortName\nProduct Description\n\n\n\n\nATL03\nATLAS/ICESat-2 L2A Global Geolocated Photon Data\n\n\nATL06\nATLAS/ICESat-2 L3A Land Ice Height\n\n\nATL07\nATLAS/ICESat-2 L3A Sea Ice Height\n\n\nATL08\nATLAS/ICESat-2 L3A Land and Vegetation Height\n\n\nATL09\nATLAS/ICESat-2 L3A Calibrated Backscatter Profiles and Atmospheric Layer Characteristics\n\n\nATL10\nATLAS/ICESat-2 L3A Sea Ice Freeboard\n\n\nATL11\nATLAS/ICESat-2 L3B Slope-Corrected Land Ice Height Time Series\n\n\nATL12\nATLAS/ICESat-2 L3A Ocean Surface Height\n\n\nATL13\nATLAS/ICESat-2 L3A Along Track Inland Surface Water Data",
     "crumbs": [
       "Working with Data",
-      "Finding and accessing data"
+      "Finding and accessing data",
+      "Searching for collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/find-access.html#graphical-user-interfaces-enabling-data-access",
-    "href": "reference-guides/find-access.html#graphical-user-interfaces-enabling-data-access",
-    "title": "Finding and accessing data",
-    "section": "Graphical User Interfaces enabling data access",
-    "text": "Graphical User Interfaces enabling data access\n\n\n\nGraphical User Interface\nStrengths\nResource\n\n\n\n\nNASA Earthdata Search\nDiscover, visualize, and access petabytes of NASA Earth observing data. Filter data by mission, keyword, spatial and temporal range, filename, etc. Subset, reformat, reproject select data sets.\nSearch, order, and customize NSIDC DAAC data with NASA Earthdata Search\n\n\nNSIDC Data Access Tool\nIntuitive and simple way to quickly filter and access data from the NSIDC website. Access from a data set landing page. Provides multiple ways to place your order.\nFilter and order from a data set web page using the Data Access Tool\n\n\nOpenAltimetry\nDiscover, visualize, and download ICESat-2 and ICESat data\nExplore OpenAltimetry\n\n\nAppEARS\nAccess data from a variety of federal data archives. Subset data spatially, temporally, and by variable. Transform data from its original format into an analysis ready format (e.g. GeoTIFF).\nGetting started with AppEARS\n\n\nNASA Worldview\nExplore imagery and visualize NASA Earth science data\nAbout Worldview",
+    "objectID": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
+    "href": "reference-guides/collection-granule-search.html#search-for-granules-e.g.-files-within-a-collection-using-filter-parameters",
+    "title": "Searching for collections and granules",
+    "section": "Search for granules (e.g. files) within a collection using filter parameters",
+    "text": "Search for granules (e.g. files) within a collection using filter parameters\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within a specified collection using filters. Below we’ll search for land-ice height data over the Juneau Ice Field in Alaska for a certain time period.\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '007',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects from the data set we specified using short_name and version that fall within the spatial and temporal bounds we provided. We can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_data can be found here and additional usage examples can be found here.\nWe can look at file names by retrieving the access links for the files:\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nWe can get an estimate of file sizes:\n[granule.size() for granule in files]\n[16.0, 40.0, 40.0, 32.0]",
     "crumbs": [
       "Working with Data",
-      "Finding and accessing data"
+      "Finding and accessing data",
+      "Searching for collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/definitions.html",
-    "href": "reference-guides/definitions.html",
-    "title": "Definitions",
+    "objectID": "reference-guides/points-pixels-grids/points_pixels_grids.html",
+    "href": "reference-guides/points-pixels-grids/points_pixels_grids.html",
+    "title": "Points, Pixels, Grids",
     "section": "",
-    "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” In Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
+    "text": "Points, Pixels, Grids\nA placeholder for a deeper dive into grids and resampling. I plan on basing this on Ken Knowles page of a similar name but modified for gdal, python and other new tools.\nhttps://nsidc.org/data/user-resources/help-center/mapping-and-gridding-primer-points-pixels-grids-and-cells"
   },
   {
-    "objectID": "reference-guides/data-structures.html",
-    "href": "reference-guides/data-structures.html",
-    "title": "Data structures and formats",
+    "objectID": "reference-guides/collections-granules.html",
+    "href": "reference-guides/collections-granules.html",
+    "title": "Collections & Granules",
     "section": "",
-    "text": "Earth observation data are stored in a variety of structures and file formats, each shaped by how the data were collected, processed, distributed, and historically used, along with the science questions that guided their creation. At NSIDC, formats reflect satellite mission design, modeling needs, interoperability standards, and long-term archiving requirements.\nThis page describes the formats and structures used to store NSIDC data so that users can better understand how to work with this data.\nIt is helpful to distinguish between:\nData structure — how data observations are organized conceptually (e.g. as a grid, rows/columns, discrete features, etc.), and\nFile format — how those structured data are stored and delivered.\nUnderstanding the basics (and differences between the two) can help you:\nIn practice, the relationship between a science question, available data, and the tools used for analysis is often not linear. Science questions often guide data collection and product design, but they are also shaped by what data already exist. As a result, data structures, file formats, and tools are interconnected, with multiple valid pathways depending on the data set and workflow. The figure below highlights these conceptual relationships between science questions, data structures, file formats, and analysis tools.\nflowchart TD\n\nA[Science question]\n\nB[Data structures]\nB1[Raster]\nB2[Swath]\nB3[Vector]\nB4[Tabular]\n\nC[File formats]\nC1[NetCDF / HDF5]\nC2[GeoTIFF]\nC3[Shapefile]\nC4[CSV]\n\nD((Analysis tools))\nD1((Python))\nD2((R))\nD3((GIS software))\nD4((Web tools))\n\nA -.-&gt; B\nB -.-&gt; A\n\nB --&gt; B1\nB --&gt; B2\nB --&gt; B3\nB --&gt; B4\n\nB1 --&gt; C\nB2 --&gt; C\nB3 --&gt; C\nB4 --&gt; C\n\nC --&gt; C1\nC --&gt; C2\nC --&gt; C3\nC --&gt; C4\n\nC -.-&gt; D\n\nD --&gt; D1\nD --&gt; D2\nD --&gt; D3\nD --&gt; D4",
+    "text": "NASA Earth science data can feel overwhelming when you’re new to it… there are thousands of datasets, millions of files, and many tools for accessing them. A first step in combatting the overhwhelm is better understanding how NASA organizes, and talks about, their data. Below we define two terms; collection and granule. These are, for the most part, synonymous with a dataset and a file respectively.",
     "crumbs": [
       "NSIDC Data",
-      "Data structures and formats"
+      "NASA collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/data-structures.html#how-earth-science-data-are-structured",
-    "href": "reference-guides/data-structures.html#how-earth-science-data-are-structured",
-    "title": "Data structures and formats",
-    "section": "How Earth science data are structured",
-    "text": "How Earth science data are structured\nBefore working with specific file formats, it helps to understand the underlying data structures they represent. At NSIDC, most data sets fall into one or more of the structures below.\n\nRaster / gridded data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Continuous spatial fields\nCommon formats: GeoTIFF, NetCDF, HDF5, COG, ASCII grid\n\n\nFor most remotely sensed imagery products, raster data represent space as a regular grid of cells. Each cell corresponds to a defined area on Earth and stores a value or category. For example, below is a grid where each grid cell (also called a pixel) contains a numeric value between 1 and 5.\n\n  Raster grid where each pixel stores a value\n  A 3 by 3 raster grid with each cell containing a numeric value between 1 and 5. One cell is highlighted.\n\n  \n  \n\n    \n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    \n      3\n      4\n      5\n\n      2\n      3\n      4\n\n      1\n      2\n      3\n    \n\n    \n    \n  \n\n  \n  \n\n  \n  \n    pixel (cell)\n  \n\n\nIn this simplified example, each of these cells represents a geographic footprint, not a point. This means that anywhere within one of these boxes (whether it is in the middle, or near the outer edge) is represented by the same numeric value. It is worth noting that this interpretation can vary by product and methodology, where output from models is typically only valid for a point, and techniques for resampling remote sensing data can change the assumptions around grid cell interpretation.\n\nKey concepts\n\nExtent — the geographic area covered\n\nCell size — the size of each cell (e.g., 25 km × 25 km)\n\nCoordinate Reference System (CRS) — how the grid maps to Earth\n\nGrid definition — origin, orientation, and spacing\n\nMany raster products are derived, not directly observed. Examples of this would be:\n\nIndividual satellite observations being aggregated to a grid\nStatistics from multiple observations (a mean, max, or min, etc.) for each grid cell\nPoint data interpolated onto a grid\n\nRaster data can be stored in a variety of file formats (such as GeoTIFF, NetCDF, HDF5, COG, ASCII grid as stated above), but they all share the same underlying structure of a regular grid with values assigned to each cell. The specific format may affect how you read and interpret the data, but the conceptual model of a raster grid remains consistent across formats.\n\n\n\n\n\n\nNoteMore about GeoTIFF and COG data formats…\n\n\n\nGeoTIFF extends standard image files by embedding geographic referencing information directly in the file. Cloud Optimized GeoTIFF (COG) is an extension of GeoTIFF designed for cloud storage and efficient access. COG files are structured to allow for efficient reading of data over the internet, making them ideal for web mapping and analysis.\n\n\n\n\nNetCDF data format is commonly used to store raster data (although they can represent other structures as well).\nMany NSIDC data sets are best understood as named, labeled arrays, not as tables or spreadsheets.\nNetCDF allows data to be organized by named dimensions such as space, time, and height.\nvariable(time, y, x)\nThis means:\n\nThe data are stored as a multidimensional block\nEach axis has a name, units, and meaning\nPosition along each axis matters\n\nNetCDF is a scientific data container designed to store multidimensional arrays with metadata. At NSIDC it is often used to store gridded data sets, time series stacks, or model outputs, but it can represent many structures (not just raster or grid) depending on how it is written.\n\n\n\n\n\n\nNoteMore about HDF5 and NetCDF data formats…\n\n\n\nHDF5 was designed as a flexible container for storing large scientific data sets with complex internal structure. It is the “backbone”/ underlying structure of NetCDF4. It supports hierarchical grouping, mixed data types, and metadata, where NetCDF was created to store large, multidimensional scientific data sets while keeping data and metadata together. It allows variables to be tied to named dimensions (time, latitude, longitude, height), making files self-describing and machine-interpretable.\n\n\n\n\nNetCDF = dimensions + variables + attributes\nA NetCDF file typically contains three key components.\n\nDimensions define the shape of the data. Below is an example of a 3-dimensional (3-D) data set.\nDimensions:\n  time = 365\n  y    = 720\n  x    = 720\nEach dimension represents an independent axis:\n\ntime → when the observation occurred\ny, x → the coordinates of each grid cell (usually the center of the grid cell).\nsometimes z or level → vertical structure (this would be a 4th dimension)\n\n\n\nVariables are arrays of values defined over one or more dimensions.\nVariables:\n  sea_ice_concentration(time, y, x)\n  latitude(y, x)\n  longitude(y, x)\nVisually, you can think of a 3-dimensional variable (like sea_ice_concentration above) as a stack of 2-D maps through time that form a data-cube:\n\n  \"Stacked\" 2D grid slices to create a 3-dimensional NetCDF datacube\n  Sea ice concentration at three time steps, showing a 3-dimensional NetCDF variable(time, y, x) is as stack of 2D arrays.\n\n  \n    \n      \n    \n  \n\n  \n  \n\n  \n  \n  \n  \n  \n  \n  0.82\n  0.74\n  0.61\n  0.78\n  0.70\n  0.52\n  0.36\n  0.43\n  0.29\n  t = t₀\n\n  \n  \n  \n  \n  \n  \n  0.91\n  0.85\n  0.72\n  0.88\n  0.79\n  0.63\n  0.44\n  0.51\n  0.38\n  t = t₁\n\n  \n  \n  \n  \n  \n  \n  0.87\n  0.80\n  0.69\n  0.83\n  0.75\n  0.58\n  0.40\n  0.47\n  0.33\n  t = t₂\n\n  \n  \n  y\n\n  \n  \n  x\n\n  \n  \n  time\n\n\nEach slice shares:\n\nthe same grid\nthe same projection\nthe same variable definition\n\n\n\nAttributes store metadata that describe how to interpret the values and may be attached to:\n\nthe file (global attributes)\nindividual variables\nspatial coordinate variables\n\nAttributes:\nunits = \"%\"\nvalid_range = 0 to 100\nmissing_value = -9999\nlong_name = \"Sea Ice Concentration\"\nAttributes explain:\n\nwhat the numbers mean\nhow they were produced\nhow they should (and should not) be used\n\nHaving well-defined attributes is something that sets NetCDF apart from simpler formats. A LOT of scientific information can be embedded within these attributes, and a lot of it is essential for proper data interpretation.\n\n\nCommon NetCDF data shapes\n\n3-D (for example, a variable over time and horizontal space)\nvariable(time, y, x)\nExamples:\n\nSea ice concentration\nSnow cover\nSurface temperature\n\n\n\n4-D (perhaps a variable over time + horizontal space + vertical space)\nvariable(time, level, y, x)\nExamples:\n\nAir temperature at atmospheric pressure levels (e.g., 1000 hPa → 100 hPa)\nOcean salinity at different depths\nSoil temperature/moisture at different depths\n\n\n\n\n\n\nSwath data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Preserving original satellite observation geometry\nCommon formats: HDF-EOS, NetCDF with geolocation arrays\n\n\nSwath data preserve measurements close to their native satellite measurement geometry along an orbit.\nSatellite flight direction →\n────────────────────────────────────\n\n   ◯     ◯      ◯      ◯      ◯\n     ◯      ◯      ◯      ◯\n   ◯     ◯      ◯      ◯      ◯\n     ◯      ◯      ◯      ◯\nEach ◯ = one observation footprint\nThe above is a highly idealized example as swath geometry varies by mission, but notice how:\n\nSpacing can vary across the swath (although this is not the case for all sensors)\nFootprints overlap differently near edges\nNo fixed row/column alignment\n\nSwath data typically preserves:\n\nNative resolution\nViewing angle\nExact observation timing\n\nThis makes them important for:\n\nCalibration and validation\nAlgorithm development\nApplications sensitive to observation geometry\n\n\nCommon challenges\n\nHarder to visualize\nNot directly comparable across time or space\nMust be transformed to a regular geospatial grid before analysis\n\n\n\n\n\n\n\nNoteMore about the HDF-EOS data format…\n\n\n\nHDF-EOS adds Earth Observing System conventions on top of HDF to represent satellite data structures such as swaths, grids, and point measurements. It was created so NASA mission products could store observation geometry and geolocation alongside measurements in a consistent way.\n\n\n\n\n\nTabular data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Discrete observations, station data, or summaries\nCommon formats: CSV, TSV, Parquet, NetCDF tables\n\n\nFor many users, tabular or delimited data feels familiar because it resembles spreadsheets used in tools like Excel or Google Sheets.\n| date       | latitude | longitude | variable |\n|------------|----------|-----------|----------|\n| 2022-01-01 |  70.2    | -150.1    | 0.82     |\n| 2022-01-02 |  70.2    | -150.1    | 0.79     |\n| 2022-01-03 |  70.2    | -150.1    | 0.85     |\nEach row represents a record, and each column represents a field.\nTabular formats are widely used because the record–field structure organizes data into simple rows and columns. They are human-readable, easy to edit and inspect, and supported by nearly all software environments.\nAt NSIDC, tabular data are commonly used for:\n\nTime series for a location or region\nSummary statistics derived from spatial products\nPoint-based observations or extractions\n\nSeveral file formats exist specifically to store tabular information, ranging from simple text tables to structured exchange formats.\n\nWhat tabular data do not standardize\nUnlike gridded or vector formats, tabular files typically do not embed:\n\nCoordinate reference system (CRS)\nSpatial resolution or footprint\nRelationships between neighboring observations\nProcessing history\n\nInstead, this information is often:\n\nDocumented externally\nAssumed based on context\nNon-existent\n\nFor example, a table like this:\n| latitude | longitude | value |\n|----------|-----------|-------|\n| 70.2     | -150.1    | 0.82  |\nDoes not tell you:\n\nWhether the value represents a point measurement\nWhether it is an average over an area\nHow large that area might be\n\nThat meaning must come from metadata or documentation.\nA spreadsheet may show what the values are, but not where or how they were produced.\nIn general, tabular structures are well-suited for:\n\nSingle-location time series\nSmall collections of points\nSummaries and diagnostics\n\nBut are less suitable for:\n\nContinuous spatial fields\nLarge-scale gridded products\nAnalyses requiring detailed spatial context\n\n\n\n\n\n\n\nNoteMore about delimited text formats…\n\n\n\nDelimited text formats like CSV were created to provide a simple, universal way to store tabular data that can be opened in nearly any software environment. Because they are human-readable and easy to generate, they remain widely used for time series, summaries, and data exchange.\n\n\n\n\n\nVector spatial data\n\n\n\n\n\n\nTipAt a glance…\n\n\n\nCommon applications: Boundaries, tracks, and discrete geographic features\nCommon formats: Shapefile, GeoJSON, GeoPackage, KML\n\n\nVector data typically represent discrete geographic features rather than continuous spatial fields.\n\n\n  \n  \n  Point\n\n  \n  \n  Line\n\n  \n  \n  Polygon\n\n\nExamples:\n\nGlacier outlines\nIce sheet boundaries\nGrounding lines\n\n\nGeometry types\n\nPoints\n\n  \n\nPoints represent a single location with no area or length.\nCommon uses:\n\nObservation stations\nSample locations\nReference points\n\n\n\nLines\n\n  \nLines represent linear features with length but no area.\nCommon uses:\n\nGrounding lines\nIce front positions\nTransects\n\n\n\nPolygons\n\n\n  \n\n\nPolygons represent areas with defined boundaries.\nCommon uses:\n\nGlacier outlines\nIce sheet masks\nDrainage basins\n\n\n\n\nAttributes\nEach feature includes attributed data, where attributes describe properties of unique features:\n| Feature ID | Name        | Area_km2 | Year |\n|------------|-------------|----------|------|\n| 001        | Glacier A   | 12.4     | 2020 |\n| 002        | Glacier B   |  8.9     | 2020 |\nVector formats exist because many spatial features are:\n\nDiscrete rather than continuous\nBetter described by boundaries than averages\nInterpreted as objects, not fields\n\n\n\n\n\n\n\nNoteMore about Shapefile data format…\n\n\n\nThe shapefile format, actually composed of multiple files, was introduced as an early GIS standard for storing vector features with attributes. Although newer formats now exist, shapefiles remain common because of their compatibility across tools and legacy data sets.\n\n\n\n\nHow vector data differ from rasters\nRaster:  value everywhere\nVector:  value only where features exist\nKey differences:\n\nGeometry is explicit, not implied by grid cells\nPrecision depends on digitization, not grid spacing\nAttributes are attached to features, not cells\n\nVector data represent objects and boundaries, not continuous fields.",
+    "objectID": "reference-guides/collections-granules.html#collections",
+    "href": "reference-guides/collections-granules.html#collections",
+    "title": "Collections & Granules",
+    "section": "📘 Collections",
+    "text": "📘 Collections\nA collection is NASA’s version of a “dataset family.”\nEvery collection groups together many related files that share common features, such as:\n\nThe same satellite or instrument\n\nThe same science product type\n\nThe same processing level\n\nA consistent file structure\n\nA collection is the group that defines what the dataset is.\nExamples:\n\nSMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008\n\nATLAS/ICESat-2 L3A Land and Vegetation Height V007\n\nCollection metadata includes at least the following:\n\nProduct description\n\nSpatial & temporal coverage\n\nData provider\nVariables\n\nVersion",
     "crumbs": [
       "NSIDC Data",
-      "Data structures and formats"
+      "NASA collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/data-structures.html#common-file-formats-at-nsidc",
-    "href": "reference-guides/data-structures.html#common-file-formats-at-nsidc",
-    "title": "Data structures and formats",
-    "section": "Common file formats at NSIDC",
-    "text": "Common file formats at NSIDC\nThe table below lists common file formats encountered in NSIDC data products and some practical considerations when working with them.\n\n\n\n\n\n\n\n\n\n\nFile format\nCommon uses\nQuirks\nNSIDC example products\nCommon tools (programmatic + GUI)\n\n\n\n\nNetCDF4 / NetCDF classic\nClimate records, reanalysis products, gridded time series, model output.\nTime encoding confusion; multidimensional indexing; large file sizes; steep learning curve without high-level tools.\nSea Ice Concentration CDR\nAntarctic Ice Velocity\nPython: xarray, netCDF4 (low-level)\nR: terra, stars, ncdf4\nGUI: Panoply, QGIS, ArcGIS Pro, HDFView\n\n\nHDF5\nMission-level products, intermediate processing outputs, complex hierarchical data sets.\nDeep hierarchies; unclear variable naming; inconsistent conventions between products.\nSMAP L3 Soil Moisture\nICESat-2 ATL03\nPython: rioxarray, h5py\nR: rhdf5\nGUI: Panoply, HDFView\n\n\nHDF-EOS2 / HDF-EOS5\nSatellite swath and gridded mission products (e.g., MODIS).\nSpecialized structure; harder to read without EOS-aware tools; metadata spread across groups.\nMODIS Snow Cover\nAMSR-E/AMSR2 SWE\nPython: xarray, h5netcdf, pyhdf\nR: terra\nGUI: Panoply, HDFView\n\n\nGeoTIFF / TIFF / COG\nGridded maps, spatial subsets, visualization-ready products.\nLimited metadata compared to NetCDF; alignment issues across data sets; large files at high resolution.\nIce Sheet Velocity\nLand Freeze/Thaw Status\nPython: rasterio, rioxarray, xarray\nR: terra, raster\nGUI: QGIS, ArcGIS Pro\n\n\nShapefile\nIce sheet boundaries, grounding lines, glacier outlines.\nMulti-file dependency; field name limits; aging format.\nGlacier Database\nGlacier Terminus Positions\nPython: geopandas, shapely\nR: sf\nGUI: QGIS, ArcGIS Pro\n\n\nCSV / TSV / Other Delimited Text\nTime series, summaries, point extractions.\nOften lacks spatial context or a coordinate reference system; metadata easily lost; scaling issues.\nIce Thickness\nPython: pandas\nR: readr, data.table, tibble\nGUI: Excel, LibreOffice\n\n\nASCII grid / text\nHistorical products, simple model outputs.\nNo embedded CRS; manual parsing required.\nSea Ice Trends\nPython: numpy\nR: base R, terra\nGUI: Text editors, QGIS (limited)\n\n\nPNG / GIF / JPEG\nQuicklook imagery, browse products, outreach.\nNot analysis-ready; no quantitative metadata.\nArctic Change\nPython: numpy, OpenCV, Pillow\nGUI: Web browser, image viewers, NASA Worldview\n\n\nJSON\nMetadata responses, data access services.\nNot suitable for large arrays; not analysis-ready.\nSMAP Ancillary Files\nPython: json\nR: jsonlite\nGUI: Web browser",
+    "objectID": "reference-guides/collections-granules.html#granules",
+    "href": "reference-guides/collections-granules.html#granules",
+    "title": "Collections & Granules",
+    "section": "📄 Granules",
+    "text": "📄 Granules\nA granule is the smallest discrete data unit in a collection. Depending on the data format, a granule may be a single file or a set of files that together represent one logical item (for example, a shapefile’s .shp, .shx, .dbf components).\nWhat each granule represents can vary from one science mission (and data product) to the next. For example, one granule could represent:\n\nOne SMAP L2 soil moisture half-orbit pass,\n\nOne AMSR2 daily polar gridded brightness temperature file, or\nOne MEaSUREs Greenland monthly ice sheet velocity magnitude mosaic\n\nGranules also have their own metadata, such as:\n\nTimestamps\n\nA spatial bounding box\n\nFile size\n\nVariables included, etc.\n\nGranules are what you actually download and analyze. It is common to need MANY granules for a specific research objective!",
     "crumbs": [
       "NSIDC Data",
-      "Data structures and formats"
+      "NASA collections and granules"
     ]
   },
   {
-    "objectID": "reference-guides/data-structures.html#wrapping-up",
-    "href": "reference-guides/data-structures.html#wrapping-up",
-    "title": "Data structures and formats",
-    "section": "Wrapping up",
-    "text": "Wrapping up\nA single NSIDC data set may involve multiple structures (and formats!) through stages of its development and use. For example, a satellite mission may produce swath data in HDF-EOS, which are then resampled to a regular grid and stored in NetCDF for distribution, and users may extract tabular time series for analysis…\nSwath observations\n        ↓\nModeled / aggregated grid\n        ↓\nNetCDF storage\n        ↓\nTabular extraction for analysis\nUnderstanding data structure (and how that relates to the data format) can help you interpret values correctly, use appropriate tools, and avoid common issues or wrong assumptions.",
-    "crumbs": [
-      "NSIDC Data",
-      "Data structures and formats"
-    ]
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Miscellaneous Resources",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NSIDC Data Cookbook",
     "section": "",
-    "text": "NSIDC How to"
+    "text": "[!WARNING] This cookbook is under active development. Major changes to the structure of the book and its content are expected. We are striving to develop content that is well-tested and peer-reviewed, but nothing contained here should be expected to work correctly (or at all!) in this early phase. Many sections contain only an outline of the content. These sections will have content added as the project develops.",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
   },
   {
-    "objectID": "resources.html#programatic-download",
-    "href": "resources.html#programatic-download",
-    "title": "Miscellaneous Resources",
+    "objectID": "index.html#welcome-to-the-nsidc-data-cookbook",
+    "href": "index.html#welcome-to-the-nsidc-data-cookbook",
+    "title": "NSIDC Data Cookbook",
+    "section": "Welcome to the NSIDC Data Cookbook!",
+    "text": "Welcome to the NSIDC Data Cookbook!\nThis Cookbook for National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes (or data tutorials). The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but instead is an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you master the art of working with cryospheric data.",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-cookbook",
+    "href": "index.html#how-to-use-this-cookbook",
+    "title": "NSIDC Data Cookbook",
+    "section": "How to use this cookbook",
+    "text": "How to use this cookbook\nIf you are new to NASA or NSIDC data, begin with the Getting Started section. Beyond that, the cookbook is divided into four major sections: NSIDC Data, Working with Data, How-To Guides, and Tutorials / Workshops. We also include some Appendices that include a best practices guide for Python scripting, some background details on computing, and how to contribute to the cookbook (if you are so inclined!).\nThe NSIDC Data section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.\nThe Working with Data section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.\nThe How-To Guides section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks.\nLastly, the Tutorials / Workshops section serves to highlight content that was developed for past events or specific use cases.",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-nsidc-daac",
+    "href": "index.html#about-the-nsidc-daac",
+    "title": "NSIDC Data Cookbook",
+    "section": "About the NSIDC DAAC",
+    "text": "About the NSIDC DAAC\nNSIDC has managed the NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) since 1993, archiving and distributing cryospheric and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns and field observations. The NSIDC DAAC provides hundreds of free and open-access NASA Earth science data sets, detailed data documentation, data tools, resources and tutorials, as well as robust data user support services. These data can be used to study topics relating to snow cover, sea ice, ice sheets, ice shelves, glaciers, frozen ground, soil moisture, climate interactions, and more!",
+    "crumbs": [
+      "Welcome to our Cookbook"
+    ]
+  },
+  {
+    "objectID": "appendices/contributing.html",
+    "href": "appendices/contributing.html",
+    "title": "Contributing",
     "section": "",
-    "text": "NSIDC How to"
+    "text": "We welcome contributions of all kinds! Your help makes the Cookbook stronger and more useful for the community. There are several ways to get involved, you can:\n\n🪲 Identify a bug or error\n\n💡 Suggest a change or improvement\n\n📘 Propose a new tutorial or example\n\n🗣️ Join a discussion or share an idea\n🚀 Do some work and make a Pull Request (PR)\n\n\n\n\nYou can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”\n\n\n\n\n\n\nOnce you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
+    "crumbs": [
+      "Appendices",
+      "Contributing"
+    ]
   },
   {
-    "objectID": "resources.html#projections",
-    "href": "resources.html#projections",
-    "title": "Miscellaneous Resources",
-    "section": "Projections",
-    "text": "Projections\nNSIDC Polar Stereographic Projection NSIDC EASE Grid\nCF Conventions Grid Mappings\nLatitude Geodetic Datums\nSnyder\nrioxarray.raster_dataset\nrasterio.affine GDAL Affine pyproj cartopy.crs.CRS"
+    "objectID": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
+    "href": "appendices/contributing.html#for-most-contributions-the-first-step-is-to-create-an-issue-or-discussion-on-github.",
+    "title": "Contributing",
+    "section": "",
+    "text": "You can find the cookbook’s current lists of issues and discussions by following the links.\nBoth are excellent tools for communicating with the Cookbook maintainers, but they each fill slightly different purposes:\n\n\n\n\n\n\n\n\nUse this\nWhen you …\nExamples\n\n\n\n\nIssue\nNeed to report a bug, detect missing info, run into a reproducibility problem… in general, find something that is not working!\n- “Example X does not work.” - “Can I use rasterio rather than xarray to open SMAP data?”- “I found a bunch of typos / broken links in one of your notebooks.”\n\n\nDiscussion\nWant to share ideas (new tutorials?), ask broad questions (future directions?), or brainstorm approaches (ways we can expand our offerings and reach?)… things that would warrant some back and forth chatting.\n- “Do we need a more in-depth description of the WGS84 datum?”- “I have a great idea for a tutorial that answers a specific science question…”- “I wrote some code using NSIDC data that I think could be a great add to the cookbook! Can we talk about it?”",
+    "crumbs": [
+      "Appendices",
+      "Contributing"
+    ]
+  },
+  {
+    "objectID": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
+    "href": "appendices/contributing.html#you-want-to-work-on-the-cookbook-directly-and-share-your-changes-what-now",
+    "title": "Contributing",
+    "section": "",
+    "text": "Once you’ve made updates or created new content, you’ll want to share those changes with the rest of the team. You do this on GitHub through a Pull Request (PR).\nA PR is a request to pull your changes from your copy of the repository (your branch or fork) into the main repository.\nIt lets others:\n\nReview and test your work before it becomes part of the Cookbook\n\nDiscuss possible improvements or adjustments\n\nKeep the project organized and version-controlled\n\nIn short: a PR is how you propose changes and collaborate safely with others.\n\n\nThis section walks you through the full process of contributing to the Cookbook — from getting your own copy of the repository to submitting a PR for review.\n\n\nHave a GitHub account and start by forking the repository. A fork is your own copy of the project under your GitHub account where you can freely make changes.\n\nGo to the Cookbook’s GitHub page.\n\nClick Fork in the upper-right corner.\n\nChoose where to create your fork (your account) and confirm.\n\nOnce forked, clone it to your local machine so you can edit files:\ngit clone https://github.com/YOUR-USERNAME/NSIDC-Data-Cookbook.git\ncd NSIDC-Data-Cookbook\n\n\n\n\n\n\nTipTip\n\n\n\nWe know that working with git and repositories can be confusing at first! If you want more details or step-by-step guides, we also recommend these resources: Project Pythia’s Github Foundations and the NASA Earthdata Cloud Contributing Workflows.\n\n\n\n\n\nNow that you have your clone, you can make changes freely using your preferred text editor.\nFirst, create a new branch for your edits. This keeps your main branch clean and makes it easier to submit your changes later.\ngit checkout -b your-branch-name\n\n\n\n\n\n\nNoteWhat’s a Branch?\n\n\n\nA branch is like a separate workspace within your project. You can make edits on your branch without affecting the main version (main or master). When you’re done, you can merge your branch back into the main project through a pull request.\n\n\nNext, make your changes, whatever they may be. Then, save your edits and preview your changes locally using Quarto to ensure everything looks as expected.\nquarto preview\nEverything looks good? Great!\n\n\n\nOnce you’re happy with your edits, commit them and push your branch to your fork on GitHub. Be sure to have your commit message clearly explain your changes to help the maintainers understand your work.\ngit add .\ngit commit -m \"Brief description of what you changed\"\ngit push origin your-branch-name\nAlmost there! Right now your work is still only in your spaces, though.\n\n\n\nThese next steps will share your work with the Cookbook team.\n\nGo to your fork on GitHub.\n\nYou’ll see a button that says Compare & pull request — click it.\n\nAdd a short title and description summarizing your changes.\n\nSubmit the pull request (PR) to the main Cookbook repository.\n\nYour changes are now out in the world for anyone interested in the Cookbook to see!\nAfter you open a pull request:\n\nThe Cookbook maintainers will review your changes and may request small edits or have questions.\n\nYou can continue committing changes to the same branch and they’ll automatically appear in your PR.\n\nOnce everything looks good, your PR will be approved and merged into the main project.",
+    "crumbs": [
+      "Appendices",
+      "Contributing"
+    ]
   },
   {
     "objectID": "how-to-publish.html",
