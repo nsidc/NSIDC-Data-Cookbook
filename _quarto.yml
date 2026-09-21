@@ -108,6 +108,8 @@ website:
         contents:
           - text: "Contributing"
             href: appendices/contributing.qmd
+          - text: "Video Resources"
+            href: appendices/videos.qmd
           - text: "Glossary"
             href: glossary/glossary.qmd
           #- text: "Best Practices"
