@@ -333,27 +333,21 @@ A _Coordinate Reference System_ comprises an **ellipsoid**, a **coordinate syste
 
 #### The figure of the Earth
 
-The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because sea water is a fluid, it is free to adjust to the effects of gravity and the rotation of the Earth.  Neglecting tides and other motions, the ocean surface forms a surface where gravitational potential is a constant.   This surface is an _equipotential_ surface.  If a mass moved between any two points on this surface it'spotential energy would not change.  Put another way it would do no work against gravity.  The gravitation force is perpendicular to the surface.
+The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because sea water is a fluid, it is free to adjust to the effects of gravity and the rotation of the Earth.  Neglecting tides and other motions, the ocean surface forms a surface where gravitational potential is a constant.   This surface is an _equipotential_ surface.  If a mass is moved between any two points on this surface it's potential energy would not change.  Put another way it would do no work against gravity.  The gravitation force is perpendicular to the surface.
 
 We can extend this equipotential surface under the continents to create the _Geoid_.  **The Geoid is close to mean sea level but it is not the same as mean sea level because sea level is affected by tides and other things.**
 
 ![geoid](https://github.com/tsutterley/icesat-2-geophysical-transforms/blob/main/geoid.gif?raw=true){#fig-gravity-anomalies}
 
-![Geoid Undulation with a vertical exaggeration of 100000](https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2008/05/earth_s_geoid_as_seen_by_goce2/17878996-2-eng-GB/Earth_s_geoid_as_seen_by_GOCE_pillars.jpg){#fig-geoid-undulation}
+@fig-gravity-anomalies shows Earth with the distance from the center exaggerated.  The colors show the geopotential height anomaly.  
 
-#### The geoid
+#### A Spherical Earth
 
-The Earth is an irregular and complex shape with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  
+The figure of the Earth is complicated and simple models are required so that it can be treated mathematically.  To a first approximation, the Earth can be modelled as a sphere.  This is often sufficient for small-scale mapping tasks.  Satellite derived datasets and numerical weather prediction and climate models use a spherical Earth model.  Eratothenes in 240 BC was the first to estimate the radius of the Earth as S Stadia, equivalent to X km.  Current estimates of the radius of the Earth are about 6370 km. 
 
-The geoidal surface is irregular.  It is the surface that an ocean would form if the water were free to adjust to the combined effects of Earth's gravity and rotation.  As such the gravitation potential[^the energy...] is equal, there is no change in potential energy between to points on the surface.  And the direction of gravity is perpendicular to the surface.
+#### An Ellipsoidal Earth
 
-
-  This is a complex shape to treat mathematically.  To simplify computations, A useful simplification is to map the apparent mean sea level, which represents a geopotential.
-
-
-A spherical Earth
-
-An ellipsoidal Earth
+Based on his laws of gravitation, Isaac Newton predicted that the Earth was not a sphere but was slightly bulged at the Equator forming an _oblate spheroid_ or _ellipsoid of revolution_. 
     [wkipedia: figure of the Earth](https://en.wikipedia.org/wiki/Figure_of_the_Earth#Geoid)
     Newton, Huygens bulging at the center and flattended at the poles - by about 22 km
     An ellipsoid of rotation
