@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 25">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #34803e;
+        font-family: Roboto-Bold, Roboto;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: -.03em;
+      }
+
+      .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        stroke: #34803e;
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Group_446" data-name="Group 446">
+      <g id="Rectangle_2072" data-name="Rectangle 2072">
+        <path class="cls-1" d="M12.5,0h63c6.9,0,12.5,5.6,12.5,12.5h0c0,6.9-5.6,12.5-12.5,12.5H12.5C5.6,25,0,19.4,0,12.5h0C0,5.6,5.6,0,12.5,0Z"/>
+        <path class="cls-2" d="M12.5.5h63c6.63,0,12,5.37,12,12h0c0,6.63-5.37,12-12,12H12.5C5.87,24.5.5,19.13.5,12.5h0C.5,5.87,5.87.5,12.5.5Z"/>
+      </g>
+    </g>
+    <g id="Get_Data" data-name="Get Data" class="cls-4">
+      <text class="cls-3" transform="translate(18 18)"><tspan x="0" y="0">Get Data</tspan></text>
+    </g>
+  </g>
+</svg>
