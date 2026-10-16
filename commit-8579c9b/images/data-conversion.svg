@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_2"
+   data-name="Layer 2"
+   viewBox="0 0 99 25"
+   version="1.1"
+   sodipodi:docname="data-conversion.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.6464646"
+     inkscape:cx="49.5"
+     inkscape:cy="12.57424"
+     inkscape:window-width="1193"
+     inkscape:window-height="697"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_2" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #4c71b7;
+        font-family: Roboto-Bold, Roboto;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        stroke: #4c71b7;
+      }
+
+      .cls-5 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.03em;
+      }
+    </style>
+  </defs>
+  <g
+     id="tag-2">
+    <g
+       id="Rectangle_2038-2"
+       data-name="Rectangle 2038-2">
+      <path
+         class="cls-1"
+         d="m 12.5,0 h 74 C 93.4,0 99,5.6 99,12.5 v 0 C 99,19.4 93.4,25 86.5,25 h -74 C 5.6,25 0,19.4 0,12.5 v 0 C 0,5.6 5.6,0 12.5,0 Z"
+         id="path1" />
+      <path
+         class="cls-2"
+         d="m 12.5,0.5 h 74 c 6.63,0 12,5.37 12,12 v 0 c 0,6.63 -5.37,12 -12,12 h -74 c -6.63,0 -12,-5.37 -12,-12 v 0 c 0,-6.63 5.37,-12 12,-12 z"
+         id="path2" />
+    </g>
+    <g
+       id="Customize"
+       class="cls-4">
+      <text
+         class="cls-3"
+         id="text4"
+         x="25.084078"
+         y="17.645796"><tspan
+           class="cls-6"
+           x="25.084078"
+           y="17.645796"
+           id="tspan2">Convert</tspan></text>
+    </g>
+  </g>
+</svg>
