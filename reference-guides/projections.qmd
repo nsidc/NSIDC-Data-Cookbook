@@ -94,7 +94,7 @@ an early example of a two-dimensional representation of Earth for
 navigation designed by Gerardus Mercator. 
 
 These two ways of representing geospatial data are examples of
-**coodinate systems**.  The globe is a spherical coordinate system
+**coordinate systems**.  The globe is a spherical coordinate system
 that uses latitude and longitude as coordinates.  The Mercator map is
 a two-dimensional cartesian coordinate system.  A coordinate system is
 one component of a Coordinate Reference System.  Coordinate Systems
