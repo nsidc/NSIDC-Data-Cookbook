@@ -1,5 +1,5 @@
 ---
-title: "Projections and Coordinate Systems"
+title: "Projections and Coordinate Reference Systems"
 author: Andrew P. Barrett
 format:
   html:
