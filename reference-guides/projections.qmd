@@ -23,7 +23,7 @@ cells.  Each of these grid cells is related to a location on Earth
 through a pair of coordinates and set of rules that transform these
 coordinate pairs into locations on the Earth.  This set of rules is
 called a _Coordinate Reference System_ or _CRS_.  This section of the
-NSIDC Data Cookbook provide an introduction to Coordinate Reference
+NSIDC Data Cookbook provides an introduction to Coordinate Reference
 Systems in general and to the Coordinate Reference Systems used for
 NSIDC data.
 
@@ -78,10 +78,10 @@ ax.set_title('');
 You are probably familiar with two common ways to represent geospatial
 data.  The first is on a **globe**.  To a first approximation, the
 Earth can be represented as a sphere[^1].  A globe is a scaled
-representation of a spherical representation of Earth, using latitude
+representation of a spherical model of the Earth.  A globe uses latitude
 and longitude as coordinates[^2].  @fig-globe-image shows an example
 of this approach from 1782 that was used to show the voyages of
-Captain James Cook.  A modern example of a globe, is [NOAA's Science
+[Captain James Cook](https://en.wikipedia.org/wiki/James_Cook).  A modern example of a globe, is [NOAA's Science
 on a Sphere](https://sos.noaa.gov/), which can be seen at [over 175
 locations](https://sos.noaa.gov/sos/locations/) around the World.
 However, even a desktop globe, let alone a room-size digital globe, is
