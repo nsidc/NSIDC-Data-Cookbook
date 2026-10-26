@@ -333,7 +333,7 @@ A _Coordinate Reference System_ comprises an **ellipsoid**, a **coordinate syste
 
 #### The figure of the Earth
 
-The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because sea water is a fluid, it is free to adjust to the effects of gravity and the rotation of the Earth.  Neglecting tides and other motions, the ocean surface forms a surface where gravitational potential is a constant.   This surface is an _equipotential_ surface.  If a mass is moved between any two points on this surface it's potential energy would not change.  Put another way it would do no work against gravity.  The gravitation force is perpendicular to the surface.
+The _figure of the earth_ is the physical and mathematical surface of the Earth.  This includes the land surface, the surfaces of the oceans, and ocean floor.  The land surface and ocean floor are irregular and complex, with high mountains and deep valleys, as well as deep ocean trenches and abysal plains.  The surface of the ocean is a simpler surface.  Fortunately, this simpler part covers 70% of the surface of the Earth.  Because sea water is a fluid, it is free to adjust to the effects of gravity and the rotation of the Earth.  Neglecting tides and other motions, the ocean surface forms a surface where gravitational potential is a constant.   This surface is an _equipotential_ surface.  If a mass is moved between any two points on this surface it's potential energy would not change.  Put another way, moving the mass would do no work against gravity.  On an _equipotential surface_, gravitational force is perpendicular to the surface.
 
 We can extend this equipotential surface under the continents to create the _Geoid_.  **The Geoid is close to mean sea level but it is not the same as mean sea level because sea level is affected by tides and other things.**
 
@@ -343,23 +343,40 @@ We can extend this equipotential surface under the continents to create the _Geo
 
 #### A Spherical Earth
 
-The figure of the Earth is complicated and simple models are required so that it can be treated mathematically.  To a first approximation, the Earth can be modelled as a sphere.  This is often sufficient for small-scale mapping tasks.  Satellite derived datasets and numerical weather prediction and climate models use a spherical Earth model.  Eratothenes in 240 BC was the first to estimate the radius of the Earth as S Stadia, equivalent to X km.  Current estimates of the radius of the Earth are about 6370 km. 
+The figure of the Earth is complicated and simple models are required so that it can be treated mathematically.  To a first approximation, the Earth can be modelled as a sphere.  This is often sufficient for small-scale mapping tasks.  Satellite derived datasets and numerical weather prediction and climate models use a spherical Earth model.  Eratothenes in 240 BC was the first to estimate the circumference of the Earth as equivalent to 46,250 km.  Current estimates of the circumference of the Earth are about 40,030 km. 
 
 #### An Ellipsoidal Earth
 
-Based on his laws of gravitation, Isaac Newton predicted that the Earth was not a sphere but was slightly bulged at the Equator forming an _oblate spheroid_ or _ellipsoid of revolution_. 
-    [wkipedia: figure of the Earth](https://en.wikipedia.org/wiki/Figure_of_the_Earth#Geoid)
-    Newton, Huygens bulging at the center and flattended at the poles - by about 22 km
-    An ellipsoid of rotation
-    Equatorial (semimajor) radius and polar (semiminor) radius
-    Semimajor axis and eccentricity
-    Semimajor and flattening
-    Semimajor and inverse flattening
+Isaac Newton in 1687, and Christiaan Huygens at roughly the same time, predicted that the Earth was not a sphere but was slightly flattened at the poles and bulged at the Equator, forming an _oblate spheroid_ or _ellipsoid of revolution_.  Newton estimated that this flattening was about $1/230$.  The actual flattening as measured by satellite geodesy is $1/298$, which translates to the polar radius being 21 km less than the equatorial radius of the Earth.  Newton's prediction that the Earth was an oblate speheroid was confirmed by two Expeditions of the _Academie Royale des Sciences_ in 1736-1737 and 1735 to 1743 that measured the length of two meridian arcs in Lapland and Peru.  The length of the meridian arc in Lapland was found to be longer than an arc measured near Paris.  The length of the meridian arc in Peru, close to the Equator, was shorter than the arc measured near Paris.  Both results were predicted by Newton's theory.
+
+The ellispoidal model of the Earth is defined in a number of equivalent ways listed below.
+
+- Equatorial (semi-major axis) radius ($a$) and polar (semi-minor axis) radius ($b$)
+- Semi-major axis and eccentricity ($e$)
+- Semi-major axis and flattening ($f$)
+- Semi-major axis and inverse flattening ($1/f$)
+
+Eccentricity, flattening and inverse flattening are related as follows.
+
+$$
+\begin{align}
+f &= \frac{a - b}{a} \\
+e &= \sqrt{f (2 -f)}
+\end{align}
+$$
+
+The WGS 84 Ellipsoid is the ellipsoidal Earth model used as the reference ellipsoid in the World Geodetic System.  It has the following parameters.
+
+- Semi-major axis: $6,\!378,\!137\ \mathrm{m}$
+- Semi-minor axis: $6,\!356,\!752.314\ \mathrm{m}$
+- Eccentricity: $0.08181919$
+- Flattening: $1 / 298.257223563$
+- Inverse Flattening: $298.257223563$
 
 
 ### Coordinate Systems{#sec-coordinate-systems}
 
-A _Coordinate System_ is set of rules that define how coordinates (for example latitude and longitude, or x and y) are assigned to locations.  A coordinate system has a dimension.  The dimension determines the number of axes.  For geospatial coordinate systems, the dimension is 2 or 3, so there 2 or 3 axes.  Each axis has a name; a direction in which the axis increases; and units of the axis.  The coordinate system also defines the order of the coordinates.  For example, the centroid of the City of Boulder, Colorado is at latitude 40° 0′ 54″ N and longitude 105° 16′ 13.8″ W, which in decimal degrees are latitude 40.015 and longitude -105.2705.  Expressed as coordinate pairs, the coordinates could be (40.015, -105.2705) or (-105.2705, 40.015), depending on if the coordinate system orders latitude first or longitude first.
+A _Coordinate System_ is set of rules that define how coordinates (for example latitude and longitude, or x and y) are assigned to locations.  A coordinate system has a dimension.  The dimension determines the number of axes.  For geospatial coordinate systems, the dimension is 2 or 3, so there 2 or 3 axes.  Each axis has a name; a direction in which the axis increases; and units of the axis.  The coordinate system also defines the order of the coordinates.  For example, the centroid of the City of Boulder, Colorado is at latitude 40° 0′ 54″ N and longitude 105° 16′ 13.8″ W, which in decimal degrees are latitude 40.015 and longitude -105.2705.  Expressed as coordinate pairs, the coordinates could be either (40.015, -105.2705) or (-105.2705, 40.015), depending on if the coordinate system orders latitude first or longitude first. In this example, the axis order should be obvious to a human because latitudes must be greater than -90.0 and less than 90.0.  However, a computer would not know this.  The axes order for the coordinates of New York City (40.7128,-74.0060) is ambiguous for both a human and a computer.
 
 
 ```{python}
@@ -432,7 +449,7 @@ ax3.yaxis.set_major_locator(MultipleLocator(1.))
 fig.tight_layout()
 ```
 
-@fig-coordinate-systems show examples of four two-dimensional (2D) cartesian coordinate systems.  @fig-coordinate-systems a has axes **x** and **y** with units in meters.  The **x** axis increases to the right.  The **y** axis increases in an upwards direction.  Examples b and c are similar to a but b has axis called Easting and Northing with units kilometers.  c is an example of the so-called Plate Carree projection (see @sec-projected-coordinate-systems) which has axes Latitude and Longitude in units degrees of arc.  @fig-coordinate-systems d is an example of an _image coordinate system_.  This is a common coordinate system for digital raster data, including remotely sensed images.  For remotely sensed images, the image coordinate system is related to a geospatial coordinate system by a _geotransform_.  Axes are Column and Row.  However unlike the previous examples, the origin of the coordinate system is in the top-left corner.  The Column axis increments from left to right but the row axis increments from top to bottom.[^3]
+@fig-coordinate-systems show examples of four two-dimensional (2D) cartesian coordinate systems.  @fig-coordinate-systems a has axes **x** and **y** with units in meters.  The **x** axis increases to the right.  The **y** axis increases in an upwards direction.  Examples b and c are similar to a but b has axis called Easting and Northing with units kilometers.  c is an example of the so-called Plate Carree projection (see @sec-map-projections) which has axes Latitude and Longitude in units degrees of arc.  @fig-coordinate-systems d is an example of an _image coordinate system_.  This is a common coordinate system for digital raster data, including remotely sensed images.  For remotely sensed images, the image coordinate system is related to a geospatial coordinate system by a _geotransform_.  Axes are Column and Row.  However unlike the previous examples, the origin of the coordinate system is in the top-left corner.  The Column axis increments from left to right but the row axis increments from top to bottom.[^3]
 
 ```{python}
 #| label: fig-3d-coordinate-systems
@@ -526,10 +543,41 @@ z &= r \sin \phi
 \end{align}
 $$
 
-A coordinate syetem is related to the Earth by a datum, which defines the origin of the coordinate system relative to a model of the earth.
 
+### The Ellipsoid and Datum{#sec-ellipsoids-and-datums}
 
-### Ellipsoid and Datums{#sec-ellipsoids-and-datums}
+For any coordinate system to be referenced to the Earth we must define a _Datum_.  A _datum_ defines the origin and orientation of a coordinate system with repect to the Earth.
+
+A simple example is a one-dimensional coordinate system to measure height at a study site.  We can place a marker (a stake or survey pin) that marks the point in our site that we measure all our other heights relative to.    In @fig-simple-datum-example, the height relative to Datum B is less than the height relative to Datum A.  A datum shift is required to reconcile the two heights for the different datums.  In this case, the shift is acheived by adding or subtracting the difference between the two datums to height measurements.
+
+```{python}
+#| label: fig-simple-datum-example
+#| fig-cap: "An example height measurement at a study site using two different datums (after Iliffe and Lott, 2008)."
+
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(4,3))
+
+ax.axhline(0.2, 0.1, 0.4, lw=2, color='k')
+ax.axhline(0.4, 0.6, 0.9, lw=2, color='k')
+ax.axhline(0.8, lw=1, ls=':', color='k')
+
+ax.annotate('', 
+            xy=(0.25,0.8), 
+            xytext=(0.25,0.2), 
+            arrowprops=dict(arrowstyle="->", color='b', lw=2))
+
+ax.annotate('', 
+            xy=(0.75,0.8), 
+            xytext=(0.75,0.4), 
+            arrowprops=dict(arrowstyle="->", color='b', lw=2));
+
+ax.text(0.41, 0.2, '0 m (Datum A)', va='center')
+ax.text(0.91, 0.4, '0 m (Datum B)', va='center');
+ax.axis('off');
+```
+
+A coordinate system is fixed to the Earth by a datum, which defines the origin of the coordinate system relative to a model of the earth.
 
 _Datum_: A datum is the information that fixes a _coordinate system_ to an object (e.g. Earth).  A _Geodetic datum_ is a datum that defined the relationship of a coordinate system to an ellipsoidal model of Earth with the Geoid (I&L say real Earth).
 
