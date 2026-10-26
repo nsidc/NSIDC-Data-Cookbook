@@ -2,11 +2,11 @@ name: nsidc_data_cookbook
 channels:
  - conda-forge
 dependencies:
- - python ~=3.13
+ - python
  ###################################################
  # Imported dependencies and extensions            #
  ###################################################
- - jupyterlab<=4.2
+ - jupyterlab
  - matplotlib
  - cartopy
  - dask
@@ -26,3 +26,8 @@ dependencies:
  - virtualizarr
  - fsspec
  - harmony-py
+ - transforms3d
+ - tabulate
+ - pip
+ - pip:
+   - -e cookbook_utils
