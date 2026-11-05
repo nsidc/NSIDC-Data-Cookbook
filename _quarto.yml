@@ -63,17 +63,26 @@ website:
               - text: "How to examine data set metadata using `earthaccess`"
                 href: how-to-guides/get_umm_metadata.qmd  
           - section: "Wrangling data (WIP)"
+            href: reference-guides/wrangling-data-overview.qmd
             contents:
-              - text: "Subsetting data using `harmony-py`"
-                href: how-to-guides/harmony-py-IS2.qmd
-              - text: "Reformatting data using `harmony-py`"
-                href: how-to-guides/harmony-py-SMAP.qmd
+              - section: "Subsetting"
+                contents:
+                  - text: "Subsetting data using `harmony-py`"
+                    href: how-to-guides/harmony-py-IS2.qmd
+              - section: "Reformatting"
+                contents:
+                  - text: "Reformatting data using `harmony-py`"
+                    href: how-to-guides/harmony-py-SMAP.qmd
               - section: "Reprojecting"
-                - text: "Get the bounding box of a NetCDF file"
-                  href: how-to-guides/netcdf_cf.qmd
-                - text: "Get the latitude and longitudes for grid cells"
-                  href: how-to-guides/get_latitude_and_longitude.qmd  
-                - text: "Resampling"
+                contents:  
+                  - text: "Get the bounding box of a NetCDF file"
+                    href: how-to-guides/netcdf_cf.qmd
+                  - text: "Get the latitude and longitudes for grid cells"
+                    href: how-to-guides/get_latitude_and_longitude.qmd  
+              - section: "Resampling"
+                contents:
+                  - text: "Resample..."
+                    #href: how-to-guides/netcdf_cf.qmd
           - section: "Visualizing data (WIP)"
             contents:
               - text: "Plotting data - time series, scatter plots"

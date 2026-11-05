@@ -1,0 +1,21 @@
+---
+title: "Wrangling data"
+---
+
+
+### **NASA Earthdata Harmony Transformation Services**
+
+Harmony provides access to services that can transform data from NASA's Earthdata Cloud.  Transformation services available may include spatial subsetting, temporal subsetting, variable subsetting, reformatting, and reprojection.  *Not all data have transformation services available and the available services vary by data set.*  Transformations can be requested using one of two Open Geospatial Consortium (OGC) inspired APIs.
+
+Query the Harmony Capabilities endpoint using the collection concept-ID or short name to determine whether your collection has Harmony services enabled.  Supply the url in a browser or use curl to request the json response in the terminal.
+
+https://harmony.earthdata.nasa.gov/capabilities?collectionId=<collection-concept-id>
+
+https://harmony.earthdata.nasa.gov/capabilities?shortName=<collection-short-name>
+
+Harmony documentation can be found [here](https://harmony.earthdata.nasa.gov/docs).
+
+### **What if my data set does not have Harmony services enabled?**
+
+Tutorial on subsetting in the cloud using Python and downloading the smaller volume data [here](NSIDC-Data-Cookbook/tutorials/HMA_subsetting_cloud_workflow.ipynb)
+
