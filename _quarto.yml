@@ -89,6 +89,10 @@ website:
               - text: "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
                 href: how-to-guides/harmony-py-SMAP.qmd
          # - section: "Reproject data"
+          - section: "Work with GeoTIFF"
+            contents:
+              - text: "Read and plot a GeoTIFF"
+                href: how-to-guides/how-to-open-and-plot-geotiff.ipynb
           - section: "Work with NetCDF files"
             contents:
               - text: "Get the bounding box of a NetCDF file"
