@@ -1,0 +1,74 @@
+---
+title: "Wrangling data"
+---
+
+
+### **NASA Earthdata Harmony Transformation Services**
+
+Harmony provides access to services that can transform data from NASA's Earthdata Cloud.  Transformation services available may include spatial subsetting, temporal subsetting, variable subsetting, reformatting, and reprojection.  *Not all data have transformation services available and the available services vary by data set.*  Transformations can be requested using one of two Open Geospatial Consortium (OGC) inspired [APIs](https://harmony.earthdata.nasa.gov/docs).
+
+Query the Harmony Capabilities endpoint using the collection concept-ID or short name to determine whether your collection has Harmony services enabled.  Supply the url in a browser or use curl to request the json response in the terminal.
+```
+https://harmony.earthdata.nasa.gov/capabilities?collectionId=<collection-concept-id>
+```
+```
+https://harmony.earthdata.nasa.gov/capabilities?shortName=<collection-short-name>
+```
+**Example**
+
+SMAP L2 Radar Half-Orbit 3 km EASE-Grid Soil Moisture. (SPL2SMA, Version 3) = C2812935277-NSIDC_CPRD
+
+Query the capabilities endpoint using the concept-id for the data set.
+```
+https://harmony.earthdata.nasa.gov/capabilities?collectionId=C2812935277-NSIDC_CPRD
+```
+You'll get back a JSON response containing information about transformation services available. 
+```
+{
+  "conceptId": "C2812935277-NSIDC_CPRD",
+  "shortName": "SPL2SMA",
+  "summary": {
+    "subsetting": {
+      "bbox": true,
+      "dimension": false,
+      "shape": true,
+      "temporal": false,
+      "variable": true
+    },
+    "reprojection": {
+      "supported": true,
+      "supportedProjections": [],
+      "interpolationMethods": []
+    },
+    "averaging": {
+      "time": false,
+      "area": false
+    },
+    "concatenation": false,
+    "outputFormats": [
+      {
+        "name": "GEOTIFF",
+        "mimeType": "image/tiff"
+      },
+      {
+        "name": "HDF",
+        "mimeType": "application/x-hdf"
+      },
+      {
+        "name": "NETCDF-4",
+        "mimeType": "application/netcdf"
+      }
+    ]
+  }
+```
+
+
+Harmony documentation can be found [here](https://harmony.earthdata.nasa.gov/docs).
+
+You can use the Harmony APIs and endpoints to interact with Harmony [directly](https://nsidc.org/data/user-resources/help-center/harmony-api-quickstart-guide-customizing-nasa-nsidc-daac-data-earthdata-cloud). The [`harmony-py`](https://github.com/nasa/harmony-py) Python library is the recommended option for Python users.
+
+
+### **What if my data set does not have Harmony services enabled?**
+
+Tutorial on subsetting in the cloud using Python and downloading the smaller volume data [here](NSIDC-Data-Cookbook/tutorials/HMA_subsetting_cloud_workflow.ipynb).
+
