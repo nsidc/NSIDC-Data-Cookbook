@@ -17,8 +17,8 @@ Below we mention various tools that perform different tasks. To help distinguish
 | Task | Symbol |
 | ----- | --- |
 | Data access and discovery: | ![data-access](images/data-access.svg){width=30%} |
-| Data visualization: | ![data-visualization](images/data-visualization.svg){width=30%} |
 | Data reformatting and transformation: | ![data-conversion](images/data-conversion.svg){width=30%} |
+| Data visualization: | ![data-visualization](images/data-visualization.svg){width=30%} |
 | Data analysis: | ![data-analysis](images/data-analysis.svg){width=30%} |
 | Computation scaling: | ![computation](images/computation.svg){width=30%} |
 
@@ -33,6 +33,10 @@ There are many Python packages available for working with Earth science data.  T
 #### earthaccess &nbsp;![data-access](images/data-access.svg){width=10%}
 
 [`earthaccess`](https://earthaccess.readthedocs.io/en/latest/) — search for and access NASA Earth science data.
+
+#### harmony-py &nbsp;![data-access](images/data-access.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} 
+
+[`harmony-py`](https://harmony-py.readthedocs.io/en/main/) — access and transform NASA Earth science data sets with available subsetting (spatial/temporal/variable), reformatting, and reprojection services.
 
 #### xarray &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
@@ -66,7 +70,7 @@ There are many Python packages available for working with Earth science data.  T
 
 [`icepyx`](https://icepyx.readthedocs.io/en/latest/) — search, subset, and download ICESat-2 data with built-in metadata handling.
 
-#### satpy &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%}
+#### satpy &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%}
 
 [`satpy`](https://satpy.readthedocs.io/en/stable/) — read, composite, and visualize meteorological satellite data.
 
@@ -111,11 +115,11 @@ Applications provide graphical interfaces for exploring, visualizing, and workin
 [`NCView`](https://cirrus.ucsd.edu/ncview/) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables. -->
 
 
-#### QGIS &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
+#### QGIS &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%}  ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`QGIS`](https://qgis.org/) — an open-source geographic information system for analyzing and visualizing spatial data.
 
-#### ArcGIS &nbsp;![data-visualization](images/data-visualization.svg){width=10%} ![data-conversion](images/data-conversion.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
+#### ArcGIS &nbsp;![data-conversion](images/data-conversion.svg){width=10%} ![data-visualization](images/data-visualization.svg){width=10%} ![data-analysis](images/data-analysis.svg){width=10%}
 
 [`ArcGIS`](https://www.esri.com/en-us/arcgis/about-arcgis/overview) — a commercial GIS platform for advanced mapping, spatial analysis, and data management.
 
