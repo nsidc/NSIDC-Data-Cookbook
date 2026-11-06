@@ -50,38 +50,30 @@ website:
           - section: "Finding and accessing data"
             href: reference-guides/find-access.qmd
             contents:
-              - text: "Searching for collections and granules using `earthaccess`"
+              - text: "**Searching** for collections and granules using earthaccess"
                 href: reference-guides/collection-granule-search.qmd
-              - text: "Accessing data using `earthaccess`"
+              - text: "**Accessing** data using earthaccess"
                 href: reference-guides/access-data.qmd
-              - text: "How to get data set concept-ids using `earthaccess`"
+              - text: "How to **get data set concept-ids** using earthaccess"
                 href: how-to-guides/get_concept-ids.qmd
-              - text: "How to fetch a formatted citation and retrieve a data set DOI using `earthaccess`"
+              - text: "How to **fetch a formatted citation and retrieve a data set DOI** using earthaccess"
                 href: how-to-guides/get_dataset_doi.qmd
-              - text: "How to use a DOI to search for a data set using `earthaccess`"
+              - text: "How to **use a DOI to search** for a data set using earthaccess"
                 href: how-to-guides/search_datasets_using_doi.qmd  
-              - text: "How to examine data set metadata using `earthaccess`"
+              - text: "How to **examine data set metadata** using earthaccess"
                 href: how-to-guides/get_umm_metadata.qmd  
-          - section: "Wrangling data (WIP)"
+          - section: "Wrangling data"
             href: reference-guides/wrangling-data-overview.qmd
             contents:
-              - section: "Subsetting"
-                contents:
-                  - text: "Subsetting data using `harmony-py`"
-                    href: how-to-guides/harmony-py-IS2.qmd
-              - section: "Reformatting"
-                contents:
-                  - text: "Reformatting data using `harmony-py`"
-                    href: how-to-guides/harmony-py-SMAP.qmd
-              - section: "Reprojecting"
-                contents:  
-                  - text: "Get the bounding box of a NetCDF file"
-                    href: how-to-guides/netcdf_cf.qmd
-                  - text: "Get the latitude and longitudes for grid cells"
-                    href: how-to-guides/get_latitude_and_longitude.qmd  
-              - section: "Resampling"
-                contents:
-                  - text: "Resample..."
+              - text: "**Subsetting** data using harmony-py"
+                href: how-to-guides/harmony-py-IS2.qmd
+              - text: "**Reformatting** data using harmony-py"
+                href: how-to-guides/harmony-py-SMAP.qmd
+              - text: "Get the bounding box of a NetCDF file"
+                href: how-to-guides/netcdf_cf.qmd
+              - text: "Get the latitude and longitudes for grid cells"
+                href: how-to-guides/get_latitude_and_longitude.qmd  
+              - text: "Resampling (WIP)"
                     #href: how-to-guides/netcdf_cf.qmd
           - section: "Visualizing data (WIP)"
             contents:
