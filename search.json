@@ -48,9 +48,9 @@
     "section": "",
     "text": "How can I use earthaccess to examine collection-level metadata e.g. for data sets (collections) returned in an earthaccess.search_datasets() query?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to examine data set metadata using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Examine data set metadata using earthaccess"
     ]
   },
   {
@@ -60,9 +60,9 @@
     "section": "",
     "text": "How can I use earthaccess to examine collection-level metadata e.g. for data sets (collections) returned in an earthaccess.search_datasets() query?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to examine data set metadata using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Examine data set metadata using earthaccess"
     ]
   },
   {
@@ -72,9 +72,9 @@
     "section": "Solution",
     "text": "Solution\nimport earthaccess\nearthaccess.login()\nresults = earthaccess.search_datasets(\n    keyword = 'snowex'\n)\nlen(results)\n127\nfor r in results[:3]:\n    long_name = r.get_umm('EntryTitle')\n    short_name = r.get_umm('ShortName')\n    description = r.get_umm('Abstract')\n    doi = r.get_umm('DOI')\n    print(long_name, short_name, description, doi, sep='\\n')\n    print( )\nSnowEx23 Mar23 Snow Pit Measurements V001\nSNEX23_MAR23_SP\nThe data set presents snow pit measurements collected during the NASA SnowEx March 2023 Intensive Observation Period (IOP) in Alaska, USA to use for calibration and validation with coincident airborne SWESARR and lidar measurements as part of the strategy focused on snow water equivalence (SWE) and snow depth (HS). In total, 170 snow pits were excavated between the five sites at locations representing a range of snow depth, vegetation, and topographic conditions. Three study areas represented boreal forest snow near Fairbanks, AK: Farmers Loop Creamers Field (FLCF), Caribou Poker Creek Research Watershed (CPCRW), and Bonanza Creek Experimental Forest (BCEF). Two study areas represented Arctic tundra snow: Arctic Coastal Plain (ACP) and Upper Kuparuk Toolik (UKT).\n{‘DOI’: ‘10.5067/SJZ90KNPKCYR’}\nSnowEx21 Time Series Snow Pits V001\nSNEX21_TS_SP\nThe data set is a time-series of snow pit measurements obtained by the SnowEx community during the 2021 field campaign. Between November 2020 and May 2021 data from 247 snow pits were collected at 24 unique sites distributed over 4 states (CO, ID, MT, UT) throughout the Western United States. Five of the unique sites had a single visit to establish baseline conditions, while the remaining 19 sites had 3 or more repeat visits throughout the season, with a median visit count of 11.5. On a weekly interval, a snow pit was dug approximately 1 m away from the previous week’s snow pit. Available measured parameters are: snow depth, snow temperature, snow density, stratigraphy, grain size, manual wetness, liquid water content (LWC), and snow water equivalent (SWE). Also available are photos of the field notes and snow pit sites.\n{‘DOI’: ‘10.5067/QIANJYJGRWOV’}\nSnowEx20 Time Series Snow Pit Measurements V002\nSNEX20_TS_SP\nThe data set is a time-series of snow pit measurements obtained by the SnowEx community during the 2020 campaign. Between October 2019 and May 2020, data were collected from 454 snow pits at 12 regional locations throughout California, Colorado, Idaho, New Mexico, and Utah, USA. At each of the locations, between 1 and 11 sites covering a range of conditions (terrains, snow depths, etc.) were chosen for weekly snow pit observations. Also available are photos of the field notes and snow pit sites.\n{‘DOI’: ‘10.5067/KZ43HVLZV6G4’}",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to examine data set metadata using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Examine data set metadata using earthaccess"
     ]
   },
   {
@@ -84,9 +84,9 @@
     "section": "Discussion",
     "text": "Discussion\nThe earthaccess function get_umm() allows us to explore the results of a data set query by extracting various metadata elements from the Unified Metadata Model (UMM) records of data sets.\nSome useful metadata available through the get_umm() function:\n\nShortName - abbreviated or short-hand data set name\nEntryTitle - full, long-form data set name including version\nAbstract - short description of a data set including information such as location, temporal range, and data collection methods.\nDOI - a Digital Object Identifier is a unique, permanent alphanumeric code assigned to digital objects—most commonly academic journal articles, books, and research datasets—to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time.\nSpatialExtent - geolocation information about the data set which can include latitude/longitude coordinates for the bounding box that encompasses the data\nScienceKeywords - science terms associated with the relevant parameters contained in the data set\nVersion - data set version\nVersionDescription - description of updates included in most recent version\nUseConstraints - license text and citation instructions\nPlatforms - provides satellite and aircraft platforms and sensors, or indicates ground-based observations and instruments",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to examine data set metadata using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Examine data set metadata using earthaccess"
     ]
   },
   {
@@ -94,20 +94,14 @@
     "href": "how-to-guides/overview.html",
     "title": "How-To Guides",
     "section": "",
-    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to customize data using NASA Harmony services (via harmony-py)\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file",
-    "crumbs": [
-      "How-To Guides"
-    ]
+    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to customize data using NASA Harmony services (via harmony-py)\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file"
   },
   {
     "objectID": "how-to-guides/overview.html#introduction",
     "href": "how-to-guides/overview.html#introduction",
     "title": "How-To Guides",
     "section": "",
-    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to customize data using NASA Harmony services (via harmony-py)\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file",
-    "crumbs": [
-      "How-To Guides"
-    ]
+    "text": "This section of the cookbook contains How-To Guides to help you solve a particular problem or task. You can think of these How-To Guides as programmatic recipes. For the most part they are short. They are written with the assumption that you know what you want to do and have some understanding of programming. You can think of each How-To as a building block that can be put together with other How-Tos to construct a workflow.\nHow-To Guides are organized into the following sections:\n\nHow to search for data (via earthaccess);\nHow to access data (via earthaccess);\nHow to customize data using NASA Harmony services (via harmony-py)\nHow to reproject and resample data;\nHow to work with CF-compliant NetCDF files:\n\nHow to get the bounding box of a NetCDF file in latitude and longitude\nHow to get latitude and longitude for the grid cells of a NetCDF file"
   },
   {
     "objectID": "how-to-guides/netcdf_cf.html",
@@ -116,8 +110,8 @@
     "section": "",
     "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the bounding box of a NetCDF file"
     ]
   },
@@ -128,8 +122,8 @@
     "section": "",
     "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I find the bounding box in latitude and longitude?",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the bounding box of a NetCDF file"
     ]
   },
@@ -140,8 +134,8 @@
     "section": "Solution",
     "text": "Solution\n\nUsing xarray and rioxarray\nimport rioxarray\nimport xarray as xr\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Get the bounds of the data grid in WGS84 (EPSG code 4362)\nds.rio.transform_bounds(4326)\n(-180.0, 30.98056405144958, 180.0, 90.0)",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the bounding box of a NetCDF file"
     ]
   },
@@ -152,8 +146,8 @@
     "section": "Discussion",
     "text": "Discussion\nAs of CF v1.8, latitude and longitude coordinate variables are no longer required in CF-compliant NetCDF files, as long as projected horizontal spatial coordinates (e.g. x and y, or easting and northing) and a grid_mapping variable is provided. The grid_mapping variable defines the coordinate reference system (CRS) of the projected horizontal coordinates.\nThe easiest, and frankly best, way to read and work with NetCDF files is to use xarray. rioxarray extends the xarray package to use CRS and make geospatial tasks, such as reprojecting and regridding, easier. By setting the keyword decode-coords='all', rioxarray searches the xarray.DataArray or xarray.Dataset for the CRS. rioxarray also determines the transform or geotransform, which defines the image CRS that transforms cell coordinates (column and row) into projected coordinates (x, y). The transform is calculated from the coordinates of the data. See the rioxarray documentaton for more details.\nBoth these spatial coordinates can be accessed as follows:\nds.rio.crs\nCRS.from_wkt('PROJCS[\"NSIDC Sea Ice Polar Stereographic North\",GEOGCS[\"Unspecified datum based upon the Hughes 1980 ellipsoid\",DATUM[\"Not_specified_based_on_Hughes_1980_ellipsoid\",SPHEROID[\"Hughes 1980\",6378273,298.279411123061,AUTHORITY[\"EPSG\",\"7058\"]],AUTHORITY[\"EPSG\",\"6054\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4054\"]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",70],PARAMETER[\"central_meridian\",-45],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"X\",EAST],AXIS[\"Y\",NORTH],AUTHORITY[\"EPSG\",\"3411\"]]')\nds.rio.transform()\nAffine(25000.0, 0.0, -3850000.0,\n       0.0, -25000.0, 5850000.0)\nIf this information is not found, all is not lost. rio.write_crs and rio.write_transform can be used to set the CRS and the transform of the dataset.\nOnce these variables are set, the horizontal spatial bounds of the dataset can be queried as described above. If all you want is the bounds in projected coordinates, these can be accessed using ds.rio.bounds().\nds.rio.bounds()\n(-3850000.0, -5350000.0, 3750000.0, 5850000.0)",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the bounding box of a NetCDF file"
     ]
   },
@@ -164,9 +158,9 @@
     "section": "",
     "text": "How can I use earthaccess to retrieve a data set digital object identifier (DOI) and formatted citation?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Fetch a formatted citation and retrieve a data set DOI using earthaccess"
     ]
   },
   {
@@ -176,9 +170,9 @@
     "section": "",
     "text": "How can I use earthaccess to retrieve a data set digital object identifier (DOI) and formatted citation?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Fetch a formatted citation and retrieve a data set DOI using earthaccess"
     ]
   },
   {
@@ -188,9 +182,9 @@
     "section": "Solution",
     "text": "Solution\nimport earthaccess\nearthaccess.login()\nresults = earthaccess.search_datasets(\n    keyword = 'snowex'\n)\nlen(results)\n127\nfor r in results[:5]:\n    doi = r.doi()\n    citation = r.citation(format='apa',language='en-US')\n    print(doi)\n    print()\n    print(citation)\n10.5067/SJZ90KNPKCYR\nMason, Megan, Vuyovich, Carrie, Stuefer, Sveta, Elder, Kelly, Vas, Dragos, Marshall, Hans-Peter, & Durand, Michael. (2024). SnowEx23 Mar23 Snow Pit Measurements, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/SJZ90KNPKCYR\n10.5067/QIANJYJGRWOV\nMason, Megan, Marshall, Hans-Peter, Craaybeek, Dylan, Elder, Kelly, & Vuyovich, Carrie. (2024). SnowEx21 Time Series Snow Pits, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/QIANJYJGRWOV\n10.5067/KZ43HVLZV6G4\nMason, Megan, Marshall, Hans-Peter, McCormick, Maeve, Craaybeek, Dylan, Elder, Kelly, & Vuyovich, Carrie. (2024). SnowEx20 Time Series Snow Pit Measurements, Version 2 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/KZ43HVLZV6G4\n10.5067/NE8CLN3ES5XQ\nCiafone, Siobhan, ONeel, Shad, Adebisi, Naheem, Zikan, Karina, Enterkine, Joshua, Van Der Weide, Thomas, Wadhwani, Yasmin, Wilder, Brent, Hoppinen, Zach, Filiano, Dominic, & Marshall, Hans-Peter. (2025). SnowEx Mores Creek Summit (MCS) Airborne LiDAR Survey, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/NE8CLN3ES5XQ\n10.5067/UO5ASXKLQTDR\nMason, Megan, Vuyovich, Carrie, Stuefer, Svetlana, Elder, Kelly, Vas, Dragos, Marshall, Hans-Peter, Durand, Michael, & Liston, Glen. (2025). SnowEx23 Oct22 IOP Snow Pits and Substrate Conditions at Freeze Up, Version 1 [Dataset]. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/UO5ASXKLQTDR",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Fetch a formatted citation and retrieve a data set DOI using earthaccess"
     ]
   },
   {
@@ -200,9 +194,9 @@
     "section": "Discussion",
     "text": "Discussion\nData Set Digital Object Identifier (DOI)\nA DOI is a unique, permanent alphanumeric code assigned to digital objects (most commonly academic journal articles, books, and research datasets) to provide a persistent, actionable link to their location on the internet. Unlike URLs, which can change, a DOI remains stable over time.\nA data set DOI can be used as a parameter in an earthaccess.search_data() query to uniquely constrain (data set and version) the data set of interest as in this how-to.\nCitations and NASA Earthdata Use Constraints\nThese data are freely, openly, and fully available to use without restrictions, provided that you cite the data. For more information on the NASA ESDIS Data Use Guidance.",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to fetch a formatted citation and retrieve a data set DOI using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Fetch a formatted citation and retrieve a data set DOI using earthaccess"
     ]
   },
   {
@@ -212,9 +206,9 @@
     "section": "",
     "text": "How can I use NASA Harmony services via the harmony-py Python library to subset SMAP data by variable and bounding box and reformat the result to GeoTIFF?",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
+      "Working with Data",
+      "Wrangling data",
+      "Reformat data using harmony-py"
     ]
   },
   {
@@ -224,9 +218,9 @@
     "section": "",
     "text": "How can I use NASA Harmony services via the harmony-py Python library to subset SMAP data by variable and bounding box and reformat the result to GeoTIFF?",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
+      "Working with Data",
+      "Wrangling data",
+      "Reformat data using harmony-py"
     ]
   },
   {
@@ -236,9 +230,9 @@
     "section": "Solution",
     "text": "Solution\nfrom harmony import BBox, Client, Collection, Request\nimport datetime as dt\nInitialize your Harmony client\nharmony_client = Client()\nDefine which data set you’d like to access using the collection concept-id (see how-to for retrieving collection concept-ids). For this example, we’ll use SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture, Version 9 (SPL3SMP), C2938664585-NSIDC_CPRD.\ncollection = Collection(id='C2938664585-NSIDC_CPRD') \nDefine your spatial bounds (min_lon, min_lat, max_lon, max_lat). The example below is over the Eastern United States.\nbbox = BBox(-93.4,30.3,-77.0,44.5)\nDefine your temporal range (passed as a dictionary with “start” and “stop” keys, and dates supplied as datetime objects). The example below spans two days in December 2023.\ntemporal = {'start': dt.datetime(2023,12,12),'stop': dt.datetime(2023,12,13)}\nDefine the output file format. GeoTIFF is the only choice for reformatting SPL3SMP.\nformat='image/tiff'\nDefine the variable(s) within the original data you’d like to output to GeoTIFF.\nvariables = ['Soil_Moisture_Retrieval_Data_AM/soil_moisture']\nBuild the request\nrequest = Request(\n    collection = collection,\n    spatial = bbox,\n    temporal = temporal,\n    format = format,\n    variables = variables\n)\nSubmit the request. This returns a Harmony job ID that can be used to check on progress.\njob_id = harmony_client.submit(request)\njob_id\n‘abc20650-4239-434a-9fff-b54c160f38bf’\nCheck on Harmony job progress\nharmony_client.wait_for_processing(job_id, show_progress=True)\n[ Processing: 100% ] |###################################################| [|]\nTo view the url(s) for your staged files\nurl = list(harmony_client.result_urls(job_id))\nurl\n[‘https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/abc20650-4239-434a-9fff-b54c160f38bf/153252383/SMAP_L3_SM_P_20231213_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif’, ‘https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/abc20650-4239-434a-9fff-b54c160f38bf/153252397/SMAP_L3_SM_P_20231212_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif’]\nDownload the results to your local directory.\nfutures = harmony_client.download_all(job_id, directory=\".\")\nfilelist = [f.result() for f in futures]  # get filepaths\n./153252383_SMAP_L3_SM_P_20231213_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif ./153252397_SMAP_L3_SM_P_20231212_R19240_001_Soil_Moisture_Retrieval_Data_AM_soil_moisture_subsetted_Soil_Moisture_Retrieval_Data_AM_soil_moisture_reformatted.tif",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
+      "Working with Data",
+      "Wrangling data",
+      "Reformat data using harmony-py"
     ]
   },
   {
@@ -248,9 +242,9 @@
     "section": "Discussion",
     "text": "Discussion\nNASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets. Table of Harmony services available for select SMAP data sets.\nA longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found here.",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to subset and reformat SMAP data to GeoTIFF"
+      "Working with Data",
+      "Wrangling data",
+      "Reformat data using harmony-py"
     ]
   },
   {
@@ -628,6 +622,13 @@
     "text": "Glossary\nGeodetic Latitude{#geodetic_latitude} of a point is the angle formed between the vector perpendicular to the ellipsoidal surface from the point, and the plane of the equator Wikipedia (2023).\nLatitude{#latitude} specifies the north-south position of a point on the surface of Earth or other celestial body. See (geodetic_latitude?), (geocentric_latitude?)\nGeodetic Datum\n\n\n\n\n\nReferences\n\nWikipedia. 2023. “Latitude.” In Wikipedia. https://en.wikipedia.org/w/index.php?title=Latitude&oldid=1142356301."
   },
   {
+    "objectID": "reference-guides/nsidc-file-formats.html",
+    "href": "reference-guides/nsidc-file-formats.html",
+    "title": "File formats",
+    "section": "",
+    "text": "How to read and navigate file formats commonly found at NSIDC. This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.\n\nNetCDF4 (and NetCDFx)\nHDF5\nHDF-EOS\nShapefiles\nGeoTIFF"
+  },
+  {
     "objectID": "reference-guides/data-structures.html",
     "href": "reference-guides/data-structures.html",
     "title": "Data structures and formats",
@@ -672,11 +673,15 @@
     ]
   },
   {
-    "objectID": "reference-guides/nsidc-file-formats.html",
-    "href": "reference-guides/nsidc-file-formats.html",
-    "title": "File formats",
+    "objectID": "reference-guides/wrangling-data-overview.html",
+    "href": "reference-guides/wrangling-data-overview.html",
+    "title": "Wrangling data",
     "section": "",
-    "text": "How to read and navigate file formats commonly found at NSIDC. This should include guidance toavoid low-level tools like netcdf4, h5py and use xarray and pandas instead.\n\nNetCDF4 (and NetCDFx)\nHDF5\nHDF-EOS\nShapefiles\nGeoTIFF"
+    "text": "NASA Earthdata Harmony Transformation Services\nHarmony provides access to services that can transform data from NASA’s Earthdata Cloud. Transformation services available may include spatial subsetting, temporal subsetting, variable subsetting, reformatting, and reprojection. Not all data have transformation services available and the available services vary by data set. Transformations can be requested using one of two Open Geospatial Consortium (OGC) inspired APIs.\nQuery the Harmony Capabilities endpoint using the collection concept-ID or short name to determine whether your collection has Harmony services enabled. Supply the url in a browser or use curl to request the json response in the terminal.\nhttps://harmony.earthdata.nasa.gov/capabilities?collectionId=&lt;collection-concept-id&gt;\nhttps://harmony.earthdata.nasa.gov/capabilities?shortName=&lt;collection-short-name&gt;\nExample\nSMAP L2 Radar Half-Orbit 3 km EASE-Grid Soil Moisture. (SPL2SMA, Version 3) = C2812935277-NSIDC_CPRD\nQuery the capabilities endpoint using the concept-id for the data set.\nhttps://harmony.earthdata.nasa.gov/capabilities?collectionId=C2812935277-NSIDC_CPRD\nYou’ll get back a JSON response containing information about transformation services available.\n{\n  \"conceptId\": \"C2812935277-NSIDC_CPRD\",\n  \"shortName\": \"SPL2SMA\",\n  \"summary\": {\n    \"subsetting\": {\n      \"bbox\": true,\n      \"dimension\": false,\n      \"shape\": true,\n      \"temporal\": false,\n      \"variable\": true\n    },\n    \"reprojection\": {\n      \"supported\": true,\n      \"supportedProjections\": [],\n      \"interpolationMethods\": []\n    },\n    \"averaging\": {\n      \"time\": false,\n      \"area\": false\n    },\n    \"concatenation\": false,\n    \"outputFormats\": [\n      {\n        \"name\": \"GEOTIFF\",\n        \"mimeType\": \"image/tiff\"\n      },\n      {\n        \"name\": \"HDF\",\n        \"mimeType\": \"application/x-hdf\"\n      },\n      {\n        \"name\": \"NETCDF-4\",\n        \"mimeType\": \"application/netcdf\"\n      }\n    ]\n  }\nHarmony documentation can be found here.\nYou can use the Harmony APIs and endpoints to interact with Harmony directly. The harmony-py Python library is the recommended option for Python users.\n\n\nWhat if my data set does not have Harmony services enabled?\nTutorial on subsetting in the cloud using Python and downloading the smaller volume data here.",
+    "crumbs": [
+      "Working with Data",
+      "Wrangling data"
+    ]
   },
   {
     "objectID": "reference-guides/collection-granule-search.html",
@@ -687,7 +692,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Searching for collections and granules"
+      "Search for collections and granules using earthaccess"
     ]
   },
   {
@@ -699,7 +704,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Searching for collections and granules"
+      "Search for collections and granules using earthaccess"
     ]
   },
   {
@@ -711,7 +716,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Searching for collections and granules"
+      "Search for collections and granules using earthaccess"
     ]
   },
   {
@@ -723,7 +728,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Accessing data"
+      "Access data using earthaccess"
     ]
   },
   {
@@ -735,7 +740,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Accessing data"
+      "Access data using earthaccess"
     ]
   },
   {
@@ -747,7 +752,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Accessing data"
+      "Access data using earthaccess"
     ]
   },
   {
@@ -759,7 +764,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Accessing data"
+      "Access data using earthaccess"
     ]
   },
   {
@@ -771,7 +776,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Accessing data"
+      "Access data using earthaccess"
     ]
   },
   {
@@ -783,7 +788,7 @@
     "crumbs": [
       "Working with Data",
       "Finding and accessing data",
-      "Accessing data"
+      "Access data using earthaccess"
     ]
   },
   {
@@ -1188,9 +1193,9 @@
     "section": "",
     "text": "How do I use a bounding box to spatially subset ICESat-2 data using NASA Harmony services via the harmony-py Python library?",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to spatially subset ICESat-2 data"
+      "Working with Data",
+      "Wrangling data",
+      "Subset data using harmony-py"
     ]
   },
   {
@@ -1200,9 +1205,9 @@
     "section": "",
     "text": "How do I use a bounding box to spatially subset ICESat-2 data using NASA Harmony services via the harmony-py Python library?",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to spatially subset ICESat-2 data"
+      "Working with Data",
+      "Wrangling data",
+      "Subset data using harmony-py"
     ]
   },
   {
@@ -1212,9 +1217,9 @@
     "section": "Solution",
     "text": "Solution\nfrom harmony import BBox, Client, Collection, Request\nimport datetime as dt\nInitialize your Harmony client\nharmony_client = Client()\nDefine which data set you’d like to access using the collection concept-id (see how-to for retrieving collection concept-ids). For this example, we’ll use ATL06 version 007, C3564876127-NSIDC_CPRD.\ncollection = Collection(id='C3564876127-NSIDC_CPRD') \nDefine your spatial bounds (min_lon, min_lat, max_lon, max_lat). The example below is over the Juneau Ice Field in Alaska.\nbbox = BBox(-134.7,58.9,-133.9,59.2)\nDefine your temporal range (passed as a dictionary with “start” and “stop” keys, and dates supplied as datetime objects).\ntemporal = {'start': dt.datetime(2020, 4, 27),'stop': dt.datetime(2020, 5, 28)}\nBuild the request\nrequest = Request(\n    collection=collection,\n    spatial=bbox,\n    temporal=temporal\n)\nSubmit the request. This returns a Harmony job ID that can be used to check on progress.\njob_id = harmony_client.submit(request)\njob_id\n‘6a512b21-1b22-4cff-acec-bfb28fdb9985’\nCheck on Harmony job progress\nharmony_client.wait_for_processing(job_id, show_progress=True)\n[ Processing: 100% ] |###################################################| [|]\nDownload the results to your local directory\nfutures = harmony_client.download_all(job_id, directory=\".\", overwrite=False)\nfilelist = [f.result() for f in futures]  # get filepaths\nlen(filelist)\n./152623268_ATL06_20200509204541_06770702_007_01_subsetted.h5 ./152623269_ATL06_20200511091850_07000706_007_01_subsetted.h5\n2",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to spatially subset ICESat-2 data"
+      "Working with Data",
+      "Wrangling data",
+      "Subset data using harmony-py"
     ]
   },
   {
@@ -1224,9 +1229,9 @@
     "section": "Discussion",
     "text": "Discussion\nNASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets. Table of Harmony services available for select ICESat-2 data sets.\nA longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found here.",
     "crumbs": [
-      "How-To Guides",
-      "Customize data",
-      "How to use harmony-py to spatially subset ICESat-2 data"
+      "Working with Data",
+      "Wrangling data",
+      "Subset data using harmony-py"
     ]
   },
   {
@@ -1236,9 +1241,9 @@
     "section": "",
     "text": "How can I use earthaccess to find the concept-id’s for a list of data sets?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to get data set concept-ids using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Get data set concept-ids using earthaccess"
     ]
   },
   {
@@ -1248,9 +1253,9 @@
     "section": "",
     "text": "How can I use earthaccess to find the concept-id’s for a list of data sets?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to get data set concept-ids using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Get data set concept-ids using earthaccess"
     ]
   },
   {
@@ -1260,9 +1265,9 @@
     "section": "Solution",
     "text": "Solution\nimport earthaccess\nearthaccess.login()\nresults = earthaccess.search_datasets(\n    keyword = 'icesat-2',\n    cloud_hosted = True\n)\nfor r in results[:10]:\n    print(', '.join([r.summary()[key] for key in [\"short-name\", \"version\", \"concept-id\"]]))\nATL03 , 007 , C3326974349-NSIDC_CPRD\nATL06 , 007 , C3564876127-NSIDC_CPRD\nATL10 , 007 , C3565574246-NSIDC_CPRD\nATL24 , 001 , C3433822507-NSIDC_CPRD\nATL07 , 007 , C3564876395-NSIDC_CPRD\nATL12 , 007 , C3566214012-NSIDC_CPRD\nATL11 , 007 , C3816968337-NSIDC_CPRD\nATL13QL , 007 , C3566183861-NSIDC_CPRD\nATL09 , 007 , C3578753623-NSIDC_CPRD\nATL10QL , 007 , C3566183646-NSIDC_CPRD\nTo write the output to a csv file file for easy sharing\nwith open(\"list_of_concept_ids.csv\", \"w\") as f:\n    f.write(\"short_name,version,concept_id\")  # Add header\n    for item in results:\n        f.write(', '.join([item.summary()[key] for key in [\"short-name\",\"version\",\"concept-id\"]])+\"\\n\")",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to get data set concept-ids using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Get data set concept-ids using earthaccess"
     ]
   },
   {
@@ -1272,9 +1277,9 @@
     "section": "Discussion",
     "text": "Discussion\nConcept-ids are unique identifiers for collections (data sets) and granules (files) in NASA’s Common Metadata Repository (CMR). Collection concept-ids begin with the letter “C”, as seen in the list above. Granule concept-ids begin with the letter “G”. Concept-ids also indicate the data provider that stewards the data set. Concept-ids can be used in earthaccess.search_data().\n\nNSIDC_CPRD = National Snow and Ice Data Center DAAC\nLARC_CLOUD = Atmospheric Science Data Center DAAC\nORNL_CLOUD = Oak Ridge National Laboratory DAAC\nLPCLOUD = Land Processes DAAC at USGS\nOB_CLOUD = Ocean Biology DAAC\nPOCLOUD = Physical Oceanography DAAC at JPL\nASF = Alaska Satellite Facility DAAC\nGHRC_DAAC = Global Hydrometeorology Resource Center DAAC\nGES_DISC = Goddard Earth Sciences Data and Information Services Center\nLAADS = Level-1 and Atmosphere Archive and Distribution System DAAC\nCDDIS = Crustal Dynamics Data Information System DAAC",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to get data set concept-ids using earthaccess"
+      "Working with Data",
+      "Finding and accessing data",
+      "Get data set concept-ids using earthaccess"
     ]
   },
   {
@@ -1282,48 +1287,28 @@
     "href": "how-to-guides/get_data_links.html",
     "title": "How to use earthaccess to get the data access links for granules returned from a query",
     "section": "",
-    "text": "How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?",
-    "crumbs": [
-      "How-To Guides",
-      "Access data",
-      "How to get data access links using earthaccess"
-    ]
+    "text": "How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?"
   },
   {
     "objectID": "how-to-guides/get_data_links.html#problem",
     "href": "how-to-guides/get_data_links.html#problem",
     "title": "How to use earthaccess to get the data access links for granules returned from a query",
     "section": "",
-    "text": "How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?",
-    "crumbs": [
-      "How-To Guides",
-      "Access data",
-      "How to get data access links using earthaccess"
-    ]
+    "text": "How can I use earthaccess to find the data access links for the files that were returned in my earthaccess.search_data() query?"
   },
   {
     "objectID": "how-to-guides/get_data_links.html#solution",
     "href": "how-to-guides/get_data_links.html#solution",
     "title": "How to use earthaccess to get the data access links for granules returned from a query",
     "section": "Solution",
-    "text": "Solution\nBelow is an example query that applies a spatial filter over the Juneau ice field in Alaska for a specific time period:\nimport earthaccess\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '006',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\n[granule.data_links(access=\"https\") for granule in files]\n[['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nNote that a list of lists is returned. To get the urls as strings in a single list, add a first index to the method call.\n[granule.data_links(access=\"direct\")[0] for granule in files]\n['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']\n[granule.data_links(access=\"https\")[0] for granule in files]\n['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']",
-    "crumbs": [
-      "How-To Guides",
-      "Access data",
-      "How to get data access links using earthaccess"
-    ]
+    "text": "Solution\nBelow is an example query that applies a spatial filter over the Juneau ice field in Alaska for a specific time period:\nimport earthaccess\nfiles = earthaccess.search_data(\n    short_name = 'ATL06',\n    version = '006',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\n[granule.data_links(access=\"https\") for granule in files]\n[['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nNote that a list of lists is returned. To get the urls as strings in a single list, add a first index to the method call.\n[granule.data_links(access=\"direct\")[0] for granule in files]\n['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',\n 's3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']\n[granule.data_links(access=\"https\")[0] for granule in files]\n['https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5',\n 'https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']"
   },
   {
     "objectID": "how-to-guides/get_data_links.html#discussion",
     "href": "how-to-guides/get_data_links.html#discussion",
     "title": "How to use earthaccess to get the data access links for granules returned from a query",
     "section": "Discussion",
-    "text": "Discussion\nThe “https” links enable data download with no egress charges to the data user. “S3” object urls can be used for direct S3 access within AWS region us-west-2. Parsing the urls is also a way to get at the filenames for your granule query results.",
-    "crumbs": [
-      "How-To Guides",
-      "Access data",
-      "How to get data access links using earthaccess"
-    ]
+    "text": "Discussion\nThe “https” links enable data download with no egress charges to the data user. “S3” object urls can be used for direct S3 access within AWS region us-west-2. Parsing the urls is also a way to get at the filenames for your granule query results."
   },
   {
     "objectID": "how-to-guides/get_column_and_row_indices.html",
@@ -1360,8 +1345,8 @@
     "section": "",
     "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the latitude and longitudes for grid cells"
     ]
   },
@@ -1372,8 +1357,8 @@
     "section": "",
     "text": "My data are in a NetCDF file but there are no latitude and longitude coordinates. How do I get the latitude and longitude for each grid cell center?",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the latitude and longitudes for grid cells"
     ]
   },
@@ -1384,8 +1369,8 @@
     "section": "Solution",
     "text": "Solution\n\nimport numpy as np\n\nimport rioxarray\nimport xarray as xr\nfrom pyproj import CRS, Transformer\n\n\n# Load dataset using decode_coords='all'\nds = xr.open_dataset('../example_data/NSIDC0081_SEAICE_PS_N25km_20230627_v2.0.nc',\n                     decode_coords='all')\n\n# Instantiate source pyproj CRS from ds.rio.crs object\nsource_crs = CRS(ds.rio.crs.to_wkt())\n# Instantiate destination pyproj CRS using EPSG code for WGS84 \ndestination_crs = CRS(4326)\n\n# Instantiate pyproj transformer instance using source and destination CRS\ntransform = Transformer.from_crs(source_crs, destination_crs)\n\n# Create 2D arrays of x and y coordinates\nx2d, y2d = np.meshgrid(ds.x, ds.y)\n\n# Calculate latitude and longitudes for each grid cell\nlat, lon = transform.transform(x2d, y2d)",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the latitude and longitudes for grid cells"
     ]
   },
@@ -1396,8 +1381,8 @@
     "section": "Discussion",
     "text": "Discussion\nThe workflow above assumes that the NetCDF file is CF-compliant and has a grid_mapping variable and projected coordinates defined. See the rioxarray CRS management documentation if this is not the case.\nIf the dataset rio.crs is not set, the source_crs could be defined using the EPSG code or other projection information directly, without having to set the dataset crs.\nFor all datasets on projected grids, latitude and longitudes for grid cells will be 2-dimensional arrays. x- and y-coordinates for these datasets will be vectors. So 2-dimensional arrays of x and y coordinates need to be created. np.meshgrid is designed to do this.\nIf you want the latitudes and longitudes of the corners of grid cells, x and y coordinates can be incremented by half the grid cells width and height, and the resoluting projected coordinates passed to transform.transformer.\nIt is worth considering if you really need to have latitude and longitude arrays for your dataset. One reason that CF-conventions were changed, was that 2D arrays of geographic coordinates can increase the file size, especially for high resolution datasets. Projected coordinates as vectors take up much less space. Plotting tools such as cartopy can make maps without latitude and longitude. If you need to extract cell values for specific geographic coordinates, for example for a weather station or buoy, it is quicker and easier to transform these coordinates into the projected coordinate system of the dataset. The xarray.Dataset.sel or xarray.DataArray.sel methods can then be used to select the data for that location.",
     "crumbs": [
-      "How-To Guides",
-      "Work with NetCDF files",
+      "Working with Data",
+      "Wrangling data",
       "Get the latitude and longitudes for grid cells"
     ]
   },
@@ -1408,9 +1393,9 @@
     "section": "",
     "text": "How can I use a data set’s DOI (Digital Object Identifier) to search for a data set with earthaccess.search_data()?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to use a DOI to search for a data set"
+      "Working with Data",
+      "Finding and accessing data",
+      "Search for a data set with a DOI using earthaccess"
     ]
   },
   {
@@ -1420,9 +1405,9 @@
     "section": "",
     "text": "How can I use a data set’s DOI (Digital Object Identifier) to search for a data set with earthaccess.search_data()?",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to use a DOI to search for a data set"
+      "Working with Data",
+      "Finding and accessing data",
+      "Search for a data set with a DOI using earthaccess"
     ]
   },
   {
@@ -1432,9 +1417,9 @@
     "section": "Solution",
     "text": "Solution\nimport earthaccess\nearthaccess.login()\nearthaccess.search_data allows you to search for specific granules (i.e. files or bundles of files) within collections using filters. You can specify the collection by supplying a data set DOI as a search parameter. The data set DOI is a unique identifier for the specific version of a data set. Here we use the DOI for ATL06 Version 007 (10.5067/ATLAS/ATL06.007) along with spatial and temporal bounds to search for data granules.\nfiles = earthaccess.search_data(\n    doi = '10.5067/ATLAS/ATL06.007',\n    bounding_box = (-134.7,58.9,-133.9,59.2),\n    temporal = ('2020-03-01','2020-04-30'),\n)\nsearch_data queries NASA’s Common Metadata Repository (CMR) and returns a list of granule objects for the data set matching the DOI, and spatial and temporal bounds.\nWe can find the number of granules or CMR “hits” returned for those filter paramaters using len().\nprint(len(files))\n4\nOther parameters accepted by earthaccess.search_data can be found here and additional usage examples can be found here.\nWe can look at file names by retrieving the access links for the files:\n[granule.data_links(access=\"direct\") for granule in files]\n[['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/10/ATL06_20200310121504_11420606_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/03/12/ATL06_20200312233336_11800602_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/10/ATL06_20200410220936_02350702_007_01.h5'],\n ['s3://nsidc-cumulus-prod-protected/ATLAS/ATL06/007/2020/04/12/ATL06_20200412104246_02580706_007_01.h5']]\nFilenames are the last item in the S3 object url path, e.g. ATL06_20200310121504_11420606_007_01.h5. File naming conventions can be found in data set user guides found on data set landing pages, such as this landing page for ATL06 (ATLAS/ICESat-2 L3A Land Ice Height V007).",
     "crumbs": [
-      "How-To Guides",
-      "Search for data",
-      "How to use a DOI to search for a data set"
+      "Working with Data",
+      "Finding and accessing data",
+      "Search for a data set with a DOI using earthaccess"
     ]
   },
   {
