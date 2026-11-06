@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f6418134b02f9694f721b24ef4ff7088.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-eb28a8930fef684ecacf977c19eb5815.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-f6418134b02f9694f721b24ef4ff7088.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b178948f944330bd4eb9863f87895862.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1043e40a8153e26e423ac78734067ae0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b178948f944330bd4eb9863f87895862.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -625,12 +625,12 @@ ul.task-list li input[type="checkbox"] {
 <td><img src="images/data-access.svg" class="img-fluid" style="width:30.0%" alt="data-access"></td>
 </tr>
 <tr class="even">
-<td>Data visualization:</td>
-<td><img src="images/data-visualization.svg" class="img-fluid" style="width:30.0%" alt="data-visualization"></td>
-</tr>
-<tr class="odd">
 <td>Data reformatting and transformation:</td>
 <td><img src="images/data-conversion.svg" class="img-fluid" style="width:30.0%" alt="data-conversion"></td>
+</tr>
+<tr class="odd">
+<td>Data visualization:</td>
+<td><img src="images/data-visualization.svg" class="img-fluid" style="width:30.0%" alt="data-visualization"></td>
 </tr>
 <tr class="even">
 <td>Data analysis:</td>
@@ -649,6 +649,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="earthaccess-data-access" class="level4">
 <h4 class="anchored" data-anchor-id="earthaccess-data-access">earthaccess &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"></h4>
 <p><a href="https://earthaccess.readthedocs.io/en/latest/"><code>earthaccess</code></a> — search for and access NASA Earth science data.</p>
+</section>
+<section id="harmony-py-data-access-data-conversion" class="level4">
+<h4 class="anchored" data-anchor-id="harmony-py-data-access-data-conversion">harmony-py &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"></h4>
+<p><a href="https://harmony-py.readthedocs.io/en/main/"><code>harmony-py</code></a> — access and transform NASA Earth science data sets with available subsetting (spatial/temporal/variable), reformatting, and reprojection services.</p>
 </section>
 <section id="xarray-data-conversion-data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="xarray-data-conversion-data-analysis">xarray &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
@@ -682,8 +686,8 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="icepyx-data-access-data-visualization-data-analysis">icepyx &nbsp;<img src="images/data-access.svg" class="img-fluid" style="width:10.0%" alt="data-access"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://icepyx.readthedocs.io/en/latest/"><code>icepyx</code></a> — search, subset, and download ICESat-2 data with built-in metadata handling.</p>
 </section>
-<section id="satpy-data-visualization-data-conversion" class="level4">
-<h4 class="anchored" data-anchor-id="satpy-data-visualization-data-conversion">satpy &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"></h4>
+<section id="satpy-data-conversion-data-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="satpy-data-conversion-data-visualization">satpy &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"></h4>
 <p><a href="https://satpy.readthedocs.io/en/stable/"><code>satpy</code></a> — read, composite, and visualize meteorological satellite data.</p>
 </section>
 <section id="dask-computation" class="level4">
@@ -722,12 +726,12 @@ ul.task-list li input[type="checkbox"] {
 
 [`NCView`](https://cirrus.ucsd.edu/ncview/) — a lightweight utility for quickly viewing netCDF files, especially time series of 2D variables. -->
 </section>
-<section id="qgis-data-visualization-data-conversion-data-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="qgis-data-visualization-data-conversion-data-analysis">QGIS &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
+<section id="qgis-data-conversion-data-visualization-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="qgis-data-conversion-data-visualization-data-analysis">QGIS &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://qgis.org/"><code>QGIS</code></a> — an open-source geographic information system for analyzing and visualizing spatial data.</p>
 </section>
-<section id="arcgis-data-visualization-data-conversion-data-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="arcgis-data-visualization-data-conversion-data-analysis">ArcGIS &nbsp;<img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
+<section id="arcgis-data-conversion-data-visualization-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="arcgis-data-conversion-data-visualization-data-analysis">ArcGIS &nbsp;<img src="images/data-conversion.svg" class="img-fluid" style="width:10.0%" alt="data-conversion"> <img src="images/data-visualization.svg" class="img-fluid" style="width:10.0%" alt="data-visualization"> <img src="images/data-analysis.svg" class="img-fluid" style="width:10.0%" alt="data-analysis"></h4>
 <p><a href="https://www.esri.com/en-us/arcgis/about-arcgis/overview"><code>ArcGIS</code></a> — a commercial GIS platform for advanced mapping, spatial analysis, and data management.</p>
 
 
