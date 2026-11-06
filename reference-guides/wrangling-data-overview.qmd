@@ -9,11 +9,14 @@ Harmony provides access to services that can transform data from NASA's Earthdat
 
 Query the Harmony Capabilities endpoint using the collection concept-ID or short name to determine whether your collection has Harmony services enabled.  Supply the url in a browser or use curl to request the json response in the terminal.
 
-https://harmony.earthdata.nasa.gov/capabilities?collectionId=<collection-concept-id>
+`https://harmony.earthdata.nasa.gov/capabilities?collectionId=<collection-concept-id>`
 
-https://harmony.earthdata.nasa.gov/capabilities?shortName=<collection-short-name>
+`https://harmony.earthdata.nasa.gov/capabilities?shortName=<collection-short-name>`
 
 Harmony documentation can be found [here](https://harmony.earthdata.nasa.gov/docs).
+
+You can use the Harmony APIs and endpoints to [interact with Harmony directly](https://nsidc.org/data/user-resources/help-center/harmony-api-quickstart-guide-customizing-nasa-nsidc-daac-data-earthdata-cloud). The [`harmony-py` Python library](https://github.com/nasa/harmony-py) is the recommended option for Python users.
+
 
 ### **What if my data set does not have Harmony services enabled?**
 
