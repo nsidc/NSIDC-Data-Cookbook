@@ -10,3 +10,4 @@ pandas
 pytest
 earthaccess
 h5py
+tabulate
