@@ -1,0 +1,127 @@
+---
+title: "How to use harmony-py to subset ICESat-2 along-track data by variable"
+author: NSIDC Data Use and Education team
+date: last-modified
+execute:
+  freeze: auto
+---
+
+## Problem
+How do I extract a variable from an ICESat-2 along-track data set using NASA Harmony services via the harmony-py Python library?
+
+## Solution
+
+
+```python
+from harmony import BBox, Client, Collection, Request
+import datetime as dt
+```
+
+Initialize your Harmony client.
+```python 
+harmony_client = Client()
+```
+
+Define which data set you'd like to access using the collection concept-id (see [how-to](/how-to-guides/get_concept_ids.qmd) for retrieving collection concept-ids). For this example, we'll use ATLAS/ICESat-2 L3A Along Track Coastal and Nearshore Bathymetry (ATL24 version 003) = C4312123631-NSIDC_CPRD.
+```python
+collection = Collection(id='C4312123631-NSIDC_CPRD') 
+```
+
+Define your spatial area of interest (here - north coast of Madagascar).
+```python
+bbox = BBox(48.3,-13.6,49.1,-11.8)
+```
+Define your temporal range.
+```python
+temporal = {'start': dt.datetime(2018, 12, 28),'stop': dt.datetime(2018, 12, 29)}
+```
+Define your variables of interest.  We'll retrieve the orthometric height of the photon (ortho_h), the photon classification (class_ph), and the classification confidence (confidence).  We specify the variable paths within the hdf5 file.
+```python
+variables = ['gt2l/ortho_h','gt2l/class_ph','gt2l/confidence']
+```
+
+Build the request and verify it's valid.
+```python
+request = Request(
+    collection = collection,
+    spatial = bbox,
+    temporal = temporal,
+    variables = variables
+)
+request.is_valid()
+```
+Submit the request.  This returns a Harmony job ID that can be used to check on progress.
+```python
+job_id = harmony_client.submit(request)
+job_id
+```
+'4f37e34d-ff8e-4867-bded-9ef94b652fe7'
+
+You can check on Harmony job progress.
+```python
+harmony_client.wait_for_processing(job_id, show_progress=True)
+```
+ [ Processing: 100% ] |###################################################| [|]
+
+View a summary of the Harmony job. 
+```python
+job_summary = harmony_client.result_json(job_id)
+job_summary
+```
+{'username': 'mbeig',
+ 'status': 'successful',
+ 'message': 'The job has completed successfully',
+ 'progress': 100,
+ 'createdAt': '2026-11-18T21:29:31.497Z',
+ 'updatedAt': '2026-11-18T21:29:43.589Z',
+ 'dataExpiration': '2026-12-18T21:29:31.497Z',
+ 'links': [{'title': 'STAC catalog',
+   'href': 'https://harmony.earthdata.nasa.gov/stac/4f37e34d-ff8e-4867-bded-9ef94b652fe7/',
+   'rel': 'stac-catalog-json',
+   'type': 'application/json'},
+  {'href': 'https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/4f37e34d-ff8e-4867-bded-9ef94b652fe7/474160034/ATL24_20181228203822_00060208_007_01_003_01_subsetted.h5',
+   'title': 'ATL24_20181228203822_00060208_007_01_003_01_subsetted.h5',
+   'type': 'application/x-hdf5',
+   'rel': 'data',
+   'bbox': [47.17013704, -27.04836698, 50.07878378, 0.04309187],
+   'temporal': {'start': '2018-12-28T20:38:22.144Z',
+    'end': '2018-12-28T20:45:24.687Z'}},
+  {'href': 'https://harmony.earthdata.nasa.gov/service-results/harmony-prod-staging/public/4f37e34d-ff8e-4867-bded-9ef94b652fe7/474160033/ATL24_20181228084414_13850114_007_01_003_01_subsetted.h5',
+   'title': 'ATL24_20181228084414_13850114_007_01_003_01_subsetted.h5',
+   'type': 'application/x-hdf5',
+   'rel': 'data',
+   'bbox': [47.07866733, -27.04271999, 49.99075047, 0.0490561],
+   'temporal': {'start': '2018-12-28T08:44:14.518Z',
+    'end': '2018-12-28T08:51:17.026Z'}},
+  {'href': 'https://harmony.earthdata.nasa.gov/jobs/4f37e34d-ff8e-4867-bded-9ef94b652fe7?linktype=https&page=1&limit=2000',
+   'title': 'The current page',
+   'type': 'application/json',
+   'rel': 'self'}],
+ 'labels': [],
+ 'steps': 'https://harmony.earthdata.nasa.gov/jobs/4f37e34d-ff8e-4867-bded-9ef94b652fe7/steps',
+ 'serviceName': 'sds/trajectory-subsetter',
+ 'request': 'https://harmony.earthdata.nasa.gov/C4312123631-NSIDC_CPRD/ogc-api-coverages/1.0.0/collections/gt2l%2Fortho_h,gt2l%2Fclass_ph,gt2l%2Fconfidence/coverage/rangeset?forceAsync=true&subset=lat(-13.6%3A-11.8)&subset=lon(48.3%3A49.1)&subset=time(%222018-12-28T00%3A00%3A00%22%3A%222018-12-29T00%3A00%3A00%22)',
+ 'numInputGranules': 2,
+ 'jobID': '4f37e34d-ff8e-4867-bded-9ef94b652fe7',
+ 'originalDataSize': '490.53 MiB',
+ 'outputDataSize': '17.47 MiB',
+ 'dataSizePercentChange': '96.44% reduction'}
+
+Notice the last three items in the json response.  The original data volume was 490.53 MiB and the subsetted data is 17.47 MiB.
+
+Download the results to your local directory
+```python
+futures = harmony_client.download_all(job_id, directory=".", overwrite=False)
+filelist = [f.result() for f in futures]  # get filepaths
+len(filelist)
+```
+./474160034_ATL24_20181228203822_00060208_007_01_003_01_subsetted.h5
+./474160033_ATL24_20181228084414_13850114_007_01_003_01_subsetted.h5
+
+2
+
+## Discussion
+NASA Harmony is comprised of cloud-based services that allow you to customize many NASA data sets, providing the ability to subset, reproject and reformat files. Not all transformation services are available for all datasets.
+[Table](https://nsidc.org/data/user-resources/help-center/what-subsetting-and-reformatting-services-are-available-icesat-2-data) of Harmony services available for select ICESat-2 data sets.
+
+A longer form tutorial demonstrating NASA Harmony and the harmony-py Python library can be found [here](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/Harmony.html).
