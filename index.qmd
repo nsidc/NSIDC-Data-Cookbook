@@ -1,37 +1,29 @@
----
-title: "NSIDC Data Cookbook"
-author: NSIDC
----
-
-<!-- prettier-ignore -->
-> [!WARNING]
-> This cookbook is under active development. Major changes to the structure of
-> the book and its content are expected. We are striving to develop content
-> that is well-tested and peer-reviewed, but nothing contained here should be
-> expected to work correctly (or at all!) in this early phase.  Many sections contain only an outline of the content.
-> These sections will have content added as the project develops.
+::: {.callout-caution}
+This cookbook is under active development. We try to indicate pages that are still in development with a "WIP" label, but please be aware that some content may not be fully tested or peer-reviewed. If you find any errors or have suggestions for improvement, please reach out to us by submitting an issue on [GitHub](https://github.com/nsidc/NSIDC-Data-Cookbook/issues).
+:::
 
 ## Welcome to the NSIDC Data Cookbook! 
 
-This Cookbook for National Snow and Ice Data Center Distributed Active Archive Center ([NSIDC DAAC](https://nsidc.org/data/data-programs/nsidc-daac)) Data is more Julia Child’s “Mastering the Art of French Cooking” than just a collection of recipes (or data tutorials). The aim is to not only provide easy to follow recipes for working with data but also to provide an understanding of the data managed by NSIDC and the tools available to work with the data. It is not an in-depth guide to the many datasets housed by NSIDC but instead is an introduction to the common types of data, file formats and data structures. The hope is that the cookbook will provide a guide and foundataion to help you *master the art of working with cryospheric data*.
+This Cookbook for National Snow and Ice Data Center Distributed Active Archive Center ([NSIDC DAAC](https://nsidc.org/data/data-programs/nsidc-daac)) data is intended to be more like Julia Child's Mastering the Art of French Cooking than a simple collection of recipes (or data tutorials). Our goal is not only to provide easy-to-follow recipes for working with data, but also to build an understanding of the data managed by NSIDC and the tools available to work with it.
+
+Rather than providing an in-depth guide to every dataset housed at NSIDC, this cookbook introduces common data types, file formats, and data structures. We hope it will provide the guidance and foundation you need to *master the art of working with cryospheric data*.
 
 ## How to use this cookbook
 
-If you are new to NASA or NSIDC data, begin with the **Getting Started** section. Beyond that, the cookbook is divided into four major sections: **NSIDC Data**, **Working with Data**, **How-To Guides**, and **Tutorials / Workshops**. We also include some **Appendices** that include a best practices guide for Python scripting, some background details on computing, and how to contribute to the cookbook (if you are so inclined!).
+If you are new to NASA or NSIDC data, begin with the **Getting Started** section. Beyond that, the cookbook is divided into three major sections: **NSIDC Data**, **Working with Data**, and **Tutorials / Workshops**. We also include **Appendices** that include a list of video learning resources, a glossary, and how to contribute to the cookbook (if you are so inclined!).
 
-The **NSIDC Data** section is an introduction to the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids comon to NSIDC data, and a guide to NASA terminology for Earth science data. There is also an introduction to some “quirky” datasets that do not fit more common simple data structures or are just a little more difficult to work with.
+The **NSIDC Data** section introduces the types of data managed by NSIDC, the file formats used to store that data, coordinate reference systems and grids commmonly used with NSIDC data, and NASA terminology for Earth science data. 
 
-The **Working with Data** section is a guide to the tools and applications for accomplishing common steps in scientific workflows: finding and accessing data, wrangling data, and visualizing data. Wrangling data covers subsetting, reformatting, reprojecting and resampling data in preparation for analysis.
+The **Working with Data** section provides guidance on tools, applications, and workflows for accomplishing common tasks when working with NSIDC data. It is organized into three subsections:
 
-The **How-To Guides** section is a list of recipes to acheive common tasks. It is intended a list of solutions to common scientific programming tasks.
+- *Finding and Accessing Data:* How-to guides for discovering and accessing NSIDC data.
 
-Lastly, the **Tutorials / Workshops** section serves to highlight content that was developed for past events or specific use cases.
+- *Wrangling Data:* How-to guides for manipulating data, including subsetting, reformatting, reprojecting, and resampling in preparation for analysis.
+
+- *Visualizing Data:* How-to guides for creating plots and visualizing data.
+
+The **Tutorials / Workshops** section provides step-by-step workflows for working with NSIDC data. These tutorials are designed to be self-contained and can serve as starting points for your own analyses. Some tutorials were developed for specific workshops and are preserved in their original form for past participants to reference, while others are designed for self-paced learning and are updated over time.
 
 ## About the NSIDC DAAC
 
-NSIDC has managed the NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) since 1993, archiving and distributing cryospheric and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns and field observations. The NSIDC DAAC provides hundreds of free and open-access NASA Earth science data sets, detailed data documentation, data tools, resources and tutorials, as well as  robust data user support services. These data can be used to study topics relating to snow cover, sea ice, ice sheets, ice shelves, glaciers, frozen ground, soil moisture, climate interactions, and more!
-
-
-
-
-
+NSIDC has managed the NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) since 1993, archiving and distributing cryospheric and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns and field observations. The NSIDC DAAC provides hundreds of free and open-access NASA Earth science data sets, detailed data documentation, data tools, resources and tutorials, as well as  robust data user support services. These data support research on topics relating to snow cover, sea ice, ice sheets, ice shelves, glaciers, frozen ground, soil moisture, climate interactions, and more!
